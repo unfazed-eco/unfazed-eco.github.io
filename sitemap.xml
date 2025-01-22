@@ -2,420 +2,392 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
     <url>
         <loc>None./</loc>
-        <lastmod>2025-01-16</lastmod>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh-Hant" href="None"/>
         <xhtml:link rel="alternate" hreflang="en" href="Noneen/"/>
     </url>
     <url>
         <loc>Nonerelease-note/</loc>
-        <lastmod>2025-01-16</lastmod>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh-Hant" href="Nonerelease-note/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Noneen/release-note/"/>
     </url>
     <url>
         <loc>Nonefeatures/app/</loc>
-        <lastmod>2025-01-16</lastmod>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh-Hant" href="Nonefeatures/app/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Noneen/features/app/"/>
     </url>
     <url>
         <loc>Nonefeatures/cache/</loc>
-        <lastmod>2025-01-16</lastmod>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh-Hant" href="Nonefeatures/cache/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Noneen/features/cache/"/>
     </url>
     <url>
         <loc>Nonefeatures/command/</loc>
-        <lastmod>2025-01-16</lastmod>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh-Hant" href="Nonefeatures/command/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Noneen/features/command/"/>
     </url>
     <url>
         <loc>Nonefeatures/endpoint/</loc>
-        <lastmod>2025-01-16</lastmod>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh-Hant" href="Nonefeatures/endpoint/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Noneen/features/endpoint/"/>
     </url>
     <url>
         <loc>Nonefeatures/error/</loc>
-        <lastmod>2025-01-16</lastmod>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh-Hant" href="Nonefeatures/error/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Noneen/features/error/"/>
     </url>
     <url>
         <loc>Nonefeatures/lifespan/</loc>
-        <lastmod>2025-01-16</lastmod>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh-Hant" href="Nonefeatures/lifespan/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Noneen/features/lifespan/"/>
     </url>
     <url>
         <loc>Nonefeatures/logging/</loc>
-        <lastmod>2025-01-16</lastmod>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh-Hant" href="Nonefeatures/logging/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Noneen/features/logging/"/>
     </url>
     <url>
         <loc>Nonefeatures/middleware/</loc>
-        <lastmod>2025-01-16</lastmod>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh-Hant" href="Nonefeatures/middleware/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Noneen/features/middleware/"/>
     </url>
     <url>
         <loc>Nonefeatures/openapi/</loc>
-        <lastmod>2025-01-16</lastmod>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh-Hant" href="Nonefeatures/openapi/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Noneen/features/openapi/"/>
     </url>
     <url>
         <loc>Nonefeatures/request/</loc>
-        <lastmod>2025-01-16</lastmod>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh-Hant" href="Nonefeatures/request/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Noneen/features/request/"/>
     </url>
     <url>
         <loc>Nonefeatures/response/</loc>
-        <lastmod>2025-01-16</lastmod>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh-Hant" href="Nonefeatures/response/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Noneen/features/response/"/>
     </url>
     <url>
         <loc>Nonefeatures/route/</loc>
-        <lastmod>2025-01-16</lastmod>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh-Hant" href="Nonefeatures/route/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Noneen/features/route/"/>
     </url>
     <url>
         <loc>Nonefeatures/serializer/</loc>
-        <lastmod>2025-01-16</lastmod>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh-Hant" href="Nonefeatures/serializer/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Noneen/features/serializer/"/>
     </url>
     <url>
         <loc>Nonefeatures/settings/</loc>
-        <lastmod>2025-01-16</lastmod>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh-Hant" href="Nonefeatures/settings/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Noneen/features/settings/"/>
     </url>
     <url>
+        <loc>Nonefeatures/staticfiles/</loc>
+        <lastmod>2025-01-22</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh-Hant" href="Nonefeatures/staticfiles/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/features/staticfiles/"/>
+    </url>
+    <url>
         <loc>Nonefeatures/testclient/</loc>
-        <lastmod>2025-01-16</lastmod>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh-Hant" href="Nonefeatures/testclient/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Noneen/features/testclient/"/>
     </url>
     <url>
         <loc>Nonefeatures/tortoise-orm/</loc>
-        <lastmod>2025-01-16</lastmod>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh-Hant" href="Nonefeatures/tortoise-orm/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Noneen/features/tortoise-orm/"/>
     </url>
     <url>
         <loc>Nonefeatures/contrib/admin/</loc>
-        <lastmod>2025-01-16</lastmod>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh-Hant" href="Nonefeatures/contrib/admin/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Noneen/features/contrib/admin/"/>
     </url>
     <url>
         <loc>Nonefeatures/contrib/auth/</loc>
-        <lastmod>2025-01-16</lastmod>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh-Hant" href="Nonefeatures/contrib/auth/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Noneen/features/contrib/auth/"/>
     </url>
     <url>
         <loc>Nonefeatures/contrib/session/</loc>
-        <lastmod>2025-01-16</lastmod>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh-Hant" href="Nonefeatures/contrib/session/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Noneen/features/contrib/session/"/>
     </url>
     <url>
-        <loc>Noneinstruction/ddd-vs-mtv/</loc>
-        <lastmod>2025-01-16</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="zh-Hant" href="Noneinstruction/ddd-vs-mtv/"/>
-        <xhtml:link rel="alternate" hreflang="en" href="Noneen/instruction/ddd-vs-mtv/"/>
-    </url>
-    <url>
-        <loc>Noneinstruction/design/</loc>
-        <lastmod>2025-01-16</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="zh-Hant" href="Noneinstruction/design/"/>
-        <xhtml:link rel="alternate" hreflang="en" href="Noneen/instruction/design/"/>
-    </url>
-    <url>
-        <loc>Noneinstruction/why-unfazed/</loc>
-        <lastmod>2025-01-16</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="zh-Hant" href="Noneinstruction/why-unfazed/"/>
-        <xhtml:link rel="alternate" hreflang="en" href="Noneen/instruction/why-unfazed/"/>
-    </url>
-    <url>
         <loc>Nonetutorial/part1/</loc>
-        <lastmod>2025-01-16</lastmod>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh-Hant" href="Nonetutorial/part1/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Noneen/tutorial/part1/"/>
     </url>
     <url>
         <loc>Nonetutorial/part2/</loc>
-        <lastmod>2025-01-16</lastmod>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh-Hant" href="Nonetutorial/part2/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Noneen/tutorial/part2/"/>
     </url>
     <url>
         <loc>Nonetutorial/part3/</loc>
-        <lastmod>2025-01-16</lastmod>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh-Hant" href="Nonetutorial/part3/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Noneen/tutorial/part3/"/>
     </url>
     <url>
         <loc>Nonetutorial/part4/</loc>
-        <lastmod>2025-01-16</lastmod>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh-Hant" href="Nonetutorial/part4/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Noneen/tutorial/part4/"/>
     </url>
     <url>
         <loc>Nonetutorial/part5/</loc>
-        <lastmod>2025-01-16</lastmod>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh-Hant" href="Nonetutorial/part5/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Noneen/tutorial/part5/"/>
     </url>
     <url>
         <loc>Nonetutorial/part6/</loc>
-        <lastmod>2025-01-16</lastmod>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh-Hant" href="Nonetutorial/part6/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Noneen/tutorial/part6/"/>
     </url>
     <url>
         <loc>Noneen/</loc>
-        <lastmod>2025-01-16</lastmod>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Noneen/"/>
         <xhtml:link rel="alternate" hreflang="zh-Hant" href="None"/>
     </url>
     <url>
         <loc>Noneen/release-note/</loc>
-        <lastmod>2025-01-16</lastmod>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Noneen/release-note/"/>
         <xhtml:link rel="alternate" hreflang="zh-Hant" href="Nonerelease-note/"/>
     </url>
     <url>
         <loc>Noneen/features/app/</loc>
-        <lastmod>2025-01-16</lastmod>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Noneen/features/app/"/>
         <xhtml:link rel="alternate" hreflang="zh-Hant" href="Nonefeatures/app/"/>
     </url>
     <url>
         <loc>Noneen/features/cache/</loc>
-        <lastmod>2025-01-16</lastmod>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Noneen/features/cache/"/>
         <xhtml:link rel="alternate" hreflang="zh-Hant" href="Nonefeatures/cache/"/>
     </url>
     <url>
         <loc>Noneen/features/command/</loc>
-        <lastmod>2025-01-16</lastmod>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Noneen/features/command/"/>
         <xhtml:link rel="alternate" hreflang="zh-Hant" href="Nonefeatures/command/"/>
     </url>
     <url>
         <loc>Noneen/features/endpoint/</loc>
-        <lastmod>2025-01-16</lastmod>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Noneen/features/endpoint/"/>
         <xhtml:link rel="alternate" hreflang="zh-Hant" href="Nonefeatures/endpoint/"/>
     </url>
     <url>
         <loc>Noneen/features/error/</loc>
-        <lastmod>2025-01-16</lastmod>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Noneen/features/error/"/>
         <xhtml:link rel="alternate" hreflang="zh-Hant" href="Nonefeatures/error/"/>
     </url>
     <url>
         <loc>Noneen/features/lifespan/</loc>
-        <lastmod>2025-01-16</lastmod>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Noneen/features/lifespan/"/>
         <xhtml:link rel="alternate" hreflang="zh-Hant" href="Nonefeatures/lifespan/"/>
     </url>
     <url>
         <loc>Noneen/features/logging/</loc>
-        <lastmod>2025-01-16</lastmod>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Noneen/features/logging/"/>
         <xhtml:link rel="alternate" hreflang="zh-Hant" href="Nonefeatures/logging/"/>
     </url>
     <url>
         <loc>Noneen/features/middleware/</loc>
-        <lastmod>2025-01-16</lastmod>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Noneen/features/middleware/"/>
         <xhtml:link rel="alternate" hreflang="zh-Hant" href="Nonefeatures/middleware/"/>
     </url>
     <url>
         <loc>Noneen/features/openapi/</loc>
-        <lastmod>2025-01-16</lastmod>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Noneen/features/openapi/"/>
         <xhtml:link rel="alternate" hreflang="zh-Hant" href="Nonefeatures/openapi/"/>
     </url>
     <url>
         <loc>Noneen/features/request/</loc>
-        <lastmod>2025-01-16</lastmod>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Noneen/features/request/"/>
         <xhtml:link rel="alternate" hreflang="zh-Hant" href="Nonefeatures/request/"/>
     </url>
     <url>
         <loc>Noneen/features/response/</loc>
-        <lastmod>2025-01-16</lastmod>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Noneen/features/response/"/>
         <xhtml:link rel="alternate" hreflang="zh-Hant" href="Nonefeatures/response/"/>
     </url>
     <url>
         <loc>Noneen/features/route/</loc>
-        <lastmod>2025-01-16</lastmod>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Noneen/features/route/"/>
         <xhtml:link rel="alternate" hreflang="zh-Hant" href="Nonefeatures/route/"/>
     </url>
     <url>
         <loc>Noneen/features/serializer/</loc>
-        <lastmod>2025-01-16</lastmod>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Noneen/features/serializer/"/>
         <xhtml:link rel="alternate" hreflang="zh-Hant" href="Nonefeatures/serializer/"/>
     </url>
     <url>
         <loc>Noneen/features/settings/</loc>
-        <lastmod>2025-01-16</lastmod>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Noneen/features/settings/"/>
         <xhtml:link rel="alternate" hreflang="zh-Hant" href="Nonefeatures/settings/"/>
     </url>
     <url>
+        <loc>Noneen/features/staticfiles/</loc>
+        <lastmod>2025-01-22</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/features/staticfiles/"/>
+        <xhtml:link rel="alternate" hreflang="zh-Hant" href="Nonefeatures/staticfiles/"/>
+    </url>
+    <url>
         <loc>Noneen/features/testclient/</loc>
-        <lastmod>2025-01-16</lastmod>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Noneen/features/testclient/"/>
         <xhtml:link rel="alternate" hreflang="zh-Hant" href="Nonefeatures/testclient/"/>
     </url>
     <url>
         <loc>Noneen/features/tortoise-orm/</loc>
-        <lastmod>2025-01-16</lastmod>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Noneen/features/tortoise-orm/"/>
         <xhtml:link rel="alternate" hreflang="zh-Hant" href="Nonefeatures/tortoise-orm/"/>
     </url>
     <url>
         <loc>Noneen/features/contrib/admin/</loc>
-        <lastmod>2025-01-16</lastmod>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Noneen/features/contrib/admin/"/>
         <xhtml:link rel="alternate" hreflang="zh-Hant" href="Nonefeatures/contrib/admin/"/>
     </url>
     <url>
         <loc>Noneen/features/contrib/auth/</loc>
-        <lastmod>2025-01-16</lastmod>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Noneen/features/contrib/auth/"/>
         <xhtml:link rel="alternate" hreflang="zh-Hant" href="Nonefeatures/contrib/auth/"/>
     </url>
     <url>
         <loc>Noneen/features/contrib/session/</loc>
-        <lastmod>2025-01-16</lastmod>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Noneen/features/contrib/session/"/>
         <xhtml:link rel="alternate" hreflang="zh-Hant" href="Nonefeatures/contrib/session/"/>
     </url>
     <url>
-        <loc>Noneen/instruction/ddd-vs-mtv/</loc>
-        <lastmod>2025-01-16</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="en" href="Noneen/instruction/ddd-vs-mtv/"/>
-        <xhtml:link rel="alternate" hreflang="zh-Hant" href="Noneinstruction/ddd-vs-mtv/"/>
-    </url>
-    <url>
-        <loc>Noneen/instruction/design/</loc>
-        <lastmod>2025-01-16</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="en" href="Noneen/instruction/design/"/>
-        <xhtml:link rel="alternate" hreflang="zh-Hant" href="Noneinstruction/design/"/>
-    </url>
-    <url>
-        <loc>Noneen/instruction/why-unfazed/</loc>
-        <lastmod>2025-01-16</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="en" href="Noneen/instruction/why-unfazed/"/>
-        <xhtml:link rel="alternate" hreflang="zh-Hant" href="Noneinstruction/why-unfazed/"/>
-    </url>
-    <url>
         <loc>Noneen/tutorial/part1/</loc>
-        <lastmod>2025-01-16</lastmod>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Noneen/tutorial/part1/"/>
         <xhtml:link rel="alternate" hreflang="zh-Hant" href="Nonetutorial/part1/"/>
     </url>
     <url>
         <loc>Noneen/tutorial/part2/</loc>
-        <lastmod>2025-01-16</lastmod>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Noneen/tutorial/part2/"/>
         <xhtml:link rel="alternate" hreflang="zh-Hant" href="Nonetutorial/part2/"/>
     </url>
     <url>
         <loc>Noneen/tutorial/part3/</loc>
-        <lastmod>2025-01-16</lastmod>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Noneen/tutorial/part3/"/>
         <xhtml:link rel="alternate" hreflang="zh-Hant" href="Nonetutorial/part3/"/>
     </url>
     <url>
         <loc>Noneen/tutorial/part4/</loc>
-        <lastmod>2025-01-16</lastmod>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Noneen/tutorial/part4/"/>
         <xhtml:link rel="alternate" hreflang="zh-Hant" href="Nonetutorial/part4/"/>
     </url>
     <url>
         <loc>Noneen/tutorial/part5/</loc>
-        <lastmod>2025-01-16</lastmod>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Noneen/tutorial/part5/"/>
         <xhtml:link rel="alternate" hreflang="zh-Hant" href="Nonetutorial/part5/"/>
     </url>
     <url>
         <loc>Noneen/tutorial/part6/</loc>
-        <lastmod>2025-01-16</lastmod>
+        <lastmod>2025-01-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Noneen/tutorial/part6/"/>
         <xhtml:link rel="alternate" hreflang="zh-Hant" href="Nonetutorial/part6/"/>
