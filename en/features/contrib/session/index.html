@@ -614,7 +614,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../staticfiles/" class="md-nav__link">
+      <a href="../../../../features/staticfiles.md" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1028,14 +1028,14 @@ UNFAZED_SETTINGS = {
 # settings.py
 
 # 使用默认的内存存储
-SESSION_SETTINGS = {
+UNFAZED_CONTRIB_SESSION_SETTINGS = {
     &quot;SECRET&quot;: uuid.uuid4().hex,
     &quot;COOKIE_DOMAIN&quot;: &quot;unfazed.com&quot;,
     &quot;COOKIE_SECURE&quot;: True,
 }
 
 # 使用 redis 存储
-SESSION_SETTINGS = {
+UNFAZED_CONTRIB_SESSION_SETTINGS = {
     &quot;SECRET&quot;: uuid.uuid4().hex,
     &quot;COOKIE_DOMAIN&quot;: &quot;unfazed.com&quot;,
     &quot;COOKIE_SECURE&quot;: True,

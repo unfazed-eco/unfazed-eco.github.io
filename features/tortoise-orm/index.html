@@ -9,7 +9,7 @@
       
       
       
-        <link rel="prev" href="../staticfiles/">
+        <link rel="prev" href="../endpoint/">
       
       
         <link rel="next" href="../serializer/">
@@ -616,7 +616,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../staticfiles/" class="md-nav__link">
+      <a href="../staticfiles.md" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -646,6 +646,17 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    ORM
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -655,6 +666,403 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目錄">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目錄
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      系统概述
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="系统概述">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      核心特性
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      支持的数据库
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unfazed" class="md-nav__link">
+    <span class="md-ellipsis">
+      在 Unfazed 中的集成
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      快速开始
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="快速开始">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      基本配置
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      模型定义
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#crud" class="md-nav__link">
+    <span class="md-ellipsis">
+      基本 CRUD 操作
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="基本 CRUD 操作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      创建记录
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      查询记录
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      更新记录
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      删除记录
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      关系字段操作
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="关系字段操作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#foreignkey" class="md-nav__link">
+    <span class="md-ellipsis">
+      外键关系 (ForeignKey)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onetoone" class="md-nav__link">
+    <span class="md-ellipsis">
+      一对一关系 (OneToOne)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manytomany" class="md-nav__link">
+    <span class="md-ellipsis">
+      多对多关系 (ManyToMany)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      高级查询功能
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="高级查询功能">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      聚合查询
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      事务管理
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aerich" class="md-nav__link">
+    <span class="md-ellipsis">
+      数据库迁移 (Aerich)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="数据库迁移 (Aerich)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      初始化迁移
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      生成迁移文件
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      应用迁移
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      回滚迁移
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      迁移历史管理
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      性能优化
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="性能优化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      查询优化
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      连接池配置
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      测试支持
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="测试支持">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      测试数据库配置
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      测试示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      最佳实践
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="最佳实践">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      模型设计
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      错误处理
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      总结
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      参考资源
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -939,6 +1347,392 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目錄
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      系统概述
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="系统概述">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      核心特性
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      支持的数据库
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unfazed" class="md-nav__link">
+    <span class="md-ellipsis">
+      在 Unfazed 中的集成
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      快速开始
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="快速开始">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      基本配置
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      模型定义
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#crud" class="md-nav__link">
+    <span class="md-ellipsis">
+      基本 CRUD 操作
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="基本 CRUD 操作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      创建记录
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      查询记录
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      更新记录
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      删除记录
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      关系字段操作
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="关系字段操作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#foreignkey" class="md-nav__link">
+    <span class="md-ellipsis">
+      外键关系 (ForeignKey)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onetoone" class="md-nav__link">
+    <span class="md-ellipsis">
+      一对一关系 (OneToOne)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manytomany" class="md-nav__link">
+    <span class="md-ellipsis">
+      多对多关系 (ManyToMany)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      高级查询功能
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="高级查询功能">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      聚合查询
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      事务管理
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aerich" class="md-nav__link">
+    <span class="md-ellipsis">
+      数据库迁移 (Aerich)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="数据库迁移 (Aerich)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      初始化迁移
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      生成迁移文件
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      应用迁移
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      回滚迁移
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      迁移历史管理
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      性能优化
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="性能优化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      查询优化
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      连接池配置
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      测试支持
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="测试支持">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      测试数据库配置
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      测试示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      最佳实践
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="最佳实践">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      模型设计
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      错误处理
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      总结
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      参考资源
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -955,19 +1749,772 @@
   
 
 
-<h1 id="tortoise-orm">Tortoise ORM</h1>
-<p>Tortoise ORM 是 unfazed 的默认数据库 ORM，相关文档不在 unfazed 中重复，请直接参考</p>
+<h1 id="tortoise-orm">Tortoise ORM 数据库操作</h1>
+<p>Tortoise ORM 是 Unfazed 框架的默认异步 ORM（对象关系映射）系统，专为 <code>asyncio</code> 设计，提供了类似 Django ORM 的简洁 API。它支持多种数据库后端，提供高性能的异步数据库操作能力，是构建现代异步 Web 应用的理想选择。</p>
+<h2 id="_1">系统概述</h2>
+<h3 id="_2">核心特性</h3>
+<p>Tortoise ORM 基于 <a href="https://tortoise.github.io/">官方文档</a> 提供以下核心特性：</p>
 <ul>
-<li><a href="https://github.com/tortoise/tortoise-orm">tortoise-orm github</a></li>
-<li><a href="https://tortoise.github.io/">tortoise-orm doc</a></li>
+<li><strong>异步原生</strong>: 完全基于 <code>asyncio</code> 构建，提供原生异步数据库操作</li>
+<li><strong>Django 风格 API</strong>: 熟悉的查询语法和模型定义方式</li>
+<li><strong>多数据库支持</strong>: 支持 PostgreSQL、MySQL、SQLite、SQL Server、Oracle</li>
+<li><strong>高性能</strong>: 在基准测试中与其他 Python ORM 相比表现优异</li>
+<li><strong>类型安全</strong>: 完整的类型注解支持，提供良好的 IDE 体验</li>
+<li><strong>关系处理</strong>: 支持外键、多对多、一对一等各种关系</li>
+<li><strong>查询优化</strong>: 支持预加载、聚合、复杂查询等高级功能</li>
+<li><strong>事务支持</strong>: 完整的事务管理和回滚机制</li>
+<li><strong>迁移工具</strong>: 与 Aerich 集成的数据库迁移系统</li>
 </ul>
-<p>与 tortoise-orm 配套的迁移工具为 aerich</p>
+<h3 id="_3">支持的数据库</h3>
+<p>目前 Unfazed 内置支持的驱动有：</p>
+<table>
+<thead>
+<tr>
+<th>数据库</th>
+<th>最低版本</th>
+<th>驱动</th>
+<th>连接字符串示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>MySQL/MariaDB</strong></td>
+<td>5.7+</td>
+<td><code>asyncmy</code></td>
+<td><code>mysql://user:pass@host:3306/db</code></td>
+</tr>
+<tr>
+<td><strong>SQLite</strong></td>
+<td>3.25+</td>
+<td><code>aiosqlite</code></td>
+<td><code>sqlite://db.sqlite3</code> 或 <code>sqlite://:memory:</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="unfazed">在 Unfazed 中的集成</h3>
+<p>Unfazed 通过 <code>ModelCenter</code> 和 <code>Driver</code> 系统无缝集成 Tortoise ORM：</p>
 <ul>
-<li><a href="https://github.com/tortoise/aerich">aerich github</a></li>
+<li><strong>自动配置</strong>: 根据 <code>UNFAZED_SETTINGS</code> 自动初始化数据库连接</li>
+<li><strong>应用集成</strong>: 自动发现和注册各应用的模型</li>
+<li><strong>命令集成</strong>: 内置 Aerich 数据库迁移命令</li>
+<li><strong>生命周期管理</strong>: 自动处理数据库连接的建立和关闭</li>
 </ul>
-<p>unfazed 对 aerich 的命令做了包装，参考</p>
+<h2 id="_4">快速开始</h2>
+<h3 id="_5">基本配置</h3>
+<pre><code class="language-python"># settings.py
+UNFAZED_SETTINGS = {
+    &quot;DEBUG&quot;: True,
+    &quot;INSTALLED_APPS&quot;: [
+        &quot;myapp.users&quot;,
+        &quot;myapp.orders&quot;,
+        &quot;myapp.products&quot;,
+    ],
+    &quot;DATABASE&quot;: {
+        &quot;CONNECTIONS&quot;: {
+            &quot;default&quot;: {
+                &quot;ENGINE&quot;: &quot;tortoise.backends.mysql&quot;,
+                &quot;CREDENTIALS&quot;: {
+                    &quot;host&quot;: &quot;localhost&quot;,
+                    &quot;port&quot;: 5432,
+                    &quot;user&quot;: &quot;myapp&quot;,
+                    &quot;password&quot;: &quot;secret&quot;,
+                    &quot;database&quot;: &quot;myapp_db&quot;,
+                    &quot;minsize&quot;: 1,
+                    &quot;maxsize&quot;: 10,
+                }
+            }
+        },
+    }
+}
+</code></pre>
+<h3 id="_6">模型定义</h3>
+<pre><code class="language-python"># myapp/users/models.py
+from tortoise.models import Model
+from tortoise import fields
+from typing import Optional
+from datetime import datetime
+
+class User(Model):
+    &quot;&quot;&quot;用户模型&quot;&quot;&quot;
+    id = fields.BigIntField(primary_key=True, description=&quot;用户ID&quot;)
+    username = fields.CharField(max_length=50, unique=True, description=&quot;用户名&quot;)
+    email = fields.CharField(max_length=255, unique=True, description=&quot;邮箱&quot;)
+    password_hash = fields.CharField(max_length=255, description=&quot;密码哈希&quot;)
+    first_name = fields.CharField(max_length=30, description=&quot;名&quot;)
+    last_name = fields.CharField(max_length=30, description=&quot;姓&quot;)
+    is_active = fields.BooleanField(default=True, description=&quot;是否激活&quot;)
+    is_staff = fields.BooleanField(default=False, description=&quot;是否员工&quot;)
+    date_joined = fields.DatetimeField(auto_now_add=True, description=&quot;注册时间&quot;)
+    last_login = fields.DatetimeField(null=True, description=&quot;最后登录时间&quot;)
+
+    # 关系字段
+    profile: Optional[&quot;UserProfile&quot;]
+    orders: fields.ReverseRelation[&quot;Order&quot;]
+
+    class Meta:
+        table = &quot;users&quot;
+        indexes = [
+            [&quot;username&quot;],
+            [&quot;email&quot;],
+            [&quot;date_joined&quot;],
+        ]
+
+    def __str__(self):
+        return f&quot;User(username={self.username})&quot;
+
+    async def set_password(self, password: str):
+        &quot;&quot;&quot;设置密码&quot;&quot;&quot;
+        # 实际项目中应使用 bcrypt 等加密
+        import hashlib
+        self.password_hash = hashlib.sha256(password.encode()).hexdigest()
+
+    async def check_password(self, password: str) -&gt; bool:
+        &quot;&quot;&quot;验证密码&quot;&quot;&quot;
+        import hashlib
+        return self.password_hash == hashlib.sha256(password.encode()).hexdigest()
+
+class UserProfile(Model):
+    &quot;&quot;&quot;用户档案模型&quot;&quot;&quot;
+    id = fields.BigIntField(primary_key=True)
+    user = fields.OneToOneField(&quot;models.User&quot;, related_name=&quot;profile&quot;, description=&quot;关联用户&quot;)
+    bio = fields.TextField(blank=True, description=&quot;个人简介&quot;)
+    avatar = fields.CharField(max_length=255, null=True, description=&quot;头像URL&quot;)
+    phone = fields.CharField(max_length=20, null=True, description=&quot;电话号码&quot;)
+    address = fields.TextField(blank=True, description=&quot;地址&quot;)
+    birth_date = fields.DateField(null=True, description=&quot;生日&quot;)
+    created_at = fields.DatetimeField(auto_now_add=True)
+    updated_at = fields.DatetimeField(auto_now=True)
+
+    class Meta:
+        table = &quot;user_profiles&quot;
+</code></pre>
+<h2 id="crud">基本 CRUD 操作</h2>
+<h3 id="_7">创建记录</h3>
+<pre><code class="language-python"># 创建单个用户
+async def create_user():
+    user = await User.create(
+        username=&quot;alice&quot;,
+        email=&quot;alice@example.com&quot;,
+        first_name=&quot;Alice&quot;,
+        last_name=&quot;Smith&quot;
+    )
+    await user.set_password(&quot;secret123&quot;)
+    await user.save()
+    return user
+
+# 批量创建
+async def create_multiple_users():
+    users_data = [
+        {&quot;username&quot;: &quot;bob&quot;, &quot;email&quot;: &quot;bob@example.com&quot;, &quot;first_name&quot;: &quot;Bob&quot;},
+        {&quot;username&quot;: &quot;charlie&quot;, &quot;email&quot;: &quot;charlie@example.com&quot;, &quot;first_name&quot;: &quot;Charlie&quot;},
+    ]
+    users = await User.bulk_create([User(**data) for data in users_data])
+    return users
+
+# 获取或创建
+async def get_or_create_user():
+    user, created = await User.get_or_create(
+        username=&quot;david&quot;,
+        defaults={
+            &quot;email&quot;: &quot;david@example.com&quot;,
+            &quot;first_name&quot;: &quot;David&quot;
+        }
+    )
+    return user, created
+</code></pre>
+<h3 id="_8">查询记录</h3>
+<pre><code class="language-python"># 基本查询
+async def basic_queries():
+    # 获取单个记录
+    user = await User.get(username=&quot;alice&quot;)
+
+    # 获取或返回 None
+    user = await User.get_or_none(username=&quot;nonexistent&quot;)
+
+    # 获取第一个记录
+    first_user = await User.first()
+
+    # 过滤查询
+    active_users = await User.filter(is_active=True)
+
+    # 复杂条件
+    recent_users = await User.filter(
+        date_joined__gte=datetime(2024, 1, 1),
+        is_active=True
+    ).exclude(is_staff=True)
+
+    # 排序
+    users_by_name = await User.all().order_by(&quot;first_name&quot;, &quot;-date_joined&quot;)
+
+    # 限制结果
+    latest_10_users = await User.all().order_by(&quot;-date_joined&quot;).limit(10)
+
+    # 分页
+    page_2_users = await User.all().offset(20).limit(10)
+
+# 高级查询条件
+async def advanced_filters():
+    # 字符串匹配
+    users = await User.filter(username__icontains=&quot;alice&quot;)  # 忽略大小写包含
+    users = await User.filter(email__endswith=&quot;@gmail.com&quot;)  # 以...结尾
+    users = await User.filter(first_name__startswith=&quot;A&quot;)  # 以...开头
+
+    # 数值比较
+    users = await User.filter(id__gte=100)  # 大于等于
+    users = await User.filter(id__lt=1000)  # 小于
+    users = await User.filter(id__in=[1, 2, 3, 4, 5])  # 在列表中
+
+    # 日期查询
+    from datetime import date, timedelta
+    today = date.today()
+    users = await User.filter(date_joined__date=today)  # 今天注册
+    users = await User.filter(date_joined__year=2024)  # 2024年注册
+    users = await User.filter(date_joined__month=12)  # 12月注册
+
+    # NULL 查询
+    users = await User.filter(last_login__isnull=True)  # 从未登录
+    users = await User.filter(last_login__not_isnull=True)  # 已登录过
+
+# 使用 Q 对象进行复杂查询
+from tortoise.queryset import Q
+
+async def complex_queries():
+    # OR 查询
+    users = await User.filter(
+        Q(username=&quot;alice&quot;) | Q(email=&quot;alice@example.com&quot;)
+    )
+
+    # AND 查询
+    users = await User.filter(
+        Q(is_active=True) &amp; Q(is_staff=False)
+    )
+
+    # NOT 查询
+    users = await User.filter(~Q(username=&quot;admin&quot;))
+
+    # 复杂组合
+    users = await User.filter(
+        (Q(first_name=&quot;Alice&quot;) | Q(first_name=&quot;Bob&quot;)) &amp;
+        Q(is_active=True) &amp;
+        ~Q(is_staff=True)
+    )
+</code></pre>
+<h3 id="_9">更新记录</h3>
+<pre><code class="language-python">async def update_records():
+    # 更新单个记录
+    user = await User.get(username=&quot;alice&quot;)
+    user.last_login = datetime.now()
+    await user.save()
+
+    # 批量更新
+    await User.filter(is_active=True).update(last_login=datetime.now())
+
+    # 条件更新
+    updated_count = await User.filter(
+        date_joined__lt=datetime(2023, 1, 1)
+    ).update(is_active=False)
+
+    # 使用 F 表达式
+    from tortoise.expressions import F
+    await User.all().update(id=F(&quot;id&quot;) + 1000)
+</code></pre>
+<h3 id="_10">删除记录</h3>
+<pre><code class="language-python">async def delete_records():
+    # 删除单个记录
+    user = await User.get(username=&quot;alice&quot;)
+    await user.delete()
+
+    # 批量删除
+    deleted_count = await User.filter(is_active=False).delete()
+
+    # 软删除（如果模型支持）
+    await User.filter(username=&quot;bob&quot;).update(is_active=False)
+</code></pre>
+<h2 id="_11">关系字段操作</h2>
+<h3 id="foreignkey">外键关系 (ForeignKey)</h3>
+<pre><code class="language-python">from enum import Enum
+
+class OrderStatus(str, Enum):
+    PENDING = &quot;pending&quot;
+    CONFIRMED = &quot;confirmed&quot;
+    SHIPPED = &quot;shipped&quot;
+    DELIVERED = &quot;delivered&quot;
+    CANCELLED = &quot;cancelled&quot;
+
+class Order(Model):
+    &quot;&quot;&quot;订单模型&quot;&quot;&quot;
+    id = fields.BigIntField(primary_key=True)
+    order_number = fields.CharField(max_length=50, unique=True, description=&quot;订单号&quot;)
+    user = fields.ForeignKeyField(&quot;models.User&quot;, related_name=&quot;orders&quot;, description=&quot;下单用户&quot;)
+    total_amount = fields.DecimalField(max_digits=10, decimal_places=2, description=&quot;总金额&quot;)
+    status = fields.CharEnumField(OrderStatus, default=OrderStatus.PENDING, description=&quot;订单状态&quot;)
+    created_at = fields.DatetimeField(auto_now_add=True, description=&quot;创建时间&quot;)
+    updated_at = fields.DatetimeField(auto_now=True, description=&quot;更新时间&quot;)
+
+    class Meta:
+        table = &quot;orders&quot;
+
+async def foreign_key_operations():
+    # 创建带关系的记录
+    user = await User.create(username=&quot;alice&quot;, email=&quot;alice@example.com&quot;)
+
+    order = await Order.create(
+        order_number=&quot;ORD-001&quot;,
+        user=user,  # 直接传递模型实例
+        total_amount=99.99,
+        status=OrderStatus.PENDING
+    )
+
+    # 或者使用 ID
+    order = await Order.create(
+        order_number=&quot;ORD-002&quot;,
+        user_id=user.id,
+        total_amount=149.99,
+        status=OrderStatus.PENDING
+    )
+
+    # 查询时预加载关系
+    orders = await Order.filter(status=OrderStatus.PENDING).select_related(&quot;user&quot;)
+    for order in orders:
+        print(f&quot;订单 {order.order_number} 属于用户 {order.user.username}&quot;)
+
+    # 反向查询
+    user_orders = await user.orders.all()
+    recent_orders = await user.orders.filter(
+        created_at__gte=datetime.now() - timedelta(days=30)
+    )
+</code></pre>
+<h3 id="onetoone">一对一关系 (OneToOne)</h3>
+<pre><code class="language-python">async def one_to_one_operations():
+    # 创建用户和档案
+    user = await User.create(username=&quot;bob&quot;, email=&quot;bob@example.com&quot;)
+
+    profile = await UserProfile.create(
+        user=user,
+        bio=&quot;Software Developer&quot;,
+        phone=&quot;+1-555-0123&quot;,
+        birth_date=date(1990, 5, 15)
+    )
+
+    # 查询时预加载
+    user_with_profile = await User.get(username=&quot;bob&quot;).select_related(&quot;profile&quot;)
+    print(f&quot;用户简介: {user_with_profile.profile.bio}&quot;)
+
+    # 反向访问
+    profile = await UserProfile.get(user__username=&quot;bob&quot;)
+    print(f&quot;档案属于用户: {profile.user.username}&quot;)
+</code></pre>
+<h3 id="manytomany">多对多关系 (ManyToMany)</h3>
+<pre><code class="language-python">class Tag(Model):
+    id = fields.BigIntField(primary_key=True)
+    name = fields.CharField(max_length=50, unique=True)
+
+    class Meta:
+        table = &quot;tags&quot;
+
+class Article(Model):
+    id = fields.BigIntField(primary_key=True)
+    title = fields.CharField(max_length=200)
+    content = fields.TextField()
+    author = fields.ForeignKeyField(&quot;models.User&quot;, related_name=&quot;articles&quot;)
+    tags = fields.ManyToManyField(&quot;models.Tag&quot;, related_name=&quot;articles&quot;)
+    created_at = fields.DatetimeField(auto_now_add=True)
+
+    class Meta:
+        table = &quot;articles&quot;
+
+async def many_to_many_operations():
+    # 创建标签
+    tag1 = await Tag.create(name=&quot;Python&quot;)
+    tag2 = await Tag.create(name=&quot;异步编程&quot;)
+    tag3 = await Tag.create(name=&quot;Web开发&quot;)
+
+    # 创建文章
+    user = await User.get(username=&quot;alice&quot;)
+    article = await Article.create(
+        title=&quot;Tortoise ORM 指南&quot;,
+        content=&quot;这是一篇关于 Tortoise ORM 的文章...&quot;,
+        author=user
+    )
+
+    # 添加标签
+    await article.tags.add(tag1, tag2, tag3)
+
+    # 移除标签
+    await article.tags.remove(tag3)
+
+    # 清空所有标签
+    await article.tags.clear()
+
+    # 设置标签（替换所有）
+    await article.tags.set([tag1, tag2])
+
+    # 查询时预加载多对多关系
+    articles = await Article.all().prefetch_related(&quot;tags&quot;, &quot;author&quot;)
+    for article in articles:
+        tag_names = [tag.name for tag in article.tags]
+        print(f&quot;文章《{article.title}》标签: {', '.join(tag_names)}&quot;)
+
+    # 反向查询
+    python_articles = await tag1.articles.all()
+
+    # 复杂查询
+    articles_with_python = await Article.filter(tags__name=&quot;Python&quot;)
+</code></pre>
+<h2 id="_12">高级查询功能</h2>
+<h3 id="_13">聚合查询</h3>
+<pre><code class="language-python">from tortoise.functions import Count, Sum, Avg, Max, Min
+
+async def aggregation_queries():
+    # 计数
+    user_count = await User.all().count()
+    active_user_count = await User.filter(is_active=True).count()
+
+    # 聚合函数
+    stats = await Order.all().aggregate(
+        total_orders=Count(&quot;id&quot;),
+        total_revenue=Sum(&quot;total_amount&quot;),
+        avg_order_value=Avg(&quot;total_amount&quot;),
+        max_order_value=Max(&quot;total_amount&quot;),
+        min_order_value=Min(&quot;total_amount&quot;)
+    )
+
+    # 分组聚合
+    user_order_stats = await Order.all().group_by(&quot;user_id&quot;).annotate(
+        order_count=Count(&quot;id&quot;),
+        total_spent=Sum(&quot;total_amount&quot;)
+    ).values(&quot;user_id&quot;, &quot;order_count&quot;, &quot;total_spent&quot;)
+</code></pre>
+<h3 id="_14">事务管理</h3>
+<pre><code class="language-python">from tortoise.transactions import in_transaction
+
+async def transaction_examples():
+    # 使用装饰器
+    @in_transaction()
+    async def transfer_money(from_user_id: int, to_user_id: int, amount: float):
+        # 这些操作将在同一个事务中执行
+        from_user = await User.get(id=from_user_id)
+        to_user = await User.get(id=to_user_id)
+
+        if from_user.balance &lt; amount:
+            raise ValueError(&quot;余额不足&quot;)
+
+        from_user.balance -= amount
+        to_user.balance += amount
+
+        await from_user.save()
+        await to_user.save()
+
+    # 使用上下文管理器
+    async with in_transaction():
+        user = await User.create(username=&quot;test_user&quot;, email=&quot;test@example.com&quot;)
+        profile = await UserProfile.create(user=user, bio=&quot;Test bio&quot;)
+
+        # 如果任何操作失败，整个事务将回滚
+        if some_condition:
+            raise Exception(&quot;回滚事务&quot;)
+</code></pre>
+<h2 id="aerich">数据库迁移 (Aerich)</h2>
+<p>Unfazed 集成了 <a href="https://github.com/tortoise/aerich">Aerich</a> 作为数据库迁移工具，提供完整的数据库版本控制功能。</p>
+<h3 id="_15">初始化迁移</h3>
+<pre><code class="language-bash"># 初始化 Aerich（首次使用）
+unfazed-cli init-db
+
+# 这会创建：
+# - migrations/ 目录
+# - migrations/models/ 目录
+# - 初始迁移文件
+</code></pre>
+<h3 id="_16">生成迁移文件</h3>
+<pre><code class="language-bash"># 检测模型变化并生成迁移文件
+unfazed-cli migrate
+
+# 指定迁移名称
+unfazed-cli migrate --name add_user_profile
+
+# 生成空的迁移文件（用于手动编写迁移）
+unfazed-cli migrate --name custom_migration --empty
+</code></pre>
+<h3 id="_17">应用迁移</h3>
+<pre><code class="language-bash"># 应用所有待执行的迁移
+unfazed-cli upgrade
+
+# 在事务中应用迁移
+unfazed-cli upgrade --transaction
+</code></pre>
+<h3 id="_18">回滚迁移</h3>
+<pre><code class="language-bash"># 回滚到上一个版本
+unfazed-cli downgrade
+
+# 回滚到指定版本
+unfazed-cli downgrade --version 2
+
+# 回滚并删除迁移文件
+unfazed-cli downgrade --version 1 --delete
+</code></pre>
+<h3 id="_19">迁移历史管理</h3>
+<pre><code class="language-bash"># 查看迁移历史
+unfazed-cli history
+
+# 查看待应用的迁移
+unfazed-cli heads
+
+# 数据库表结构逆向工程
+unfazed-cli inspectdb
+
+# 检查特定表
+unfazed-cli inspectdb --table users
+</code></pre>
+<h2 id="_20">性能优化</h2>
+<h3 id="_21">查询优化</h3>
+<pre><code class="language-python">async def query_optimization():
+    # 1. 使用 select_related 预加载外键关系
+    orders = await Order.all().select_related(&quot;user&quot;)
+    for order in orders:
+        print(f&quot;订单 {order.order_number} 用户: {order.user.username}&quot;)  # 不会产生 N+1 查询
+
+    # 2. 使用 prefetch_related 预加载反向关系和多对多关系
+    users = await User.all().prefetch_related(&quot;orders&quot;, &quot;articles__tags&quot;)
+    for user in users:
+        print(f&quot;用户 {user.username} 有 {len(user.orders)} 个订单&quot;)
+
+    # 3. 只选择需要的字段
+    user_names = await User.all().values_list(&quot;username&quot;, flat=True)
+    user_info = await User.all().values(&quot;id&quot;, &quot;username&quot;, &quot;email&quot;)
+
+    # 4. 使用索引字段进行查询
+    active_users = await User.filter(is_active=True)  # is_active 应该有索引
+
+    # 5. 批量操作
+    users_data = [
+        {&quot;username&quot;: f&quot;user_{i}&quot;, &quot;email&quot;: f&quot;user_{i}@example.com&quot;}
+        for i in range(100)
+    ]
+    await User.bulk_create([User(**data) for data in users_data])
+
+    # 6. 使用 exists() 检查存在性
+    has_orders = await Order.filter(user_id=1).exists()
+</code></pre>
+<h3 id="_22">连接池配置</h3>
+<pre><code class="language-python"># settings.py - 数据库连接池优化
+UNFAZED_SETTINGS = {
+    &quot;DATABASE&quot;: {
+        &quot;CONNECTIONS&quot;: {
+            &quot;default&quot;: {
+                &quot;ENGINE&quot;: &quot;tortoise.backends.asyncpg&quot;,
+                &quot;CREDENTIALS&quot;: {
+                    &quot;host&quot;: &quot;localhost&quot;,
+                    &quot;port&quot;: 5432,
+                    &quot;user&quot;: &quot;myapp&quot;,
+                    &quot;password&quot;: &quot;secret&quot;,
+                    &quot;database&quot;: &quot;myapp_db&quot;,
+                    # 连接池配置
+                    &quot;minsize&quot;: 5,        # 最小连接数
+                    &quot;maxsize&quot;: 20,       # 最大连接数
+                    &quot;max_queries&quot;: 50000, # 每个连接最大查询数
+                    &quot;max_inactive_connection_lifetime&quot;: 300,  # 连接最大空闲时间
+                    &quot;timeout&quot;: 60,       # 连接超时
+                    &quot;command_timeout&quot;: 60, # 命令超时
+                }
+            }
+        }
+    }
+}
+</code></pre>
+<h2 id="_23">测试支持</h2>
+<h3 id="_24">测试数据库配置</h3>
+<pre><code class="language-python"># conftest.py
+import pytest
+from tortoise import Tortoise
+from unfazed.core import Unfazed
+from unfazed.conf import UnfazedSettings
+
+@pytest.fixture(autouse=True)
+async def setup_test_db():
+    &quot;&quot;&quot;设置测试数据库&quot;&quot;&quot;
+    settings = UnfazedSettings(
+        DEBUG=True,
+        INSTALLED_APPS=[&quot;myapp.users&quot;, &quot;myapp.orders&quot;],
+        DATABASE={
+            &quot;CONNECTIONS&quot;: {
+                &quot;default&quot;: {
+                    &quot;ENGINE&quot;: &quot;tortoise.backends.sqlite&quot;,
+                    &quot;CREDENTIALS&quot;: {&quot;file_path&quot;: &quot;:memory:&quot;}
+                }
+            },
+            &quot;APPS&quot;: {
+                &quot;models&quot;: {
+                    &quot;models&quot;: [&quot;myapp.users.models&quot;, &quot;myapp.orders.models&quot;],
+                    &quot;default_connection&quot;: &quot;default&quot;,
+                }
+            }
+        }
+    )
+
+    app = Unfazed(settings=settings)
+    await app.setup()
+    await app.migrate()  # 创建表结构
+
+    yield
+
+    await Tortoise.close_connections()
+
+@pytest.fixture
+async def sample_user():
+    &quot;&quot;&quot;创建测试用户&quot;&quot;&quot;
+    user = await User.create(
+        username=&quot;testuser&quot;,
+        email=&quot;test@example.com&quot;,
+        first_name=&quot;Test&quot;,
+        last_name=&quot;User&quot;
+    )
+    return user
+</code></pre>
+<h3 id="_25">测试示例</h3>
+<pre><code class="language-python"># test_models.py
+import pytest
+from datetime import datetime, timedelta
+
+async def test_user_creation(sample_user):
+    &quot;&quot;&quot;测试用户创建&quot;&quot;&quot;
+    assert sample_user.username == &quot;testuser&quot;
+    assert sample_user.email == &quot;test@example.com&quot;
+    assert sample_user.is_active is True
+
+async def test_user_password():
+    &quot;&quot;&quot;测试密码功能&quot;&quot;&quot;
+    user = await User.create(
+        username=&quot;passwordtest&quot;,
+        email=&quot;password@example.com&quot;
+    )
+
+    await user.set_password(&quot;secret123&quot;)
+    assert await user.check_password(&quot;secret123&quot;)
+    assert not await user.check_password(&quot;wrongpassword&quot;)
+
+async def test_order_creation(sample_user):
+    &quot;&quot;&quot;测试订单创建&quot;&quot;&quot;
+    order = await Order.create(
+        order_number=&quot;TEST-001&quot;,
+        user=sample_user,
+        total_amount=99.99,
+        status=OrderStatus.PENDING
+    )
+
+    assert order.user_id == sample_user.id
+    assert order.total_amount == 99.99
+    assert order.status == OrderStatus.PENDING
+
+async def test_user_orders_relationship(sample_user):
+    &quot;&quot;&quot;测试用户订单关系&quot;&quot;&quot;
+    # 创建订单
+    order1 = await Order.create(
+        order_number=&quot;REL-001&quot;,
+        user=sample_user,
+        total_amount=100.00
+    )
+    order2 = await Order.create(
+        order_number=&quot;REL-002&quot;,
+        user=sample_user,
+        total_amount=200.00
+    )
+
+    # 测试反向关系
+    user_orders = await sample_user.orders.all()
+    assert len(user_orders) == 2
+
+    # 测试过滤
+    high_value_orders = await sample_user.orders.filter(total_amount__gte=150)
+    assert len(high_value_orders) == 1
+    assert high_value_orders[0].order_number == &quot;REL-002&quot;
+</code></pre>
+<h2 id="_26">最佳实践</h2>
+<h3 id="_27">模型设计</h3>
+<pre><code class="language-python"># 良好的模型设计示例
+class BaseModel(Model):
+    &quot;&quot;&quot;基础模型&quot;&quot;&quot;
+    id = fields.BigIntField(primary_key=True)
+
+    class Meta:
+        abstract = True  # 抽象模型
+
+class TimestampedModel(BaseModel):
+    &quot;&quot;&quot;带时间戳的模型&quot;&quot;&quot;
+    created_at = fields.DatetimeField(auto_now_add=True)
+    updated_at = fields.DatetimeField(auto_now=True)
+
+    class Meta:
+        abstract = True
+
+# 使用继承
+class Product(TimestampedModel):
+    name = fields.CharField(max_length=255, description=&quot;产品名称&quot;)
+    price = fields.DecimalField(max_digits=10, decimal_places=2, description=&quot;价格&quot;)
+    is_active = fields.BooleanField(default=True, description=&quot;是否激活&quot;)
+
+    class Meta:
+        table = &quot;products&quot;
+        indexes = [
+            [&quot;name&quot;],
+            [&quot;is_active&quot;, &quot;created_at&quot;],
+        ]
+</code></pre>
+<h3 id="_28">错误处理</h3>
+<pre><code class="language-python">from tortoise.exceptions import DoesNotExist, IntegrityError, ValidationError
+
+async def safe_user_operations():
+    &quot;&quot;&quot;安全的用户操作示例&quot;&quot;&quot;
+
+    try:
+        # 尝试创建用户
+        user = await User.create(
+            username=&quot;newuser&quot;,
+            email=&quot;new@example.com&quot;
+        )
+        return user
+
+    except IntegrityError as e:
+        # 处理唯一约束违反
+        if &quot;username&quot; in str(e):
+            raise ValueError(&quot;用户名已存在&quot;)
+        elif &quot;email&quot; in str(e):
+            raise ValueError(&quot;邮箱已被使用&quot;)
+        else:
+            raise ValueError(&quot;数据完整性错误&quot;)
+
+    except ValidationError as e:
+        # 处理验证错误
+        raise ValueError(f&quot;数据验证失败: {e}&quot;)
+
+async def get_user_safely(user_id: int):
+    &quot;&quot;&quot;安全获取用户&quot;&quot;&quot;
+    try:
+        return await User.get(id=user_id)
+    except DoesNotExist:
+        return None
+</code></pre>
+<h2 id="_29">总结</h2>
+<p>Tortoise ORM 为 Unfazed 应用提供了强大而灵活的数据库操作能力：</p>
+<p><strong>核心优势</strong>：
+- 🚀 <strong>异步原生</strong>: 基于 asyncio 的高性能异步操作
+- 🎯 <strong>Django 风格</strong>: 熟悉的 API，降低学习成本
+- 🔧 <strong>多数据库支持</strong>: 支持主流数据库系统
+- 📊 <strong>功能完整</strong>: 从基础 CRUD 到复杂聚合查询
+- 🛡️ <strong>生产就绪</strong>: 完整的事务、迁移、测试支持</p>
+<p><strong>关键特性</strong>：
+- 完整的关系字段支持（外键、一对一、多对多）
+- 高级查询功能（聚合、子查询、原生 SQL）
+- 事务管理和嵌套事务
+- 数据库迁移工具 Aerich 集成
+- 查询优化和性能调优
+- 全面的测试支持</p>
+<p>通过本文档的指导，您可以充分利用 Tortoise ORM 的强大功能，构建高性能、可维护的数据库驱动应用。</p>
+<h2 id="_30">参考资源</h2>
 <ul>
-<li><a href="../command/#aerich">aerich</a></li>
+<li><strong>官方文档</strong>: <a href="https://tortoise.github.io/">https://tortoise.github.io/</a></li>
+<li><strong>GitHub 仓库</strong>: <a href="https://github.com/tortoise/tortoise-orm">https://github.com/tortoise/tortoise-orm</a></li>
+<li><strong>Aerich 迁移工具</strong>: <a href="https://github.com/tortoise/aerich">https://github.com/tortoise/aerich</a></li>
+<li><strong>Unfazed 命令系统</strong>: <a href="../command/#aerich">command.md#aerich</a></li>
 </ul>
 
 

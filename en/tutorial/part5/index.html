@@ -62,7 +62,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#services" class="md-skip">
+        <a href="#_1" class="md-skip">
           Skip to content
         </a>
       
@@ -389,18 +389,84 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#services_1" class="md-nav__link">
+  <a href="#services" class="md-nav__link">
     <span class="md-ellipsis">
-      services 实现
+      Services 层设计理念
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Services 层设计理念">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#services_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      为什么需要 Services 层？
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enrollservice" class="md-nav__link">
+    <span class="md-ellipsis">
+      实现 EnrollService
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="实现 EnrollService">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      创建服务类
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#endpoints" class="md-nav__link">
     <span class="md-ellipsis">
-      注册到 endpoints 里
+      更新 Endpoints
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      完善 Schema 定义
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      更新路由配置
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      下一步
     </span>
   </a>
   
@@ -674,7 +740,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../features/staticfiles/" class="md-nav__link">
+      <a href="../../../features/staticfiles.md" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -994,18 +1060,84 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#services_1" class="md-nav__link">
+  <a href="#services" class="md-nav__link">
     <span class="md-ellipsis">
-      services 实现
+      Services 层设计理念
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Services 层设计理念">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#services_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      为什么需要 Services 层？
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enrollservice" class="md-nav__link">
+    <span class="md-ellipsis">
+      实现 EnrollService
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="实现 EnrollService">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      创建服务类
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#endpoints" class="md-nav__link">
     <span class="md-ellipsis">
-      注册到 endpoints 里
+      更新 Endpoints
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      完善 Schema 定义
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      更新路由配置
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      下一步
     </span>
   </a>
   
@@ -1029,46 +1161,160 @@
   
 
 
-<h1 id="services">services</h1>
-<p>在上一节中已经定义好了 schema 和 endpoints，本节将阐述如何实现业务逻辑</p>
-<p>在 unfazed 的文件设计中，services.py 的作用是实现具体的业务逻辑共 endpoints 调用</p>
-<h3 id="services_1">services 实现</h3>
-<p>services 业务逻辑实现如下</p>
-<pre><code class="language-python">
-import typing as t
+<h1 id="_1">第五部分：业务逻辑实现</h1>
+<p>在上一节中，我们定义了完整的 API 接口和数据模型。现在我们将实现核心的业务逻辑，让 API 真正与数据库交互。在 Unfazed 的架构设计中，Services 层负责封装具体的业务逻辑，为 Endpoints 提供数据服务。</p>
+<p>通过本节学习，你将掌握如何使用序列化器进行数据库操作、处理复杂的业务逻辑，以及实现完整的 CRUD 功能。</p>
+<h2 id="services">Services 层设计理念</h2>
+<h3 id="services_1">为什么需要 Services 层？</h3>
+<p>在传统的 MVC 架构中，业务逻辑经常混杂在控制器（Controller）中，导致代码难以维护和测试。Unfazed 采用分层架构，将业务逻辑独立到 Services 层：</p>
+<pre><code class="language-mermaid">graph TB
+    A[Endpoints 控制层] --&gt; B[Services 业务层]
+    B --&gt; C[Serializers 数据层]
+    C --&gt; D[Models 模型层]
+    D --&gt; E[Database 数据库]
 
+    style A fill:#f3e5f5
+    style B fill:#e8f5e8
+    style C fill:#fff3e0
+    style D fill:#e1f5fe
+</code></pre>
+<p><strong>Services 层的职责</strong>：
+- 🎯 <strong>业务逻辑封装</strong>：实现具体的业务规则和流程
+- 🔄 <strong>数据处理</strong>：调用序列化器进行 CRUD 操作
+- 🛡️ <strong>验证控制</strong>：业务级别的数据验证和权限检查
+- 📊 <strong>事务管理</strong>：处理复杂的数据库事务
+- 🔗 <strong>服务组合</strong>：组合多个基础操作实现复杂功能</p>
+<h2 id="enrollservice">实现 EnrollService</h2>
+<h3 id="_2">创建服务类</h3>
+<p>编辑 <code>enroll/services.py</code> 文件：</p>
+<pre><code class="language-python"># src/backend/enroll/services.py
+
+import typing as t
+import time
+from unfazed.exception import NotFound, ValidationError
 from . import models as m
 from . import serializers as s
 
-
 class EnrollService:
+    &quot;&quot;&quot;学生选课服务类&quot;&quot;&quot;
+
     @classmethod
     async def list_student(
         cls,
-        page: int,
-        size: int,
+        page: int = 1,
+        size: int = 10,
+        search: str = &quot;&quot;,
     ) -&gt; t.Dict:
-        result = await s.StudentSerializer.list_from_ctx({}, page, size)
+        &quot;&quot;&quot;
+        获取学生列表
 
-        return {
-            &quot;status&quot;: &quot;ok&quot;,
-            &quot;message&quot;: &quot;student list&quot;,
-            &quot;data&quot;: result.data,
-        }
+        Args:
+            page: 页码
+            size: 每页数量
+            search: 搜索关键词（可选）
+
+        Returns:
+            包含学生列表和分页信息的字典
+        &quot;&quot;&quot;
+        # 构建查询条件
+        conditions = {}
+        if search:
+            conditions = {&quot;name__icontains&quot;: search}
+
+        # 使用序列化器查询数据
+        result = await s.StudentSerializer.list_from_ctx(
+            conditions, page=page, size=size
+        )
+
+        # 计算分页信息
+        total_pages = (result.total + size - 1) // size
+
+        return result
 
     @classmethod
     async def list_course(
         cls,
-        page: int,
-        size: int,
+        page: int = 1,
+        size: int = 10,
+        is_active: bool = True,
     ) -&gt; t.Dict:
-        result = await s.CourseSerializer.list_from_ctx({}, page, size)
+        &quot;&quot;&quot;
+        获取课程列表
 
-        return {
-            &quot;status&quot;: &quot;ok&quot;,
-            &quot;message&quot;: &quot;course list&quot;,
-            &quot;data&quot;: result.data,
-        }
+        Args:
+            page: 页码
+            size: 每页数量
+            is_active: 是否只显示激活的课程
+
+        Returns:
+            包含课程列表和分页信息的字典
+        &quot;&quot;&quot;
+        # 构建查询条件
+        conditions = {&quot;is_active&quot;: is_active} if is_active else {}
+
+        # 使用序列化器查询数据
+        result = await s.CourseSerializer.list_from_ctx(
+            conditions, page=page, size=size
+        )
+
+        # 计算分页信息
+        total_pages = (result.total + size - 1) // size
+
+        return result
+
+    @classmethod
+    async def get_student(cls, student_id: int) -&gt; t.Dict:
+        &quot;&quot;&quot;
+        获取学生详情
+
+        Args:
+            student_id: 学生ID
+
+        Returns:
+            学生详细信息
+
+        Raises:
+            NotFound: 学生不存在时抛出异常
+        &quot;&quot;&quot;
+
+        # 使用序列化器获取单个学生
+        student = await s.StudentWithCoursesSerializer.get_from_ctx(
+            student_id, enable_relations=True
+        )
+
+        return student
+
+    @classmethod
+    async def create_student(cls, student_data: t.Dict) -&gt; t.Dict:
+        &quot;&quot;&quot;
+        创建学生
+
+        Args:
+            student_data: 学生数据
+
+        Returns:
+            创建成功的学生信息
+
+        Raises:
+            ValidationError: 数据验证失败时抛出异常
+        &quot;&quot;&quot;
+        # 检查学号和邮箱是否已存在
+        existing_student = await m.Student.get_or_none(
+            student_id=student_data.get(&quot;student_id&quot;)
+        )
+        if existing_student:
+            raise ValidationError(f&quot;学号 {student_data.get('student_id')} 已存在&quot;)
+
+        existing_email = await m.Student.get_or_none(
+            email=student_data.get(&quot;email&quot;)
+        )
+        if existing_email:
+            raise ValidationError(f&quot;邮箱 {student_data.get('email')} 已被使用&quot;)
+
+        # 使用序列化器创建学生
+        student = await s.StudentSerializer.create_from_ctx(student_data)
+
+        return student
 
     @classmethod
     async def bind(
@@ -1076,68 +1322,213 @@ class EnrollService:
         student_id: int,
         course_id: int,
     ) -&gt; t.Dict:
+        &quot;&quot;&quot;
+        学生选课绑定
+
+        Args:
+            student_id: 学生ID
+            course_id: 课程ID
+
+        Returns:
+            绑定结果
+
+        Raises:
+            NotFound: 学生或课程不存在时抛出异常
+            ValidationError: 业务验证失败时抛出异常
+        &quot;&quot;&quot;
+        # 1. 验证学生是否存在
         student = await m.Student.get_or_none(id=student_id)
-        course = await m.Course.get_or_none(id=course_id)
-
         if not student:
-            raise ValueError(f&quot;student {student_id} not found&quot;)
+            raise NotFound(f&quot;学生 {student_id} 不存在&quot;)
 
+        # 2. 验证课程是否存在
+        course = await m.Course.get_or_none(id=course_id)
         if not course:
-            raise ValueError(f&quot;course {course_id} not found&quot;)
+            raise NotFound(f&quot;课程 {course_id} 不存在&quot;)
 
+        # 3. 检查课程是否激活
+        if not course.is_active:
+            raise ValidationError(f&quot;课程 {course.name} 已停用，无法选课&quot;)
+
+        # 4. 检查是否已经选过这门课
+        existing_enrollment = await student.courses.filter(id=course_id).exists()
+        if existing_enrollment:
+            raise ValidationError(f&quot;学生 {student.name} 已经选过课程 {course.name}&quot;)
+
+        # 5. 检查课程是否已满
+        enrolled_count = await course.students.all().count()
+        if enrolled_count &gt;= course.max_students:
+            raise ValidationError(f&quot;课程 {course.name} 已满，无法选课&quot;)
+
+        # 6. 执行选课操作
         await student.courses.add(course)
 
-        return {
-            &quot;status&quot;: &quot;ok&quot;,
-            &quot;message&quot;: &quot;bind success&quot;,
-            &quot;data&quot;: {},
-        }
+        return student
 
+    @classmethod
+    async def unbind(
+        cls,
+        student_id: int,
+        course_id: int,
+    ) -&gt; t.Dict:
+        &quot;&quot;&quot;
+        学生退课
+
+        Args:
+            student_id: 学生ID
+            course_id: 课程ID
+
+        Returns:
+            退课结果
+        &quot;&quot;&quot;
+        # 验证学生和课程
+        student = await m.Student.get_or_none(id=student_id)
+        if not student:
+            raise NotFound(f&quot;学生 {student_id} 不存在&quot;)
+
+        course = await m.Course.get_or_none(id=course_id)
+        if not course:
+            raise NotFound(f&quot;课程 {course_id} 不存在&quot;)
+
+        # 检查是否已选该课程
+        existing_enrollment = await student.courses.filter(id=course_id).exists()
+        if not existing_enrollment:
+            raise ValidationError(f&quot;学生 {student.name} 未选择课程 {course.name}&quot;)
+
+        # 执行退课操作
+        await student.courses.remove(course)
+
+        return student
 </code></pre>
-<h3 id="endpoints">注册到 endpoints 里</h3>
-<p>将 EnrollService 下的方法写到 endpoints 中的接口中</p>
-<pre><code class="language-python">
-import typing as t
+<h2 id="endpoints">更新 Endpoints</h2>
+<p>现在我们需要更新 endpoints，使其调用 services 中的业务逻辑：</p>
+<pre><code class="language-python"># src/backend/enroll/endpoints.py
 
+import typing as t
 from unfazed.http import HttpRequest, JsonResponse, PlainTextResponse
 from unfazed.route import params as p
-
 from . import schema as s
 from . import services as svc
 
-
+# 保留 hello 函数
 async def hello(request: HttpRequest) -&gt; PlainTextResponse:
-    return PlainTextResponse(&quot;Hello, world!&quot;)
-
+    &quot;&quot;&quot;Hello World 接口&quot;&quot;&quot;
+    return PlainTextResponse(&quot;Hello, World!&quot;)
 
 async def list_student(
     request: HttpRequest,
-    page: t.Annotated[int, p.Query(default=1)],
-    size: t.Annotated[int, p.Query(default=10)],
+    page: t.Annotated[int, p.Query(default=1, description=&quot;页码&quot;, ge=1)],
+    size: t.Annotated[int, p.Query(default=10, description=&quot;每页数量&quot;, ge=1, le=100)],
+    search: t.Annotated[str, p.Query(default=&quot;&quot;, description=&quot;搜索关键词&quot;)] = &quot;&quot;,
 ) -&gt; t.Annotated[JsonResponse, p.ResponseSpec(model=s.StudentListResponse)]:
-    ret = await svc.EnrollService.list_student(page, size)
-    return JsonResponse(ret)
+    &quot;&quot;&quot;
+    获取学生列表
 
+    支持按姓名、邮箱、学号进行搜索
+    &quot;&quot;&quot;
+    result = await svc.EnrollService.list_student(page, size, search)
+    return JsonResponse(result)
 
 async def list_course(
     request: HttpRequest,
-    page: t.Annotated[int, p.Query(default=1)],
-    size: t.Annotated[int, p.Query(default=10)],
+    page: t.Annotated[int, p.Query(default=1, description=&quot;页码&quot;, ge=1)],
+    size: t.Annotated[int, p.Query(default=10, description=&quot;每页数量&quot;, ge=1, le=100)],
+    is_active: t.Annotated[bool, p.Query(default=True, description=&quot;是否只显示激活课程&quot;)] = True,
 ) -&gt; t.Annotated[JsonResponse, p.ResponseSpec(model=s.CourseListResponse)]:
-    ret = await svc.EnrollService.list_course(page, size)
-    return JsonResponse(ret)
+    &quot;&quot;&quot;
+    获取课程列表
 
+    可以选择是否只显示激活的课程
+    &quot;&quot;&quot;
+    result = await svc.EnrollService.list_course(page, size, is_active)
+    return JsonResponse(result)
+
+async def get_student(
+    request: HttpRequest,
+    student_id: t.Annotated[int, p.Path(description=&quot;学生ID&quot;)],
+) -&gt; t.Annotated[JsonResponse, p.ResponseSpec(model=s.StudentDetailResponse)]:
+    &quot;&quot;&quot;获取学生详情，包含选课信息&quot;&quot;&quot;
+    result = await svc.EnrollService.get_student(student_id)
+    return JsonResponse(result)
+
+async def create_student(
+    request: HttpRequest,
+    student_data: t.Annotated[s.CreateStudentRequest, p.Json()],
+) -&gt; t.Annotated[JsonResponse, p.ResponseSpec(model=s.StudentDetailResponse)]:
+    &quot;&quot;&quot;创建新学生&quot;&quot;&quot;
+    result = await svc.EnrollService.create_student(student_data.model_dump())
+    return JsonResponse(result)
 
 async def bind(
     request: HttpRequest,
     ctx: t.Annotated[s.BindRequest, p.Json()],
 ) -&gt; t.Annotated[JsonResponse, p.ResponseSpec(model=s.BindResponse)]:
-    ret = await svc.EnrollService.bind(ctx.student_id, ctx.course_id)
-    return JsonResponse(ret)
+    &quot;&quot;&quot;学生选课绑定&quot;&quot;&quot;
+    result = await svc.EnrollService.bind(ctx.student_id, ctx.course_id)
+    return JsonResponse(result)
 
+async def unbind(
+    request: HttpRequest,
+    ctx: t.Annotated[s.BindRequest, p.Json()],
+) -&gt; t.Annotated[JsonResponse, p.ResponseSpec(model=s.BindResponse)]:
+    &quot;&quot;&quot;学生退课&quot;&quot;&quot;
+    result = await svc.EnrollService.unbind(ctx.student_id, ctx.course_id)
+    return JsonResponse(result)
 
 </code></pre>
-<p>至此，我们就完成了所有的业务代码，接下来将对已经写好的代码进行测试。</p>
+<h2 id="schema">完善 Schema 定义</h2>
+<p>为了支持新的功能，我们需要添加一些新的 Schema：</p>
+<pre><code class="language-python"># src/backend/enroll/schema.py (添加到现有文件)
+
+class CreateStudentRequest(BaseModel):
+    &quot;&quot;&quot;创建学生请求&quot;&quot;&quot;
+    name: str = Field(description=&quot;学生姓名&quot;, min_length=1, max_length=100)
+    email: str = Field(description=&quot;邮箱地址&quot;)
+    age: int = Field(description=&quot;年龄&quot;, ge=16, le=100)
+    student_id: str = Field(description=&quot;学号&quot;, min_length=1, max_length=20)
+
+class StatsResponse(BaseResponse):
+    &quot;&quot;&quot;统计信息响应&quot;&quot;&quot;
+    data: t.Dict = Field(description=&quot;统计数据&quot;)
+</code></pre>
+<h2 id="_3">更新路由配置</h2>
+<p>添加新的路由到 <code>enroll/routes.py</code>：</p>
+<pre><code class="language-python"># src/backend/enroll/routes.py
+
+import typing as t
+from unfazed.route import Route, path
+from .endpoints import (
+    hello, list_student, list_course, get_student, create_student,
+    bind, unbind, enrollment_stats
+)
+
+patterns: t.List[Route] = [
+    # Hello World
+    path(&quot;/hello&quot;, endpoint=hello, methods=[&quot;GET&quot;], name=&quot;hello&quot;),
+
+    # 学生管理
+    path(&quot;/student-list&quot;, endpoint=list_student, methods=[&quot;GET&quot;], name=&quot;list_students&quot;),
+    path(&quot;/student-create&quot;, endpoint=create_student, methods=[&quot;POST&quot;], name=&quot;create_student&quot;),
+
+    # 课程管理
+    path(&quot;/course-list&quot;, endpoint=list_course, methods=[&quot;GET&quot;], name=&quot;list_courses&quot;),
+
+    # 选课管理
+    path(&quot;/bind&quot;, endpoint=bind, methods=[&quot;POST&quot;], name=&quot;bind_course&quot;),
+    path(&quot;/unbind&quot;, endpoint=unbind, methods=[&quot;POST&quot;], name=&quot;unbind_course&quot;),
+
+]
+</code></pre>
+<h2 id="_4">下一步</h2>
+<p>出色！你已经成功实现了完整的业务逻辑和数据库操作。在下一个教程中，我们将：</p>
+<ul>
+<li>编写全面的测试用例</li>
+<li>学习使用 Unfazed 的测试框架</li>
+<li>实现单元测试和集成测试</li>
+<li>确保代码质量和可靠性</li>
+</ul>
+<p>让我们继续前往 <strong>第六部分：测试与质量保证</strong>！</p>
+<hr />
 
 
 

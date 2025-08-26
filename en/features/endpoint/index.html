@@ -12,7 +12,7 @@
         <link rel="prev" href="../response/">
       
       
-        <link rel="next" href="../staticfiles/">
+        <link rel="next" href="../tortoise-orm/">
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
@@ -643,82 +643,550 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      快速开始
+      系统架构
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="系统架构">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#endpointhandler" class="md-nav__link">
+    <span class="md-ellipsis">
+      EndpointHandler
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#endpointdefinition" class="md-nav__link">
     <span class="md-ellipsis">
-      请求参数
+      EndPointDefinition
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="请求参数">
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数类型系统
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      快速开始
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="快速开始">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      基础视图函数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      路由注册
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      视图函数特性
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      请求参数系统
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="请求参数系统">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数定义方式
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="参数定义方式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-typingannotated" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 使用 typing.Annotated 注解（推荐）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 自动推断（简化写法）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 自动合并
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数验证和错误处理
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#path" class="md-nav__link">
     <span class="md-ellipsis">
-      Path
+      Path 参数
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Path 参数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      基础用法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basemodel" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用 BaseModel 组织路径参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      自动推断路径参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      路径参数特性
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#query" class="md-nav__link">
     <span class="md-ellipsis">
-      Query
+      Query 参数
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Query 参数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      基础用法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basemodel_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用 BaseModel 组织查询参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      自动推断查询参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      查询参数特性
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      高级查询参数示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#header" class="md-nav__link">
     <span class="md-ellipsis">
-      Header
+      Header 参数
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Header 参数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      基础用法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basemodel_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用 BaseModel 组织请求头
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#header_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Header 参数特性
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#cookie" class="md-nav__link">
     <span class="md-ellipsis">
-      Cookie
+      Cookie 参数
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Cookie 参数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      基础用法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basemodel-cookie" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用 BaseModel 组织 Cookie
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cookie_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cookie 参数特性
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#json" class="md-nav__link">
     <span class="md-ellipsis">
-      Json
+      Json 参数
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Json 参数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      基础用法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      自动推断 JSON 参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      复杂 JSON 结构
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      组合多个 JSON 参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      JSON 参数特性
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#form" class="md-nav__link">
     <span class="md-ellipsis">
-      Form
+      Form 参数
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Form 参数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      基础用法
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#file" class="md-nav__link">
+  <a href="#_21" class="md-nav__link">
     <span class="md-ellipsis">
-      File
+      复杂表单处理
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file" class="md-nav__link">
+    <span class="md-ellipsis">
+      File 参数
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="File 参数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      基础文件上传
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      多文件上传
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      文件与表单数据组合
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      文件参数特性
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uploadfile" class="md-nav__link">
+    <span class="md-ellipsis">
+      UploadFile 方法
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      高级用法
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="高级用法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      响应模型定义
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数依赖和验证
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="参数依赖和验证">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      自定义验证器
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      条件参数
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -743,7 +1211,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../staticfiles/" class="md-nav__link">
+      <a href="../../../features/staticfiles.md" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1065,82 +1533,550 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      快速开始
+      系统架构
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="系统架构">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#endpointhandler" class="md-nav__link">
+    <span class="md-ellipsis">
+      EndpointHandler
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#endpointdefinition" class="md-nav__link">
     <span class="md-ellipsis">
-      请求参数
+      EndPointDefinition
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="请求参数">
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数类型系统
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      快速开始
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="快速开始">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      基础视图函数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      路由注册
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      视图函数特性
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      请求参数系统
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="请求参数系统">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数定义方式
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="参数定义方式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-typingannotated" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 使用 typing.Annotated 注解（推荐）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 自动推断（简化写法）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 自动合并
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数验证和错误处理
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#path" class="md-nav__link">
     <span class="md-ellipsis">
-      Path
+      Path 参数
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Path 参数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      基础用法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basemodel" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用 BaseModel 组织路径参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      自动推断路径参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      路径参数特性
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#query" class="md-nav__link">
     <span class="md-ellipsis">
-      Query
+      Query 参数
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Query 参数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      基础用法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basemodel_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用 BaseModel 组织查询参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      自动推断查询参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      查询参数特性
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      高级查询参数示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#header" class="md-nav__link">
     <span class="md-ellipsis">
-      Header
+      Header 参数
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Header 参数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      基础用法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basemodel_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用 BaseModel 组织请求头
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#header_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Header 参数特性
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#cookie" class="md-nav__link">
     <span class="md-ellipsis">
-      Cookie
+      Cookie 参数
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Cookie 参数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      基础用法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basemodel-cookie" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用 BaseModel 组织 Cookie
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cookie_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cookie 参数特性
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#json" class="md-nav__link">
     <span class="md-ellipsis">
-      Json
+      Json 参数
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Json 参数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      基础用法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      自动推断 JSON 参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      复杂 JSON 结构
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      组合多个 JSON 参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      JSON 参数特性
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#form" class="md-nav__link">
     <span class="md-ellipsis">
-      Form
+      Form 参数
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Form 参数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      基础用法
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#file" class="md-nav__link">
+  <a href="#_21" class="md-nav__link">
     <span class="md-ellipsis">
-      File
+      复杂表单处理
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file" class="md-nav__link">
+    <span class="md-ellipsis">
+      File 参数
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="File 参数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      基础文件上传
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      多文件上传
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      文件与表单数据组合
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      文件参数特性
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uploadfile" class="md-nav__link">
+    <span class="md-ellipsis">
+      UploadFile 方法
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      高级用法
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="高级用法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      响应模型定义
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数依赖和验证
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="参数依赖和验证">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      自定义验证器
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      条件参数
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -1167,422 +2103,996 @@
   
 
 
-<h1 id="unfazed-endpoint">Unfazed Endpoint</h1>
-<p>Endpoint 是 unfazed 中上承路由分发，下接 service 逻辑处理的中间层，其作用具体为：</p>
-<ol>
-<li>定义路由请求参数和响应</li>
-<li>连接 route 路由分发</li>
-<li>连接 service 逻辑处理</li>
-<li>供 openapi 文档生成</li>
-</ol>
-<h2 id="_1">快速开始</h2>
-<p>创建一个简单的 endpoint。</p>
-<pre><code class="language-python">
-# endpoints.py
+<h1 id="unfazed-endpoint">Unfazed Endpoint 系统</h1>
+<p>Endpoint 是 Unfazed 框架中的核心组件，作为路由分发和业务逻辑处理之间的桥梁。它提供了强大的参数解析、类型验证和 API 文档生成功能。</p>
+<h2 id="_1">系统架构</h2>
+<p>Unfazed 的 Endpoint 系统包含以下核心组件：</p>
+<h3 id="endpointhandler">EndpointHandler</h3>
+<p>负责处理请求参数的解析和验证，支持：
+- 自动参数类型转换
+- 请求验证和错误处理
+- 同步和异步端点执行
+- 参数注入和依赖解析</p>
+<h3 id="endpointdefinition">EndPointDefinition</h3>
+<p>负责视图函数的元数据定义和模型构建：
+- 解析函数签名和类型注解
+- 构建请求参数模型（Path、Query、Header、Cookie、Body）
+- 生成 OpenAPI 文档规范
+- 支持 HttpResponse 模型定义</p>
+<h3 id="_2">参数类型系统</h3>
+<p>支持多种参数来源和类型：
+- <strong>Path</strong>: 路径参数（如 <code>/users/{user_id}</code>）
+- <strong>Query</strong>: 查询参数（如 <code>?page=1&amp;size=10</code>）
+- <strong>Header</strong>: 请求头参数
+- <strong>Cookie</strong>: Cookie 参数
+- <strong>Json</strong>: JSON 请求体
+- <strong>Form</strong>: 表单数据
+- <strong>File</strong>: 文件上传</p>
+<h2 id="_3">快速开始</h2>
+<h3 id="_4">基础视图函数</h3>
+<p>创建一个简单的视图函数：</p>
+<pre><code class="language-python"># endpoints.py
 import typing as t
-from unfazed.http import HttpRequest, HttpResponse
+from unfazed.http import HttpRequest, HttpResponse, JsonResponse
+from pydantic import BaseModel
 
 
-async def endpoint1(request: HttpRequest) -&gt; HttpResponse:
+async def hello_world(request: HttpRequest) -&gt; HttpResponse:
     return HttpResponse(content=&quot;Hello, World!&quot;)
 
+
+class UserResponse(BaseModel):
+    id: int
+    name: str
+    email: str
+
+
+async def get_user(request: HttpRequest) -&gt; JsonResponse[UserResponse]:
+    user_data = UserResponse(id=1, name=&quot;张三&quot;, email=&quot;zhangsan@example.com&quot;)
+    return JsonResponse(user_data)
 </code></pre>
-<p>将其连接到 route。</p>
-<pre><code class="language-python">
-# routes.py
+<h3 id="_5">路由注册</h3>
+<p>将视图函数连接到路由系统：</p>
+<pre><code class="language-python"># routes.py
 from unfazed.route import path
-from .endpoints import endpoint1
+from .endpoints import hello_world, get_user
 
 patterns = [
-    path(&quot;/&quot;, endpoint=endpoint1),
+    path(&quot;/&quot;, endpoint=hello_world),
+    path(&quot;/user&quot;, endpoint=get_user, methods=[&quot;GET&quot;]),
 ]
+</code></pre>
+<h3 id="_6">视图函数特性</h3>
+<p>Unfazed 的视图函数系统具有以下特性：</p>
+<ol>
+<li><strong>类型安全</strong>: 基于 Python 类型注解进行参数验证</li>
+<li><strong>自动文档</strong>: 自动生成 OpenAPI/Swagger 文档</li>
+<li><strong>依赖注入</strong>: 自动解析和注入请求参数</li>
+<li><strong>异步支持</strong>: 原生支持 async/await</li>
+<li><strong>错误处理</strong>: 统一的错误处理和验证机制（依赖中间件处理）</li>
+</ol>
+<h2 id="_7">请求参数系统</h2>
+<p>Unfazed 提供了强大的请求参数解析系统，支持多种参数来源和自动类型验证。系统支持以下参数类型：</p>
+<table>
+<thead>
+<tr>
+<th>参数类型</th>
+<th>描述</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Path</strong></td>
+<td>路径参数，从 URL 路径中提取</td>
+<td><code>/users/{user_id}</code></td>
+</tr>
+<tr>
+<td><strong>Query</strong></td>
+<td>查询参数，从 URL 查询字符串提取</td>
+<td><code>?page=1&amp;size=10</code></td>
+</tr>
+<tr>
+<td><strong>Header</strong></td>
+<td>请求头参数</td>
+<td><code>Authorization: Bearer token</code></td>
+</tr>
+<tr>
+<td><strong>Cookie</strong></td>
+<td>Cookie 参数</td>
+<td><code>session_id=abc123</code></td>
+</tr>
+<tr>
+<td><strong>Json</strong></td>
+<td>JSON 请求体</td>
+<td><code>{"name": "张三"}</code></td>
+</tr>
+<tr>
+<td><strong>Form</strong></td>
+<td>表单数据</td>
+<td><code>application/x-www-form-urlencoded</code></td>
+</tr>
+<tr>
+<td><strong>File</strong></td>
+<td>文件上传</td>
+<td><code>multipart/form-data</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="_8">参数定义方式</h3>
+<p>参数可以通过两种方式定义：</p>
+<h4 id="1-typingannotated">1. 使用 typing.Annotated 注解（推荐）</h4>
+<pre><code class="language-python">import typing as t
+from unfazed.route import params as p
+
+async def endpoint(
+    request: HttpRequest,
+    user_id: t.Annotated[int, p.Path()],              # 路径参数
+    page: t.Annotated[int, p.Query(default=1)],       # 查询参数，带默认值
+    auth: t.Annotated[str, p.Header()],               # 请求头参数
+) -&gt; JsonResponse:
+    ...
+</code></pre>
+<h4 id="2">2. 自动推断（简化写法）</h4>
+<p>在实际的业务开发中，尽量避免使用自动推断，清晰的参数定义方式，可以提高代码的可读性和可维护性。</p>
+<pre><code class="language-python">async def endpoint(
+    request: HttpRequest,
+    user_id: int,        # 如果在路径中定义，自动识别为 Path 参数
+    page: int,           # 基础类型自动识别为 Query 参数
+    user: UserModel,     # BaseModel 类型自动识别为 Json 参数
+) -&gt; JsonResponse:
+    ...
+</code></pre>
+<h4 id="3">3. 自动合并</h4>
+<p>同类型的参数可以自动合并，比如：</p>
+<pre><code class="language-python">
+class Profile(BaseModel):
+    sex: str
+    height: int
+    weight: int
+
+
+async def endpoint(
+    request: HttpRequest,
+    name: t.Annotated[str, p.Query()],
+    age: t.Annotated[int, p.Query()],
+    profile: t.Annotated[Profile, p.Query()],
+) -&gt; JsonResponse:
+    return JsonResponse({&quot;message&quot;: f&quot;获取用户 {name} 成功&quot;, &quot;age&quot;: age, &quot;sex&quot;: profile.sex, &quot;height&quot;: profile.height, &quot;weight&quot;: profile.weight})
+
 
 </code></pre>
-<p>以上便是一个简单的 endpoint 的创建。</p>
-<h2 id="_2">请求参数</h2>
-<p>endpoint 可以预定义请求参数，用于校验请求参数以及 openapi 文档生成。目前请求参数支持</p>
-<ol>
-<li>Path</li>
-<li>Query</li>
-<li>Body</li>
-<li>Header</li>
-<li>Cookie</li>
-<li>Form</li>
-<li>File</li>
-</ol>
-<p>请求参数使用 typing.Annotated 注解进行定义, 比如 <code>ctx: typing.Annotated[Context, Query()]</code>，以此来表示这是一个 Query 参数。unfazed 会自行解析请求参数，并将其传递给 endpoint 函数。</p>
-<p>下面分别介绍这些请求参数的使用。</p>
-<h3 id="path">Path</h3>
-<pre><code class="language-python">
-import typing as t
+<h3 id="_9">参数验证和错误处理</h3>
+<p>系统会自动验证参数类型和必填性：</p>
+<pre><code class="language-python">from pydantic import Field, BaseModel
+
+class UserCreateRequest(BaseModel):
+    name: str = Field(min_length=1, max_length=50, description=&quot;用户名&quot;)
+    age: int = Field(ge=0, le=150, description=&quot;年龄&quot;)
+    email: str = Field(regex=r'^[^@]+@[^@]+\.[^@]+$', description=&quot;邮箱&quot;)
+
+async def create_user(
+    request: HttpRequest,
+    user_data: t.Annotated[UserCreateRequest, p.Json()]
+) -&gt; JsonResponse:
+    # 参数会自动验证，如果验证失败会返回错误
+    return JsonResponse({&quot;message&quot;: f&quot;创建用户 {user_data.name} 成功&quot;})
+</code></pre>
+<p>下面详细介绍各种参数类型的使用方法。</p>
+<h3 id="path">Path 参数</h3>
+<p>Path 参数从 URL 路径中提取，支持基础类型和复杂模型。</p>
+<h4 id="_10">基础用法</h4>
+<pre><code class="language-python">import typing as t
 from pydantic import BaseModel, Field
 from unfazed.http import HttpRequest, JsonResponse
 from unfazed.route import params as p
 
 
-# 1
-class Pth1(BaseModel):
-    path1: str
-    path2: int = Field(default=1)
-
-
-class Pth2(BaseModel):
-    path3: int
-    path4: str = Field(default=&quot;123&quot;)
-
-
-class RespE1(BaseModel):
-    path1: str
-    path2: int
-    path3: int
-    path4: str
-    path5: str
-    path6: str
-
-
-async def endpoint1(
+# 基础类型的路径参数
+async def get_user(
     request: HttpRequest,
-    pth1: t.Annotated[Pth1, p.Path()],  # 2
-    pth2: t.Annotated[Pth2, p.Path()],
-    path5: t.Annotated[str, p.Path(default=&quot;foo&quot;)],
-    path6: str,  # 3
+    user_id: t.Annotated[int, p.Path(description=&quot;用户ID&quot;)],
+    category: t.Annotated[str, p.Path(description=&quot;用户分类&quot;)]
 ) -&gt; JsonResponse:
-    r = RespE1(
-        path1=pth1.path1,
-        path2=pth1.path2,
-        path3=pth2.path3,
-        path4=pth2.path4,
-        path5=path5,
-        path6=path6,
-    )
-    return JsonResponse(r)
+    return JsonResponse({
+        &quot;user_id&quot;: user_id,
+        &quot;category&quot;: category
+    })
 
 
-# routes.py
-
-from unfazed.route import path
-from .endpoints import endpoint1
-
+# 路由定义
 patterns = [
-    path(&quot;/{path1}/{path2}/{path3}/{path4}/{path5}/{path6}&quot;, endpoint=endpoint1),
+    path(&quot;/users/{user_id}/category/{category}&quot;, endpoint=get_user),
 ]
 
+# 请求示例: GET /users/123/category/vip
+# 结果: {&quot;user_id&quot;: 123, &quot;category&quot;: &quot;vip&quot;}
 </code></pre>
-<p>解释</p>
-<ol>
-<li>请求参数可以采用 BaseModel 类型或者 python 基本类型</li>
-<li>使用 t.Annotated[Pth1, p.Path()] 定义参数类型，p.Path() 用于标记此为路径参数</li>
-<li>path6 是因为在 path 中定义了 <code>{path6}</code>，unfazed 会优先解析为路径参数</li>
-<li>参数定义可以为多个不同的 BaseModel 类型以及 python 基本类型的组合</li>
-<li>参数定义可以使用 Field 定义默认值</li>
-</ol>
-<h3 id="query">Query</h3>
-<pre><code class="language-python">
-class Qry1(BaseModel):
-    query1: str
-    query2: int = Field(default=1)
+<h4 id="basemodel">使用 BaseModel 组织路径参数</h4>
+<pre><code class="language-python">class UserPathParams(BaseModel):
+    user_id: int = Field(description=&quot;用户ID&quot;, gt=0)
+    org_id: int = Field(description=&quot;组织ID&quot;, gt=0)
 
 
-class Qry2(BaseModel):
-    query3: int
-    query4: str = Field(default=&quot;123&quot;)
+class ProjectPathParams(BaseModel):
+    project_id: str = Field(description=&quot;项目ID&quot;, min_length=1)
+    version: str = Field(default=&quot;latest&quot;, description=&quot;版本号&quot;)
 
 
-class RespE2(BaseModel):
-    query1: str
-    query2: int
-    query3: int
-    query4: str
-    query5: str
-    query6: str
-
-
-async def endpoint2(
+async def get_user_project(
     request: HttpRequest,
-    qry1: t.Annotated[Qry1, p.Query()],
-    qry2: t.Annotated[Qry2, p.Query()],
-    query5: t.Annotated[str, p.Query(default=&quot;foo&quot;)],
-    query6: str,
+    user_params: t.Annotated[UserPathParams, p.Path()],
+    project_params: t.Annotated[ProjectPathParams, p.Path()],
+    action: t.Annotated[str, p.Path(default=&quot;view&quot;)]  # 单独的路径参数
 ) -&gt; JsonResponse:
-    r = RespE2(
-        query1=qry1.query1,
-        query2=qry1.query2,
-        query3=qry2.query3,
-        query4=qry2.query4,
-        query5=query5,
-        query6=query6,
-    )
-    return JsonResponse(r)
+    return JsonResponse({
+        &quot;user_id&quot;: user_params.user_id,
+        &quot;org_id&quot;: user_params.org_id,
+        &quot;project_id&quot;: project_params.project_id,
+        &quot;version&quot;: project_params.version,
+        &quot;action&quot;: action
+    })
 
 
-# routes.py
-
+# 路由定义
 patterns = [
-    path(&quot;/query&quot;, endpoint=endpoint2),
+    path(&quot;/orgs/{org_id}/users/{user_id}/projects/{project_id}/{version}/{action}&quot;, 
+         endpoint=get_user_project),
 ]
 
-# &gt;&gt;&gt; http://domain/query?query1=foo&amp;query2=1&amp;query3=2&amp;query4=bar&amp;query5=baz&amp;query6=qux
-
+# 请求示例: GET /orgs/1/users/123/projects/myapp/v1.0/edit
 </code></pre>
-<p>解释</p>
-<ol>
-<li>参数定义中未使用 t.Annotated 时，如果类型为 python 基本类型，会被自动识别为 Query 参数</li>
-</ol>
-<h3 id="header">Header</h3>
-<pre><code class="language-python">
-
-class Hdr1(BaseModel):
-    header1: str
-    header2: int = Field(default=1)
-
-
-class Hdr2(BaseModel):
-    header3: int
-    header4: str = Field(default=&quot;123&quot;)
-
-
-class RespE3(BaseModel):
-    header1: str
-    header2: int
-    header3: int
-    header4: str
-    header5: str
-
-
-async def endpoint3(
+<h4 id="_11">自动推断路径参数</h4>
+<pre><code class="language-python">async def simple_path_endpoint(
     request: HttpRequest,
-    hdr1: t.Annotated[Hdr1, p.Header()],
-    hdr2: t.Annotated[Hdr2, p.Header()],
-    header5: t.Annotated[str, p.Header(default=&quot;foo&quot;)],
+    user_id: int,      # 自动识别为路径参数（因为在路由中定义了 {user_id}）
+    post_id: int,      # 自动识别为路径参数（因为在路由中定义了 {post_id}）
 ) -&gt; JsonResponse:
-    r = RespE3(
-        header1=hdr1.header1,
-        header2=hdr1.header2,
-        header3=hdr2.header3,
-        header4=hdr2.header4,
-        header5=header5,
-    )
-    return JsonResponse(r)
+    return JsonResponse({
+        &quot;user_id&quot;: user_id,
+        &quot;post_id&quot;: post_id
+    })
 
-
-# routes.py
-
-&quot;&quot;&quot;
-scope = {
-        &quot;type&quot;: &quot;http&quot;,
-        &quot;method&quot;: &quot;GET&quot;,
-        &quot;scheme&quot;: &quot;https&quot;,
-        &quot;server&quot;: (&quot;www.example.org&quot;, 80),
-        &quot;path&quot;: &quot;/header&quot;,
-        &quot;headers&quot;: [
-            (b&quot;header1&quot;, b&quot;foo&quot;),
-            (b&quot;header2&quot;, b&quot;1&quot;),
-            (b&quot;header3&quot;, b&quot;2&quot;),
-            (b&quot;header4&quot;, b&quot;foo2&quot;),
-            (b&quot;header5&quot;, b&quot;foo3&quot;),
-        ],
-        &quot;query_string&quot;: b&quot;&quot;,
-    }
-&quot;&quot;&quot;
+# 路由定义
 patterns = [
-    path(&quot;/header&quot;, endpoint=endpoint3),
+    path(&quot;/users/{user_id}/posts/{post_id}&quot;, endpoint=simple_path_endpoint),
 ]
-
-
 </code></pre>
-<h3 id="cookie">Cookie</h3>
-<pre><code class="language-python">
-
-class Ckie1(BaseModel):
-    cookie1: str
-    cookie2: int = Field(default=1)
-
-
-class Ckie2(BaseModel):
-    cookie3: int
-    cookie4: str = Field(default=&quot;123&quot;)
-
-
-class RespE4(BaseModel):
-    cookie1: str
-    cookie2: int
-    cookie3: int
-    cookie4: str
-    cookie5: str
-
-
-async def endpoint4(
+<h4 id="_12">路径参数特性</h4>
+<ul>
+<li><strong>类型转换</strong>: 自动转换为指定的 Python 类型</li>
+<li><strong>验证</strong>: 支持 Pydantic 的所有验证规则</li>
+<li><strong>文档生成</strong>: 自动生成 OpenAPI 参数文档</li>
+<li><strong>错误处理</strong>: 类型转换失败时返回错误(依赖中间件处理)</li>
+</ul>
+<h3 id="query">Query 参数</h3>
+<p>Query 参数从 URL 查询字符串中提取，常用于分页、过滤和搜索等场景。</p>
+<h4 id="_13">基础用法</h4>
+<pre><code class="language-python"># 基础类型的查询参数
+async def search_users(
     request: HttpRequest,
-    ck1: t.Annotated[Ckie1, p.Cookie()],
-    ck2: t.Annotated[Ckie2, p.Cookie()],
-    cookie5: t.Annotated[str, p.Cookie(default=&quot;foo&quot;)],
+    keyword: t.Annotated[str, p.Query(description=&quot;搜索关键词&quot;)],
+    page: t.Annotated[int, p.Query(default=1, description=&quot;页码&quot;, ge=1)],
+    size: t.Annotated[int, p.Query(default=10, description=&quot;每页大小&quot;, ge=1, le=100)],
+    active: t.Annotated[bool, p.Query(default=True, description=&quot;是否激活&quot;)]
 ) -&gt; JsonResponse:
-    r = RespE4(
-        cookie1=ck1.cookie1,
-        cookie2=ck1.cookie2,
-        cookie3=ck2.cookie3,
-        cookie4=ck2.cookie4,
-        cookie5=cookie5,
+    return JsonResponse({
+        &quot;keyword&quot;: keyword,
+        &quot;page&quot;: page,
+        &quot;size&quot;: size,
+        &quot;active&quot;: active,
+        &quot;results&quot;: []  # 模拟搜索结果
+    })
+
+# 请求示例: GET /search?keyword=张三&amp;page=2&amp;size=20&amp;active=false
+</code></pre>
+<h4 id="basemodel_1">使用 BaseModel 组织查询参数</h4>
+<pre><code class="language-python">class SearchParams(BaseModel):
+    keyword: str = Field(description=&quot;搜索关键词&quot;, min_length=1)
+    category: str = Field(default=&quot;all&quot;, description=&quot;分类&quot;)
+
+
+class PaginationParams(BaseModel):
+    page: int = Field(default=1, description=&quot;页码&quot;, ge=1)
+    size: int = Field(default=10, description=&quot;每页大小&quot;, ge=1, le=100)
+    sort_by: str = Field(default=&quot;created_at&quot;, description=&quot;排序字段&quot;)
+    order: str = Field(default=&quot;desc&quot;, regex=&quot;^(asc|desc)$&quot;, description=&quot;排序方向&quot;)
+
+
+async def advanced_search(
+    request: HttpRequest,
+    search: t.Annotated[SearchParams, p.Query()],
+    pagination: t.Annotated[PaginationParams, p.Query()],
+    include_inactive: t.Annotated[bool, p.Query(default=False)]  # 单独的查询参数
+) -&gt; JsonResponse:
+    return JsonResponse({
+        &quot;search_params&quot;: {
+            &quot;keyword&quot;: search.keyword,
+            &quot;category&quot;: search.category
+        },
+        &quot;pagination&quot;: {
+            &quot;page&quot;: pagination.page,
+            &quot;size&quot;: pagination.size,
+            &quot;sort_by&quot;: pagination.sort_by,
+            &quot;order&quot;: pagination.order
+        },
+        &quot;include_inactive&quot;: include_inactive
+    })
+
+# 请求示例: GET /advanced-search?keyword=python&amp;category=tech&amp;page=2&amp;size=5&amp;sort_by=title&amp;order=asc&amp;include_inactive=true
+</code></pre>
+<h4 id="_14">自动推断查询参数</h4>
+<pre><code class="language-python">async def simple_query_endpoint(
+    request: HttpRequest,
+    name: str,          # 基础类型自动识别为查询参数
+    age: int,           # 基础类型自动识别为查询参数
+    email: str,         # 基础类型自动识别为查询参数
+) -&gt; JsonResponse:
+    return JsonResponse({
+        &quot;name&quot;: name,
+        &quot;age&quot;: age,
+        &quot;email&quot;: email
+    })
+
+# 请求示例: GET /simple?name=张三&amp;age=25&amp;email=zhangsan@example.com
+</code></pre>
+<h4 id="_15">查询参数特性</h4>
+<ul>
+<li><strong>可选参数</strong>: 支持默认值，未提供时使用默认值</li>
+<li><strong>类型转换</strong>: 自动转换字符串为指定类型（int、bool、float 等）</li>
+<li><strong>列表支持</strong>: 支持多值参数（如 <code>?tags=python&amp;tags=web</code>）</li>
+<li><strong>验证</strong>: 支持 Pydantic 的所有验证规则</li>
+</ul>
+<h4 id="_16">高级查询参数示例</h4>
+<pre><code class="language-python">from typing import List, Optional
+from enum import Enum
+
+class StatusEnum(str, Enum):
+    ACTIVE = &quot;active&quot;
+    INACTIVE = &quot;inactive&quot;
+    PENDING = &quot;pending&quot;
+
+class FilterParams(BaseModel):
+    status: Optional[StatusEnum] = Field(default=None, description=&quot;状态过滤&quot;)
+    tags: List[str] = Field(default=[], description=&quot;标签列表&quot;)
+    min_price: Optional[float] = Field(default=None, ge=0, description=&quot;最低价格&quot;)
+    max_price: Optional[float] = Field(default=None, ge=0, description=&quot;最高价格&quot;)
+    created_after: Optional[str] = Field(default=None, description=&quot;创建时间过滤&quot;)
+
+async def filter_products(
+    request: HttpRequest,
+    filters: t.Annotated[FilterParams, p.Query()]
+) -&gt; JsonResponse:
+    return JsonResponse({
+        &quot;filters&quot;: filters.model_dump(exclude_none=True),
+        &quot;message&quot;: &quot;查询成功&quot;
+    })
+
+# 请求示例: GET /products?status=active&amp;tags=electronics&amp;tags=mobile&amp;min_price=100&amp;max_price=1000
+</code></pre>
+<h3 id="header">Header 参数</h3>
+<p>Header 参数从 HTTP 请求头中提取，常用于认证、内容协商和客户端信息传递。</p>
+<h4 id="_17">基础用法</h4>
+<pre><code class="language-python"># 常见的请求头参数
+async def authenticated_endpoint(
+    request: HttpRequest,
+    authorization: t.Annotated[str, p.Header(description=&quot;认证令牌&quot;)],
+    user_agent: t.Annotated[str, p.Header(alias=&quot;User-Agent&quot;, description=&quot;用户代理&quot;)],
+    content_type: t.Annotated[str, p.Header(
+        alias=&quot;Content-Type&quot;, 
+        default=&quot;application/json&quot;,
+        description=&quot;内容类型&quot;
+    )],
+    x_request_id: t.Annotated[str, p.Header(
+        alias=&quot;X-Request-ID&quot;,
+        default=None,
+        description=&quot;请求追踪ID&quot;
+    )]
+) -&gt; JsonResponse:
+    return JsonResponse({
+        &quot;authorization&quot;: authorization,
+        &quot;user_agent&quot;: user_agent,
+        &quot;content_type&quot;: content_type,
+        &quot;request_id&quot;: x_request_id
+    })
+
+# 请求示例:
+# GET /api/data
+# Authorization: Bearer your-token-here
+# User-Agent: Mozilla/5.0...
+# Content-Type: application/json
+# X-Request-ID: 12345-67890
+</code></pre>
+<h4 id="basemodel_2">使用 BaseModel 组织请求头</h4>
+<pre><code class="language-python">class AuthHeaders(BaseModel):
+    authorization: str = Field(description=&quot;认证令牌&quot;, min_length=1)
+    x_api_key: str = Field(alias=&quot;X-API-Key&quot;, description=&quot;API密钥&quot;)
+
+
+class ClientHeaders(BaseModel):
+    user_agent: str = Field(alias=&quot;User-Agent&quot;, description=&quot;用户代理&quot;)
+    accept_language: str = Field(
+        alias=&quot;Accept-Language&quot;, 
+        default=&quot;zh-CN&quot;,
+        description=&quot;接受语言&quot;
     )
-    return JsonResponse(r)
-
-
-# routes.py
-
-&quot;&quot;&quot;
-    scope = {
-        &quot;type&quot;: &quot;http&quot;,
-        &quot;method&quot;: &quot;GET&quot;,
-        &quot;scheme&quot;: &quot;https&quot;,
-        &quot;server&quot;: (&quot;www.example.org&quot;, 80),
-        &quot;path&quot;: &quot;/&quot;,
-        &quot;headers&quot;: [
-            (
-                b&quot;cookie&quot;,
-                b&quot;cookie1=foo; cookie2=1; cookie3=2; cookie4=foo2; cookie5=foo3&quot;,
-            ),
-        ],
-        &quot;query_string&quot;: b&quot;&quot;,
-    }
-
-&quot;&quot;&quot;
-
-patterns = [
-    path(&quot;/&quot;, endpoint=endpoint4),
-]
-
-</code></pre>
-<h3 id="json">Json</h3>
-<pre><code class="language-python">
-
-class Body1(BaseModel):
-    body1: str
-    body2: int = Field(default=1)
-
-    model_config = {
-        &quot;json_schema_extra&quot;: {&quot;foo&quot;: &quot;bar&quot;},
-    }
-
-
-class Body2(BaseModel):
-    body3: int
-    body4: str = Field(default=&quot;123&quot;)
-
-
-class Body3(BaseModel):
-    body5: str
-
-
-class RespE5(BaseModel):
-    body1: str
-    body2: int
-    body3: int
-    body4: str
-    body5: str
-
-
-async def endpoint5(
-    request: HttpRequest,
-    bd1: t.Annotated[Body1, p.Json()],
-    bd2: t.Annotated[Body2, p.Json()],
-    bd3: Body3,
-    body6: t.Annotated[str, p.Json(default=&quot;foo&quot;)],
-) -&gt; JsonResponse:
-    r = RespE5(
-        body1=bd1.body1,
-        body2=bd1.body2,
-        body3=bd2.body3,
-        body4=bd2.body4,
-        body5=bd3.body5,
+    x_forwarded_for: str = Field(
+        alias=&quot;X-Forwarded-For&quot;,
+        default=None,
+        description=&quot;客户端IP&quot;
     )
-    return JsonResponse(r)
 
 
-# scope
-
-{
-    &quot;type&quot;: &quot;http.request&quot;,
-    &quot;body&quot;: b'{&quot;body1&quot;: &quot;foo&quot;, &quot;body2&quot;: 1, &quot;body3&quot;: 2, &quot;body4&quot;: &quot;foo2&quot;, &quot;body5&quot;: &quot;foo3&quot;}',
-    &quot;more_body&quot;: False,
-}
-
-</code></pre>
-<p>解释：</p>
-<ol>
-<li>Body 中 media 类型为 application/json 参数使用 p.Json() 标记</li>
-<li>在没有 t.Annotated 的情况下，如果参数类型为 BaseModel，则会被自动识别为 Json 参数    </li>
-</ol>
-<h3 id="form">Form</h3>
-<pre><code class="language-python">
-
-class Form1(BaseModel):
-    form1: str
-    form2: int = Field(default=1)
-
-
-class Form2(BaseModel):
-    form3: int
-    form4: str = Field(default=&quot;123&quot;)
-
-
-class RespE6(BaseModel):
-    form1: str
-    form2: int
-    form3: int
-    form4: str
-    form5: str
-
-
-async def endpoint6(
+async def api_with_headers(
     request: HttpRequest,
-    form1: t.Annotated[Form1, p.Form()],
-    form2: t.Annotated[Form2, p.Form()],
-    form5: t.Annotated[str, p.Form(default=&quot;foo&quot;)],
-    *args: t.Any,
-    **kw: t.Any,
+    auth: t.Annotated[AuthHeaders, p.Header()],
+    client_info: t.Annotated[ClientHeaders, p.Header()],
+    custom_header: t.Annotated[str, p.Header(alias=&quot;X-Custom-Value&quot;, default=&quot;default&quot;)]
 ) -&gt; JsonResponse:
-    r = RespE6(
-        form1=form1.form1,
-        form2=form1.form2,
-        form3=form2.form3,
-        form4=form2.form4,
-        form5=form5,
+    return JsonResponse({
+        &quot;auth&quot;: {
+            &quot;authorization&quot;: auth.authorization,
+            &quot;api_key&quot;: auth.x_api_key
+        },
+        &quot;client&quot;: {
+            &quot;user_agent&quot;: client_info.user_agent,
+            &quot;language&quot;: client_info.accept_language,
+            &quot;forwarded_for&quot;: client_info.x_forwarded_for
+        },
+        &quot;custom&quot;: custom_header
+    })
+</code></pre>
+<h4 id="header_1">Header 参数特性</h4>
+<ul>
+<li><strong>别名支持</strong>: 使用 <code>alias</code> 处理 HTTP Header 的命名约定（如 <code>Content-Type</code>）</li>
+<li><strong>大小写不敏感</strong>: HTTP 头名称不区分大小写</li>
+<li><strong>可选参数</strong>: 支持默认值</li>
+<li><strong>验证</strong>: 支持 Pydantic 验证规则</li>
+</ul>
+<h3 id="cookie">Cookie 参数</h3>
+<p>Cookie 参数从 HTTP Cookie 中提取，常用于会话管理、用户偏好设置等。</p>
+<h4 id="_18">基础用法</h4>
+<pre><code class="language-python"># 基础 Cookie 参数
+async def user_dashboard(
+    request: HttpRequest,
+    session_id: t.Annotated[str, p.Cookie(description=&quot;会话ID&quot;)],
+    user_preferences: t.Annotated[str, p.Cookie(
+        default=&quot;default&quot;, 
+        description=&quot;用户偏好设置&quot;
+    )],
+    theme: t.Annotated[str, p.Cookie(default=&quot;light&quot;, description=&quot;主题设置&quot;)],
+    language: t.Annotated[str, p.Cookie(default=&quot;zh-CN&quot;, description=&quot;语言设置&quot;)]
+) -&gt; JsonResponse:
+    return JsonResponse({
+        &quot;session_id&quot;: session_id,
+        &quot;preferences&quot;: user_preferences,
+        &quot;theme&quot;: theme,
+        &quot;language&quot;: language
+    })
+
+# Cookie 设置示例:
+# Cookie: session_id=abc123; user_preferences=compact; theme=dark; language=en-US
+</code></pre>
+<h4 id="basemodel-cookie">使用 BaseModel 组织 Cookie</h4>
+<pre><code class="language-python">class SessionCookies(BaseModel):
+    session_id: str = Field(description=&quot;会话标识&quot;)
+    csrf_token: str = Field(description=&quot;CSRF令牌&quot;, min_length=10)
+
+
+class UserCookies(BaseModel):
+    user_id: int = Field(description=&quot;用户ID&quot;, gt=0)
+    remember_me: bool = Field(default=False, description=&quot;记住登录&quot;)
+    last_visit: str = Field(default=None, description=&quot;最后访问时间&quot;)
+
+
+async def authenticated_page(
+    request: HttpRequest,
+    session: t.Annotated[SessionCookies, p.Cookie()],
+    user: t.Annotated[UserCookies, p.Cookie()],
+    analytics_id: t.Annotated[str, p.Cookie(default=None, description=&quot;分析跟踪ID&quot;)]
+) -&gt; JsonResponse:
+    return JsonResponse({
+        &quot;session&quot;: {
+            &quot;id&quot;: session.session_id,
+            &quot;csrf_token&quot;: session.csrf_token
+        },
+        &quot;user&quot;: {
+            &quot;id&quot;: user.user_id,
+            &quot;remember_me&quot;: user.remember_me,
+            &quot;last_visit&quot;: user.last_visit
+        },
+        &quot;analytics_id&quot;: analytics_id
+    })
+</code></pre>
+<h4 id="cookie_1">Cookie 参数特性</h4>
+<ul>
+<li><strong>自动解析</strong>: 自动解析 Cookie 字符串</li>
+<li><strong>类型转换</strong>: 支持基础类型的自动转换</li>
+<li><strong>可选参数</strong>: 支持默认值</li>
+<li><strong>安全考虑</strong>: 建议对敏感 Cookie 进行验证</li>
+</ul>
+<h3 id="json">Json 参数</h3>
+<p>Json 参数从 HTTP 请求体中提取 JSON 数据，是 API 最常用的数据传输方式。</p>
+<h4 id="_19">基础用法</h4>
+<pre><code class="language-python"># 简单的 JSON 请求体
+class CreateUserRequest(BaseModel):
+    name: str = Field(min_length=1, max_length=50, description=&quot;用户名&quot;)
+    email: str = Field(regex=r'^[^@]+@[^@]+\.[^@]+$', description=&quot;邮箱地址&quot;)
+    age: int = Field(ge=0, le=150, description=&quot;年龄&quot;)
+    is_active: bool = Field(default=True, description=&quot;是否激活&quot;)
+
+class UserResponse(BaseModel):
+    id: int
+    name: str
+    email: str
+    age: int
+    is_active: bool
+    created_at: str
+
+async def create_user(
+    request: HttpRequest,
+    user_data: t.Annotated[CreateUserRequest, p.Json()]
+) -&gt; JsonResponse[UserResponse]:
+    # 模拟创建用户
+    new_user = UserResponse(
+        id=12345,
+        name=user_data.name,
+        email=user_data.email,
+        age=user_data.age,
+        is_active=user_data.is_active,
+        created_at=&quot;2024-01-15T10:30:00Z&quot;
     )
-    return JsonResponse(r)
+    return JsonResponse(new_user)
 
-# scope
-
-{
-    &quot;type&quot;: &quot;http.request&quot;,
-    &quot;body&quot;: b&quot;form1=foo&amp;form2=1&amp;form3=2&amp;form4=foo2&amp;form5=foo3&quot;,
-    &quot;more_body&quot;: False,
-}
-
+# 请求示例:
+# POST /users
+# Content-Type: application/json
+# {
+#   &quot;name&quot;: &quot;张三&quot;,
+#   &quot;email&quot;: &quot;zhangsan@example.com&quot;, 
+#   &quot;age&quot;: 25,
+#   &quot;is_active&quot;: true
+# }
 </code></pre>
-<h3 id="file">File</h3>
-<pre><code class="language-python">
+<h4 id="json_1">自动推断 JSON 参数</h4>
+<pre><code class="language-python">class ProductData(BaseModel):
+    title: str = Field(description=&quot;产品标题&quot;)
+    price: float = Field(gt=0, description=&quot;价格&quot;)
+    description: str = Field(default=&quot;&quot;, description=&quot;产品描述&quot;)
 
-from unfazed.file import UploadFile
-
-class RespFile(BaseModel):
-    file_name: str | None
-
-
-async def endpoint19(
+async def create_product(
     request: HttpRequest,
-    file1: t.Annotated[UploadFile, p.File()],
+    product: ProductData  # BaseModel 类型自动识别为 Json 参数
 ) -&gt; JsonResponse:
-    return JsonResponse(
-        RespFile(
-            file_name=file1.filename,
+    return JsonResponse({
+        &quot;message&quot;: &quot;产品创建成功&quot;,
+        &quot;product&quot;: product.model_dump()
+    })
+</code></pre>
+<h4 id="json_2">复杂 JSON 结构</h4>
+<pre><code class="language-python">from typing import List, Dict, Optional, Union
+from datetime import datetime
+from enum import Enum
+
+class Priority(str, Enum):
+    LOW = &quot;low&quot;
+    MEDIUM = &quot;medium&quot;
+    HIGH = &quot;high&quot;
+
+class TaskTag(BaseModel):
+    name: str
+    color: str = Field(regex=r'^#[0-9A-Fa-f]{6}$', description=&quot;颜色代码&quot;)
+
+class TaskAttachment(BaseModel):
+    filename: str
+    url: str
+    size: int = Field(ge=0, description=&quot;文件大小（字节）&quot;)
+
+class CreateTaskRequest(BaseModel):
+    title: str = Field(min_length=1, max_length=200, description=&quot;任务标题&quot;)
+    description: Optional[str] = Field(default=None, description=&quot;任务描述&quot;)
+    priority: Priority = Field(default=Priority.MEDIUM, description=&quot;优先级&quot;)
+    tags: List[TaskTag] = Field(default=[], description=&quot;标签列表&quot;)
+    attachments: List[TaskAttachment] = Field(default=[], description=&quot;附件列表&quot;)
+    metadata: Dict[str, Union[str, int, bool]] = Field(default={}, description=&quot;元数据&quot;)
+    due_date: Optional[datetime] = Field(default=None, description=&quot;截止日期&quot;)
+
+async def create_task(
+    request: HttpRequest,
+    task_data: t.Annotated[CreateTaskRequest, p.Json()]
+) -&gt; JsonResponse:
+    return JsonResponse({
+        &quot;message&quot;: &quot;任务创建成功&quot;,
+        &quot;task_id&quot;: &quot;TASK-001&quot;,
+        &quot;title&quot;: task_data.title,
+        &quot;priority&quot;: task_data.priority,
+        &quot;tags_count&quot;: len(task_data.tags),
+        &quot;attachments_count&quot;: len(task_data.attachments)
+    })
+
+# 请求示例:
+# POST /tasks
+# {
+#   &quot;title&quot;: &quot;完成项目文档&quot;,
+#   &quot;description&quot;: &quot;编写项目的技术文档&quot;,
+#   &quot;priority&quot;: &quot;high&quot;,
+#   &quot;tags&quot;: [
+#     {&quot;name&quot;: &quot;文档&quot;, &quot;color&quot;: &quot;#ff0000&quot;},
+#     {&quot;name&quot;: &quot;重要&quot;, &quot;color&quot;: &quot;#00ff00&quot;}
+#   ],
+#   &quot;metadata&quot;: {
+#     &quot;project_id&quot;: &quot;PROJ-001&quot;,
+#     &quot;estimate_hours&quot;: 8
+#   },
+#   &quot;due_date&quot;: &quot;2024-01-20T18:00:00Z&quot;
+# }
+</code></pre>
+<h4 id="json_3">组合多个 JSON 参数</h4>
+<pre><code class="language-python">class AuthInfo(BaseModel):
+    api_key: str = Field(description=&quot;API密钥&quot;)
+    signature: str = Field(description=&quot;请求签名&quot;)
+
+class RequestData(BaseModel):
+    action: str = Field(description=&quot;操作类型&quot;)
+    data: Dict[str, t.Any] = Field(description=&quot;操作数据&quot;)
+
+async def secure_operation(
+    request: HttpRequest,
+    auth: t.Annotated[AuthInfo, p.Json()],
+    request_data: t.Annotated[RequestData, p.Json()],
+    timestamp: t.Annotated[int, p.Json(description=&quot;时间戳&quot;)]
+) -&gt; JsonResponse:
+    # 验证认证信息和执行操作
+    return JsonResponse({
+        &quot;status&quot;: &quot;success&quot;,
+        &quot;action&quot;: request_data.action,
+        &quot;timestamp&quot;: timestamp
+    })
+
+# 请求示例:
+# POST /secure-api
+# {
+#   &quot;api_key&quot;: &quot;your-api-key&quot;,
+#   &quot;signature&quot;: &quot;request-signature&quot;,
+#   &quot;action&quot;: &quot;update_profile&quot;,
+#   &quot;data&quot;: {&quot;name&quot;: &quot;新名称&quot;},
+#   &quot;timestamp&quot;: 1705320600
+# }
+</code></pre>
+<h4 id="json_4">JSON 参数特性</h4>
+<ul>
+<li><strong>自动验证</strong>: 基于 Pydantic 模型进行数据验证</li>
+<li><strong>类型转换</strong>: 自动进行类型转换和格式化</li>
+<li><strong>嵌套支持</strong>: 支持复杂的嵌套数据结构</li>
+<li><strong>错误提示</strong>: 提供详细的验证错误信息</li>
+<li><strong>文档生成</strong>: 自动生成 JSON Schema 文档</li>
+</ul>
+<h3 id="form">Form 参数</h3>
+<p>Form 参数从 HTTP 表单数据中提取，支持 <code>application/x-www-form-urlencoded</code> 格式。</p>
+<h4 id="_20">基础用法</h4>
+<pre><code class="language-python"># 简单表单数据
+class LoginForm(BaseModel):
+    username: str = Field(min_length=1, description=&quot;用户名&quot;)
+    password: str = Field(min_length=6, description=&quot;密码&quot;)
+    remember_me: bool = Field(default=False, description=&quot;记住登录&quot;)
+
+class LoginResponse(BaseModel):
+    success: bool
+    message: str
+    token: str = None
+
+async def login(
+    request: HttpRequest,
+    form_data: t.Annotated[LoginForm, p.Form()]
+) -&gt; JsonResponse[LoginResponse]:
+    # 验证登录信息（示例）
+    if form_data.username == &quot;admin&quot; and form_data.password == &quot;password&quot;:
+        return JsonResponse(LoginResponse(
+            success=True,
+            message=&quot;登录成功&quot;,
+            token=&quot;your-auth-token&quot;
+        ))
+    else:
+        return JsonResponse(LoginResponse(
+            success=False,
+            message=&quot;用户名或密码错误&quot;
+        ), status_code=401)
+
+# 请求示例:
+# POST /login
+# Content-Type: application/x-www-form-urlencoded
+# username=admin&amp;password=password&amp;remember_me=true
+</code></pre>
+<h4 id="_21">复杂表单处理</h4>
+<pre><code class="language-python">class UserProfileForm(BaseModel):
+    full_name: str = Field(min_length=1, max_length=100, description=&quot;完整姓名&quot;)
+    email: str = Field(regex=r'^[^@]+@[^@]+\.[^@]+$', description=&quot;邮箱&quot;)
+    phone: str = Field(regex=r'^\+?1?\d{9,15}$', description=&quot;电话号码&quot;)
+    bio: str = Field(default=&quot;&quot;, max_length=500, description=&quot;个人简介&quot;)
+    age: int = Field(ge=0, le=150, description=&quot;年龄&quot;)
+    newsletter: bool = Field(default=False, description=&quot;订阅新闻&quot;)
+
+class AddressForm(BaseModel):
+    street: str = Field(description=&quot;街道地址&quot;)
+    city: str = Field(description=&quot;城市&quot;)
+    state: str = Field(description=&quot;州/省&quot;)
+    zip_code: str = Field(description=&quot;邮政编码&quot;)
+    country: str = Field(default=&quot;CN&quot;, description=&quot;国家代码&quot;)
+
+async def update_profile(
+    request: HttpRequest,
+    profile: t.Annotated[UserProfileForm, p.Form()],
+    address: t.Annotated[AddressForm, p.Form()],
+    timezone: t.Annotated[str, p.Form(default=&quot;Asia/Shanghai&quot;, description=&quot;时区&quot;)]
+) -&gt; JsonResponse:
+    return JsonResponse({
+        &quot;message&quot;: &quot;个人资料更新成功&quot;,
+        &quot;profile&quot;: {
+            &quot;name&quot;: profile.full_name,
+            &quot;email&quot;: profile.email,
+            &quot;phone&quot;: profile.phone
+        },
+        &quot;address&quot;: {
+            &quot;city&quot;: address.city,
+            &quot;country&quot;: address.country
+        },
+        &quot;timezone&quot;: timezone
+    })
+
+# 请求示例:
+# POST /profile
+# Content-Type: application/x-www-form-urlencoded
+# full_name=张三&amp;email=zhangsan@example.com&amp;phone=13800138000&amp;bio=软件工程师&amp;age=30&amp;newsletter=true&amp;street=科技大道1号&amp;city=深圳&amp;state=广东&amp;zip_code=518000&amp;country=CN&amp;timezone=Asia/Shanghai
+</code></pre>
+<h3 id="file">File 参数</h3>
+<p>File 参数用于处理文件上传，支持 <code>multipart/form-data</code> 格式。</p>
+<h4 id="_22">基础文件上传</h4>
+<pre><code class="language-python">from unfazed.file import UploadFile
+
+class FileUploadResponse(BaseModel):
+    filename: str
+    size: int
+    content_type: str
+    message: str
+
+async def upload_avatar(
+    request: HttpRequest,
+    avatar: t.Annotated[UploadFile, p.File(description=&quot;用户头像&quot;)]
+) -&gt; JsonResponse[FileUploadResponse]:
+    # 验证文件类型
+    if not avatar.content_type.startswith('image/'):
+        return JsonResponse(
+            {&quot;error&quot;: &quot;只支持图片文件&quot;},
+            status_code=400
         )
-    )
 
+    # 验证文件大小（例如：最大 5MB）
+    content = await avatar.read()
+    if len(content) &gt; 5 * 1024 * 1024:
+        return JsonResponse(
+            {&quot;error&quot;: &quot;文件大小不能超过 5MB&quot;},
+            status_code=400
+        )
+
+    # 保存文件逻辑（示例）
+    # save_file(avatar.filename, content)
+
+    return JsonResponse(FileUploadResponse(
+        filename=avatar.filename,
+        size=len(content),
+        content_type=avatar.content_type,
+        message=&quot;头像上传成功&quot;
+    ))
+
+# 请求示例:
+# POST /upload-avatar
+# Content-Type: multipart/form-data
+# avatar: [binary file data]
 </code></pre>
-<ol>
-<li>UploadFile 直接继承自 starlette.datastructures.UploadFile</li>
-<li>参数类型为 UploadFile 时，使用 p.File() 标记</li>
-</ol>
+<h4 id="_23">多文件上传</h4>
+<pre><code class="language-python">from typing import List
+
+class MultiFileUploadResponse(BaseModel):
+    uploaded_files: List[dict]
+    total_count: int
+    total_size: int
+
+async def upload_documents(
+    request: HttpRequest,
+    documents: t.Annotated[List[UploadFile], p.File(description=&quot;文档列表&quot;)],
+    category: t.Annotated[str, p.Form(description=&quot;文档分类&quot;)]
+) -&gt; JsonResponse[MultiFileUploadResponse]:
+    uploaded_files = []
+    total_size = 0
+
+    for doc in documents:
+        # 验证文件类型
+        allowed_types = ['application/pdf', 'application/msword', 'text/plain']
+        if doc.content_type not in allowed_types:
+            continue
+
+        content = await doc.read()
+        file_size = len(content)
+        total_size += file_size
+
+        # 保存文件逻辑
+        # save_document(doc.filename, content, category)
+
+        uploaded_files.append({
+            &quot;filename&quot;: doc.filename,
+            &quot;size&quot;: file_size,
+            &quot;content_type&quot;: doc.content_type
+        })
+
+    return JsonResponse(MultiFileUploadResponse(
+        uploaded_files=uploaded_files,
+        total_count=len(uploaded_files),
+        total_size=total_size
+    ))
+
+# 请求示例:
+# POST /upload-documents
+# Content-Type: multipart/form-data
+# documents: [file1.pdf, file2.docx, file3.txt]
+# category: reports
+</code></pre>
+<h4 id="_24">文件与表单数据组合</h4>
+<pre><code class="language-python">class DocumentForm(BaseModel):
+    title: str = Field(description=&quot;文档标题&quot;)
+    description: str = Field(default=&quot;&quot;, description=&quot;文档描述&quot;)
+    is_public: bool = Field(default=False, description=&quot;是否公开&quot;)
+    tags: str = Field(default=&quot;&quot;, description=&quot;标签（逗号分隔）&quot;)
+
+async def create_document(
+    request: HttpRequest,
+    document_file: t.Annotated[UploadFile, p.File(description=&quot;文档文件&quot;)],
+    form_data: t.Annotated[DocumentForm, p.Form()],
+    author_id: t.Annotated[int, p.Form(description=&quot;作者ID&quot;)]
+) -&gt; JsonResponse:
+    # 处理文件
+    content = await document_file.read()
+
+    # 解析标签
+    tags = [tag.strip() for tag in form_data.tags.split(',') if tag.strip()]
+
+    return JsonResponse({
+        &quot;message&quot;: &quot;文档创建成功&quot;,
+        &quot;document&quot;: {
+            &quot;title&quot;: form_data.title,
+            &quot;filename&quot;: document_file.filename,
+            &quot;size&quot;: len(content),
+            &quot;author_id&quot;: author_id,
+            &quot;tags&quot;: tags,
+            &quot;is_public&quot;: form_data.is_public
+        }
+    })
+
+# 请求示例:
+# POST /documents
+# Content-Type: multipart/form-data
+# document_file: [binary file]
+# title: 项目报告
+# description: 2024年第一季度项目总结
+# is_public: true
+# tags: 报告,季度,项目
+# author_id: 123
+</code></pre>
+<h4 id="_25">文件参数特性</h4>
+<ul>
+<li><strong>类型支持</strong>: 继承自 Starlette 的 UploadFile，支持所有文件操作</li>
+<li><strong>异步操作</strong>: 支持异步文件读取和处理</li>
+<li><strong>内容类型</strong>: 自动检测文件的 MIME 类型</li>
+<li><strong>大小限制</strong>: 可以设置文件大小限制</li>
+<li><strong>多文件</strong>: 支持单个端点接收多个文件</li>
+<li><strong>组合使用</strong>: 可以与表单数据一起使用</li>
+</ul>
+<h4 id="uploadfile">UploadFile 方法</h4>
+<pre><code class="language-python">async def handle_file(file: UploadFile):
+    # 文件属性
+    filename = file.filename          # 原始文件名
+    content_type = file.content_type  # MIME 类型
+
+    # 文件操作
+    content = await file.read()       # 读取全部内容
+    await file.seek(0)               # 重置文件指针
+    chunk = await file.read(1024)    # 读取指定字节数
+    await file.close()               # 关闭文件
+</code></pre>
+<h2 id="_26">高级用法</h2>
+<h3 id="_27">响应模型定义</h3>
+<p>Unfazed 支持定义响应模型，用于生成 API 文档和类型提示：</p>
+<pre><code class="language-python">from unfazed.route import params as p
+
+class SuccessResponse(BaseModel):
+    success: bool = True
+    message: str
+    data: t.Dict[str, t.Any]
+
+class ErrorResponse(BaseModel):
+    success: bool = False
+    error: str
+    error_code: int
+
+async def api_endpoint(
+    request: HttpRequest,
+    user_id: t.Annotated[int, p.Path()]
+) -&gt; t.Annotated[
+    JsonResponse,
+    p.ResponseSpec(model=SuccessResponse, code=&quot;200&quot;, description=&quot;成功响应&quot;),
+    p.ResponseSpec(model=ErrorResponse, code=&quot;404&quot;, description=&quot;用户不存在&quot;),
+    p.ResponseSpec(model=ErrorResponse, code=&quot;500&quot;, description=&quot;服务器错误&quot;)
+]:
+    try:
+        # 业务逻辑
+        user_data = {&quot;id&quot;: user_id, &quot;name&quot;: &quot;张三&quot;}
+        return JsonResponse(SuccessResponse(
+            message=&quot;获取用户信息成功&quot;,
+            data=user_data
+        ))
+    except UserNotFound:
+        return JsonResponse(ErrorResponse(
+            error=&quot;用户不存在&quot;,
+            error_code=404
+        ), status_code=404)
+</code></pre>
+<h3 id="_28">参数依赖和验证</h3>
+<h4 id="_29">自定义验证器</h4>
+<pre><code class="language-python">from pydantic import validator
+
+class CreateUserRequest(BaseModel):
+    username: str = Field(min_length=3, max_length=20)
+    email: str
+    password: str = Field(min_length=8)
+    confirm_password: str
+
+    @validator('email')
+    def validate_email(cls, v):
+        if not '@' in v:
+            raise ValueError('邮箱格式不正确')
+        return v.lower()
+
+    @validator('confirm_password')
+    def passwords_match(cls, v, values):
+        if 'password' in values and v != values['password']:
+            raise ValueError('两次密码输入不一致')
+        return v
+
+async def register_user(
+    request: HttpRequest,
+    user_data: t.Annotated[CreateUserRequest, p.Json()]
+) -&gt; JsonResponse:
+    # 用户数据已经通过验证
+    return JsonResponse({&quot;message&quot;: &quot;用户注册成功&quot;})
+</code></pre>
+<h4 id="_30">条件参数</h4>
+<pre><code class="language-python">from typing import Union
+
+class BaseSearchParams(BaseModel):
+    query: str = Field(min_length=1, description=&quot;搜索关键词&quot;)
+    limit: int = Field(default=10, ge=1, le=100)
+
+class UserSearchParams(BaseSearchParams):
+    search_type: t.Literal[&quot;user&quot;] = &quot;user&quot;
+    include_inactive: bool = Field(default=False)
+
+class ProductSearchParams(BaseSearchParams):
+    search_type: t.Literal[&quot;product&quot;] = &quot;product&quot;
+    category: str = Field(default=&quot;all&quot;)
+    min_price: float = Field(default=0, ge=0)
+
+SearchParams = Union[UserSearchParams, ProductSearchParams]
+
+async def universal_search(
+    request: HttpRequest,
+    search_params: t.Annotated[SearchParams, p.Json()]
+) -&gt; JsonResponse:
+    if isinstance(search_params, UserSearchParams):
+        # 用户搜索逻辑
+        return JsonResponse({&quot;type&quot;: &quot;user_search&quot;, &quot;results&quot;: []})
+    else:
+        # 产品搜索逻辑
+        return JsonResponse({&quot;type&quot;: &quot;product_search&quot;, &quot;results&quot;: []})
+</code></pre>
 
 
 
