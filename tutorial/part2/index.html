@@ -1,12 +1,16 @@
 
 <!doctype html>
-<html lang="zh-Hant" class="no-js">
+<html lang="en" class="no-js">
   <head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="Production Ready ASGI web framework">
       
+      
+      
+        <link rel="canonical" href="https://unfazed-eco.github.io/unfazed/tutorial/part2/">
       
       
         <link rel="prev" href="../part1/">
@@ -20,11 +24,14 @@
     
     
       
-        <title>Part 2 Create Application - Unfazed</title>
+        <title>Part 2 Creating Applications and Hello World - Unfazed</title>
       
     
     
       <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -53,7 +60,14 @@
   </head>
   
   
-    <body dir="ltr">
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -62,8 +76,8 @@
     <div data-md-component="skip">
       
         
-        <a href="#hello-world" class="md-skip">
-          跳轉至
+        <a href="#part-2-creating-applications-and-hello-world" class="md-skip">
+          Skip to content
         </a>
       
     </div>
@@ -74,10 +88,8 @@
     
       
 
-  
-
-<header class="md-header md-header--shadow" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="頁首">
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../.." title="Unfazed" class="md-header__button md-logo" aria-label="Unfazed" data-md-component="logo">
       
   <img src="../../images/uz-logo.png" alt="logo">
@@ -97,12 +109,38 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Part 2 Create Application
+              Part 2 Creating Applications and Hello World
             
           </span>
         </div>
       </div>
     </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
     
     
       <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
@@ -111,21 +149,21 @@
       <div class="md-header__option">
   <div class="md-select">
     
-    <button class="md-header__button md-icon" aria-label="選擇語言">
+    <button class="md-header__button md-icon" aria-label="Select language">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
     </button>
     <div class="md-select__inner">
       <ul class="md-select__list">
         
           <li class="md-select__item">
-            <a href="./" hreflang="zh-Hant" class="md-select__link">
-              中文
+            <a href="./" hreflang="en" class="md-select__link">
+              English
             </a>
           </li>
         
           <li class="md-select__item">
-            <a href="../../en/tutorial/part2/" hreflang="en" class="md-select__link">
-              English
+            <a href="../../zh/tutorial/part2/" hreflang="zh" class="md-select__link">
+              中文
             </a>
           </li>
         
@@ -135,9 +173,48 @@
 </div>
     
     
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
     
       <div class="md-header__source">
-        <a href="https://github.com/unfazed-eco/unfazed" title="前往倉庫" class="md-source" data-md-component="source">
+        <a href="https://github.com/unfazed-eco/unfazed" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
@@ -157,6 +234,105 @@
       
         
           
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../part1/" class="md-tabs__link">
+          
+  
+  Tutorial
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../features/app/" class="md-tabs__link">
+          
+  
+  Features
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../features/contrib/admin/" class="md-tabs__link">
+          
+  
+  Contrib
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../release-note/" class="md-tabs__link">
+        
+  
+    
+  
+  ReleaseNote
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -170,8 +346,10 @@
                     
 
 
+  
 
-<nav class="md-nav md-nav--primary" aria-label="導航" data-md-level="0">
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../.." title="Unfazed" class="md-nav__button md-logo" aria-label="Unfazed" data-md-component="logo">
       
@@ -182,7 +360,7 @@
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/unfazed-eco/unfazed" title="前往倉庫" class="md-source" data-md-component="source">
+      <a href="https://github.com/unfazed-eco/unfazed" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
@@ -226,15 +404,23 @@
     
     
     
+      
+        
+        
+      
+      
+        
+      
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -263,7 +449,7 @@
         
   
   <span class="md-ellipsis">
-    Part 1 Install & Create Project
+    Part 1 Installation and Project Creation
   </span>
   
 
@@ -293,7 +479,7 @@
           
   
   <span class="md-ellipsis">
-    Part 2 Create Application
+    Part 2 Creating Applications and Hello World
   </span>
   
 
@@ -304,7 +490,7 @@
         
   
   <span class="md-ellipsis">
-    Part 2 Create Application
+    Part 2 Creating Applications and Hello World
   </span>
   
 
@@ -312,7 +498,7 @@
       
         
 
-<nav class="md-nav md-nav--secondary" aria-label="目錄">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
   
@@ -321,24 +507,51 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      目錄
+      Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#unfazed" class="md-nav__link">
+  <a href="#what-is-an-application" class="md-nav__link">
     <span class="md-ellipsis">
-      Unfazed 应用系统概述
+      What is an Application?
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Unfazed 应用系统概述">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-the-enroll-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating the enroll Application
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Creating the enroll Application">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#app" class="md-nav__link">
+  <a href="#using-cli-to-create-the-app" class="md-nav__link">
     <span class="md-ellipsis">
-      什么是应用（App）？
+      Using CLI to Create the App
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#application-directory-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Application Directory Structure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Files
     </span>
   </a>
   
@@ -350,37 +563,46 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#enroll" class="md-nav__link">
+  <a href="#implementing-hello-world" class="md-nav__link">
     <span class="md-ellipsis">
-      创建 enroll 应用
+      Implementing Hello World
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="创建 enroll 应用">
+    <nav class="md-nav" aria-label="Implementing Hello World">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#cli" class="md-nav__link">
+  <a href="#step-1-define-endpoint-functions" class="md-nav__link">
     <span class="md-ellipsis">
-      使用 CLI 创建应用
+      Step 1: Define Endpoint Functions
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#step-2-configure-routes" class="md-nav__link">
     <span class="md-ellipsis">
-      应用目录结构
+      Step 2: Configure Routes
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#step-3-register-app-routes-in-root-url-config" class="md-nav__link">
     <span class="md-ellipsis">
-      应用文件详解
+      Step 3: Register App Routes in Root URL Config
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-register-the-app-in-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4: Register the App in Settings
     </span>
   </a>
   
@@ -392,46 +614,28 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#hello-world-api" class="md-nav__link">
+  <a href="#testing-the-api" class="md-nav__link">
     <span class="md-ellipsis">
-      实现 Hello World API
+      Testing the API
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="实现 Hello World API">
+    <nav class="md-nav" aria-label="Testing the API">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
+  <a href="#start-the-server" class="md-nav__link">
     <span class="md-ellipsis">
-      步骤 1：定义视图函数
+      Start the Server
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2" class="md-nav__link">
+  <a href="#send-requests" class="md-nav__link">
     <span class="md-ellipsis">
-      步骤 2：配置路由
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3" class="md-nav__link">
-    <span class="md-ellipsis">
-      步骤 3：注册应用路由
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4" class="md-nav__link">
-    <span class="md-ellipsis">
-      步骤 4：注册应用
+      Send Requests
     </span>
   </a>
   
@@ -443,93 +647,27 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#hello-world-api_1" class="md-nav__link">
+  <a href="#request-response-architecture" class="md-nav__link">
     <span class="md-ellipsis">
-      测试 Hello World API
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="测试 Hello World API">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      启动开发服务器
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#api" class="md-nav__link">
-    <span class="md-ellipsis">
-      测试 API 端点
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#unfazed_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      理解 Unfazed 的请求服务架构
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="理解 Unfazed 的请求服务架构">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      各层职责
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#api_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      自动 API 文档
+      Request-Response Architecture
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#automatic-api-documentation" class="md-nav__link">
     <span class="md-ellipsis">
-      下一步
+      Automatic API Documentation
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#next-steps" class="md-nav__link">
     <span class="md-ellipsis">
-      🎯 本节要点回顾
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    <span class="md-ellipsis">
-      💡 最佳实践提示
+      Next Steps
     </span>
   </a>
   
@@ -555,7 +693,7 @@
         
   
   <span class="md-ellipsis">
-    Part 3 Models and Serializer
+    Part 3 Data Models and Serializers
   </span>
   
 
@@ -576,7 +714,7 @@
         
   
   <span class="md-ellipsis">
-    Part 4 Endpoint and Schema
+    Part 4 API Interface Design and Schema Definition
   </span>
   
 
@@ -597,7 +735,7 @@
         
   
   <span class="md-ellipsis">
-    Part 5 Services
+    Part 5 Business Logic Implementation
   </span>
   
 
@@ -618,7 +756,7 @@
         
   
   <span class="md-ellipsis">
-    Part 6 Test
+    Part 6 Testing and Quality Assurance
   </span>
   
 
@@ -643,6 +781,11 @@
   
     
     
+    
+      
+      
+        
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -677,27 +820,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../features/settings/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Settings
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../features/app/" class="md-nav__link">
         
   
@@ -719,11 +841,53 @@
   
   
     <li class="md-nav__item">
+      <a href="../../features/settings/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Settings
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../features/route/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     Route
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/endpoint/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Endpoint
   </span>
   
 
@@ -782,95 +946,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../features/logging/" class="md-nav__link">
+      <a href="../../features/command/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Logging
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../features/request/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Request
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../features/response/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Response
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../features/endpoint/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Endpoint
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../features/staticfiles.md" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Staticfiles
+    Command
   </span>
   
 
@@ -929,6 +1009,69 @@
   
   
     <li class="md-nav__item">
+      <a href="../../features/request/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Request
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/logging/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Logging
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../features/cache/" class="md-nav__link">
         
   
@@ -950,11 +1093,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../features/error/" class="md-nav__link">
+      <a href="../../features/exception/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Error
+    Exceptions
   </span>
   
 
@@ -992,11 +1135,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../features/command/" class="md-nav__link">
+      <a href="../../features/testclient/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Command
+    Test Client
   </span>
   
 
@@ -1013,11 +1156,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../features/testclient/" class="md-nav__link">
+      <a href="../../features/concurrency/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Test Client
+    Concurrency
   </span>
   
 
@@ -1042,6 +1185,11 @@
   
     
     
+    
+      
+      
+        
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -1172,7 +1320,7 @@
                   <div class="md-sidebar__inner">
                     
 
-<nav class="md-nav md-nav--secondary" aria-label="目錄">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
   
@@ -1181,24 +1329,51 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      目錄
+      Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#unfazed" class="md-nav__link">
+  <a href="#what-is-an-application" class="md-nav__link">
     <span class="md-ellipsis">
-      Unfazed 应用系统概述
+      What is an Application?
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Unfazed 应用系统概述">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-the-enroll-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating the enroll Application
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Creating the enroll Application">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#app" class="md-nav__link">
+  <a href="#using-cli-to-create-the-app" class="md-nav__link">
     <span class="md-ellipsis">
-      什么是应用（App）？
+      Using CLI to Create the App
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#application-directory-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Application Directory Structure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Files
     </span>
   </a>
   
@@ -1210,37 +1385,46 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#enroll" class="md-nav__link">
+  <a href="#implementing-hello-world" class="md-nav__link">
     <span class="md-ellipsis">
-      创建 enroll 应用
+      Implementing Hello World
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="创建 enroll 应用">
+    <nav class="md-nav" aria-label="Implementing Hello World">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#cli" class="md-nav__link">
+  <a href="#step-1-define-endpoint-functions" class="md-nav__link">
     <span class="md-ellipsis">
-      使用 CLI 创建应用
+      Step 1: Define Endpoint Functions
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#step-2-configure-routes" class="md-nav__link">
     <span class="md-ellipsis">
-      应用目录结构
+      Step 2: Configure Routes
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#step-3-register-app-routes-in-root-url-config" class="md-nav__link">
     <span class="md-ellipsis">
-      应用文件详解
+      Step 3: Register App Routes in Root URL Config
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-register-the-app-in-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4: Register the App in Settings
     </span>
   </a>
   
@@ -1252,46 +1436,28 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#hello-world-api" class="md-nav__link">
+  <a href="#testing-the-api" class="md-nav__link">
     <span class="md-ellipsis">
-      实现 Hello World API
+      Testing the API
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="实现 Hello World API">
+    <nav class="md-nav" aria-label="Testing the API">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
+  <a href="#start-the-server" class="md-nav__link">
     <span class="md-ellipsis">
-      步骤 1：定义视图函数
+      Start the Server
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2" class="md-nav__link">
+  <a href="#send-requests" class="md-nav__link">
     <span class="md-ellipsis">
-      步骤 2：配置路由
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3" class="md-nav__link">
-    <span class="md-ellipsis">
-      步骤 3：注册应用路由
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4" class="md-nav__link">
-    <span class="md-ellipsis">
-      步骤 4：注册应用
+      Send Requests
     </span>
   </a>
   
@@ -1303,93 +1469,27 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#hello-world-api_1" class="md-nav__link">
+  <a href="#request-response-architecture" class="md-nav__link">
     <span class="md-ellipsis">
-      测试 Hello World API
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="测试 Hello World API">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      启动开发服务器
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#api" class="md-nav__link">
-    <span class="md-ellipsis">
-      测试 API 端点
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#unfazed_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      理解 Unfazed 的请求服务架构
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="理解 Unfazed 的请求服务架构">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      各层职责
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#api_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      自动 API 文档
+      Request-Response Architecture
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#automatic-api-documentation" class="md-nav__link">
     <span class="md-ellipsis">
-      下一步
+      Automatic API Documentation
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#next-steps" class="md-nav__link">
     <span class="md-ellipsis">
-      🎯 本节要点回顾
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    <span class="md-ellipsis">
-      💡 最佳实践提示
+      Next Steps
     </span>
   </a>
   
@@ -1413,261 +1513,209 @@
   
 
 
-<h1 id="hello-world">第二部分：创建应用与 Hello World</h1>
-<p>在上一节中，我们成功创建并启动了 Unfazed 项目。现在我们将深入了解 Unfazed 的应用（App）系统，创建我们的第一个应用，并实现经典的 "Hello, World" API。</p>
-<h2 id="unfazed">Unfazed 应用系统概述</h2>
-<h3 id="app">什么是应用（App）？</h3>
-<p>在 Unfazed 中，<strong>应用（App）</strong> 是组织业务逻辑的基本单元。每个应用都是一个独立的模块，包含：</p>
-<ul>
-<li><strong>数据模型</strong>（Models）- 业务数据结构</li>
-<li><strong>视图函数</strong>（Endpoints）- API 接口处理逻辑  </li>
-<li><strong>路由配置</strong>（Routes）- URL 路径映射</li>
-<li><strong>业务服务</strong>（Services）- 核心业务逻辑</li>
-<li><strong>序列化器</strong>（Serializers）- 数据转换和验证</li>
-<li><strong>测试用例</strong>（Tests）- 质量保证</li>
-</ul>
-<p>这种模块化设计让你可以：
-- 🔧 <strong>解耦业务逻辑</strong>：每个应用专注于特定功能域
-- 🔄 <strong>代码重用</strong>：应用可以在不同项目间复用
-- 👥 <strong>团队协作</strong>：不同团队可以并行开发不同应用
-- 📈 <strong>易于扩展</strong>：新功能可以通过新应用快速添加</p>
-<h2 id="enroll">创建 enroll 应用</h2>
-<p>我们将创建一个名为 <code>enroll</code> 的应用来实现学生选课系统。</p>
-<h3 id="cli">使用 CLI 创建应用</h3>
-<pre><code class="language-bash"># 确保在项目的 backend 目录下
-cd tutorial/src/backend
-
-# 创建 enroll 应用（使用简单模板）
-unfazed-cli startapp -n enroll -t simple
-</code></pre>
-<blockquote>
-<p>💡 <strong>模板说明</strong>：
-- <code>simple</code>: 基础模板，包含核心文件
-- <code>standard</code>: 标准模板，包含更多功能文件</p>
-</blockquote>
-<h3 id="_1">应用目录结构</h3>
-<p>创建完成后，你会看到以下结构：</p>
-<pre><code>enroll/
-├── admin.py         # Admin 管理界面配置
-├── app.py           # 应用配置入口
-├── endpoints.py     # API 视图函数定义
-├── models.py        # 数据模型定义（Tortoise ORM）
-├── routes.py        # 路由配置
-├── schema.py        # 请求/响应数据模型
-├── serializers.py   # 数据序列化器
-├── services.py      # 业务逻辑服务
-├── settings.py      # 应用级配置
-└── test_all.py      # 测试用例（pytest）
-</code></pre>
-<h3 id="_2">应用文件详解</h3>
+<h1 id="part-2-creating-applications-and-hello-world">Part 2: Creating Applications and Hello World<a class="headerlink" href="#part-2-creating-applications-and-hello-world" title="Permanent link">&para;</a></h1>
+<p>In the previous part, we created and started an Unfazed project. Now we will create our first application, implement a "Hello, World" API, and understand how Unfazed organizes code.</p>
+<h2 id="what-is-an-application">What is an Application?<a class="headerlink" href="#what-is-an-application" title="Permanent link">&para;</a></h2>
+<p>In Unfazed, an <strong>Application (App)</strong> is the basic unit for organizing business logic. Each app is an independent Python package containing models, endpoints, routes, serializers, and tests. This modular design keeps your codebase organized and enables code reuse across projects. See <a href="../../features/app/">App System</a> for the full reference.</p>
+<h2 id="creating-the-enroll-application">Creating the enroll Application<a class="headerlink" href="#creating-the-enroll-application" title="Permanent link">&para;</a></h2>
+<p>We will create an application named <code>enroll</code> for our student course enrollment system.</p>
+<h3 id="using-cli-to-create-the-app">Using CLI to Create the App<a class="headerlink" href="#using-cli-to-create-the-app" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Make sure you&#39;re in the backend directory</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">cd</span><span class="w"> </span>tutorial/src/backend
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># Create the enroll app</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>unfazed-cli<span class="w"> </span>startapp<span class="w"> </span>-n<span class="w"> </span>enroll<span class="w"> </span>-t<span class="w"> </span>simple
+</span></code></pre></div>
+<p>The <code>-t simple</code> flag uses the basic template. You can also use <code>-t standard</code> for a more structured layout with sub-packages. See <a href="../../features/command/">Command</a> for details.</p>
+<h3 id="application-directory-structure">Application Directory Structure<a class="headerlink" href="#application-directory-structure" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>enroll/
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>├── admin.py         # Admin panel registration
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>├── app.py           # AppConfig class (required)
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>├── endpoints.py     # API endpoint functions
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>├── models.py        # Tortoise ORM model definitions
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>├── routes.py        # URL route declarations
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>├── schema.py        # Pydantic request/response models
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>├── serializers.py   # Data serializers for CRUD operations
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>├── services.py      # Business logic layer
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>├── settings.py      # App-level settings
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>└── test_all.py      # Test cases
+</span></code></pre></div>
+<h3 id="key-files">Key Files<a class="headerlink" href="#key-files" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
-<th>文件</th>
-<th>功能说明</th>
-<th>对应 Features 文档</th>
+<th>File</th>
+<th>Purpose</th>
+<th>Feature Reference</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>app.py</code></td>
-<td><strong>应用配置中心</strong>，定义应用的生命周期和初始化逻辑</td>
-<td><a href="../../features/app/">app.md</a></td>
+<td>AppConfig class — required for every app.</td>
+<td><a href="../../features/app/">App</a></td>
 </tr>
 <tr>
 <td><code>endpoints.py</code></td>
-<td><strong>API 视图函数</strong>，处理 HTTP 请求和响应</td>
-<td><a href="../../features/endpoint/">endpoint.md</a></td>
+<td>Async functions that handle HTTP requests.</td>
+<td><a href="../../features/endpoint/">Endpoint</a></td>
 </tr>
 <tr>
 <td><code>routes.py</code></td>
-<td><strong>路由配置</strong>，定义 URL 与视图函数的映射关系</td>
-<td><a href="../../features/route/">route.md</a></td>
+<td>URL path-to-endpoint mapping.</td>
+<td><a href="../../features/route/">Routing</a></td>
 </tr>
 <tr>
 <td><code>models.py</code></td>
-<td><strong>数据模型</strong>，定义数据库表结构和关系</td>
-<td><a href="../../features/tortoise-orm/">tortoise-orm.md</a></td>
+<td>Database table structures and relationships.</td>
+<td><a href="../../features/tortoise-orm/">Tortoise ORM</a></td>
 </tr>
 <tr>
 <td><code>serializers.py</code></td>
-<td><strong>数据序列化</strong>，处理数据验证和转换</td>
-<td><a href="../../features/serializer/">serializer.md</a></td>
-</tr>
-<tr>
-<td><code>services.py</code></td>
-<td><strong>业务逻辑</strong>，实现核心业务功能</td>
-<td>-</td>
+<td>Auto-generated Pydantic models with CRUD operations.</td>
+<td><a href="../../features/serializer/">Serializer</a></td>
 </tr>
 <tr>
 <td><code>schema.py</code></td>
-<td><strong>数据结构定义</strong>，用于 OpenAPI 文档生成</td>
-<td><a href="../../features/openapi/">openapi.md</a></td>
+<td>Request/response Pydantic models for OpenAPI documentation.</td>
+<td><a href="../../features/openapi/">OpenAPI</a></td>
 </tr>
 <tr>
 <td><code>admin.py</code></td>
-<td><strong>管理界面</strong>，配置后台管理功能</td>
-<td><a href="../../features/contrib/admin/">admin.md</a></td>
+<td>Admin panel configuration.</td>
+<td><a href="../../features/contrib/admin/">Admin</a></td>
 </tr>
 </tbody>
 </table>
-<h2 id="hello-world-api">实现 Hello World API</h2>
-<p>让我们从最简单的 API 开始，逐步了解 Unfazed 的开发流程。</p>
-<h3 id="1">步骤 1：定义视图函数</h3>
-<p>编辑 <code>enroll/endpoints.py</code> 文件：</p>
-<pre><code class="language-python"># tutorial/src/backend/enroll/endpoints.py
-
-from unfazed.http import HttpRequest, PlainTextResponse, JsonResponse
-
-async def hello(request: HttpRequest) -&gt; PlainTextResponse:
-    &quot;&quot;&quot;简单的纯文本响应&quot;&quot;&quot;
-    return PlainTextResponse(&quot;Hello, World!&quot;)
-
-async def hello_json(request: HttpRequest) -&gt; JsonResponse:
-    &quot;&quot;&quot;JSON 格式响应&quot;&quot;&quot;
-    return JsonResponse({
-        &quot;message&quot;: &quot;Hello, World!&quot;,
-        &quot;framework&quot;: &quot;Unfazed&quot;,
-        &quot;version&quot;: &quot;1.0.0&quot;
-    })
-</code></pre>
-<p><strong>代码解析</strong>：
-- <code>HttpRequest</code>: Unfazed 的请求对象，基于 Starlette 扩展
-- <code>PlainTextResponse</code>: 纯文本响应
-- <code>JsonResponse</code>: JSON 响应（自动设置 Content-Type）
-- <code>async def</code>: Unfazed 原生支持异步编程</p>
-<h3 id="2">步骤 2：配置路由</h3>
-<p>编辑 <code>enroll/routes.py</code> 文件：</p>
-<pre><code class="language-python"># tutorial/src/backend/enroll/routes.py
-
-import typing as t
-from unfazed.route import Route, path
-from .endpoints import hello, hello_json
-
-patterns: t.List[Route] = [
-    path(&quot;/hello&quot;, endpoint=hello, methods=[&quot;GET&quot;]),
-    path(&quot;/hello-json&quot;, endpoint=hello_json, methods=[&quot;GET&quot;]),
-]
-</code></pre>
-<p><strong>路由配置说明</strong>：
-- <code>path()</code>: 定义单个路由
-- <code>endpoint</code>: 指定处理该路由的视图函数
-- <code>methods</code>: 允许的 HTTP 方法（默认为 ["GET"]）</p>
-<h3 id="3">步骤 3：注册应用路由</h3>
-<p>编辑全局路由配置 <code>entry/routes.py</code>：</p>
-<pre><code class="language-python"># tutorial/src/backend/entry/routes.py
-
-from unfazed.route import include, path
-
-patterns = [
-    # 包含 enroll 应用的所有路由
-    path(&quot;/api/enroll&quot;, routes=include(&quot;enroll.routes&quot;)),
-]
-</code></pre>
-<p><strong>路由组织</strong>：
-- <code>include()</code>: 包含子应用的路由
-- 路径前缀：所有 enroll 路由都会以 <code>/enroll</code> 开头</p>
-<h3 id="4">步骤 4：注册应用</h3>
-<p>编辑项目配置 <code>entry/settings/__init__.py</code>：</p>
-<pre><code class="language-python"># tutorial/src/backend/entry/settings/__init__.py
-
-# Unfazed 项目配置
-UNFAZED_SETTINGS = {
-    # 已安装的应用列表
-    &quot;INSTALLED_APPS&quot;: [
-        &quot;enroll&quot;,  # 注册我们的 enroll 应用
-    ],
-
-    # 其他配置项...
-    &quot;DEBUG&quot;: True,
-    &quot;PROJECT_NAME&quot;: &quot;Tutorial Project&quot;,
-}
-</code></pre>
-<p><strong>配置说明</strong>：
-- <code>INSTALLED_APPS</code>: 告诉 Unfazed 加载哪些应用
-- 应用会按列表顺序进行初始化
-- 支持应用间依赖管理</p>
-<h2 id="hello-world-api_1">测试 Hello World API</h2>
-<h3 id="_3">启动开发服务器</h3>
-<pre><code class="language-bash"># 在 backend 目录下启动服务器
-cd tutorial/src/backend
-
-# 方式一：使用 Makefile
-make run
-
-# 方式二：直接使用 uvicorn
-uvicorn asgi:application --host 127.0.0.1 --port 9527 --reload
-</code></pre>
-<h3 id="api">测试 API 端点</h3>
-<p>打开浏览器或使用 curl 测试：</p>
-<p><strong>测试纯文本 API：</strong></p>
-<pre><code class="language-bash">curl http://127.0.0.1:9527/api/enroll/hello
-# 输出: Hello, World!
-</code></pre>
-<p><strong>测试 JSON API：</strong></p>
-<pre><code class="language-bash">curl http://127.0.0.1:9527/api/enroll/hello-json
-# 输出: {&quot;message&quot;:&quot;Hello, World!&quot;,&quot;framework&quot;:&quot;Unfazed&quot;,&quot;version&quot;:&quot;1.0.0&quot;}
-</code></pre>
-<h2 id="unfazed_1">理解 Unfazed 的请求服务架构</h2>
-<p>通过这个简单的例子，我们可以看到 Unfazed 的架构模式：</p>
-<pre><code class="language-mermaid">graph TB
-    A[HTTP 请求] --&gt; B[Routes 路由层]
-    B --&gt; C[Endpoints 控制层]
-    C --&gt; D[Services 业务层]
-    D --&gt; E[Models 数据层]
-    E --&gt; F[Database 数据库]
-
-    C --&gt; G[Response 响应]
-    G --&gt; H[HTTP 响应]
-
-    style B fill:#e1f5fe
-    style C fill:#f3e5f5
-    style D fill:#e8f5e8
-    style E fill:#fff3e0
-</code></pre>
-<h3 id="_4">各层职责</h3>
-<ol>
-<li><strong>Routes（路由层）</strong>：URL 路径与处理函数的映射</li>
-<li><strong>Endpoints（控制层）</strong>：处理 HTTP 请求，调用业务逻辑</li>
-<li><strong>Services（业务层）</strong>：实现核心业务逻辑</li>
-<li><strong>Models（数据层）</strong>：数据模型和数据库操作</li>
-</ol>
-<p>这种分层架构确保了：
-- 📝 <strong>职责清晰</strong>：每层专注于特定功能
-- 🔄 <strong>易于测试</strong>：各层可独立测试
-- 🎯 <strong>便于维护</strong>：修改一层不影响其他层
-- 📈 <strong>支持扩展</strong>：新功能可按层次添加</p>
-<h2 id="api_1">自动 API 文档</h2>
-<p>Unfazed 内置了强大的 OpenAPI 支持。启动项目后，你可以访问：</p>
+<h2 id="implementing-hello-world">Implementing Hello World<a class="headerlink" href="#implementing-hello-world" title="Permanent link">&para;</a></h2>
+<h3 id="step-1-define-endpoint-functions">Step 1: Define Endpoint Functions<a class="headerlink" href="#step-1-define-endpoint-functions" title="Permanent link">&para;</a></h3>
+<p>Edit <code>enroll/endpoints.py</code>:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># enroll/endpoints.py</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">unfazed.http</span><span class="w"> </span><span class="kn">import</span> <span class="n">HttpRequest</span><span class="p">,</span> <span class="n">PlainTextResponse</span><span class="p">,</span> <span class="n">JsonResponse</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">hello</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">HttpRequest</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PlainTextResponse</span><span class="p">:</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Simple plain text response&quot;&quot;&quot;</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="k">return</span> <span class="n">PlainTextResponse</span><span class="p">(</span><span class="s2">&quot;Hello, World!&quot;</span><span class="p">)</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">hello_json</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">HttpRequest</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">JsonResponse</span><span class="p">:</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;JSON format response&quot;&quot;&quot;</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>    <span class="k">return</span> <span class="n">JsonResponse</span><span class="p">({</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>        <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Hello, World!&quot;</span><span class="p">,</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>        <span class="s2">&quot;framework&quot;</span><span class="p">:</span> <span class="s2">&quot;Unfazed&quot;</span><span class="p">,</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>    <span class="p">})</span>
+</span></code></pre></div>
+<p>Key points:
+- <code>HttpRequest</code> is Unfazed's request class, extended from Starlette. See <a href="../../features/request/">Request</a>.
+- <code>PlainTextResponse</code> and <code>JsonResponse</code> are response classes. See <a href="../../features/response/">Response</a>.
+- All endpoint functions are <code>async</code> — Unfazed natively supports asynchronous programming.</p>
+<h3 id="step-2-configure-routes">Step 2: Configure Routes<a class="headerlink" href="#step-2-configure-routes" title="Permanent link">&para;</a></h3>
+<p>Edit <code>enroll/routes.py</code>:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># enroll/routes.py</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">unfazed.route</span><span class="w"> </span><span class="kn">import</span> <span class="n">path</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">.endpoints</span><span class="w"> </span><span class="kn">import</span> <span class="n">hello</span><span class="p">,</span> <span class="n">hello_json</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="n">patterns</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    <span class="n">path</span><span class="p">(</span><span class="s2">&quot;/hello&quot;</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="n">hello</span><span class="p">),</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>    <span class="n">path</span><span class="p">(</span><span class="s2">&quot;/hello-json&quot;</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="n">hello_json</span><span class="p">),</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="p">]</span>
+</span></code></pre></div>
+<p>The <code>patterns</code> list defines URL-to-endpoint mappings. The <code>path()</code> function defaults to <code>GET</code> and <code>HEAD</code> methods when <code>methods</code> is not specified. See <a href="../../features/route/">Routing</a>.</p>
+<h3 id="step-3-register-app-routes-in-root-url-config">Step 3: Register App Routes in Root URL Config<a class="headerlink" href="#step-3-register-app-routes-in-root-url-config" title="Permanent link">&para;</a></h3>
+<p>Edit <code>entry/routes.py</code>:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># entry/routes.py</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">unfazed.route</span><span class="w"> </span><span class="kn">import</span> <span class="n">path</span><span class="p">,</span> <span class="n">include</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="n">patterns</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    <span class="n">path</span><span class="p">(</span><span class="s2">&quot;/api/enroll&quot;</span><span class="p">,</span> <span class="n">routes</span><span class="o">=</span><span class="n">include</span><span class="p">(</span><span class="s2">&quot;enroll.routes&quot;</span><span class="p">)),</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="p">]</span>
+</span></code></pre></div>
+<p><code>include()</code> imports the <code>patterns</code> list from <code>enroll.routes</code> and prefixes them with <code>/api/enroll</code>. This means <code>/api/enroll/hello</code> maps to the <code>hello</code> endpoint.</p>
+<h3 id="step-4-register-the-app-in-settings">Step 4: Register the App in Settings<a class="headerlink" href="#step-4-register-the-app-in-settings" title="Permanent link">&para;</a></h3>
+<p>Edit <code>entry/settings/__init__.py</code> and add <code>enroll</code> to <code>INSTALLED_APPS</code>:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># entry/settings/__init__.py</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="n">UNFAZED_SETTINGS</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    <span class="s2">&quot;DEBUG&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>    <span class="s2">&quot;PROJECT_NAME&quot;</span><span class="p">:</span> <span class="s2">&quot;Tutorial Project&quot;</span><span class="p">,</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>    <span class="s2">&quot;ROOT_URLCONF&quot;</span><span class="p">:</span> <span class="s2">&quot;entry.routes&quot;</span><span class="p">,</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>    <span class="s2">&quot;INSTALLED_APPS&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>        <span class="s2">&quot;enroll&quot;</span><span class="p">,</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>    <span class="p">],</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>    <span class="s2">&quot;MIDDLEWARE&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>        <span class="s2">&quot;unfazed.middleware.internal.common.CommonMiddleware&quot;</span><span class="p">,</span>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>    <span class="p">],</span>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="p">}</span>
+</span></code></pre></div>
+<p><code>INSTALLED_APPS</code> tells Unfazed which apps to load at startup. Each app must contain an <code>app.py</code> with an <code>AppConfig</code> class. <code>ROOT_URLCONF</code> points to the module containing the root <code>patterns</code> list. See <a href="../../features/settings/">Settings</a>.</p>
+<h2 id="testing-the-api">Testing the API<a class="headerlink" href="#testing-the-api" title="Permanent link">&para;</a></h2>
+<h3 id="start-the-server">Start the Server<a class="headerlink" href="#start-the-server" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>make<span class="w"> </span>run
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="c1"># or: uvicorn asgi:application --host 127.0.0.1 --port 9527 --reload</span>
+</span></code></pre></div>
+<h3 id="send-requests">Send Requests<a class="headerlink" href="#send-requests" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>curl<span class="w"> </span>http://127.0.0.1:9527/api/enroll/hello
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="c1"># Output: Hello, World!</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>curl<span class="w"> </span>http://127.0.0.1:9527/api/enroll/hello-json
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="c1"># Output: {&quot;message&quot;:&quot;Hello, World!&quot;,&quot;framework&quot;:&quot;Unfazed&quot;}</span>
+</span></code></pre></div>
+<h2 id="request-response-architecture">Request-Response Architecture<a class="headerlink" href="#request-response-architecture" title="Permanent link">&para;</a></h2>
+<p>Through this simple example, we can see Unfazed's layered architecture:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>HTTP Request → Routes → Endpoints (Controller) → Services (Business Logic) → Models (Data) → Database
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>                                                                                    ↓
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>HTTP Response ← Routes ← Endpoints ← Response
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Responsibility</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Routes</strong></td>
+<td>URL path to handler mapping</td>
+</tr>
+<tr>
+<td><strong>Endpoints (Controller)</strong></td>
+<td>Handle HTTP requests, call business logic</td>
+</tr>
+<tr>
+<td><strong>Services (Business)</strong></td>
+<td>Implement core business rules</td>
+</tr>
+<tr>
+<td><strong>Models (Data)</strong></td>
+<td>Data models and database operations</td>
+</tr>
+</tbody>
+</table>
+<p>Each layer has clear responsibilities, making the codebase easy to test and maintain.</p>
+<h2 id="automatic-api-documentation">Automatic API Documentation<a class="headerlink" href="#automatic-api-documentation" title="Permanent link">&para;</a></h2>
+<p>Unfazed has built-in OpenAPI support. After starting the project, you can access interactive API documentation at:</p>
 <ul>
 <li><strong>Swagger UI</strong>: <code>http://127.0.0.1:9527/openapi/docs</code></li>
 <li><strong>ReDoc</strong>: <code>http://127.0.0.1:9527/openapi/redoc</code></li>
 </ul>
-<p>这些工具会自动根据你的代码生成 API 文档，无需额外配置！</p>
-<h2 id="_5">下一步</h2>
-<p>恭喜！你已经成功创建了第一个 Unfazed 应用并实现了 Hello World API。在下一个教程中，我们将：</p>
+<p>These are generated automatically from your endpoint type hints. See <a href="../../features/openapi/">OpenAPI</a> for configuration options.</p>
+<blockquote>
+<p><strong>Note</strong>: The OpenAPI documentation routes are only available when the <code>OPENAPI</code> setting is configured and <code>allow_public</code> is <code>True</code>.</p>
+</blockquote>
+<h2 id="next-steps">Next Steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
+<p>You have created your first Unfazed application and implemented a Hello World API. In the next part, we will:</p>
 <ul>
-<li>定义数据模型（Student 和 Course）</li>
-<li>使用 Tortoise ORM 进行数据库操作</li>
-<li>创建序列化器进行数据验证</li>
+<li>Define data models (Student and Course)</li>
+<li>Use Tortoise ORM for database operations</li>
+<li>Create serializers for data validation and CRUD</li>
 </ul>
-<p>让我们继续前往 <strong>第三部分：数据模型与序列化器</strong>！</p>
-<hr />
-<h2 id="_6">🎯 本节要点回顾</h2>
-<ul>
-<li>✅ 理解了 Unfazed 应用系统的概念和优势</li>
-<li>✅ 学会了使用 CLI 工具创建应用</li>
-<li>✅ 掌握了基本的路由配置方法</li>
-<li>✅ 实现了第一个 API 端点</li>
-<li>✅ 了解了 Unfazed 的 MVC 架构模式</li>
-</ul>
-<h2 id="_7">💡 最佳实践提示</h2>
-<ol>
-<li><strong>应用命名</strong>：使用描述性的名称，如 <code>user_management</code>、<code>order_system</code></li>
-<li><strong>路由组织</strong>：相关的路由放在同一个应用中</li>
-<li><strong>代码结构</strong>：保持各文件职责单一，避免过大的文件</li>
-<li><strong>文档优先</strong>：利用 OpenAPI 自动文档功能，确保 API 文档同步更新</li>
-</ol>
+<p>Continue to <strong><a href="../part3/">Part 3: Data Models and Serializers</a></strong>.</p>
 
 
 
@@ -1688,6 +1736,12 @@ uvicorn asgi:application --host 127.0.0.1 --port 9527 --reload
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
       </main>
       
         <footer class="md-footer">
@@ -1704,6 +1758,21 @@ uvicorn asgi:application --host 127.0.0.1 --port 9527 --reload
   
 </div>
       
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/unfazed-eco/unfazed" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
     </div>
   </div>
 </footer>
@@ -1713,8 +1782,10 @@ uvicorn asgi:application --host 127.0.0.1 --port 9527 --reload
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u62f7\u8c9d", "clipboard.copy": "\u62f7\u8c9d", "search.result.more.one": "\u6b64\u9801\u5c1a\u6709 1 \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.more.other": "\u6b64\u9801\u5c1a\u6709 # \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.none": "\u6c92\u6709\u627e\u5230\u7b26\u5408\u689d\u4ef6\u7684\u7d50\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u689d\u4ef6\u7684\u7d50\u679c", "search.result.other": "\u627e\u5230 # \u500b\u7b26\u5408\u689d\u4ef6\u7684\u7d50\u679c", "search.result.placeholder": "\u9375\u5165\u4ee5\u958b\u59cb\u6aa2\u7d22", "search.result.term.missing": "\u7f3a\u5931", "select.version": "\u9078\u64c7\u7248\u672c"}}</script>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.instant", "navigation.instant.progress", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>

@@ -1,18 +1,22 @@
 
 <!doctype html>
-<html lang="zh-Hant" class="no-js">
+<html lang="en" class="no-js">
   <head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="Production Ready ASGI web framework">
       
       
       
-        <link rel="prev" href="../app/">
+        <link rel="canonical" href="https://unfazed-eco.github.io/unfazed/features/route/">
       
       
-        <link rel="next" href="../middleware/">
+        <link rel="prev" href="../settings/">
+      
+      
+        <link rel="next" href="../endpoint/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -25,6 +29,9 @@
     
     
       <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -53,7 +60,14 @@
   </head>
   
   
-    <body dir="ltr">
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -62,8 +76,8 @@
     <div data-md-component="skip">
       
         
-        <a href="#unfazed" class="md-skip">
-          跳轉至
+        <a href="#unfazed-routing" class="md-skip">
+          Skip to content
         </a>
       
     </div>
@@ -74,10 +88,8 @@
     
       
 
-  
-
-<header class="md-header md-header--shadow" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="頁首">
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../.." title="Unfazed" class="md-header__button md-logo" aria-label="Unfazed" data-md-component="logo">
       
   <img src="../../images/uz-logo.png" alt="logo">
@@ -104,6 +116,32 @@
       </div>
     </div>
     
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
     
       <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
@@ -111,21 +149,21 @@
       <div class="md-header__option">
   <div class="md-select">
     
-    <button class="md-header__button md-icon" aria-label="選擇語言">
+    <button class="md-header__button md-icon" aria-label="Select language">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
     </button>
     <div class="md-select__inner">
       <ul class="md-select__list">
         
           <li class="md-select__item">
-            <a href="./" hreflang="zh-Hant" class="md-select__link">
-              中文
+            <a href="./" hreflang="en" class="md-select__link">
+              English
             </a>
           </li>
         
           <li class="md-select__item">
-            <a href="../../en/features/route/" hreflang="en" class="md-select__link">
-              English
+            <a href="../../zh/features/route/" hreflang="zh" class="md-select__link">
+              中文
             </a>
           </li>
         
@@ -135,9 +173,48 @@
 </div>
     
     
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
     
       <div class="md-header__source">
-        <a href="https://github.com/unfazed-eco/unfazed" title="前往倉庫" class="md-source" data-md-component="source">
+        <a href="https://github.com/unfazed-eco/unfazed" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
@@ -157,6 +234,105 @@
       
         
           
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../tutorial/part1/" class="md-tabs__link">
+          
+  
+  Tutorial
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../app/" class="md-tabs__link">
+          
+  
+  Features
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../contrib/admin/" class="md-tabs__link">
+          
+  
+  Contrib
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../release-note/" class="md-tabs__link">
+        
+  
+    
+  
+  ReleaseNote
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -170,8 +346,10 @@
                     
 
 
+  
 
-<nav class="md-nav md-nav--primary" aria-label="導航" data-md-level="0">
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../.." title="Unfazed" class="md-nav__button md-logo" aria-label="Unfazed" data-md-component="logo">
       
@@ -182,7 +360,7 @@
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/unfazed-eco/unfazed" title="前往倉庫" class="md-source" data-md-component="source">
+      <a href="https://github.com/unfazed-eco/unfazed" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
@@ -224,6 +402,11 @@
     
     
     
+      
+      
+        
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -261,7 +444,7 @@
         
   
   <span class="md-ellipsis">
-    Part 1 Install & Create Project
+    Part 1 Installation and Project Creation
   </span>
   
 
@@ -282,7 +465,7 @@
         
   
   <span class="md-ellipsis">
-    Part 2 Create Application
+    Part 2 Creating Applications and Hello World
   </span>
   
 
@@ -303,7 +486,7 @@
         
   
   <span class="md-ellipsis">
-    Part 3 Models and Serializer
+    Part 3 Data Models and Serializers
   </span>
   
 
@@ -324,7 +507,7 @@
         
   
   <span class="md-ellipsis">
-    Part 4 Endpoint and Schema
+    Part 4 API Interface Design and Schema Definition
   </span>
   
 
@@ -345,7 +528,7 @@
         
   
   <span class="md-ellipsis">
-    Part 5 Services
+    Part 5 Business Logic Implementation
   </span>
   
 
@@ -366,7 +549,7 @@
         
   
   <span class="md-ellipsis">
-    Part 6 Test
+    Part 6 Testing and Quality Assurance
   </span>
   
 
@@ -394,15 +577,23 @@
     
     
     
+      
+        
+        
+      
+      
+        
+      
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -427,11 +618,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../settings/" class="md-nav__link">
+      <a href="../app/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Settings
+    App
   </span>
   
 
@@ -448,11 +639,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../app/" class="md-nav__link">
+      <a href="../settings/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    App
+    Settings
   </span>
   
 
@@ -501,7 +692,7 @@
       
         
 
-<nav class="md-nav md-nav--secondary" aria-label="目錄">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
   
@@ -510,42 +701,42 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      目錄
+      Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#quick-start" class="md-nav__link">
     <span class="md-ellipsis">
-      系统概述
+      Quick Start
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="系统概述">
+    <nav class="md-nav" aria-label="Quick Start">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#1-define-routes-in-your-app" class="md-nav__link">
     <span class="md-ellipsis">
-      核心特性
+      1. Define routes in your app
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#2-wire-them-into-the-root-url-config" class="md-nav__link">
     <span class="md-ellipsis">
-      路由系统架构
+      2. Wire them into the root URL config
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#3-set-root_urlconf-in-settings" class="md-nav__link">
     <span class="md-ellipsis">
-      设计特点
+      3. Set ROOT_URLCONF in settings
     </span>
   </a>
   
@@ -557,28 +748,46 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#defining-routes" class="md-nav__link">
     <span class="md-ellipsis">
-      路由配置
+      Defining Routes
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="路由配置">
+    <nav class="md-nav" aria-label="Defining Routes">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#basic-route" class="md-nav__link">
     <span class="md-ellipsis">
-      全局路由配置
+      Basic route
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#specifying-http-methods" class="md-nav__link">
     <span class="md-ellipsis">
-      项目结构
+      Specifying HTTP methods
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#path-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Path parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#openapi-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      OpenAPI metadata
     </span>
   </a>
   
@@ -590,37 +799,37 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
+  <a href="#composing-routes" class="md-nav__link">
     <span class="md-ellipsis">
-      路由定义
+      Composing Routes
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="路由定义">
+    <nav class="md-nav" aria-label="Composing Routes">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+  <a href="#nesting-with-routes" class="md-nav__link">
     <span class="md-ellipsis">
-      基本路由定义
+      Nesting with routes
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
+  <a href="#including-from-another-module-with-include" class="md-nav__link">
     <span class="md-ellipsis">
-      全局路由组织
+      Including from another module with include()
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
+  <a href="#per-route-middleware" class="md-nav__link">
     <span class="md-ellipsis">
-      路由命名和组织
+      Per-route middleware
     </span>
   </a>
   
@@ -632,169 +841,82 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#static-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Static Files
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mounting-external-apps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mounting External Apps
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      API Reference
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API Reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#path" class="md-nav__link">
     <span class="md-ellipsis">
-      path 函数详解
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="path 函数详解">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_12" class="md-nav__link">
-    <span class="md-ellipsis">
-      完整签名
+      path()
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_13" class="md-nav__link">
+  <a href="#include" class="md-nav__link">
     <span class="md-ellipsis">
-      参数详解
+      include()
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_14" class="md-nav__link">
+  <a href="#static" class="md-nav__link">
     <span class="md-ellipsis">
-      路径参数支持
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_15" class="md-nav__link">
-    <span class="md-ellipsis">
-      高级路由功能
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="高级路由功能">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_16" class="md-nav__link">
-    <span class="md-ellipsis">
-      路由中间件
+      static()
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#openapi" class="md-nav__link">
+  <a href="#mount" class="md-nav__link">
     <span class="md-ellipsis">
-      OpenAPI 集成
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_17" class="md-nav__link">
-    <span class="md-ellipsis">
-      参数解析系统
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="参数解析系统">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_18" class="md-nav__link">
-    <span class="md-ellipsis">
-      基本参数类型
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_19" class="md-nav__link">
-    <span class="md-ellipsis">
-      静态文件和挂载
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="静态文件和挂载">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_20" class="md-nav__link">
-    <span class="md-ellipsis">
-      静态文件服务
+      mount()
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_21" class="md-nav__link">
+  <a href="#route" class="md-nav__link">
     <span class="md-ellipsis">
-      挂载外部应用
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_22" class="md-nav__link">
-    <span class="md-ellipsis">
-      自定义转换器
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="自定义转换器">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_23" class="md-nav__link">
-    <span class="md-ellipsis">
-      内置转换器
+      Route
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_24" class="md-nav__link">
+  <a href="#register_url_convertor" class="md-nav__link">
     <span class="md-ellipsis">
-      自定义转换器
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_25" class="md-nav__link">
-    <span class="md-ellipsis">
-      使用自定义转换器
+      register_url_convertor()
     </span>
   </a>
   
@@ -809,6 +931,27 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../endpoint/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Endpoint
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -863,95 +1006,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../logging/" class="md-nav__link">
+      <a href="../command/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Logging
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../request/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Request
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../response/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Response
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../endpoint/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Endpoint
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../staticfiles.md" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Staticfiles
+    Command
   </span>
   
 
@@ -1010,6 +1069,69 @@
   
   
     <li class="md-nav__item">
+      <a href="../request/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Request
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../logging/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Logging
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../cache/" class="md-nav__link">
         
   
@@ -1031,11 +1153,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../error/" class="md-nav__link">
+      <a href="../exception/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Error
+    Exceptions
   </span>
   
 
@@ -1073,11 +1195,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../command/" class="md-nav__link">
+      <a href="../testclient/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Command
+    Test Client
   </span>
   
 
@@ -1094,11 +1216,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../testclient/" class="md-nav__link">
+      <a href="../concurrency/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Test Client
+    Concurrency
   </span>
   
 
@@ -1123,6 +1245,11 @@
   
     
     
+    
+      
+      
+        
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -1253,7 +1380,7 @@
                   <div class="md-sidebar__inner">
                     
 
-<nav class="md-nav md-nav--secondary" aria-label="目錄">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
   
@@ -1262,42 +1389,42 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      目錄
+      Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#quick-start" class="md-nav__link">
     <span class="md-ellipsis">
-      系统概述
+      Quick Start
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="系统概述">
+    <nav class="md-nav" aria-label="Quick Start">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#1-define-routes-in-your-app" class="md-nav__link">
     <span class="md-ellipsis">
-      核心特性
+      1. Define routes in your app
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#2-wire-them-into-the-root-url-config" class="md-nav__link">
     <span class="md-ellipsis">
-      路由系统架构
+      2. Wire them into the root URL config
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#3-set-root_urlconf-in-settings" class="md-nav__link">
     <span class="md-ellipsis">
-      设计特点
+      3. Set ROOT_URLCONF in settings
     </span>
   </a>
   
@@ -1309,28 +1436,46 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#defining-routes" class="md-nav__link">
     <span class="md-ellipsis">
-      路由配置
+      Defining Routes
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="路由配置">
+    <nav class="md-nav" aria-label="Defining Routes">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#basic-route" class="md-nav__link">
     <span class="md-ellipsis">
-      全局路由配置
+      Basic route
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#specifying-http-methods" class="md-nav__link">
     <span class="md-ellipsis">
-      项目结构
+      Specifying HTTP methods
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#path-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Path parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#openapi-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      OpenAPI metadata
     </span>
   </a>
   
@@ -1342,37 +1487,37 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
+  <a href="#composing-routes" class="md-nav__link">
     <span class="md-ellipsis">
-      路由定义
+      Composing Routes
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="路由定义">
+    <nav class="md-nav" aria-label="Composing Routes">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+  <a href="#nesting-with-routes" class="md-nav__link">
     <span class="md-ellipsis">
-      基本路由定义
+      Nesting with routes
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
+  <a href="#including-from-another-module-with-include" class="md-nav__link">
     <span class="md-ellipsis">
-      全局路由组织
+      Including from another module with include()
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
+  <a href="#per-route-middleware" class="md-nav__link">
     <span class="md-ellipsis">
-      路由命名和组织
+      Per-route middleware
     </span>
   </a>
   
@@ -1384,169 +1529,82 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#static-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Static Files
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mounting-external-apps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mounting External Apps
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      API Reference
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API Reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#path" class="md-nav__link">
     <span class="md-ellipsis">
-      path 函数详解
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="path 函数详解">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_12" class="md-nav__link">
-    <span class="md-ellipsis">
-      完整签名
+      path()
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_13" class="md-nav__link">
+  <a href="#include" class="md-nav__link">
     <span class="md-ellipsis">
-      参数详解
+      include()
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_14" class="md-nav__link">
+  <a href="#static" class="md-nav__link">
     <span class="md-ellipsis">
-      路径参数支持
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_15" class="md-nav__link">
-    <span class="md-ellipsis">
-      高级路由功能
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="高级路由功能">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_16" class="md-nav__link">
-    <span class="md-ellipsis">
-      路由中间件
+      static()
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#openapi" class="md-nav__link">
+  <a href="#mount" class="md-nav__link">
     <span class="md-ellipsis">
-      OpenAPI 集成
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_17" class="md-nav__link">
-    <span class="md-ellipsis">
-      参数解析系统
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="参数解析系统">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_18" class="md-nav__link">
-    <span class="md-ellipsis">
-      基本参数类型
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_19" class="md-nav__link">
-    <span class="md-ellipsis">
-      静态文件和挂载
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="静态文件和挂载">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_20" class="md-nav__link">
-    <span class="md-ellipsis">
-      静态文件服务
+      mount()
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_21" class="md-nav__link">
+  <a href="#route" class="md-nav__link">
     <span class="md-ellipsis">
-      挂载外部应用
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_22" class="md-nav__link">
-    <span class="md-ellipsis">
-      自定义转换器
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="自定义转换器">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_23" class="md-nav__link">
-    <span class="md-ellipsis">
-      内置转换器
+      Route
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_24" class="md-nav__link">
+  <a href="#register_url_convertor" class="md-nav__link">
     <span class="md-ellipsis">
-      自定义转换器
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_25" class="md-nav__link">
-    <span class="md-ellipsis">
-      使用自定义转换器
+      register_url_convertor()
     </span>
   </a>
   
@@ -1575,485 +1633,228 @@
   
 
 
-<h1 id="unfazed">Unfazed 路由系统</h1>
-<p>Unfazed 的路由系统基于 Starlette 构建，设计理念借鉴了 Django 路由，并进行了大量增强。路由系统提供了强大的参数解析、中间件集成、OpenAPI 支持等功能，是构建 Web 应用的核心组件。</p>
-<h2 id="_1">系统概述</h2>
-<h3 id="_2">核心特性</h3>
-<ul>
-<li><strong>Django 风格设计</strong>: 熟悉的路由配置模式，易于学习和使用</li>
-<li><strong>强大的参数解析</strong>: 自动解析路径、查询、头部、Cookie、请求体参数</li>
-<li><strong>中间件集成</strong>: 支持全局和路由级中间件</li>
-<li><strong>OpenAPI 原生支持</strong>: 内置 OpenAPI 文档生成和 Swagger UI</li>
-<li><strong>类型安全</strong>: 完整的类型注解和验证支持</li>
-<li><strong>灵活的组织</strong>: 支持应用级路由组织和模块化开发</li>
-</ul>
-<h3 id="_3">路由系统架构</h3>
-<pre><code class="language-python">路由系统组件架构:
-├── path() - 路由定义函数
-├── include() - 路由模块包含函数
-├── Route - 核心路由类（扩展自 Starlette）
-├── EndpointHandler - 视图函数处理器
-├── EndPointDefinition - 视图函数定义和参数解析
-├── static() - 静态文件路由
-└── mount() - ASGI 应用挂载
-</code></pre>
-<h3 id="_4">设计特点</h3>
-<ol>
-<li><strong>平铺式路由</strong>: 所有路由最终展开为扁平结构，便于管理和调试</li>
-<li><strong>应用隔离</strong>: 每个应用的路由独立管理，支持命名空间</li>
-<li><strong>参数化增强</strong>: 强大的参数解析和验证系统</li>
-<li><strong>中间件支持</strong>: 路由级中间件，精确控制请求处理流程</li>
-</ol>
-<h2 id="_5">路由配置</h2>
-<h3 id="_6">全局路由配置</h3>
-<p>路由入口通过 <code>ROOT_URLCONF</code> 配置，默认为 <code>entry.routes</code>：</p>
-<pre><code class="language-python"># settings.py
-UNFAZED_SETTINGS = {
-    &quot;ROOT_URLCONF&quot;: &quot;entry.routes&quot;,  # 指定路由入口文件
-    &quot;DEBUG&quot;: True,
-    &quot;INSTALLED_APPS&quot;: [
-        &quot;myapp1&quot;,
-        &quot;myapp2&quot;,
-    ]
-}
-</code></pre>
-<h3 id="_7">项目结构</h3>
-<pre><code>project/
-├── backend/
-│   ├── entry/
-│   │   ├── __init__.py
-│   │   ├── routes.py          # 全局路由入口
-│   │   └── settings.py
-│   ├── myapp1/
-│   │   ├── __init__.py
-│   │   ├── app.py
-│   │   ├── routes.py          # 应用路由
-│   │   ├── endpoints.py       # 视图函数
-│   │   └── models.py
-│   └── myapp2/
-│       ├── __init__.py
-│       ├── routes.py
-│       └── endpoints.py
-└── main.py
-</code></pre>
-<h2 id="_8">路由定义</h2>
-<h3 id="_9">基本路由定义</h3>
-<pre><code class="language-python"># myapp/endpoints.py
-import typing as t
-from unfazed.http import HttpRequest, JsonResponse
-
-async def hello_world(request: HttpRequest) -&gt; JsonResponse:
-    &quot;&quot;&quot;简单的Hello World&quot;&quot;&quot;
-    return JsonResponse({&quot;message&quot;: &quot;Hello, World!&quot;})
-
-async def get_user(request: HttpRequest) -&gt; JsonResponse:
-    &quot;&quot;&quot;获取用户信息&quot;&quot;&quot;
-    user_id = request.path_params.get(&quot;user_id&quot;)
-    return JsonResponse({&quot;user_id&quot;: user_id, &quot;name&quot;: f&quot;User {user_id}&quot;})
-</code></pre>
-<pre><code class="language-python"># myapp/routes.py
-from unfazed.route import path
-from . import endpoints as e
-
-patterns = [
-    # 基本路由
-    path(&quot;/hello&quot;, endpoint=e.hello_world),
-
-    # 带路径参数的路由
-    path(&quot;/users/{user_id}&quot;, endpoint=e.get_user),
-
-    # 指定HTTP方法
-    path(&quot;/users&quot;, endpoint=e.create_user, methods=[&quot;POST&quot;]),
-
-    # 带OpenAPI文档信息
-    path(
-        &quot;/users/{user_id}&quot;,
-        endpoint=e.update_user,
-        methods=[&quot;PUT&quot;],
-        summary=&quot;更新用户信息&quot;,
-        description=&quot;根据用户ID更新用户的基本信息&quot;,
-        tags=[&quot;用户管理&quot;],
-    ),
-]
-</code></pre>
-<h3 id="_10">全局路由组织</h3>
-<pre><code class="language-python"># entry/routes.py
-from unfazed.route import path, include
-
-patterns = [
-    # 包含应用路由
-    path(&quot;/api/v1/users&quot;, routes=include(&quot;myapp1.routes&quot;)),
-    path(&quot;/api/v1/orders&quot;, routes=include(&quot;myapp2.routes&quot;)),
-
-    # 直接定义的全局路由
-    path(&quot;/health&quot;, endpoint=health_check),
-    path(&quot;/metrics&quot;, endpoint=get_metrics),
-
-    # 静态文件路由
-    static(&quot;/static&quot;, directory=&quot;static&quot;),
-
-    # 挂载外部ASGI应用
-    mount(&quot;/admin&quot;, app=admin_app),
-]
-</code></pre>
-<h3 id="_11">路由命名和组织</h3>
-<pre><code class="language-python"># 命名路由，便于反向解析
-patterns = [
-    path(
-        &quot;/users/{user_id}&quot;,
-        endpoint=e.get_user,
-        name=&quot;user_detail&quot;,
-        app_label=&quot;users&quot;
-    ),
-    path(
-        &quot;/users/{user_id}/posts&quot;,
-        endpoint=e.get_user_posts,
-        name=&quot;user_posts&quot;,
-        app_label=&quot;users&quot;
-    ),
-]
-</code></pre>
-<h2 id="path">path 函数详解</h2>
-<h3 id="_12">完整签名</h3>
-<pre><code class="language-python">def path(
-    path: str,
-    *,
-    # 端点配置
-    endpoint: Callable | None = None,
-    routes: List[Route] | None = None,
-
-    # HTTP 配置
-    methods: List[HttpMethod] | None = None,
-
-    # 路由元信息
-    name: str | None = None,
-    app_label: str | None = None,
-
-    # 中间件配置
-    middlewares: List[CanBeImported] | None = None,
-
-    # OpenAPI 配置
-    include_in_schema: bool = True,
-    tags: List[str] | None = None,
-    summary: str | None = None,
-    description: str | None = None,
-    externalDocs: Dict | None = None,
-    deprecated: bool = False,
-    operation_id: str | None = None,
-    response_models: List[ResponseSpec] | None = None,
-) -&gt; Route | List[Route]:
-</code></pre>
-<h3 id="_13">参数详解</h3>
+<h1 id="unfazed-routing">Unfazed Routing<a class="headerlink" href="#unfazed-routing" title="Permanent link">&para;</a></h1>
+<p>Unfazed's routing system maps URL paths to endpoint functions. Routes are defined using the <code>path()</code> helper, organized into <code>patterns</code> lists, and composed with <code>include()</code> for multi-app projects. The framework also supports static file serving via <code>static()</code>, mounting external ASGI apps via <code>mount()</code>, and per-route middleware.</p>
+<h2 id="quick-start">Quick Start<a class="headerlink" href="#quick-start" title="Permanent link">&para;</a></h2>
+<h3 id="1-define-routes-in-your-app">1. Define routes in your app<a class="headerlink" href="#1-define-routes-in-your-app" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># myapp/routes.py</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">unfazed.route</span><span class="w"> </span><span class="kn">import</span> <span class="n">path</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">myapp.endpoints</span><span class="w"> </span><span class="kn">import</span> <span class="n">list_users</span><span class="p">,</span> <span class="n">get_user</span><span class="p">,</span> <span class="n">create_user</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">patterns</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="n">path</span><span class="p">(</span><span class="s2">&quot;/users&quot;</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="n">list_users</span><span class="p">),</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="n">path</span><span class="p">(</span><span class="s2">&quot;/users/{user_id:int}&quot;</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="n">get_user</span><span class="p">),</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="n">path</span><span class="p">(</span><span class="s2">&quot;/users&quot;</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="n">create_user</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;POST&quot;</span><span class="p">]),</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="p">]</span>
+</span></code></pre></div>
+<h3 id="2-wire-them-into-the-root-url-config">2. Wire them into the root URL config<a class="headerlink" href="#2-wire-them-into-the-root-url-config" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># routes.py (project root)</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">unfazed.route</span><span class="w"> </span><span class="kn">import</span> <span class="n">path</span><span class="p">,</span> <span class="n">include</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">patterns</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="n">path</span><span class="p">(</span><span class="s2">&quot;/api&quot;</span><span class="p">,</span> <span class="n">routes</span><span class="o">=</span><span class="n">include</span><span class="p">(</span><span class="s2">&quot;myapp.routes&quot;</span><span class="p">)),</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="p">]</span>
+</span></code></pre></div>
+<h3 id="3-set-root_urlconf-in-settings">3. Set ROOT_URLCONF in settings<a class="headerlink" href="#3-set-root_urlconf-in-settings" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># settings.py</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">UNFAZED_SETTINGS</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="s2">&quot;PROJECT_NAME&quot;</span><span class="p">:</span> <span class="s2">&quot;myproject&quot;</span><span class="p">,</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="s2">&quot;ROOT_URLCONF&quot;</span><span class="p">:</span> <span class="s2">&quot;routes&quot;</span><span class="p">,</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>The routes module must define a <code>patterns</code> list at module level.</p>
+<h2 id="defining-routes">Defining Routes<a class="headerlink" href="#defining-routes" title="Permanent link">&para;</a></h2>
+<h3 id="basic-route">Basic route<a class="headerlink" href="#basic-route" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">unfazed.route</span><span class="w"> </span><span class="kn">import</span> <span class="n">path</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">path</span><span class="p">(</span><span class="s2">&quot;/users&quot;</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="n">list_users</span><span class="p">)</span>
+</span></code></pre></div>
+<p>When no <code>methods</code> are specified, the route defaults to <code>GET</code> and <code>HEAD</code>.</p>
+<h3 id="specifying-http-methods">Specifying HTTP methods<a class="headerlink" href="#specifying-http-methods" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">path</span><span class="p">(</span><span class="s2">&quot;/users&quot;</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="n">create_user</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;POST&quot;</span><span class="p">])</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">path</span><span class="p">(</span><span class="s2">&quot;/users/</span><span class="si">{user_id}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="n">update_user</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;PUT&quot;</span><span class="p">,</span> <span class="s2">&quot;PATCH&quot;</span><span class="p">])</span>
+</span></code></pre></div>
+<p><code>HEAD</code> is automatically added when <code>GET</code> is specified.</p>
+<h3 id="path-parameters">Path parameters<a class="headerlink" href="#path-parameters" title="Permanent link">&para;</a></h3>
+<p>Use <code>{name}</code> or <code>{name:type}</code> placeholders in the path:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">path</span><span class="p">(</span><span class="s2">&quot;/users/{user_id:int}&quot;</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="n">get_user</span><span class="p">)</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">path</span><span class="p">(</span><span class="s2">&quot;/files/{path:path}&quot;</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="n">serve_file</span><span class="p">)</span>
+</span></code></pre></div>
+<p>Built-in convertors: <code>str</code> (default), <code>int</code>, <code>float</code>, <code>path</code>. You can register custom convertors:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">unfazed.route</span><span class="w"> </span><span class="kn">import</span> <span class="n">Convertor</span><span class="p">,</span> <span class="n">register_url_convertor</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="k">class</span><span class="w"> </span><span class="nc">LangConvertor</span><span class="p">(</span><span class="n">Convertor</span><span class="p">):</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>    <span class="n">regex</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;[-_a-zA-Z]+&quot;</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">convert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>        <span class="k">return</span> <span class="n">value</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">to_string</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>        <span class="k">return</span> <span class="n">value</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="n">register_url_convertor</span><span class="p">(</span><span class="s2">&quot;lang&quot;</span><span class="p">,</span> <span class="n">LangConvertor</span><span class="p">())</span>
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="c1"># Now use it:</span>
+</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="n">path</span><span class="p">(</span><span class="s2">&quot;/docs/{lang:lang}&quot;</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="n">get_docs</span><span class="p">)</span>
+</span></code></pre></div>
+<h3 id="openapi-metadata">OpenAPI metadata<a class="headerlink" href="#openapi-metadata" title="Permanent link">&para;</a></h3>
+<p>Routes accept metadata fields that appear in the generated OpenAPI spec:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">path</span><span class="p">(</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    <span class="s2">&quot;/users&quot;</span><span class="p">,</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>    <span class="n">endpoint</span><span class="o">=</span><span class="n">list_users</span><span class="p">,</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>    <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;users&quot;</span><span class="p">],</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    <span class="n">summary</span><span class="o">=</span><span class="s2">&quot;List all users&quot;</span><span class="p">,</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Returns a paginated list of users&quot;</span><span class="p">,</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>    <span class="n">deprecated</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>    <span class="n">operation_id</span><span class="o">=</span><span class="s2">&quot;listUsers&quot;</span><span class="p">,</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>    <span class="n">externalDocs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://docs.example.com/users&quot;</span><span class="p">},</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>    <span class="n">include_in_schema</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="p">)</span>
+</span></code></pre></div>
+<p>Set <code>include_in_schema=False</code> to hide a route from the OpenAPI spec.</p>
+<h2 id="composing-routes">Composing Routes<a class="headerlink" href="#composing-routes" title="Permanent link">&para;</a></h2>
+<h3 id="nesting-with-routes">Nesting with <code>routes</code><a class="headerlink" href="#nesting-with-routes" title="Permanent link">&para;</a></h3>
+<p>Use the <code>routes</code> parameter to prefix a group of routes:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">user_routes</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>    <span class="n">path</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="n">list_users</span><span class="p">),</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>    <span class="n">path</span><span class="p">(</span><span class="s2">&quot;/</span><span class="si">{user_id}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="n">get_user</span><span class="p">),</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="p">]</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="n">patterns</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>    <span class="n">path</span><span class="p">(</span><span class="s2">&quot;/api/users&quot;</span><span class="p">,</span> <span class="n">routes</span><span class="o">=</span><span class="n">user_routes</span><span class="p">),</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="p">]</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="c1"># Results in: /api/users/ and /api/users/{user_id}</span>
+</span></code></pre></div>
+<h3 id="including-from-another-module-with-include">Including from another module with <code>include()</code><a class="headerlink" href="#including-from-another-module-with-include" title="Permanent link">&para;</a></h3>
+<p><code>include()</code> imports a module's <code>patterns</code> list and automatically sets the <code>app_label</code>:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">unfazed.route</span><span class="w"> </span><span class="kn">import</span> <span class="n">path</span><span class="p">,</span> <span class="n">include</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="n">patterns</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>    <span class="n">path</span><span class="p">(</span><span class="s2">&quot;/api/blog&quot;</span><span class="p">,</span> <span class="n">routes</span><span class="o">=</span><span class="n">include</span><span class="p">(</span><span class="s2">&quot;blog.routes&quot;</span><span class="p">)),</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>    <span class="n">path</span><span class="p">(</span><span class="s2">&quot;/api/auth&quot;</span><span class="p">,</span> <span class="n">routes</span><span class="o">=</span><span class="n">include</span><span class="p">(</span><span class="s2">&quot;unfazed.contrib.auth.routes&quot;</span><span class="p">)),</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="p">]</span>
+</span></code></pre></div>
+<p>The target module must define a <code>patterns</code> list:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># blog/routes.py</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">unfazed.route</span><span class="w"> </span><span class="kn">import</span> <span class="n">path</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">blog.endpoints</span><span class="w"> </span><span class="kn">import</span> <span class="n">list_posts</span><span class="p">,</span> <span class="n">get_post</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="n">patterns</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>    <span class="n">path</span><span class="p">(</span><span class="s2">&quot;/posts&quot;</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="n">list_posts</span><span class="p">),</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>    <span class="n">path</span><span class="p">(</span><span class="s2">&quot;/posts/</span><span class="si">{post_id}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="n">get_post</span><span class="p">),</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="p">]</span>
+</span></code></pre></div>
+<h3 id="per-route-middleware">Per-route middleware<a class="headerlink" href="#per-route-middleware" title="Permanent link">&para;</a></h3>
+<p>Apply middleware to specific routes or route groups:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">path</span><span class="p">(</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>    <span class="s2">&quot;/admin&quot;</span><span class="p">,</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>    <span class="n">routes</span><span class="o">=</span><span class="n">include</span><span class="p">(</span><span class="s2">&quot;admin.routes&quot;</span><span class="p">),</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>    <span class="n">middlewares</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;myapp.middleware.AdminAuthMiddleware&quot;</span><span class="p">],</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="p">)</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="c1"># Or on a single route:</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="n">path</span><span class="p">(</span>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>    <span class="s2">&quot;/secret&quot;</span><span class="p">,</span>
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>    <span class="n">endpoint</span><span class="o">=</span><span class="n">secret_endpoint</span><span class="p">,</span>
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>    <span class="n">middlewares</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;myapp.middleware.RateLimitMiddleware&quot;</span><span class="p">],</span>
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="p">)</span>
+</span></code></pre></div>
+<p>Middleware is applied in reverse list order (same as the global <code>MIDDLEWARE</code> setting).</p>
+<h2 id="static-files">Static Files<a class="headerlink" href="#static-files" title="Permanent link">&para;</a></h2>
+<p>Serve static files from a directory:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">unfazed.route</span><span class="w"> </span><span class="kn">import</span> <span class="n">static</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="n">patterns</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>    <span class="n">static</span><span class="p">(</span><span class="s2">&quot;/static&quot;</span><span class="p">,</span> <span class="s2">&quot;/path/to/staticfiles&quot;</span><span class="p">),</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>    <span class="n">static</span><span class="p">(</span><span class="s2">&quot;/media&quot;</span><span class="p">,</span> <span class="s2">&quot;/path/to/media&quot;</span><span class="p">,</span> <span class="n">html</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="p">]</span>
+</span></code></pre></div>
 <table>
 <thead>
 <tr>
-<th>参数</th>
-<th>类型</th>
-<th>说明</th>
-<th>示例</th>
+<th>Parameter</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>path</code></td>
-<td><code>str</code></td>
-<td>路由路径，支持路径参数</td>
-<td><code>"/users/{user_id:int}"</code></td>
+<td>URL prefix (e.g. <code>"/static"</code>).</td>
 </tr>
 <tr>
-<td><code>endpoint</code></td>
-<td><code>Callable</code></td>
-<td>视图函数（与routes互斥）</td>
-<td><code>get_user</code></td>
+<td><code>directory</code></td>
+<td>Absolute path to the files directory.</td>
 </tr>
 <tr>
-<td><code>routes</code></td>
-<td><code>List[Route]</code></td>
-<td>子路由列表（与endpoint互斥）</td>
-<td><code>include("app.routes")</code></td>
-</tr>
-<tr>
-<td><code>methods</code></td>
-<td><code>List[str]</code></td>
-<td>支持的HTTP方法，默认["GET"]</td>
-<td><code>["GET", "POST"]</code></td>
-</tr>
-<tr>
-<td><code>name</code></td>
-<td><code>str</code></td>
-<td>路由名称，用于反向解析</td>
-<td><code>"user_detail"</code></td>
-</tr>
-<tr>
-<td><code>app_label</code></td>
-<td><code>str</code></td>
-<td>应用标签，自动设置</td>
-<td><code>"users"</code></td>
-</tr>
-<tr>
-<td><code>middlewares</code></td>
-<td><code>List[str]</code></td>
-<td>路由级中间件</td>
-<td><code>["app.middleware.AuthMiddleware"]</code></td>
-</tr>
-<tr>
-<td><code>include_in_schema</code></td>
-<td><code>bool</code></td>
-<td>是否包含在OpenAPI文档中</td>
-<td><code>True</code></td>
-</tr>
-<tr>
-<td><code>tags</code></td>
-<td><code>List[str]</code></td>
-<td>OpenAPI标签</td>
-<td><code>["用户管理"]</code></td>
-</tr>
-<tr>
-<td><code>summary</code></td>
-<td><code>str</code></td>
-<td>OpenAPI摘要</td>
-<td><code>"获取用户详情"</code></td>
-</tr>
-<tr>
-<td><code>description</code></td>
-<td><code>str</code></td>
-<td>OpenAPI描述</td>
-<td><code>"根据用户ID获取用户详细信息"</code></td>
-</tr>
-<tr>
-<td><code>deprecated</code></td>
-<td><code>bool</code></td>
-<td>是否已弃用</td>
-<td><code>False</code></td>
+<td><code>html</code></td>
+<td>If <code>True</code>, serve <code>index.html</code> for directory requests.</td>
 </tr>
 </tbody>
 </table>
-<h3 id="_14">路径参数支持</h3>
-<pre><code class="language-python">patterns = [
-    # 基本路径参数
-    path(&quot;/users/{user_id}&quot;, endpoint=get_user),
-
-    # 类型转换器
-    path(&quot;/users/{user_id:int}&quot;, endpoint=get_user),
-    path(&quot;/posts/{slug:str}&quot;, endpoint=get_post),
-    path(&quot;/files/{file_path:path}&quot;, endpoint=download_file),
-
-    # 多个路径参数
-    path(&quot;/users/{user_id:int}/posts/{post_id:int}&quot;, endpoint=get_user_post),
-
-    # 可选参数（通过查询参数实现）
-    path(&quot;/search&quot;, endpoint=search),  # ?q=keyword&amp;page=1
-]
-</code></pre>
-<h2 id="_15">高级路由功能</h2>
-<h3 id="_16">路由中间件</h3>
-<pre><code class="language-python"># middleware/auth.py
-from unfazed.middleware import BaseMiddleware
-from unfazed.http import JsonResponse
-
-class AuthMiddleware(BaseMiddleware):
-    async def __call__(self, scope, receive, send):
-        request = HttpRequest(scope, receive)
-
-        # 检查认证
-        auth_header = request.headers.get(&quot;authorization&quot;)
-        if not auth_header:
-            response = JsonResponse({&quot;error&quot;: &quot;未授权访问&quot;}, status_code=401)
-            await response(scope, receive, send)
-            return
-
-        await self.app(scope, receive, send)
-
-# routes.py
-patterns = [
-    # 需要认证的路由
-    path(
-        &quot;/admin/users&quot;,
-        endpoint=admin_users,
-        middlewares=[&quot;myapp.middleware.AuthMiddleware&quot;]
-    ),
-
-    # 多个中间件（按顺序执行）
-    path(
-        &quot;/api/sensitive&quot;,
-        endpoint=sensitive_api,
-        middlewares=[
-            &quot;myapp.middleware.AuthMiddleware&quot;,
-            &quot;myapp.middleware.RateLimitMiddleware&quot;,
-            &quot;myapp.middleware.LoggingMiddleware&quot;
-        ]
-    ),
-]
-</code></pre>
-<h3 id="openapi">OpenAPI 集成</h3>
-<pre><code class="language-python">from unfazed.route.params import ResponseSpec
-from pydantic import BaseModel
-
-class UserResponse(BaseModel):
-    id: int
-    username: str
-    email: str
-
-class ErrorResponse(BaseModel):
-    error: str
-    code: int
-
-patterns = [
-    path(
-        &quot;/users/{user_id:int}&quot;,
-        endpoint=get_user,
-        methods=[&quot;GET&quot;],
-        summary=&quot;获取用户详情&quot;,
-        description=&quot;根据用户ID获取用户的详细信息，包括用户名、邮箱等&quot;,
-        tags=[&quot;用户管理&quot;],
-        response_models=[
-            ResponseSpec(
-                model=UserResponse,
-                code=&quot;200&quot;,
-                description=&quot;成功获取用户信息&quot;
-            ),
-            ResponseSpec(
-                model=ErrorResponse,
-                code=&quot;404&quot;,
-                description=&quot;用户不存在&quot;
-            ),
-        ],
-        externalDocs={
-            &quot;description&quot;: &quot;用户API详细文档&quot;,
-            &quot;url&quot;: &quot;https://docs.example.com/users&quot;
-        }
-    ),
-]
-</code></pre>
-<h2 id="_17">参数解析系统</h2>
-<p>Unfazed 路由系统的核心特色是强大的参数解析功能。详细内容请参考 <a href="../endpoint/">endpoint 文档</a>。</p>
-<h3 id="_18">基本参数类型</h3>
-<pre><code class="language-python">import typing as t
-from pydantic import BaseModel, Field
-from unfazed.route import params as p
-
-# 路径参数
-class UserPathParams(BaseModel):
-    user_id: int = Field(..., description=&quot;用户ID&quot;)
-
-# 查询参数
-class UserQuery(BaseModel):
-    page: int = Field(default=1, ge=1, description=&quot;页码&quot;)
-    size: int = Field(default=10, ge=1, le=100, description=&quot;每页数量&quot;)
-
-# 请求体
-class UserCreateRequest(BaseModel):
-    username: str = Field(..., min_length=3, max_length=50)
-    email: str = Field(..., description=&quot;邮箱地址&quot;)
-
-async def create_user(
-    request: HttpRequest,
-    path_params: t.Annotated[UserPathParams, p.Path()],
-    query: t.Annotated[UserQuery, p.Query()],
-    user_data: t.Annotated[UserCreateRequest, p.Json()]
-) -&gt; JsonResponse:
-    return JsonResponse({
-        &quot;user_id&quot;: path_params.user_id,
-        &quot;page&quot;: query.page,
-        &quot;username&quot;: user_data.username
-    })
-</code></pre>
-<h2 id="_19">静态文件和挂载</h2>
-<h3 id="_20">静态文件服务</h3>
-<pre><code class="language-python">from unfazed.route import static
-
-patterns = [
-    # 静态文件服务
-    static(&quot;/static&quot;, directory=&quot;static&quot;, name=&quot;static&quot;),
-    static(&quot;/media&quot;, directory=&quot;uploads&quot;, name=&quot;media&quot;),
-
-    # 支持HTML文件（SPA应用）
-    static(&quot;/&quot;, directory=&quot;dist&quot;, html=True, name=&quot;frontend&quot;),
-]
-</code></pre>
-<h3 id="_21">挂载外部应用</h3>
-<pre><code class="language-python">from unfazed.route import mount
-from starlette.applications import Starlette
-
-# 创建外部ASGI应用
-admin_app = Starlette()
-
-patterns = [
-    # 挂载到特定路径
-    mount(&quot;/admin&quot;, app=admin_app, name=&quot;admin&quot;),
-
-    # 挂载子路由
-    mount(&quot;/api/v2&quot;, routes=api_v2_routes, name=&quot;api_v2&quot;),
-]
-</code></pre>
-<h2 id="_22">自定义转换器</h2>
-<h3 id="_23">内置转换器</h3>
-<p>Unfazed 支持以下内置路径参数转换器：</p>
-<ul>
-<li><code>str</code>: 字符串（默认）</li>
-<li><code>int</code>: 整数</li>
-<li><code>float</code>: 浮点数</li>
-<li><code>uuid</code>: UUID</li>
-<li><code>path</code>: 路径（包含斜杠）</li>
-<li><code>slug</code>: URL slug</li>
-</ul>
-<h3 id="_24">自定义转换器</h3>
-<pre><code class="language-python"># converters.py
-from starlette.convertors import Convertor
-from unfazed.route import register_url_convertor
-
-class LanguageConvertor(Convertor):
-    &quot;&quot;&quot;语言代码转换器&quot;&quot;&quot;
-    regex = r&quot;[a-z]{2}(-[A-Z]{2})?&quot;  # zh, en, zh-CN, en-US
-
-    def convert(self, value: str) -&gt; str:
-        return value.lower()
-
-    def to_string(self, value: str) -&gt; str:
-        return value
-
-class YearConvertor(Convertor):
-    &quot;&quot;&quot;年份转换器&quot;&quot;&quot;
-    regex = r&quot;[0-9]{4}&quot;
-
-    def convert(self, value: str) -&gt; int:
-        return int(value)
-
-    def to_string(self, value: int) -&gt; str:
-        return str(value)
-
-# app.py
-from unfazed.app import BaseAppConfig
-
-class AppConfig(BaseAppConfig):
-    async def ready(self) -&gt; None:
-        # 注册自定义转换器
-        register_url_convertor(&quot;lang&quot;, LanguageConvertor())
-        register_url_convertor(&quot;year&quot;, YearConvertor())
-</code></pre>
-<h3 id="_25">使用自定义转换器</h3>
-<pre><code class="language-python"># routes.py
-patterns = [
-    # 使用语言转换器
-    path(&quot;/{lang:lang}/posts&quot;, endpoint=get_posts_by_language),
-
-    # 使用年份转换器
-    path(&quot;/archive/{year:year}&quot;, endpoint=get_posts_by_year),
-
-    # 组合使用
-    path(&quot;/{lang:lang}/archive/{year:year}/{month:int}&quot;, endpoint=get_monthly_posts),
-]
-
-# endpoints.py
-async def get_posts_by_language(request: HttpRequest) -&gt; JsonResponse:
-    lang = request.path_params[&quot;lang&quot;]  # 已转换为小写
-    return JsonResponse({&quot;language&quot;: lang, &quot;posts&quot;: []})
-
-async def get_posts_by_year(request: HttpRequest) -&gt; JsonResponse:
-    year = request.path_params[&quot;year&quot;]  # 已转换为int
-    return JsonResponse({&quot;year&quot;: year, &quot;posts&quot;: []})
-</code></pre>
-<p>通过 Unfazed 的路由系统，您可以构建出结构清晰、功能强大、易于维护的 Web 应用。路由系统提供了从简单的静态路由到复杂的参数化路由的完整解决方案，同时与 OpenAPI、中间件、参数解析等系统无缝集成。</p>
+<p>Static routes are excluded from the OpenAPI schema.</p>
+<h2 id="mounting-external-apps">Mounting External Apps<a class="headerlink" href="#mounting-external-apps" title="Permanent link">&para;</a></h2>
+<p>Mount any ASGI application under a path prefix:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">starlette.applications</span><span class="w"> </span><span class="kn">import</span> <span class="n">Starlette</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">unfazed.route</span><span class="w"> </span><span class="kn">import</span> <span class="n">mount</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="n">other_app</span> <span class="o">=</span> <span class="n">Starlette</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="n">patterns</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>    <span class="n">mount</span><span class="p">(</span><span class="s2">&quot;/legacy&quot;</span><span class="p">,</span> <span class="n">app</span><span class="o">=</span><span class="n">other_app</span><span class="p">),</span>
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="p">]</span>
+</span></code></pre></div>
+<p>You can also mount a sub-group of routes:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">patterns</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>    <span class="n">mount</span><span class="p">(</span><span class="s2">&quot;/v2&quot;</span><span class="p">,</span> <span class="n">routes</span><span class="o">=</span><span class="p">[</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>        <span class="n">Route</span><span class="p">(</span><span class="s2">&quot;/users&quot;</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="n">list_users_v2</span><span class="p">),</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>    <span class="p">]),</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="p">]</span>
+</span></code></pre></div>
+<p>Mount routes are excluded from the OpenAPI schema.</p>
+<h2 id="api-reference">API Reference<a class="headerlink" href="#api-reference" title="Permanent link">&para;</a></h2>
+<h3 id="path">path()<a class="headerlink" href="#path" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">path</span><span class="p">(</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>    <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>    <span class="o">*</span><span class="p">,</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>    <span class="n">endpoint</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>    <span class="n">routes</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Route</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>    <span class="n">methods</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>    <span class="n">app_label</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>    <span class="n">middlewares</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>    <span class="n">include_in_schema</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>    <span class="n">tags</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>    <span class="n">summary</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__span-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a>    <span class="n">description</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__span-15-14"><a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a>    <span class="n">externalDocs</span><span class="p">:</span> <span class="n">Dict</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__span-15-15"><a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a>    <span class="n">deprecated</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+</span><span id="__span-15-16"><a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a>    <span class="n">operation_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__span-15-17"><a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Route</span> <span class="o">|</span> <span class="n">List</span><span class="p">[</span><span class="n">Route</span><span class="p">]</span>
+</span></code></pre></div>
+<p>Create a <code>Route</code> (when <code>endpoint</code> is given) or a list of prefixed routes (when <code>routes</code> is given). Exactly one of <code>endpoint</code> or <code>routes</code> must be provided.</p>
+<h3 id="include">include()<a class="headerlink" href="#include" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">include</span><span class="p">(</span><span class="n">route_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Route</span><span class="p">]</span>
+</span></code></pre></div>
+<p>Import a module's <code>patterns</code> list. The module must define <code>patterns</code> at module level.</p>
+<h3 id="static">static()<a class="headerlink" href="#static" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">static</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">directory</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">app_label</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">html</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Static</span>
+</span></code></pre></div>
+<p>Create a static file serving route.</p>
+<h3 id="mount">mount()<a class="headerlink" href="#mount" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">mount</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">app</span><span class="p">:</span> <span class="n">ASGIApp</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">routes</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Route</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">app_label</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">middlewares</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mount</span>
+</span></code></pre></div>
+<p>Mount an ASGI app or route group under a path prefix.</p>
+<h3 id="route">Route<a class="headerlink" href="#route" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Route</span><span class="p">(</span><span class="n">starlette</span><span class="o">.</span><span class="n">routing</span><span class="o">.</span><span class="n">Route</span><span class="p">):</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">endpoint</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">middlewares</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">app_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">include_in_schema</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">summary</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">externalDocs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">deprecated</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">operation_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">response_models</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</span></code></pre></div>
+<p>A single URL-to-endpoint mapping. Paths must start with <code>/</code>.</p>
+<h3 id="register_url_convertor">register_url_convertor()<a class="headerlink" href="#register_url_convertor" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">register_url_convertor</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">convertor</span><span class="p">:</span> <span class="n">Convertor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</span></code></pre></div>
+<p>Register a custom URL path convertor for use in <code>{name:type}</code> path parameters.</p>
 
 
 
@@ -2074,6 +1875,12 @@ async def get_posts_by_year(request: HttpRequest) -&gt; JsonResponse:
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
       </main>
       
         <footer class="md-footer">
@@ -2090,6 +1897,21 @@ async def get_posts_by_year(request: HttpRequest) -&gt; JsonResponse:
   
 </div>
       
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/unfazed-eco/unfazed" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
     </div>
   </div>
 </footer>
@@ -2099,8 +1921,10 @@ async def get_posts_by_year(request: HttpRequest) -&gt; JsonResponse:
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u62f7\u8c9d", "clipboard.copy": "\u62f7\u8c9d", "search.result.more.one": "\u6b64\u9801\u5c1a\u6709 1 \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.more.other": "\u6b64\u9801\u5c1a\u6709 # \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.none": "\u6c92\u6709\u627e\u5230\u7b26\u5408\u689d\u4ef6\u7684\u7d50\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u689d\u4ef6\u7684\u7d50\u679c", "search.result.other": "\u627e\u5230 # \u500b\u7b26\u5408\u689d\u4ef6\u7684\u7d50\u679c", "search.result.placeholder": "\u9375\u5165\u4ee5\u958b\u59cb\u6aa2\u7d22", "search.result.term.missing": "\u7f3a\u5931", "select.version": "\u9078\u64c7\u7248\u672c"}}</script>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.instant", "navigation.instant.progress", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>

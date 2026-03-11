@@ -1,15 +1,19 @@
 
 <!doctype html>
-<html lang="zh-Hant" class="no-js">
+<html lang="en" class="no-js">
   <head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="Production Ready ASGI web framework">
       
       
       
-        <link rel="prev" href="../route/">
+        <link rel="canonical" href="https://unfazed-eco.github.io/unfazed/features/middleware/">
+      
+      
+        <link rel="prev" href="../endpoint/">
       
       
         <link rel="next" href="../lifespan/">
@@ -25,6 +29,9 @@
     
     
       <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -53,7 +60,14 @@
   </head>
   
   
-    <body dir="ltr">
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -62,8 +76,8 @@
     <div data-md-component="skip">
       
         
-        <a href="#unfazed" class="md-skip">
-          跳轉至
+        <a href="#unfazed-middleware" class="md-skip">
+          Skip to content
         </a>
       
     </div>
@@ -74,10 +88,8 @@
     
       
 
-  
-
-<header class="md-header md-header--shadow" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="頁首">
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../.." title="Unfazed" class="md-header__button md-logo" aria-label="Unfazed" data-md-component="logo">
       
   <img src="../../images/uz-logo.png" alt="logo">
@@ -104,6 +116,32 @@
       </div>
     </div>
     
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
     
       <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
@@ -111,21 +149,21 @@
       <div class="md-header__option">
   <div class="md-select">
     
-    <button class="md-header__button md-icon" aria-label="選擇語言">
+    <button class="md-header__button md-icon" aria-label="Select language">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
     </button>
     <div class="md-select__inner">
       <ul class="md-select__list">
         
           <li class="md-select__item">
-            <a href="./" hreflang="zh-Hant" class="md-select__link">
-              中文
+            <a href="./" hreflang="en" class="md-select__link">
+              English
             </a>
           </li>
         
           <li class="md-select__item">
-            <a href="../../en/features/middleware/" hreflang="en" class="md-select__link">
-              English
+            <a href="../../zh/features/middleware/" hreflang="zh" class="md-select__link">
+              中文
             </a>
           </li>
         
@@ -135,9 +173,48 @@
 </div>
     
     
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
     
       <div class="md-header__source">
-        <a href="https://github.com/unfazed-eco/unfazed" title="前往倉庫" class="md-source" data-md-component="source">
+        <a href="https://github.com/unfazed-eco/unfazed" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
@@ -157,6 +234,105 @@
       
         
           
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../tutorial/part1/" class="md-tabs__link">
+          
+  
+  Tutorial
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../app/" class="md-tabs__link">
+          
+  
+  Features
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../contrib/admin/" class="md-tabs__link">
+          
+  
+  Contrib
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../release-note/" class="md-tabs__link">
+        
+  
+    
+  
+  ReleaseNote
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -170,8 +346,10 @@
                     
 
 
+  
 
-<nav class="md-nav md-nav--primary" aria-label="導航" data-md-level="0">
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../.." title="Unfazed" class="md-nav__button md-logo" aria-label="Unfazed" data-md-component="logo">
       
@@ -182,7 +360,7 @@
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/unfazed-eco/unfazed" title="前往倉庫" class="md-source" data-md-component="source">
+      <a href="https://github.com/unfazed-eco/unfazed" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
@@ -224,6 +402,11 @@
     
     
     
+      
+      
+        
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -261,7 +444,7 @@
         
   
   <span class="md-ellipsis">
-    Part 1 Install & Create Project
+    Part 1 Installation and Project Creation
   </span>
   
 
@@ -282,7 +465,7 @@
         
   
   <span class="md-ellipsis">
-    Part 2 Create Application
+    Part 2 Creating Applications and Hello World
   </span>
   
 
@@ -303,7 +486,7 @@
         
   
   <span class="md-ellipsis">
-    Part 3 Models and Serializer
+    Part 3 Data Models and Serializers
   </span>
   
 
@@ -324,7 +507,7 @@
         
   
   <span class="md-ellipsis">
-    Part 4 Endpoint and Schema
+    Part 4 API Interface Design and Schema Definition
   </span>
   
 
@@ -345,7 +528,7 @@
         
   
   <span class="md-ellipsis">
-    Part 5 Services
+    Part 5 Business Logic Implementation
   </span>
   
 
@@ -366,7 +549,7 @@
         
   
   <span class="md-ellipsis">
-    Part 6 Test
+    Part 6 Testing and Quality Assurance
   </span>
   
 
@@ -394,15 +577,23 @@
     
     
     
+      
+        
+        
+      
+      
+        
+      
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -419,27 +610,6 @@
             Features
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../settings/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Settings
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
             
               
                 
@@ -469,11 +639,53 @@
   
   
     <li class="md-nav__item">
+      <a href="../settings/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Settings
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../route/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     Route
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../endpoint/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Endpoint
   </span>
   
 
@@ -522,7 +734,7 @@
       
         
 
-<nav class="md-nav md-nav--secondary" aria-label="目錄">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
   
@@ -531,42 +743,33 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      目錄
+      Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#quick-start" class="md-nav__link">
     <span class="md-ellipsis">
-      系统概述
+      Quick Start
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="系统概述">
+    <nav class="md-nav" aria-label="Quick Start">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#1-create-a-middleware" class="md-nav__link">
     <span class="md-ellipsis">
-      核心组件
+      1. Create a middleware
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#2-register-it-in-settings" class="md-nav__link">
     <span class="md-ellipsis">
-      中间件类型
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      执行流程
+      2. Register it in settings
     </span>
   </a>
   
@@ -578,46 +781,19 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#creating-custom-middleware" class="md-nav__link">
     <span class="md-ellipsis">
-      快速开始
+      Creating Custom Middleware
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="快速开始">
+    <nav class="md-nav" aria-label="Creating Custom Middleware">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
+  <a href="#accessing-settings-in-a-middleware" class="md-nav__link">
     <span class="md-ellipsis">
-      1. 创建自定义中间件
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2" class="md-nav__link">
-    <span class="md-ellipsis">
-      2. 配置全局中间件
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3" class="md-nav__link">
-    <span class="md-ellipsis">
-      3. 配置路由中间件
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4" class="md-nav__link">
-    <span class="md-ellipsis">
-      4. 启动应用
+      Accessing settings in a middleware
     </span>
   </a>
   
@@ -629,79 +805,79 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#built-in-middleware" class="md-nav__link">
     <span class="md-ellipsis">
-      中间件开发详解
+      Built-in Middleware
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="中间件开发详解">
+    <nav class="md-nav" aria-label="Built-in Middleware">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#commonmiddleware-error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      CommonMiddleware — Error Handling
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#corsmiddleware-cross-origin-resource-sharing" class="md-nav__link">
+    <span class="md-ellipsis">
+      CORSMiddleware — Cross-Origin Resource Sharing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gzipmiddleware-response-compression" class="md-nav__link">
+    <span class="md-ellipsis">
+      GZipMiddleware — Response Compression
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trustedhostmiddleware-host-header-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      TrustedHostMiddleware — Host Header Validation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#execution-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      Execution Order
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      API Reference
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API Reference">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#basemiddleware" class="md-nav__link">
     <span class="md-ellipsis">
-      BaseMiddleware 详解
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    <span class="md-ellipsis">
-      实际应用场景
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="实际应用场景">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      1. 认证中间件
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      2. 速率限制中间件
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      3. 请求日志中间件
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      4. 配置驱动的中间件
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
-    <span class="md-ellipsis">
-      配置示例
+      BaseMiddleware
     </span>
   </a>
   
@@ -714,48 +890,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="CommonMiddleware">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
-    <span class="md-ellipsis">
-      主要功能
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
-    <span class="md-ellipsis">
-      调试页面特性
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
-    <span class="md-ellipsis">
-      配置示例
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_12" class="md-nav__link">
-    <span class="md-ellipsis">
-      使用建议
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
         
           <li class="md-nav__item">
@@ -764,39 +898,6 @@
       CORSMiddleware
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="CORSMiddleware">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_13" class="md-nav__link">
-    <span class="md-ellipsis">
-      配置参数
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_14" class="md-nav__link">
-    <span class="md-ellipsis">
-      参数说明
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_15" class="md-nav__link">
-    <span class="md-ellipsis">
-      常见配置场景
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -807,48 +908,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="GZipMiddleware">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_16" class="md-nav__link">
-    <span class="md-ellipsis">
-      配置参数
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_17" class="md-nav__link">
-    <span class="md-ellipsis">
-      参数说明
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_18" class="md-nav__link">
-    <span class="md-ellipsis">
-      工作原理
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_19" class="md-nav__link">
-    <span class="md-ellipsis">
-      性能建议
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
         
           <li class="md-nav__item">
@@ -857,90 +916,6 @@
       TrustedHostMiddleware
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="TrustedHostMiddleware">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_20" class="md-nav__link">
-    <span class="md-ellipsis">
-      配置参数
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_21" class="md-nav__link">
-    <span class="md-ellipsis">
-      参数说明
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_22" class="md-nav__link">
-    <span class="md-ellipsis">
-      主机名模式
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_23" class="md-nav__link">
-    <span class="md-ellipsis">
-      安全建议
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#sessionmiddleware" class="md-nav__link">
-    <span class="md-ellipsis">
-      SessionMiddleware
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="SessionMiddleware">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_24" class="md-nav__link">
-    <span class="md-ellipsis">
-      配置参数
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_25" class="md-nav__link">
-    <span class="md-ellipsis">
-      支持的引擎
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_26" class="md-nav__link">
-    <span class="md-ellipsis">
-      使用示例
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -986,95 +961,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../logging/" class="md-nav__link">
+      <a href="../command/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Logging
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../request/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Request
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../response/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Response
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../endpoint/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Endpoint
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../staticfiles.md" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Staticfiles
+    Command
   </span>
   
 
@@ -1133,6 +1024,69 @@
   
   
     <li class="md-nav__item">
+      <a href="../request/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Request
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../logging/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Logging
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../cache/" class="md-nav__link">
         
   
@@ -1154,11 +1108,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../error/" class="md-nav__link">
+      <a href="../exception/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Error
+    Exceptions
   </span>
   
 
@@ -1196,11 +1150,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../command/" class="md-nav__link">
+      <a href="../testclient/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Command
+    Test Client
   </span>
   
 
@@ -1217,11 +1171,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../testclient/" class="md-nav__link">
+      <a href="../concurrency/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Test Client
+    Concurrency
   </span>
   
 
@@ -1246,6 +1200,11 @@
   
     
     
+    
+      
+      
+        
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -1376,7 +1335,7 @@
                   <div class="md-sidebar__inner">
                     
 
-<nav class="md-nav md-nav--secondary" aria-label="目錄">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
   
@@ -1385,42 +1344,33 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      目錄
+      Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#quick-start" class="md-nav__link">
     <span class="md-ellipsis">
-      系统概述
+      Quick Start
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="系统概述">
+    <nav class="md-nav" aria-label="Quick Start">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#1-create-a-middleware" class="md-nav__link">
     <span class="md-ellipsis">
-      核心组件
+      1. Create a middleware
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#2-register-it-in-settings" class="md-nav__link">
     <span class="md-ellipsis">
-      中间件类型
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      执行流程
+      2. Register it in settings
     </span>
   </a>
   
@@ -1432,46 +1382,19 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#creating-custom-middleware" class="md-nav__link">
     <span class="md-ellipsis">
-      快速开始
+      Creating Custom Middleware
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="快速开始">
+    <nav class="md-nav" aria-label="Creating Custom Middleware">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
+  <a href="#accessing-settings-in-a-middleware" class="md-nav__link">
     <span class="md-ellipsis">
-      1. 创建自定义中间件
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2" class="md-nav__link">
-    <span class="md-ellipsis">
-      2. 配置全局中间件
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3" class="md-nav__link">
-    <span class="md-ellipsis">
-      3. 配置路由中间件
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4" class="md-nav__link">
-    <span class="md-ellipsis">
-      4. 启动应用
+      Accessing settings in a middleware
     </span>
   </a>
   
@@ -1483,79 +1406,79 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#built-in-middleware" class="md-nav__link">
     <span class="md-ellipsis">
-      中间件开发详解
+      Built-in Middleware
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="中间件开发详解">
+    <nav class="md-nav" aria-label="Built-in Middleware">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#commonmiddleware-error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      CommonMiddleware — Error Handling
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#corsmiddleware-cross-origin-resource-sharing" class="md-nav__link">
+    <span class="md-ellipsis">
+      CORSMiddleware — Cross-Origin Resource Sharing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gzipmiddleware-response-compression" class="md-nav__link">
+    <span class="md-ellipsis">
+      GZipMiddleware — Response Compression
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trustedhostmiddleware-host-header-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      TrustedHostMiddleware — Host Header Validation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#execution-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      Execution Order
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      API Reference
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API Reference">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#basemiddleware" class="md-nav__link">
     <span class="md-ellipsis">
-      BaseMiddleware 详解
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    <span class="md-ellipsis">
-      实际应用场景
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="实际应用场景">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      1. 认证中间件
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      2. 速率限制中间件
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      3. 请求日志中间件
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      4. 配置驱动的中间件
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
-    <span class="md-ellipsis">
-      配置示例
+      BaseMiddleware
     </span>
   </a>
   
@@ -1568,48 +1491,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="CommonMiddleware">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
-    <span class="md-ellipsis">
-      主要功能
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
-    <span class="md-ellipsis">
-      调试页面特性
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
-    <span class="md-ellipsis">
-      配置示例
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_12" class="md-nav__link">
-    <span class="md-ellipsis">
-      使用建议
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
         
           <li class="md-nav__item">
@@ -1618,39 +1499,6 @@
       CORSMiddleware
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="CORSMiddleware">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_13" class="md-nav__link">
-    <span class="md-ellipsis">
-      配置参数
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_14" class="md-nav__link">
-    <span class="md-ellipsis">
-      参数说明
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_15" class="md-nav__link">
-    <span class="md-ellipsis">
-      常见配置场景
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -1661,48 +1509,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="GZipMiddleware">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_16" class="md-nav__link">
-    <span class="md-ellipsis">
-      配置参数
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_17" class="md-nav__link">
-    <span class="md-ellipsis">
-      参数说明
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_18" class="md-nav__link">
-    <span class="md-ellipsis">
-      工作原理
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_19" class="md-nav__link">
-    <span class="md-ellipsis">
-      性能建议
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
         
           <li class="md-nav__item">
@@ -1711,90 +1517,6 @@
       TrustedHostMiddleware
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="TrustedHostMiddleware">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_20" class="md-nav__link">
-    <span class="md-ellipsis">
-      配置参数
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_21" class="md-nav__link">
-    <span class="md-ellipsis">
-      参数说明
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_22" class="md-nav__link">
-    <span class="md-ellipsis">
-      主机名模式
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_23" class="md-nav__link">
-    <span class="md-ellipsis">
-      安全建议
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#sessionmiddleware" class="md-nav__link">
-    <span class="md-ellipsis">
-      SessionMiddleware
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="SessionMiddleware">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_24" class="md-nav__link">
-    <span class="md-ellipsis">
-      配置参数
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_25" class="md-nav__link">
-    <span class="md-ellipsis">
-      支持的引擎
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_26" class="md-nav__link">
-    <span class="md-ellipsis">
-      使用示例
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -1821,696 +1543,275 @@
   
 
 
-<h1 id="unfazed">Unfazed 中间件系统</h1>
-<p>Unfazed 的中间件系统基于 ASGI 标准设计，提供了灵活且强大的请求/响应处理能力。系统继承了 Starlette 的中间件调用机制，支持全局中间件和路由级中间件，为开发者提供了完整的请求生命周期控制。</p>
-<h2 id="_1">系统概述</h2>
-<h3 id="_2">核心组件</h3>
+<h1 id="unfazed-middleware">Unfazed Middleware<a class="headerlink" href="#unfazed-middleware" title="Permanent link">&para;</a></h1>
+<p>Middleware in Unfazed wraps every request and response, forming an onion-like pipeline. Each middleware receives the raw ASGI <code>scope</code>, <code>receive</code>, and <code>send</code>, does its work, and calls the next layer. Unfazed ships with built-in middleware for error handling, CORS, GZip compression, and trusted-host validation, and you can write your own by subclassing <code>BaseMiddleware</code>.</p>
+<h2 id="quick-start">Quick Start<a class="headerlink" href="#quick-start" title="Permanent link">&para;</a></h2>
+<h3 id="1-create-a-middleware">1. Create a middleware<a class="headerlink" href="#1-create-a-middleware" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># myapp/middleware.py</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">unfazed.middleware</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseMiddleware</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">unfazed.type</span><span class="w"> </span><span class="kn">import</span> <span class="n">Receive</span><span class="p">,</span> <span class="n">Scope</span><span class="p">,</span> <span class="n">Send</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="k">class</span><span class="w"> </span><span class="nc">TimingMiddleware</span><span class="p">(</span><span class="n">BaseMiddleware</span><span class="p">):</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scope</span><span class="p">:</span> <span class="n">Scope</span><span class="p">,</span> <span class="n">receive</span><span class="p">:</span> <span class="n">Receive</span><span class="p">,</span> <span class="n">send</span><span class="p">:</span> <span class="n">Send</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>        <span class="k">if</span> <span class="n">scope</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;http&quot;</span><span class="p">:</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="p">(</span><span class="n">scope</span><span class="p">,</span> <span class="n">receive</span><span class="p">,</span> <span class="n">send</span><span class="p">)</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>            <span class="k">return</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>        <span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>        <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="p">(</span><span class="n">scope</span><span class="p">,</span> <span class="n">receive</span><span class="p">,</span> <span class="n">send</span><span class="p">)</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>        <span class="n">elapsed</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">scope</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> took </span><span class="si">{</span><span class="n">elapsed</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+<h3 id="2-register-it-in-settings">2. Register it in settings<a class="headerlink" href="#2-register-it-in-settings" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># settings.py</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">UNFAZED_SETTINGS</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="s2">&quot;PROJECT_NAME&quot;</span><span class="p">:</span> <span class="s2">&quot;myproject&quot;</span><span class="p">,</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="s2">&quot;MIDDLEWARE&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>        <span class="s2">&quot;unfazed.middleware.internal.common.CommonMiddleware&quot;</span><span class="p">,</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>        <span class="s2">&quot;myapp.middleware.TimingMiddleware&quot;</span><span class="p">,</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="p">],</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="p">}</span>
+</span></code></pre></div>
+<h2 id="creating-custom-middleware">Creating Custom Middleware<a class="headerlink" href="#creating-custom-middleware" title="Permanent link">&para;</a></h2>
+<p>Subclass <code>BaseMiddleware</code> and implement the <code>__call__</code> method:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">unfazed.middleware</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseMiddleware</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">unfazed.type</span><span class="w"> </span><span class="kn">import</span> <span class="n">Receive</span><span class="p">,</span> <span class="n">Scope</span><span class="p">,</span> <span class="n">Send</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="k">class</span><span class="w"> </span><span class="nc">MyMiddleware</span><span class="p">(</span><span class="n">BaseMiddleware</span><span class="p">):</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scope</span><span class="p">:</span> <span class="n">Scope</span><span class="p">,</span> <span class="n">receive</span><span class="p">:</span> <span class="n">Receive</span><span class="p">,</span> <span class="n">send</span><span class="p">:</span> <span class="n">Send</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>        <span class="k">if</span> <span class="n">scope</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;http&quot;</span><span class="p">:</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="p">(</span><span class="n">scope</span><span class="p">,</span> <span class="n">receive</span><span class="p">,</span> <span class="n">send</span><span class="p">)</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>            <span class="k">return</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>        <span class="c1"># --- before request ---</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>        <span class="c1"># modify scope, inspect headers, etc.</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="p">(</span><span class="n">scope</span><span class="p">,</span> <span class="n">receive</span><span class="p">,</span> <span class="n">send</span><span class="p">)</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>        <span class="c1"># --- after response ---</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>        <span class="c1"># logging, metrics, etc.</span>
+</span></code></pre></div>
+<p>Key points:</p>
 <ul>
-<li><strong>BaseMiddleware</strong>: 中间件基类，定义了标准的 ASGI 中间件接口</li>
-<li><strong>内置中间件</strong>: CommonMiddleware、CORSMiddleware、GZipMiddleware、TrustedHostMiddleware</li>
-<li><strong>中间件栈</strong>: 支持多层中间件的组合和嵌套调用</li>
-<li><strong>配置系统</strong>: 统一的配置管理，支持全局和路由级配置</li>
+<li><strong>Always check <code>scope["type"]</code></strong> — middleware is called for all ASGI events (<code>http</code>, <code>websocket</code>, <code>lifespan</code>). Pass non-HTTP scopes through by calling <code>await self.app(scope, receive, send)</code>.</li>
+<li><strong><code>self.app</code></strong> is the next layer in the stack (either another middleware or the router).</li>
+<li>The constructor receives a single <code>app</code> argument. If you need settings, read them from <code>unfazed.conf.settings</code> inside <code>__init__</code>.</li>
 </ul>
-<h3 id="_3">中间件类型</h3>
-<ol>
-<li><strong>全局中间件</strong>: 应用于所有请求，在 <code>MIDDLEWARE</code> 配置中定义</li>
-<li><strong>路由中间件</strong>: 应用于特定路由，在路由定义时指定</li>
-<li><strong>内置中间件</strong>: 框架提供的常用功能中间件</li>
-<li><strong>自定义中间件</strong>: 用户根据业务需求编写的中间件</li>
-</ol>
-<h3 id="_4">执行流程</h3>
-<pre><code>请求 → 全局中间件 1 → 全局中间件 2 → 路由中间件 → 视图函数处理 → 路由中间件 → 全局中间件 2 → 全局中间件 1 → 响应
-</code></pre>
-<h2 id="_5">快速开始</h2>
-<h3 id="1">1. 创建自定义中间件</h3>
-<pre><code class="language-python">from unfazed.middleware import BaseMiddleware
-from unfazed.type import Scope, Receive, Send
-import time
-import logging
-
-logger = logging.getLogger(&quot;myapp.middleware&quot;)
-
-class TimingMiddleware(BaseMiddleware):
-    &quot;&quot;&quot;请求计时中间件&quot;&quot;&quot;
-
-    async def __call__(self, scope: Scope, receive: Receive, send: Send) -&gt; None:
-        if scope[&quot;type&quot;] != &quot;http&quot;:
-            await self.app(scope, receive, send)
-            return
-
-        start_time = time.time()
-
-        async def send_wrapper(message):
-            &quot;&quot;&quot;响应包装器，用于添加计时信息&quot;&quot;&quot;
-            if message[&quot;type&quot;] == &quot;http.response.start&quot;:
-                # 添加自定义响应头
-                duration = time.time() - start_time
-                headers = list(message.get(&quot;headers&quot;, []))
-                headers.append((b&quot;x-process-time&quot;, f&quot;{duration:.4f}&quot;.encode()))
-                message[&quot;headers&quot;] = headers
-
-                # 记录请求日志
-                method = scope.get(&quot;method&quot;, &quot;Unknown&quot;)
-                path = scope.get(&quot;path&quot;, &quot;Unknown&quot;)
-                logger.info(f&quot;{method} {path} - 处理时间: {duration:.4f}s&quot;)
-
-            await send(message)
-
-        await self.app(scope, receive, send_wrapper)
-</code></pre>
-<h3 id="2">2. 配置全局中间件</h3>
-<pre><code class="language-python"># settings.py
-UNFAZED_SETTINGS = {
-    &quot;MIDDLEWARE&quot;: [
-        &quot;myapp.middleware.TimingMiddleware&quot;,                           # 自定义计时中间件
-        &quot;unfazed.middleware.internal.common.CommonMiddleware&quot;,        # 错误处理
-        &quot;unfazed.middleware.internal.cors.CORSMiddleware&quot;,           # 跨域处理
-        &quot;unfazed.middleware.internal.gzip.GZipMiddleware&quot;,           # Gzip 压缩
-        &quot;unfazed.middleware.internal.trustedhost.TrustedHostMiddleware&quot;, # 主机验证
-    ],
-
-    # 中间件相关配置
-    &quot;CORS&quot;: {
-        &quot;ALLOW_ORIGINS&quot;: [&quot;https://example.com&quot;, &quot;https://app.example.com&quot;],
-        &quot;ALLOW_METHODS&quot;: [&quot;GET&quot;, &quot;POST&quot;, &quot;PUT&quot;, &quot;DELETE&quot;],
-        &quot;ALLOW_HEADERS&quot;: [&quot;*&quot;],
-        &quot;ALLOW_CREDENTIALS&quot;: True,
-    },
-
-    &quot;GZIP&quot;: {
-        &quot;MINIMUM_SIZE&quot;: 1024,      # 最小压缩大小 1KB
-        &quot;COMPRESS_LEVEL&quot;: 6,       # 压缩级别 1-9
-    },
-
-    &quot;TRUSTED_HOST&quot;: {
-        &quot;ALLOWED_HOSTS&quot;: [&quot;example.com&quot;, &quot;*.example.com&quot;],
-        &quot;WWW_REDIRECT&quot;: True,
-    }
-}
-</code></pre>
-<h3 id="3">3. 配置路由中间件</h3>
-<pre><code class="language-python"># routes.py
-from unfazed.route import path
-from myapp.endpoints import api_view, admin_view
-from myapp.middleware import AuthMiddleware, RateLimitMiddleware
-
-patterns = [
-    # 公开 API，只使用全局中间件
-    path(&quot;/public/status&quot;, endpoint=status_view),
-
-    # 需要认证的 API
-    path(&quot;/api/users&quot;, endpoint=api_view, 
-         middleware=[&quot;myapp.middleware.AuthMiddleware&quot;]),
-
-    # 管理员 API，需要认证和速率限制
-    path(&quot;/admin/dashboard&quot;, endpoint=admin_view, 
-         middleware=[
-             &quot;myapp.middleware.AuthMiddleware&quot;,
-             &quot;myapp.middleware.RateLimitMiddleware&quot;
-         ]),
-]
-</code></pre>
-<h3 id="4">4. 启动应用</h3>
-<pre><code class="language-bash">uvicorn asgi:application --host 0.0.0.0 --port 9527
-</code></pre>
-<p><strong>请求示例:</strong></p>
-<pre><code class="language-bash">curl -i http://localhost:9527/api/users
-</code></pre>
-<p><strong>响应示例:</strong></p>
-<pre><code>HTTP/1.1 200 OK
-content-type: application/json
-x-process-time: 0.0023
-content-length: 45
-
-{&quot;users&quot;: [], &quot;total&quot;: 0}
-</code></pre>
-<h2 id="_6">中间件开发详解</h2>
-<h3 id="basemiddleware">BaseMiddleware 详解</h3>
-<pre><code class="language-python">from unfazed.middleware import BaseMiddleware
-from unfazed.type import ASGIApp, Scope, Receive, Send
-
-class BaseMiddleware(ABC):
-    &quot;&quot;&quot;中间件基类&quot;&quot;&quot;
-
-    def __init__(self, app: ASGIApp) -&gt; None:
-        self.app = app
-
-    @abstractmethod
-    async def __call__(self, scope: Scope, receive: Receive, send: Send) -&gt; None:
-        &quot;&quot;&quot;ASGI 应用接口&quot;&quot;&quot;
-        pass
-</code></pre>
-<h3 id="_7">实际应用场景</h3>
-<h4 id="1_1">1. 认证中间件</h4>
-<pre><code class="language-python">from unfazed.middleware import BaseMiddleware
-from unfazed.http import JsonResponse
-from unfazed.conf import settings
-import jwt
-
-class AuthMiddleware(BaseMiddleware):
-    &quot;&quot;&quot;JWT 认证中间件&quot;&quot;&quot;
-
-    async def __call__(self, scope: Scope, receive: Receive, send: Send) -&gt; None:
-        if scope[&quot;type&quot;] != &quot;http&quot;:
-            await self.app(scope, receive, send)
-            return
-
-        # 检查请求路径是否需要认证
-        path = scope.get(&quot;path&quot;, &quot;&quot;)
-        if not self._requires_auth(path):
-            await self.app(scope, receive, send)
-            return
-
-        # 获取 Authorization 头
-        headers = dict(scope.get(&quot;headers&quot;, []))
-        auth_header = headers.get(b&quot;authorization&quot;, b&quot;&quot;).decode()
-
-        if not auth_header.startswith(&quot;Bearer &quot;):
-            await self._send_unauthorized(scope, receive, send)
-            return
-
-        try:
-            # 验证 JWT token
-            token = auth_header[7:]  # 移除 &quot;Bearer &quot; 前缀
-            payload = jwt.decode(
-                token, 
-                settings[&quot;JWT_SECRET&quot;], 
-                algorithms=[&quot;HS256&quot;]
-            )
-
-            # 将用户信息添加到 scope
-            scope[&quot;user&quot;] = {
-                &quot;id&quot;: payload[&quot;user_id&quot;],
-                &quot;username&quot;: payload[&quot;username&quot;],
-                &quot;roles&quot;: payload.get(&quot;roles&quot;, [])
-            }
-
-            await self.app(scope, receive, send)
-
-        except jwt.ExpiredSignatureError:
-            await self._send_error(scope, receive, send, &quot;Token已过期&quot;, 401)
-        except jwt.InvalidTokenError:
-            await self._send_error(scope, receive, send, &quot;无效的Token&quot;, 401)
-
-    def _requires_auth(self, path: str) -&gt; bool:
-        &quot;&quot;&quot;检查路径是否需要认证&quot;&quot;&quot;
-        public_paths = [&quot;/public/&quot;, &quot;/health&quot;, &quot;/docs&quot;]
-        return not any(path.startswith(p) for p in public_paths)
-
-    async def _send_unauthorized(self, scope, receive, send):
-        &quot;&quot;&quot;发送未授权响应&quot;&quot;&quot;
-        response = JsonResponse(
-            {&quot;error&quot;: &quot;未提供认证凭据&quot;}, 
-            status_code=401
-        )
-        await response(scope, receive, send)
-
-    async def _send_error(self, scope, receive, send, message: str, status_code: int):
-        &quot;&quot;&quot;发送错误响应&quot;&quot;&quot;
-        response = JsonResponse(
-            {&quot;error&quot;: message}, 
-            status_code=status_code
-        )
-        await response(scope, receive, send)
-</code></pre>
-<h4 id="2_1">2. 速率限制中间件</h4>
-<pre><code class="language-python">import asyncio
-import time
-from collections import defaultdict
-from unfazed.middleware import BaseMiddleware
-from unfazed.http import JsonResponse
-
-class RateLimitMiddleware(BaseMiddleware):
-    &quot;&quot;&quot;速率限制中间件&quot;&quot;&quot;
-
-    def __init__(self, app):
-        super().__init__(app)
-        self.requests = defaultdict(list)  # {client_ip: [timestamp, ...]}
-        self.max_requests = 100            # 每分钟最大请求数
-        self.window_size = 60              # 时间窗口（秒）
-        self.cleanup_interval = 300        # 清理间隔（秒）
-        self.last_cleanup = time.time()
-
-    async def __call__(self, scope: Scope, receive: Receive, send: Send) -&gt; None:
-        if scope[&quot;type&quot;] != &quot;http&quot;:
-            await self.app(scope, receive, send)
-            return
-
-        # 获取客户端 IP
-        client_ip = self._get_client_ip(scope)
-        current_time = time.time()
-
-        # 定期清理过期记录
-        if current_time - self.last_cleanup &gt; self.cleanup_interval:
-            await self._cleanup_expired_records(current_time)
-            self.last_cleanup = current_time
-
-        # 检查速率限制
-        if await self._is_rate_limited(client_ip, current_time):
-            await self._send_rate_limit_error(scope, receive, send)
-            return
-
-        # 记录请求
-        self.requests[client_ip].append(current_time)
-
-        await self.app(scope, receive, send)
-
-    def _get_client_ip(self, scope: Scope) -&gt; str:
-        &quot;&quot;&quot;获取客户端 IP 地址&quot;&quot;&quot;
-        # 首先检查 X-Forwarded-For 头
-        headers = dict(scope.get(&quot;headers&quot;, []))
-        forwarded_for = headers.get(b&quot;x-forwarded-for&quot;)
-
-        if forwarded_for:
-            return forwarded_for.decode().split(&quot;,&quot;)[0].strip()
-
-        # 其次检查 X-Real-IP 头
-        real_ip = headers.get(b&quot;x-real-ip&quot;)
-        if real_ip:
-            return real_ip.decode()
-
-        # 最后使用直接连接的 IP
-        client = scope.get(&quot;client&quot;)
-        return client[0] if client else &quot;unknown&quot;
-
-    async def _is_rate_limited(self, client_ip: str, current_time: float) -&gt; bool:
-        &quot;&quot;&quot;检查是否超过速率限制&quot;&quot;&quot;
-        requests = self.requests[client_ip]
-
-        # 移除超出时间窗口的请求
-        cutoff_time = current_time - self.window_size
-        self.requests[client_ip] = [t for t in requests if t &gt; cutoff_time]
-
-        # 检查当前请求数量
-        return len(self.requests[client_ip]) &gt;= self.max_requests
-
-    async def _cleanup_expired_records(self, current_time: float):
-        &quot;&quot;&quot;清理过期的请求记录&quot;&quot;&quot;
-        cutoff_time = current_time - self.window_size
-
-        for client_ip in list(self.requests.keys()):
-            self.requests[client_ip] = [
-                t for t in self.requests[client_ip] if t &gt; cutoff_time
-            ]
-
-            # 移除空记录
-            if not self.requests[client_ip]:
-                del self.requests[client_ip]
-
-    async def _send_rate_limit_error(self, scope, receive, send):
-        &quot;&quot;&quot;发送速率限制错误响应&quot;&quot;&quot;
-        response = JsonResponse(
-            {
-                &quot;error&quot;: &quot;请求过于频繁，请稍后再试&quot;,
-                &quot;retry_after&quot;: self.window_size
-            },
-            status_code=429,
-            headers={&quot;Retry-After&quot;: str(self.window_size)}
-        )
-        await response(scope, receive, send)
-</code></pre>
-<h4 id="3_1">3. 请求日志中间件</h4>
-<pre><code class="language-python">import json
-import time
-import logging
-from unfazed.middleware import BaseMiddleware
-
-logger = logging.getLogger(&quot;access&quot;)
-
-class AccessLogMiddleware(BaseMiddleware):
-    &quot;&quot;&quot;访问日志中间件&quot;&quot;&quot;
-
-    async def __call__(self, scope: Scope, receive: Receive, send: Send) -&gt; None:
-        if scope[&quot;type&quot;] != &quot;http&quot;:
-            await self.app(scope, receive, send)
-            return
-
-        # 记录请求开始时间
-        start_time = time.time()
-        request_info = self._extract_request_info(scope)
-
-        # 包装 send 函数以捕获响应信息
-        response_info = {&quot;status_code&quot;: None, &quot;content_length&quot;: 0}
-
-        async def send_wrapper(message):
-            if message[&quot;type&quot;] == &quot;http.response.start&quot;:
-                response_info[&quot;status_code&quot;] = message[&quot;status&quot;]
-            elif message[&quot;type&quot;] == &quot;http.response.body&quot;:
-                body = message.get(&quot;body&quot;, b&quot;&quot;)
-                response_info[&quot;content_length&quot;] += len(body)
-
-            await send(message)
-
-        try:
-            await self.app(scope, receive, send_wrapper)
-        finally:
-            # 记录访问日志
-            duration = time.time() - start_time
-            self._log_access(request_info, response_info, duration)
-
-    def _extract_request_info(self, scope: Scope) -&gt; dict:
-        &quot;&quot;&quot;提取请求信息&quot;&quot;&quot;
-        headers = dict(scope.get(&quot;headers&quot;, []))
-
-        return {
-            &quot;method&quot;: scope.get(&quot;method&quot;, &quot;&quot;),
-            &quot;path&quot;: scope.get(&quot;path&quot;, &quot;&quot;),
-            &quot;query_string&quot;: scope.get(&quot;query_string&quot;, b&quot;&quot;).decode(),
-            &quot;client_ip&quot;: self._get_client_ip(scope),
-            &quot;user_agent&quot;: headers.get(b&quot;user-agent&quot;, b&quot;&quot;).decode(),
-            &quot;referer&quot;: headers.get(b&quot;referer&quot;, b&quot;&quot;).decode(),
-            &quot;content_length&quot;: headers.get(b&quot;content-length&quot;, b&quot;0&quot;).decode(),
-        }
-
-    def _get_client_ip(self, scope: Scope) -&gt; str:
-        &quot;&quot;&quot;获取客户端 IP&quot;&quot;&quot;
-        headers = dict(scope.get(&quot;headers&quot;, []))
-
-        # 检查代理头
-        forwarded_for = headers.get(b&quot;x-forwarded-for&quot;)
-        if forwarded_for:
-            return forwarded_for.decode().split(&quot;,&quot;)[0].strip()
-
-        # 直接连接 IP
-        client = scope.get(&quot;client&quot;)
-        return client[0] if client else &quot;unknown&quot;
-
-    def _log_access(self, request_info: dict, response_info: dict, duration: float):
-        &quot;&quot;&quot;记录访问日志&quot;&quot;&quot;
-        log_entry = {
-            &quot;timestamp&quot;: time.time(),
-            &quot;method&quot;: request_info[&quot;method&quot;],
-            &quot;path&quot;: request_info[&quot;path&quot;],
-            &quot;query_string&quot;: request_info[&quot;query_string&quot;],
-            &quot;status_code&quot;: response_info[&quot;status_code&quot;],
-            &quot;content_length&quot;: response_info[&quot;content_length&quot;],
-            &quot;duration&quot;: round(duration, 4),
-            &quot;client_ip&quot;: request_info[&quot;client_ip&quot;],
-            &quot;user_agent&quot;: request_info[&quot;user_agent&quot;],
-            &quot;referer&quot;: request_info[&quot;referer&quot;],
-        }
-
-        # 以 JSON 格式记录日志
-        logger.info(json.dumps(log_entry, ensure_ascii=False))
-</code></pre>
-<h4 id="4_1">4. 配置驱动的中间件</h4>
-<pre><code class="language-python">from unfazed.middleware import BaseMiddleware
-from unfazed.conf import settings
-
-class ConfigurableMiddleware(BaseMiddleware):
-    &quot;&quot;&quot;可配置的中间件示例&quot;&quot;&quot;
-
-    def __init__(self, app):
-        super().__init__(app)
-
-        # 从配置中读取参数
-        self.config = settings.get(&quot;CUSTOM_MIDDLEWARE&quot;, {})
-        self.enabled = self.config.get(&quot;ENABLED&quot;, True)
-        self.debug_mode = self.config.get(&quot;DEBUG_MODE&quot;, False)
-        self.allowed_ips = set(self.config.get(&quot;ALLOWED_IPS&quot;, []))
-        self.blocked_user_agents = set(self.config.get(&quot;BLOCKED_USER_AGENTS&quot;, []))
-
-    async def __call__(self, scope: Scope, receive: Receive, send: Send) -&gt; None:
-        if scope[&quot;type&quot;] != &quot;http&quot;:
-            await self.app(scope, receive, send)
-            return
-
-        if not self.enabled:
-            await self.app(scope, receive, send)
-            return
-
-        # IP 白名单检查
-        if self.allowed_ips and not self._is_ip_allowed(scope):
-            await self._send_forbidden(scope, receive, send)
-            return
-
-        # User-Agent 黑名单检查
-        if self._is_user_agent_blocked(scope):
-            await self._send_forbidden(scope, receive, send)
-            return
-
-        # 调试模式下添加额外信息
-        if self.debug_mode:
-            scope[&quot;debug_info&quot;] = {
-                &quot;middleware&quot;: &quot;ConfigurableMiddleware&quot;,
-                &quot;timestamp&quot;: time.time()
-            }
-
-        await self.app(scope, receive, send)
-
-    def _is_ip_allowed(self, scope: Scope) -&gt; bool:
-        &quot;&quot;&quot;检查 IP 是否在白名单中&quot;&quot;&quot;
-        client_ip = self._get_client_ip(scope)
-        return client_ip in self.allowed_ips
-
-    def _is_user_agent_blocked(self, scope: Scope) -&gt; bool:
-        &quot;&quot;&quot;检查 User-Agent 是否被阻止&quot;&quot;&quot;
-        headers = dict(scope.get(&quot;headers&quot;, []))
-        user_agent = headers.get(b&quot;user-agent&quot;, b&quot;&quot;).decode().lower()
-
-        return any(blocked in user_agent for blocked in self.blocked_user_agents)
-
-    def _get_client_ip(self, scope: Scope) -&gt; str:
-        &quot;&quot;&quot;获取客户端 IP&quot;&quot;&quot;
-        client = scope.get(&quot;client&quot;)
-        return client[0] if client else &quot;unknown&quot;
-
-    async def _send_forbidden(self, scope, receive, send):
-        &quot;&quot;&quot;发送禁止访问响应&quot;&quot;&quot;
-        response = JsonResponse(
-            {&quot;error&quot;: &quot;访问被拒绝&quot;}, 
-            status_code=403
-        )
-        await response(scope, receive, send)
-</code></pre>
-<h3 id="_8">配置示例</h3>
-<pre><code class="language-python"># settings.py
-UNFAZED_SETTINGS = {
-    &quot;MIDDLEWARE&quot;: [
-        &quot;myapp.middleware.AccessLogMiddleware&quot;,
-        &quot;myapp.middleware.ConfigurableMiddleware&quot;,
-        &quot;myapp.middleware.RateLimitMiddleware&quot;,
-        &quot;myapp.middleware.AuthMiddleware&quot;,
-    ],
-
-    # 自定义中间件配置
-    &quot;CUSTOM_MIDDLEWARE&quot;: {
-        &quot;ENABLED&quot;: True,
-        &quot;DEBUG_MODE&quot;: False,
-        &quot;ALLOWED_IPS&quot;: [&quot;192.168.1.0/24&quot;, &quot;10.0.0.0/8&quot;],
-        &quot;BLOCKED_USER_AGENTS&quot;: [&quot;bot&quot;, &quot;crawler&quot;, &quot;spider&quot;]
-    },
-
-}
-</code></pre>
-<h3 id="commonmiddleware">CommonMiddleware</h3>
-<p><strong>引入方式</strong>: <code>"unfazed.middleware.internal.common.CommonMiddleware"</code></p>
-<p>CommonMiddleware 是 Unfazed 的核心错误处理中间件，提供了智能的异常处理和调试支持。</p>
-<h4 id="_9">主要功能</h4>
+<h3 id="accessing-settings-in-a-middleware">Accessing settings in a middleware<a class="headerlink" href="#accessing-settings-in-a-middleware" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">unfazed.conf</span><span class="w"> </span><span class="kn">import</span> <span class="n">UnfazedSettings</span><span class="p">,</span> <span class="n">settings</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">unfazed.middleware</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseMiddleware</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">unfazed.type</span><span class="w"> </span><span class="kn">import</span> <span class="n">ASGIApp</span><span class="p">,</span> <span class="n">Receive</span><span class="p">,</span> <span class="n">Scope</span><span class="p">,</span> <span class="n">Send</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="k">class</span><span class="w"> </span><span class="nc">RateLimitMiddleware</span><span class="p">(</span><span class="n">BaseMiddleware</span><span class="p">):</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app</span><span class="p">:</span> <span class="n">ASGIApp</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>        <span class="n">unfazed_settings</span><span class="p">:</span> <span class="n">UnfazedSettings</span> <span class="o">=</span> <span class="n">settings</span><span class="p">[</span><span class="s2">&quot;UNFAZED_SETTINGS&quot;</span><span class="p">]</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">debug</span> <span class="o">=</span> <span class="n">unfazed_settings</span><span class="o">.</span><span class="n">DEBUG</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scope</span><span class="p">:</span> <span class="n">Scope</span><span class="p">,</span> <span class="n">receive</span><span class="p">:</span> <span class="n">Receive</span><span class="p">,</span> <span class="n">send</span><span class="p">:</span> <span class="n">Send</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>        <span class="k">if</span> <span class="n">scope</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;http&quot;</span><span class="p">:</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="p">(</span><span class="n">scope</span><span class="p">,</span> <span class="n">receive</span><span class="p">,</span> <span class="n">send</span><span class="p">)</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>            <span class="k">return</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>        <span class="c1"># rate-limiting logic ...</span>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="p">(</span><span class="n">scope</span><span class="p">,</span> <span class="n">receive</span><span class="p">,</span> <span class="n">send</span><span class="p">)</span>
+</span></code></pre></div>
+<h2 id="built-in-middleware">Built-in Middleware<a class="headerlink" href="#built-in-middleware" title="Permanent link">&para;</a></h2>
+<h3 id="commonmiddleware-error-handling">CommonMiddleware — Error Handling<a class="headerlink" href="#commonmiddleware-error-handling" title="Permanent link">&para;</a></h3>
+<p>Catches unhandled exceptions and returns an error response. In debug mode it renders an HTML page with the full traceback and settings dump; in production it returns a plain <code>500 Internal Server Error</code>.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="s2">&quot;MIDDLEWARE&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="s2">&quot;unfazed.middleware.internal.common.CommonMiddleware&quot;</span><span class="p">,</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="p">]</span>
+</span></code></pre></div>
+<p>No additional settings required. It reads <code>DEBUG</code> from the project settings automatically.</p>
+<h3 id="corsmiddleware-cross-origin-resource-sharing">CORSMiddleware — Cross-Origin Resource Sharing<a class="headerlink" href="#corsmiddleware-cross-origin-resource-sharing" title="Permanent link">&para;</a></h3>
+<p>Wraps Starlette's <code>CORSMiddleware</code> and reads configuration from the <code>CORS</code> setting:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="s2">&quot;MIDDLEWARE&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    <span class="s2">&quot;unfazed.middleware.internal.cors.CORSMiddleware&quot;</span><span class="p">,</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="p">],</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="s2">&quot;CORS&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>    <span class="s2">&quot;ALLOW_ORIGINS&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;https://example.com&quot;</span><span class="p">],</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>    <span class="s2">&quot;ALLOW_METHODS&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;GET&quot;</span><span class="p">,</span> <span class="s2">&quot;POST&quot;</span><span class="p">],</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>    <span class="s2">&quot;ALLOW_HEADERS&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Authorization&quot;</span><span class="p">,</span> <span class="s2">&quot;Content-Type&quot;</span><span class="p">],</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>    <span class="s2">&quot;ALLOW_CREDENTIALS&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>    <span class="s2">&quot;EXPOSE_HEADERS&quot;</span><span class="p">:</span> <span class="p">[],</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>    <span class="s2">&quot;MAX_AGE&quot;</span><span class="p">:</span> <span class="mi">600</span><span class="p">,</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="p">},</span>
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ALLOW_ORIGINS</code></td>
+<td><code>List[str]</code></td>
+<td><code>["*"]</code></td>
+<td>Origins permitted to make requests.</td>
+</tr>
+<tr>
+<td><code>ALLOW_METHODS</code></td>
+<td><code>List[str]</code></td>
+<td><code>["*"]</code></td>
+<td>HTTP methods allowed.</td>
+</tr>
+<tr>
+<td><code>ALLOW_HEADERS</code></td>
+<td><code>List[str]</code></td>
+<td><code>[]</code></td>
+<td>Headers the client may send.</td>
+</tr>
+<tr>
+<td><code>ALLOW_CREDENTIALS</code></td>
+<td><code>bool</code></td>
+<td><code>False</code></td>
+<td>Whether to allow cookies/auth headers.</td>
+</tr>
+<tr>
+<td><code>ALLOW_ORIGIN_REGEX</code></td>
+<td><code>str \| None</code></td>
+<td><code>None</code></td>
+<td>Regex pattern for matching origins.</td>
+</tr>
+<tr>
+<td><code>EXPOSE_HEADERS</code></td>
+<td><code>List[str]</code></td>
+<td><code>[]</code></td>
+<td>Headers exposed to the browser.</td>
+</tr>
+<tr>
+<td><code>MAX_AGE</code></td>
+<td><code>int</code></td>
+<td><code>600</code></td>
+<td>Seconds the browser may cache preflight results.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gzipmiddleware-response-compression">GZipMiddleware — Response Compression<a class="headerlink" href="#gzipmiddleware-response-compression" title="Permanent link">&para;</a></h3>
+<p>Wraps Starlette's <code>GZipMiddleware</code> and reads configuration from the <code>GZIP</code> setting:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="s2">&quot;MIDDLEWARE&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="s2">&quot;unfazed.middleware.internal.gzip.GZipMiddleware&quot;</span><span class="p">,</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="p">],</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="s2">&quot;GZIP&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>    <span class="s2">&quot;MINIMUM_SIZE&quot;</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    <span class="s2">&quot;COMPRESS_LEVEL&quot;</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="p">},</span>
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MINIMUM_SIZE</code></td>
+<td><code>int</code></td>
+<td><code>500</code></td>
+<td>Minimum response size in bytes before compression kicks in.</td>
+</tr>
+<tr>
+<td><code>COMPRESS_LEVEL</code></td>
+<td><code>int</code></td>
+<td><code>9</code></td>
+<td>Zlib compression level (1–9).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="trustedhostmiddleware-host-header-validation">TrustedHostMiddleware — Host Header Validation<a class="headerlink" href="#trustedhostmiddleware-host-header-validation" title="Permanent link">&para;</a></h3>
+<p>Wraps Starlette's <code>TrustedHostMiddleware</code> and reads configuration from the <code>TRUSTED_HOST</code> setting:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="s2">&quot;MIDDLEWARE&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    <span class="s2">&quot;unfazed.middleware.internal.trustedhost.TrustedHostMiddleware&quot;</span><span class="p">,</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="p">],</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="s2">&quot;TRUSTED_HOST&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    <span class="s2">&quot;ALLOWED_HOSTS&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;example.com&quot;</span><span class="p">,</span> <span class="s2">&quot;*.example.com&quot;</span><span class="p">],</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>    <span class="s2">&quot;WWW_REDIRECT&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="p">},</span>
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ALLOWED_HOSTS</code></td>
+<td><code>List[str]</code></td>
+<td><code>["*"]</code></td>
+<td>Accepted <code>Host</code> header values. Supports wildcard subdomains.</td>
+</tr>
+<tr>
+<td><code>WWW_REDIRECT</code></td>
+<td><code>bool</code></td>
+<td><code>True</code></td>
+<td>Redirect <code>www.</code> requests to the non-www host.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="execution-order">Execution Order<a class="headerlink" href="#execution-order" title="Permanent link">&para;</a></h2>
+<p>Middleware is applied in <strong>reverse registration order</strong> — the last middleware in the <code>MIDDLEWARE</code> list wraps the innermost layer (closest to the router), and the first middleware wraps the outermost layer (closest to the client).</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="s2">&quot;MIDDLEWARE&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>    <span class="s2">&quot;myapp.middleware.A&quot;</span><span class="p">,</span>   <span class="c1"># outermost — runs first on request, last on response</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>    <span class="s2">&quot;myapp.middleware.B&quot;</span><span class="p">,</span>   <span class="c1"># middle</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>    <span class="s2">&quot;myapp.middleware.C&quot;</span><span class="p">,</span>   <span class="c1"># innermost — runs last on request, first on response</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="p">]</span>
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>Client → A → B → C → Router → C → B → A → Client
+</span></code></pre></div>
+<p>A typical production setup:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="s2">&quot;MIDDLEWARE&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>    <span class="s2">&quot;unfazed.middleware.internal.common.CommonMiddleware&quot;</span><span class="p">,</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>    <span class="s2">&quot;unfazed.middleware.internal.cors.CORSMiddleware&quot;</span><span class="p">,</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>    <span class="s2">&quot;unfazed.middleware.internal.trustedhost.TrustedHostMiddleware&quot;</span><span class="p">,</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>    <span class="s2">&quot;myapp.middleware.AuthMiddleware&quot;</span><span class="p">,</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="p">]</span>
+</span></code></pre></div>
+<h2 id="api-reference">API Reference<a class="headerlink" href="#api-reference" title="Permanent link">&para;</a></h2>
+<h3 id="basemiddleware">BaseMiddleware<a class="headerlink" href="#basemiddleware" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">BaseMiddleware</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app</span><span class="p">:</span> <span class="n">ASGIApp</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</span></code></pre></div>
+<p>Abstract base class for all middleware. Subclass and implement <code>__call__</code>.</p>
+<p><strong>Attributes:</strong></p>
 <ul>
-<li><strong>异常捕获</strong>: 捕获应用中未处理的异常</li>
-<li><strong>调试模式</strong>: <code>DEBUG=True</code> 时显示详细的错误页面和堆栈跟踪</li>
-<li><strong>生产模式</strong>: <code>DEBUG=False</code> 时返回通用的 500 错误响应</li>
-<li><strong>日志记录</strong>: 自动记录所有异常到日志系统</li>
+<li><code>app: ASGIApp</code> — The next ASGI application in the stack.</li>
 </ul>
-<h4 id="_10">调试页面特性</h4>
-<p>当 <code>DEBUG=True</code> 时，CommonMiddleware 会生成一个美观的 HTML 错误页面，包含：</p>
+<p><strong>Methods:</strong></p>
 <ul>
-<li>完整的异常堆栈跟踪</li>
-<li>异常发生的具体位置</li>
-<li>当前的 Unfazed 配置信息</li>
-<li>响应式设计，支持移动端查看</li>
+<li><code>async __call__(scope: Scope, receive: Receive, send: Send) -&gt; None</code>: <em>Abstract.</em> Process the request and call <code>self.app</code> to continue down the stack.</li>
 </ul>
-<h4 id="_11">配置示例</h4>
-<pre><code class="language-python">UNFAZED_SETTINGS = {
-    &quot;DEBUG&quot;: True,  # 开发环境设为 True，生产环境设为 False
-    &quot;MIDDLEWARE&quot;: [
-        &quot;unfazed.middleware.internal.common.CommonMiddleware&quot;,
-    ],
-}
-</code></pre>
-<h4 id="_12">使用建议</h4>
-<ul>
-<li><strong>开发环境</strong>: 设置 <code>DEBUG=True</code> 以获得详细的错误信息</li>
-<li><strong>生产环境</strong>: 务必设置 <code>DEBUG=False</code> 以防止敏感信息泄露</li>
-<li><strong>日志监控</strong>: 配合日志系统监控生产环境的异常情况</li>
-</ul>
-<h3 id="corsmiddleware">CORSMiddleware</h3>
-<p><strong>引入方式</strong>: <code>"unfazed.middleware.internal.cors.CORSMiddleware"</code></p>
-<p>CORSMiddleware 基于 Starlette 的 CORSMiddleware 实现，用于处理跨域资源共享（CORS）请求。</p>
-<h4 id="_13">配置参数</h4>
-<pre><code class="language-python">UNFAZED_SETTINGS = {
-    &quot;CORS&quot;: {
-        &quot;ALLOW_ORIGINS&quot;: [&quot;https://example.com&quot;, &quot;https://app.example.com&quot;],
-        &quot;ALLOW_METHODS&quot;: [&quot;GET&quot;, &quot;POST&quot;, &quot;PUT&quot;, &quot;DELETE&quot;, &quot;OPTIONS&quot;],
-        &quot;ALLOW_HEADERS&quot;: [&quot;Content-Type&quot;, &quot;Authorization&quot;, &quot;X-Requested-With&quot;],
-        &quot;ALLOW_CREDENTIALS&quot;: True,
-        &quot;ALLOW_ORIGIN_REGEX&quot;: r&quot;https://.*\.example\.com&quot;,
-        &quot;EXPOSE_HEADERS&quot;: [&quot;X-Custom-Header&quot;],
-        &quot;MAX_AGE&quot;: 3600,  # 预检请求缓存时间（秒）
-    }
-}
-</code></pre>
-<h4 id="_14">参数说明</h4>
-<ul>
-<li><strong>ALLOW_ORIGINS</strong>: 允许的源域名列表，使用 <code>["*"]</code> 允许所有域名</li>
-<li><strong>ALLOW_METHODS</strong>: 允许的 HTTP 方法列表</li>
-<li><strong>ALLOW_HEADERS</strong>: 允许的请求头列表</li>
-<li><strong>ALLOW_CREDENTIALS</strong>: 是否允许发送认证信息（cookies、authorization headers）</li>
-<li><strong>ALLOW_ORIGIN_REGEX</strong>: 使用正则表达式匹配允许的源域名</li>
-<li><strong>EXPOSE_HEADERS</strong>: 暴露给客户端的响应头列表</li>
-<li><strong>MAX_AGE</strong>: 预检请求的缓存时间</li>
-</ul>
-<h4 id="_15">常见配置场景</h4>
-<pre><code class="language-python"># 开发环境 - 允许所有源
-&quot;CORS&quot;: {
-    &quot;ALLOW_ORIGINS&quot;: [&quot;*&quot;],
-    &quot;ALLOW_METHODS&quot;: [&quot;*&quot;],
-    &quot;ALLOW_HEADERS&quot;: [&quot;*&quot;],
-}
-
-# 生产环境 - 严格控制
-&quot;CORS&quot;: {
-    &quot;ALLOW_ORIGINS&quot;: [&quot;https://yourdomain.com&quot;],
-    &quot;ALLOW_METHODS&quot;: [&quot;GET&quot;, &quot;POST&quot;, &quot;PUT&quot;, &quot;DELETE&quot;],
-    &quot;ALLOW_HEADERS&quot;: [&quot;Content-Type&quot;, &quot;Authorization&quot;],
-    &quot;ALLOW_CREDENTIALS&quot;: True,
-}
-
-# 多子域支持
-&quot;CORS&quot;: {
-    &quot;ALLOW_ORIGIN_REGEX&quot;: r&quot;https://.*\.yourdomain\.com&quot;,
-    &quot;ALLOW_CREDENTIALS&quot;: True,
-}
-</code></pre>
-<h3 id="gzipmiddleware">GZipMiddleware</h3>
-<p><strong>引入方式</strong>: <code>"unfazed.middleware.internal.gzip.GZipMiddleware"</code></p>
-<p>GZipMiddleware 基于 Starlette 的 GZipMiddleware 实现，提供 HTTP 响应的 Gzip 压缩功能。</p>
-<h4 id="_16">配置参数</h4>
-<pre><code class="language-python">UNFAZED_SETTINGS = {
-    &quot;GZIP&quot;: {
-        &quot;MINIMUM_SIZE&quot;: 1024,        # 最小压缩大小（字节）
-        &quot;COMPRESS_LEVEL&quot;: 6,         # 压缩级别 1-9，9为最高压缩率
-    }
-}
-</code></pre>
-<h4 id="_17">参数说明</h4>
-<ul>
-<li><strong>MINIMUM_SIZE</strong>: 只有响应体大小超过此值时才进行压缩</li>
-<li><strong>COMPRESS_LEVEL</strong>: 压缩级别，1为最快压缩，9为最高压缩率</li>
-</ul>
-<h4 id="_18">工作原理</h4>
-<ol>
-<li>检查客户端是否支持 gzip 压缩（Accept-Encoding 头）</li>
-<li>检查响应体大小是否超过最小压缩阈值</li>
-<li>对符合条件的响应进行 gzip 压缩</li>
-<li>添加相应的响应头（Content-Encoding: gzip）</li>
-</ol>
-<h4 id="_19">性能建议</h4>
-<pre><code class="language-python"># 平衡性能和压缩率的配置
-&quot;GZIP&quot;: {
-    &quot;MINIMUM_SIZE&quot;: 500,    # 500字节以上才压缩
-    &quot;COMPRESS_LEVEL&quot;: 6,    # 平衡压缩率和速度
-}
-
-# 高压缩率配置（适合带宽受限环境）
-&quot;GZIP&quot;: {
-    &quot;MINIMUM_SIZE&quot;: 200,
-    &quot;COMPRESS_LEVEL&quot;: 9,
-}
-
-# 快速响应配置（适合高并发环境）
-&quot;GZIP&quot;: {
-    &quot;MINIMUM_SIZE&quot;: 1024,
-    &quot;COMPRESS_LEVEL&quot;: 1,
-}
-</code></pre>
-<h3 id="trustedhostmiddleware">TrustedHostMiddleware</h3>
-<p><strong>引入方式</strong>: <code>"unfazed.middleware.internal.trustedhost.TrustedHostMiddleware"</code></p>
-<p>TrustedHostMiddleware 基于 Starlette 的 TrustedHostMiddleware 实现，用于验证请求的 Host 头，防止 Host 头注入攻击。</p>
-<h4 id="_20">配置参数</h4>
-<pre><code class="language-python">UNFAZED_SETTINGS = {
-    &quot;TRUSTED_HOST&quot;: {
-        &quot;ALLOWED_HOSTS&quot;: [&quot;example.com&quot;, &quot;www.example.com&quot;, &quot;*.example.com&quot;],
-        &quot;WWW_REDIRECT&quot;: True,    # 是否将 www 重定向到非 www
-    }
-}
-</code></pre>
-<h4 id="_21">参数说明</h4>
-<ul>
-<li><strong>ALLOWED_HOSTS</strong>: 允许的主机名列表，支持通配符 <code>*</code></li>
-<li><strong>WWW_REDIRECT</strong>: 是否自动将 www 子域重定向到主域名</li>
-</ul>
-<h4 id="_22">主机名模式</h4>
-<pre><code class="language-python"># 精确匹配
-&quot;ALLOWED_HOSTS&quot;: [&quot;example.com&quot;, &quot;api.example.com&quot;]
-
-# 通配符匹配
-&quot;ALLOWED_HOSTS&quot;: [&quot;*.example.com&quot;]  # 匹配所有子域名
-
-# 允许所有主机（仅开发环境）
-&quot;ALLOWED_HOSTS&quot;: [&quot;*&quot;]
-
-# 本地开发配置
-&quot;ALLOWED_HOSTS&quot;: [&quot;localhost&quot;, &quot;127.0.0.1&quot;, &quot;0.0.0.0&quot;]
-</code></pre>
-<h4 id="_23">安全建议</h4>
-<pre><code class="language-python"># 生产环境严格配置
-&quot;TRUSTED_HOST&quot;: {
-    &quot;ALLOWED_HOSTS&quot;: [&quot;yourdomain.com&quot;, &quot;api.yourdomain.com&quot;],
-    &quot;WWW_REDIRECT&quot;: True,
-}
-
-# 开发环境宽松配置
-&quot;TRUSTED_HOST&quot;: {
-    &quot;ALLOWED_HOSTS&quot;: [&quot;localhost&quot;, &quot;127.0.0.1&quot;, &quot;*.local&quot;],
-    &quot;WWW_REDIRECT&quot;: False,
-}
-</code></pre>
-<h3 id="sessionmiddleware">SessionMiddleware</h3>
-<p><strong>引入方式</strong>: <code>"unfazed.contrib.session.middleware.SessionMiddleware"</code></p>
-<p>SessionMiddleware 来自 Unfazed 的 contrib 包，提供了灵活的会话管理功能。</p>
-<h4 id="_24">配置参数</h4>
-<pre><code class="language-python">UNFAZED_CONTRIB_SESSION_SETTINGS = {
-    &quot;SECRET&quot;: &quot;your-secret-key-here&quot;,
-    &quot;ENGINE&quot;: &quot;signing&quot;,  # 或 &quot;redis&quot;
-    &quot;COOKIE_NAME&quot;: &quot;sessionid&quot;,
-    &quot;COOKIE_MAX_AGE&quot;: 1209600,  # 2周
-    &quot;COOKIE_PATH&quot;: &quot;/&quot;,
-    &quot;COOKIE_DOMAIN&quot;: None,
-    &quot;COOKIE_SECURE&quot;: False,
-    &quot;COOKIE_HTTPONLY&quot;: True,
-    &quot;COOKIE_SAMESITE&quot;: &quot;lax&quot;,
-}
-</code></pre>
-<h4 id="_25">支持的引擎</h4>
-<ol>
-<li><strong>signing</strong>: 基于签名的会话存储（默认）</li>
-<li><strong>redis</strong>: 基于 Redis 的会话存储</li>
-</ol>
-<h4 id="_26">使用示例</h4>
-<pre><code class="language-python">from unfazed.http import HttpRequest, JsonResponse
-
-async def login_view(request: HttpRequest) -&gt; JsonResponse:
-    # 设置会话数据
-    request.session[&quot;user_id&quot;] = user.id
-    request.session[&quot;username&quot;] = user.username
-
-    return JsonResponse({&quot;message&quot;: &quot;登录成功&quot;})
-
-async def profile_view(request: HttpRequest) -&gt; JsonResponse:
-    # 获取会话数据
-    user_id = request.session.get(&quot;user_id&quot;)
-    if not user_id:
-        return JsonResponse({&quot;error&quot;: &quot;未登录&quot;}, status_code=401)
-
-    return JsonResponse({&quot;user_id&quot;: user_id})
-
-async def logout_view(request: HttpRequest) -&gt; JsonResponse:
-    # 清除会话
-    request.session.flush()
-    return JsonResponse({&quot;message&quot;: &quot;已退出登录&quot;})
-</code></pre>
+<h3 id="commonmiddleware">CommonMiddleware<a class="headerlink" href="#commonmiddleware" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">CommonMiddleware</span><span class="p">(</span><span class="n">BaseMiddleware</span><span class="p">)</span>
+</span></code></pre></div>
+<p>Error-handling middleware. Catches exceptions and returns a debug HTML page (when <code>DEBUG=True</code>) or a plain 500 response (when <code>DEBUG=False</code>).</p>
+<h3 id="corsmiddleware">CORSMiddleware<a class="headerlink" href="#corsmiddleware" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">CORSMiddleware</span><span class="p">(</span><span class="n">StarletteCORSMiddleware</span><span class="p">)</span>
+</span></code></pre></div>
+<p>CORS middleware. Reads configuration from the <code>CORS</code> setting. Raises <code>ValueError</code> if <code>CORS</code> is not set.</p>
+<h3 id="gzipmiddleware">GZipMiddleware<a class="headerlink" href="#gzipmiddleware" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">GZipMiddleware</span><span class="p">(</span><span class="n">StarletteGZipMiddleware</span><span class="p">)</span>
+</span></code></pre></div>
+<p>GZip compression middleware. Reads configuration from the <code>GZIP</code> setting. Raises <code>ValueError</code> if <code>GZIP</code> is not set.</p>
+<h3 id="trustedhostmiddleware">TrustedHostMiddleware<a class="headerlink" href="#trustedhostmiddleware" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">TrustedHostMiddleware</span><span class="p">(</span><span class="n">StarletteTrustedHostMiddleware</span><span class="p">)</span>
+</span></code></pre></div>
+<p>Host header validation middleware. Reads configuration from the <code>TRUSTED_HOST</code> setting. Raises <code>ValueError</code> if <code>TRUSTED_HOST</code> is not set.</p>
 
 
 
@@ -2531,6 +1832,12 @@ async def logout_view(request: HttpRequest) -&gt; JsonResponse:
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
       </main>
       
         <footer class="md-footer">
@@ -2547,6 +1854,21 @@ async def logout_view(request: HttpRequest) -&gt; JsonResponse:
   
 </div>
       
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/unfazed-eco/unfazed" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
     </div>
   </div>
 </footer>
@@ -2556,8 +1878,10 @@ async def logout_view(request: HttpRequest) -&gt; JsonResponse:
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u62f7\u8c9d", "clipboard.copy": "\u62f7\u8c9d", "search.result.more.one": "\u6b64\u9801\u5c1a\u6709 1 \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.more.other": "\u6b64\u9801\u5c1a\u6709 # \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.none": "\u6c92\u6709\u627e\u5230\u7b26\u5408\u689d\u4ef6\u7684\u7d50\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u689d\u4ef6\u7684\u7d50\u679c", "search.result.other": "\u627e\u5230 # \u500b\u7b26\u5408\u689d\u4ef6\u7684\u7d50\u679c", "search.result.placeholder": "\u9375\u5165\u4ee5\u958b\u59cb\u6aa2\u7d22", "search.result.term.missing": "\u7f3a\u5931", "select.version": "\u9078\u64c7\u7248\u672c"}}</script>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.instant", "navigation.instant.progress", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>

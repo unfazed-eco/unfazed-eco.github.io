@@ -1,18 +1,22 @@
 
 <!doctype html>
-<html lang="zh-Hant" class="no-js">
+<html lang="en" class="no-js">
   <head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="Production Ready ASGI web framework">
       
+      
+      
+        <link rel="canonical" href="https://unfazed-eco.github.io/unfazed/features/serializer/">
       
       
         <link rel="prev" href="../tortoise-orm/">
       
       
-        <link rel="next" href="../cache/">
+        <link rel="next" href="../request/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -25,6 +29,9 @@
     
     
       <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -53,7 +60,14 @@
   </head>
   
   
-    <body dir="ltr">
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -63,7 +77,7 @@
       
         
         <a href="#unfazed-serializer" class="md-skip">
-          跳轉至
+          Skip to content
         </a>
       
     </div>
@@ -74,10 +88,8 @@
     
       
 
-  
-
-<header class="md-header md-header--shadow" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="頁首">
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../.." title="Unfazed" class="md-header__button md-logo" aria-label="Unfazed" data-md-component="logo">
       
   <img src="../../images/uz-logo.png" alt="logo">
@@ -104,6 +116,32 @@
       </div>
     </div>
     
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
     
       <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
@@ -111,21 +149,21 @@
       <div class="md-header__option">
   <div class="md-select">
     
-    <button class="md-header__button md-icon" aria-label="選擇語言">
+    <button class="md-header__button md-icon" aria-label="Select language">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
     </button>
     <div class="md-select__inner">
       <ul class="md-select__list">
         
           <li class="md-select__item">
-            <a href="./" hreflang="zh-Hant" class="md-select__link">
-              中文
+            <a href="./" hreflang="en" class="md-select__link">
+              English
             </a>
           </li>
         
           <li class="md-select__item">
-            <a href="../../en/features/serializer/" hreflang="en" class="md-select__link">
-              English
+            <a href="../../zh/features/serializer/" hreflang="zh" class="md-select__link">
+              中文
             </a>
           </li>
         
@@ -135,9 +173,48 @@
 </div>
     
     
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
     
       <div class="md-header__source">
-        <a href="https://github.com/unfazed-eco/unfazed" title="前往倉庫" class="md-source" data-md-component="source">
+        <a href="https://github.com/unfazed-eco/unfazed" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
@@ -157,6 +234,105 @@
       
         
           
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../tutorial/part1/" class="md-tabs__link">
+          
+  
+  Tutorial
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../app/" class="md-tabs__link">
+          
+  
+  Features
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../contrib/admin/" class="md-tabs__link">
+          
+  
+  Contrib
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../release-note/" class="md-tabs__link">
+        
+  
+    
+  
+  ReleaseNote
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -170,8 +346,10 @@
                     
 
 
+  
 
-<nav class="md-nav md-nav--primary" aria-label="導航" data-md-level="0">
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../.." title="Unfazed" class="md-nav__button md-logo" aria-label="Unfazed" data-md-component="logo">
       
@@ -182,7 +360,7 @@
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/unfazed-eco/unfazed" title="前往倉庫" class="md-source" data-md-component="source">
+      <a href="https://github.com/unfazed-eco/unfazed" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
@@ -224,6 +402,11 @@
     
     
     
+      
+      
+        
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -261,7 +444,7 @@
         
   
   <span class="md-ellipsis">
-    Part 1 Install & Create Project
+    Part 1 Installation and Project Creation
   </span>
   
 
@@ -282,7 +465,7 @@
         
   
   <span class="md-ellipsis">
-    Part 2 Create Application
+    Part 2 Creating Applications and Hello World
   </span>
   
 
@@ -303,7 +486,7 @@
         
   
   <span class="md-ellipsis">
-    Part 3 Models and Serializer
+    Part 3 Data Models and Serializers
   </span>
   
 
@@ -324,7 +507,7 @@
         
   
   <span class="md-ellipsis">
-    Part 4 Endpoint and Schema
+    Part 4 API Interface Design and Schema Definition
   </span>
   
 
@@ -345,7 +528,7 @@
         
   
   <span class="md-ellipsis">
-    Part 5 Services
+    Part 5 Business Logic Implementation
   </span>
   
 
@@ -366,7 +549,7 @@
         
   
   <span class="md-ellipsis">
-    Part 6 Test
+    Part 6 Testing and Quality Assurance
   </span>
   
 
@@ -394,15 +577,23 @@
     
     
     
+      
+        
+        
+      
+      
+        
+      
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -419,27 +610,6 @@
             Features
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../settings/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Settings
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
             
               
                 
@@ -469,11 +639,53 @@
   
   
     <li class="md-nav__item">
+      <a href="../settings/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Settings
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../route/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     Route
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../endpoint/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Endpoint
   </span>
   
 
@@ -532,95 +744,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../logging/" class="md-nav__link">
+      <a href="../command/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Logging
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../request/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Request
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../response/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Response
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../endpoint/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Endpoint
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../staticfiles.md" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Staticfiles
+    Command
   </span>
   
 
@@ -690,7 +818,7 @@
       
         
 
-<nav class="md-nav md-nav--secondary" aria-label="目錄">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
   
@@ -699,42 +827,42 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      目錄
+      Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#quick-start" class="md-nav__link">
     <span class="md-ellipsis">
-      系统概述
+      Quick Start
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="系统概述">
+    <nav class="md-nav" aria-label="Quick Start">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#1-define-a-tortoise-model" class="md-nav__link">
     <span class="md-ellipsis">
-      核心特性
+      1. Define a Tortoise model
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#2-create-a-serializer" class="md-nav__link">
     <span class="md-ellipsis">
-      核心组件
+      2. Create a serializer
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#3-use-crud-operations" class="md-nav__link">
     <span class="md-ellipsis">
-      设计理念
+      3. Use CRUD operations
     </span>
   </a>
   
@@ -746,28 +874,28 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#the-meta-class" class="md-nav__link">
     <span class="md-ellipsis">
-      快速开始
+      The Meta Class
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="快速开始">
+    <nav class="md-nav" aria-label="The Meta Class">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#meta-options" class="md-nav__link">
     <span class="md-ellipsis">
-      基本使用
+      Meta options
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#crud" class="md-nav__link">
+  <a href="#controlling-fields" class="md-nav__link">
     <span class="md-ellipsis">
-      CRUD 操作
+      Controlling fields
     </span>
   </a>
   
@@ -779,28 +907,64 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#crud-operations" class="md-nav__link">
     <span class="md-ellipsis">
-      字段定制
+      CRUD Operations
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="字段定制">
+    <nav class="md-nav" aria-label="CRUD Operations">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
+  <a href="#create_from_ctx" class="md-nav__link">
     <span class="md-ellipsis">
-      字段覆盖
+      create_from_ctx
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+  <a href="#retrieve_from_ctx" class="md-nav__link">
     <span class="md-ellipsis">
-      字段过滤
+      retrieve_from_ctx
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update_from_ctx" class="md-nav__link">
+    <span class="md-ellipsis">
+      update_from_ctx
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#destroy_from_ctx" class="md-nav__link">
+    <span class="md-ellipsis">
+      destroy_from_ctx
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#list_from_ctx" class="md-nav__link">
+    <span class="md-ellipsis">
+      list_from_ctx
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#list_from_queryset" class="md-nav__link">
+    <span class="md-ellipsis">
+      list_from_queryset
     </span>
   </a>
   
@@ -812,37 +976,19 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
+  <a href="#relation-support" class="md-nav__link">
     <span class="md-ellipsis">
-      关系字段处理
+      Relation Support
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="关系字段处理">
+    <nav class="md-nav" aria-label="Relation Support">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
+  <a href="#find_relation" class="md-nav__link">
     <span class="md-ellipsis">
-      定义关系模型
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_12" class="md-nav__link">
-    <span class="md-ellipsis">
-      关系字段序列化器
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_13" class="md-nav__link">
-    <span class="md-ellipsis">
-      关系查询
+      find_relation
     </span>
   </a>
   
@@ -854,85 +1000,46 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_14" class="md-nav__link">
+  <a href="#custom-fields" class="md-nav__link">
     <span class="md-ellipsis">
-      高级查询
+      Custom Fields
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="高级查询">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_15" class="md-nav__link">
-    <span class="md-ellipsis">
-      复杂查询条件
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_16" class="md-nav__link">
-    <span class="md-ellipsis">
-      批量操作
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#meta" class="md-nav__link">
+  <a href="#api-reference" class="md-nav__link">
     <span class="md-ellipsis">
-      Meta 配置详解
+      API Reference
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Meta 配置详解">
+    <nav class="md-nav" aria-label="API Reference">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_17" class="md-nav__link">
+  <a href="#serializer" class="md-nav__link">
     <span class="md-ellipsis">
-      配置选项
+      Serializer
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_18" class="md-nav__link">
+  <a href="#result" class="md-nav__link">
     <span class="md-ellipsis">
-      注意事项
+      Result
     </span>
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_19" class="md-nav__link">
-    <span class="md-ellipsis">
-      最佳实践
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="最佳实践">
-      <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
+  <a href="#relation" class="md-nav__link">
     <span class="md-ellipsis">
-      1. 序列化器组织
+      Relation
     </span>
   </a>
   
@@ -947,6 +1054,69 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../request/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Request
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../logging/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Logging
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -980,11 +1150,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../error/" class="md-nav__link">
+      <a href="../exception/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Error
+    Exceptions
   </span>
   
 
@@ -1022,11 +1192,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../command/" class="md-nav__link">
+      <a href="../testclient/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Command
+    Test Client
   </span>
   
 
@@ -1043,11 +1213,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../testclient/" class="md-nav__link">
+      <a href="../concurrency/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Test Client
+    Concurrency
   </span>
   
 
@@ -1072,6 +1242,11 @@
   
     
     
+    
+      
+      
+        
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -1202,7 +1377,7 @@
                   <div class="md-sidebar__inner">
                     
 
-<nav class="md-nav md-nav--secondary" aria-label="目錄">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
   
@@ -1211,42 +1386,42 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      目錄
+      Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#quick-start" class="md-nav__link">
     <span class="md-ellipsis">
-      系统概述
+      Quick Start
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="系统概述">
+    <nav class="md-nav" aria-label="Quick Start">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#1-define-a-tortoise-model" class="md-nav__link">
     <span class="md-ellipsis">
-      核心特性
+      1. Define a Tortoise model
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#2-create-a-serializer" class="md-nav__link">
     <span class="md-ellipsis">
-      核心组件
+      2. Create a serializer
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#3-use-crud-operations" class="md-nav__link">
     <span class="md-ellipsis">
-      设计理念
+      3. Use CRUD operations
     </span>
   </a>
   
@@ -1258,28 +1433,28 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#the-meta-class" class="md-nav__link">
     <span class="md-ellipsis">
-      快速开始
+      The Meta Class
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="快速开始">
+    <nav class="md-nav" aria-label="The Meta Class">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#meta-options" class="md-nav__link">
     <span class="md-ellipsis">
-      基本使用
+      Meta options
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#crud" class="md-nav__link">
+  <a href="#controlling-fields" class="md-nav__link">
     <span class="md-ellipsis">
-      CRUD 操作
+      Controlling fields
     </span>
   </a>
   
@@ -1291,28 +1466,64 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#crud-operations" class="md-nav__link">
     <span class="md-ellipsis">
-      字段定制
+      CRUD Operations
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="字段定制">
+    <nav class="md-nav" aria-label="CRUD Operations">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
+  <a href="#create_from_ctx" class="md-nav__link">
     <span class="md-ellipsis">
-      字段覆盖
+      create_from_ctx
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+  <a href="#retrieve_from_ctx" class="md-nav__link">
     <span class="md-ellipsis">
-      字段过滤
+      retrieve_from_ctx
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update_from_ctx" class="md-nav__link">
+    <span class="md-ellipsis">
+      update_from_ctx
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#destroy_from_ctx" class="md-nav__link">
+    <span class="md-ellipsis">
+      destroy_from_ctx
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#list_from_ctx" class="md-nav__link">
+    <span class="md-ellipsis">
+      list_from_ctx
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#list_from_queryset" class="md-nav__link">
+    <span class="md-ellipsis">
+      list_from_queryset
     </span>
   </a>
   
@@ -1324,37 +1535,19 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
+  <a href="#relation-support" class="md-nav__link">
     <span class="md-ellipsis">
-      关系字段处理
+      Relation Support
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="关系字段处理">
+    <nav class="md-nav" aria-label="Relation Support">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
+  <a href="#find_relation" class="md-nav__link">
     <span class="md-ellipsis">
-      定义关系模型
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_12" class="md-nav__link">
-    <span class="md-ellipsis">
-      关系字段序列化器
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_13" class="md-nav__link">
-    <span class="md-ellipsis">
-      关系查询
+      find_relation
     </span>
   </a>
   
@@ -1366,85 +1559,46 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_14" class="md-nav__link">
+  <a href="#custom-fields" class="md-nav__link">
     <span class="md-ellipsis">
-      高级查询
+      Custom Fields
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="高级查询">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_15" class="md-nav__link">
-    <span class="md-ellipsis">
-      复杂查询条件
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_16" class="md-nav__link">
-    <span class="md-ellipsis">
-      批量操作
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#meta" class="md-nav__link">
+  <a href="#api-reference" class="md-nav__link">
     <span class="md-ellipsis">
-      Meta 配置详解
+      API Reference
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Meta 配置详解">
+    <nav class="md-nav" aria-label="API Reference">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_17" class="md-nav__link">
+  <a href="#serializer" class="md-nav__link">
     <span class="md-ellipsis">
-      配置选项
+      Serializer
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_18" class="md-nav__link">
+  <a href="#result" class="md-nav__link">
     <span class="md-ellipsis">
-      注意事项
+      Result
     </span>
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_19" class="md-nav__link">
-    <span class="md-ellipsis">
-      最佳实践
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="最佳实践">
-      <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
+  <a href="#relation" class="md-nav__link">
     <span class="md-ellipsis">
-      1. 序列化器组织
+      Relation
     </span>
   </a>
   
@@ -1473,433 +1627,280 @@
   
 
 
-<h1 id="unfazed-serializer">Unfazed Serializer 序列化器</h1>
-<p>Unfazed Serializer 是一个基于 Tortoise ORM 模型的强大序列化器系统，自动将数据库模型转换为 Pydantic 模型，并提供完整的 CRUD 操作。该系统完美集成了 Tortoise ORM 的特性，支持关系字段、字段验证、分页查询等高级功能。</p>
-<h2 id="_1">系统概述</h2>
-<h3 id="_2">核心特性</h3>
+<h1 id="unfazed-serializer">Unfazed Serializer<a class="headerlink" href="#unfazed-serializer" title="Permanent link">&para;</a></h1>
+<p>Unfazed's <code>Serializer</code> automatically generates a Pydantic model from a Tortoise ORM model and provides built-in async CRUD operations — create, retrieve, update, delete, and paginated list. It bridges the gap between your database models and your API layer, giving you validated data objects with zero boilerplate.</p>
+<h2 id="quick-start">Quick Start<a class="headerlink" href="#quick-start" title="Permanent link">&para;</a></h2>
+<h3 id="1-define-a-tortoise-model">1. Define a Tortoise model<a class="headerlink" href="#1-define-a-tortoise-model" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># myapp/models.py</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">tortoise</span><span class="w"> </span><span class="kn">import</span> <span class="n">Model</span><span class="p">,</span> <span class="n">fields</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">class</span><span class="w"> </span><span class="nc">Article</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="n">title</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="n">content</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">TextField</span><span class="p">()</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="n">published</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="n">created_at</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">DatetimeField</span><span class="p">(</span><span class="n">auto_now_add</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></code></pre></div>
+<h3 id="2-create-a-serializer">2. Create a serializer<a class="headerlink" href="#2-create-a-serializer" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># myapp/serializers.py</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">unfazed.serializer</span><span class="w"> </span><span class="kn">import</span> <span class="n">Serializer</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">myapp.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Article</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="k">class</span><span class="w"> </span><span class="nc">ArticleSerializer</span><span class="p">(</span><span class="n">Serializer</span><span class="p">):</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="k">class</span><span class="w"> </span><span class="nc">Meta</span><span class="p">:</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>        <span class="n">model</span> <span class="o">=</span> <span class="n">Article</span>
+</span></code></pre></div>
+<p><code>ArticleSerializer</code> now has Pydantic fields for <code>id</code>, <code>title</code>, <code>content</code>, <code>published</code>, and <code>created_at</code> — auto-generated from the model.</p>
+<h3 id="3-use-crud-operations">3. Use CRUD operations<a class="headerlink" href="#3-use-crud-operations" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">myapp.serializers</span><span class="w"> </span><span class="kn">import</span> <span class="n">ArticleSerializer</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="k">class</span><span class="w"> </span><span class="nc">CreateArticle</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="n">title</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="n">content</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="k">class</span><span class="w"> </span><span class="nc">UpdateArticle</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>    <span class="n">title</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="c1"># Create</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="n">article</span> <span class="o">=</span> <span class="k">await</span> <span class="n">ArticleSerializer</span><span class="o">.</span><span class="n">create_from_ctx</span><span class="p">(</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>    <span class="n">CreateArticle</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Hello&quot;</span><span class="p">,</span> <span class="n">content</span><span class="o">=</span><span class="s2">&quot;World&quot;</span><span class="p">)</span>
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="p">)</span>
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="c1"># Retrieve</span>
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="k">class</span><span class="w"> </span><span class="nc">ArticleId</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>    <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span>
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="n">article</span> <span class="o">=</span> <span class="k">await</span> <span class="n">ArticleSerializer</span><span class="o">.</span><span class="n">retrieve_from_ctx</span><span class="p">(</span><span class="n">ArticleId</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>
+</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a><span class="c1"># Update</span>
+</span><span id="__span-2-27"><a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a><span class="n">updated</span> <span class="o">=</span> <span class="k">await</span> <span class="n">ArticleSerializer</span><span class="o">.</span><span class="n">update_from_ctx</span><span class="p">(</span>
+</span><span id="__span-2-28"><a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a>    <span class="n">UpdateArticle</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Updated Title&quot;</span><span class="p">)</span>
+</span><span id="__span-2-29"><a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a><span class="p">)</span>
+</span><span id="__span-2-30"><a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a>
+</span><span id="__span-2-31"><a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a><span class="c1"># Delete</span>
+</span><span id="__span-2-32"><a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a><span class="k">await</span> <span class="n">ArticleSerializer</span><span class="o">.</span><span class="n">destroy_from_ctx</span><span class="p">(</span><span class="n">ArticleId</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+</span><span id="__span-2-33"><a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a>
+</span><span id="__span-2-34"><a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a><span class="c1"># List with pagination</span>
+</span><span id="__span-2-35"><a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a><span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">ArticleSerializer</span><span class="o">.</span><span class="n">list_from_ctx</span><span class="p">(</span>
+</span><span id="__span-2-36"><a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a>    <span class="n">cond</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;published&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span>
+</span><span id="__span-2-37"><a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a>    <span class="n">page</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+</span><span id="__span-2-38"><a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a>    <span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+</span><span id="__span-2-39"><a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a><span class="p">)</span>
+</span><span id="__span-2-40"><a id="__codelineno-2-40" name="__codelineno-2-40" href="#__codelineno-2-40"></a><span class="c1"># result.count — total matching records</span>
+</span><span id="__span-2-41"><a id="__codelineno-2-41" name="__codelineno-2-41" href="#__codelineno-2-41"></a><span class="c1"># result.data  — list of ArticleSerializer instances</span>
+</span></code></pre></div>
+<h2 id="the-meta-class">The Meta Class<a class="headerlink" href="#the-meta-class" title="Permanent link">&para;</a></h2>
+<p>Every serializer must define an inner <code>Meta</code> class with at least a <code>model</code> attribute:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">ArticleSerializer</span><span class="p">(</span><span class="n">Serializer</span><span class="p">):</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="k">class</span><span class="w"> </span><span class="nc">Meta</span><span class="p">:</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>        <span class="n">model</span> <span class="o">=</span> <span class="n">Article</span>
+</span></code></pre></div>
+<h3 id="meta-options">Meta options<a class="headerlink" href="#meta-options" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>model</code></td>
+<td><code>Type[Model]</code></td>
+<td>required</td>
+<td>The Tortoise ORM model to serialize.</td>
+</tr>
+<tr>
+<td><code>include</code></td>
+<td><code>List[str]</code></td>
+<td><code>[]</code></td>
+<td>Fields to include. If set, all other fields are excluded.</td>
+</tr>
+<tr>
+<td><code>exclude</code></td>
+<td><code>List[str]</code></td>
+<td><code>[]</code></td>
+<td>Fields to exclude. Cannot be used together with <code>include</code>.</td>
+</tr>
+<tr>
+<td><code>enable_relations</code></td>
+<td><code>bool</code></td>
+<td><code>False</code></td>
+<td>Generate fields for relation models (FK, M2M, O2O).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="controlling-fields">Controlling fields<a class="headerlink" href="#controlling-fields" title="Permanent link">&para;</a></h3>
+<p>By default all model fields are included. Use <code>include</code> or <code>exclude</code> (but not both) to control which fields appear:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">ArticleSummarySerializer</span><span class="p">(</span><span class="n">Serializer</span><span class="p">):</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="k">class</span><span class="w"> </span><span class="nc">Meta</span><span class="p">:</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>        <span class="n">model</span> <span class="o">=</span> <span class="n">Article</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>        <span class="n">include</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;title&quot;</span><span class="p">,</span> <span class="s2">&quot;published&quot;</span><span class="p">]</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="k">class</span><span class="w"> </span><span class="nc">ArticleSerializer</span><span class="p">(</span><span class="n">Serializer</span><span class="p">):</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>    <span class="k">class</span><span class="w"> </span><span class="nc">Meta</span><span class="p">:</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>        <span class="n">model</span> <span class="o">=</span> <span class="n">Article</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>        <span class="n">exclude</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;created_at&quot;</span><span class="p">]</span>
+</span></code></pre></div>
+<h2 id="crud-operations">CRUD Operations<a class="headerlink" href="#crud-operations" title="Permanent link">&para;</a></h2>
+<p>All CRUD methods are class methods that accept a Pydantic <code>BaseModel</code> context object. The context provides the data for the operation.</p>
+<h3 id="create_from_ctx">create_from_ctx<a class="headerlink" href="#create_from_ctx" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">article</span> <span class="o">=</span> <span class="k">await</span> <span class="n">ArticleSerializer</span><span class="o">.</span><span class="n">create_from_ctx</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span>
+</span></code></pre></div>
+<p>Creates a new database record from <code>ctx</code> and returns the serialized instance.</p>
+<h3 id="retrieve_from_ctx">retrieve_from_ctx<a class="headerlink" href="#retrieve_from_ctx" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">article</span> <span class="o">=</span> <span class="k">await</span> <span class="n">ArticleSerializer</span><span class="o">.</span><span class="n">retrieve_from_ctx</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span>
+</span></code></pre></div>
+<p>Retrieves a record by <code>ctx.id</code> and returns the serialized instance.</p>
+<h3 id="update_from_ctx">update_from_ctx<a class="headerlink" href="#update_from_ctx" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">article</span> <span class="o">=</span> <span class="k">await</span> <span class="n">ArticleSerializer</span><span class="o">.</span><span class="n">update_from_ctx</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span>
+</span></code></pre></div>
+<p>Finds the record by <code>ctx.id</code>, updates the fields present in <code>ctx</code>, saves, and returns the serialized instance.</p>
+<h3 id="destroy_from_ctx">destroy_from_ctx<a class="headerlink" href="#destroy_from_ctx" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">await</span> <span class="n">ArticleSerializer</span><span class="o">.</span><span class="n">destroy_from_ctx</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span>
+</span></code></pre></div>
+<p>Finds the record by <code>ctx.id</code> and deletes it.</p>
+<h3 id="list_from_ctx">list_from_ctx<a class="headerlink" href="#list_from_ctx" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">ArticleSerializer</span><span class="o">.</span><span class="n">list_from_ctx</span><span class="p">(</span><span class="n">cond</span><span class="p">,</span> <span class="n">page</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">order_by</span><span class="o">=</span><span class="s2">&quot;-created_at&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+<p>Queries records matching <code>cond</code> (a dict of filter kwargs passed to Tortoise's <code>.filter()</code>), paginates the results, and returns a <code>Result</code> object.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cond</code></td>
+<td><code>Dict</code></td>
+<td>Tortoise ORM filter kwargs (e.g. <code>{"published": True}</code>).</td>
+</tr>
+<tr>
+<td><code>page</code></td>
+<td><code>int</code></td>
+<td>Page number (1-based). Pass <code>0</code> to disable pagination.</td>
+</tr>
+<tr>
+<td><code>size</code></td>
+<td><code>int</code></td>
+<td>Page size.</td>
+</tr>
+<tr>
+<td><code>order_by</code></td>
+<td><code>str \| List[str]</code></td>
+<td>Optional ordering field(s). Prefix with <code>-</code> for descending.</td>
+</tr>
+<tr>
+<td><code>fetch_relations</code></td>
+<td><code>bool</code></td>
+<td>Whether to prefetch related objects. Defaults to <code>True</code>.</td>
+</tr>
+</tbody>
+</table>
+<p>Returns a <code>Result[T]</code> with <code>.count</code> (total) and <code>.data</code> (list of serializer instances).</p>
+<h3 id="list_from_queryset">list_from_queryset<a class="headerlink" href="#list_from_queryset" title="Permanent link">&para;</a></h3>
+<p>You can also pass a pre-built <code>QuerySet</code> instead of a condition dict:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">qs</span> <span class="o">=</span> <span class="n">Article</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">published</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s2">&quot;-created_at&quot;</span><span class="p">)</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">ArticleSerializer</span><span class="o">.</span><span class="n">list_from_queryset</span><span class="p">(</span><span class="n">qs</span><span class="p">,</span> <span class="n">page</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</span></code></pre></div>
+<h2 id="relation-support">Relation Support<a class="headerlink" href="#relation-support" title="Permanent link">&para;</a></h2>
+<p>Set <code>enable_relations = True</code> in <code>Meta</code> to include relation fields (ForeignKey, ManyToMany, OneToOne, and their backward variants):</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">StudentSerializer</span><span class="p">(</span><span class="n">Serializer</span><span class="p">):</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>    <span class="k">class</span><span class="w"> </span><span class="nc">Meta</span><span class="p">:</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>        <span class="n">model</span> <span class="o">=</span> <span class="n">Student</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>        <span class="n">enable_relations</span> <span class="o">=</span> <span class="kc">True</span>
+</span></code></pre></div>
+<p><strong>Important:</strong> Relations are only resolved after <code>Tortoise.init()</code> has been called. Avoid accessing serializers with <code>enable_relations = True</code> inside <code>app.ready()</code>. If you need early access, either override the relation field manually or exclude it:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># Option 1: Override with a default</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">StudentSerializer</span><span class="p">(</span><span class="n">Serializer</span><span class="p">):</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>    <span class="k">class</span><span class="w"> </span><span class="nc">Meta</span><span class="p">:</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>        <span class="n">model</span> <span class="o">=</span> <span class="n">Student</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>        <span class="n">enable_relations</span> <span class="o">=</span> <span class="kc">True</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>    <span class="n">courses</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="c1"># Option 2: Exclude the relation</span>
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="k">class</span><span class="w"> </span><span class="nc">StudentSerializer</span><span class="p">(</span><span class="n">Serializer</span><span class="p">):</span>
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>    <span class="k">class</span><span class="w"> </span><span class="nc">Meta</span><span class="p">:</span>
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>        <span class="n">model</span> <span class="o">=</span> <span class="n">Student</span>
+</span><span id="__span-12-13"><a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>        <span class="n">exclude</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;courses&quot;</span><span class="p">]</span>
+</span></code></pre></div>
+<h3 id="find_relation">find_relation<a class="headerlink" href="#find_relation" title="Permanent link">&para;</a></h3>
+<p>Discover the relationship between two serializers:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">relation</span> <span class="o">=</span> <span class="n">StudentSerializer</span><span class="o">.</span><span class="n">find_relation</span><span class="p">(</span><span class="n">CourseSerializer</span><span class="p">)</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="c1"># Relation(target=&quot;CourseSerializer&quot;, source_field=&quot;...&quot;, target_field=&quot;...&quot;, relation=&quot;m2m&quot;)</span>
+</span></code></pre></div>
+<p>Returns a <code>Relation</code> object or <code>None</code> if no relationship exists. Supported relation types: <code>fk</code>, <code>m2m</code>, <code>o2o</code>, <code>bk_fk</code>, <code>bk_o2o</code>.</p>
+<h2 id="custom-fields">Custom Fields<a class="headerlink" href="#custom-fields" title="Permanent link">&para;</a></h2>
+<p>You can add or override fields on a serializer:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">Field</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">unfazed.serializer</span><span class="w"> </span><span class="kn">import</span> <span class="n">Serializer</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="k">class</span><span class="w"> </span><span class="nc">CarSerializer</span><span class="p">(</span><span class="n">Serializer</span><span class="p">):</span>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>    <span class="n">override</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>    <span class="n">computed</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s2">&quot;custom_value&quot;</span><span class="p">)</span>
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>    <span class="k">class</span><span class="w"> </span><span class="nc">Meta</span><span class="p">:</span>
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>        <span class="n">model</span> <span class="o">=</span> <span class="n">Car</span>
+</span></code></pre></div>
+<p>Custom fields are merged with the auto-generated fields. If a custom field has the same name as a model field, the custom definition takes precedence.</p>
+<h2 id="api-reference">API Reference<a class="headerlink" href="#api-reference" title="Permanent link">&para;</a></h2>
+<h3 id="serializer">Serializer<a class="headerlink" href="#serializer" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Serializer</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">,</span> <span class="n">metaclass</span><span class="o">=</span><span class="n">MetaClass</span><span class="p">)</span>
+</span></code></pre></div>
+<p>Base class for all serializers. Automatically generates Pydantic fields from the Tortoise model defined in <code>Meta</code>.</p>
+<p><strong>Class methods (CRUD):</strong></p>
 <ul>
-<li><strong>自动模型转换</strong>: 基于 Tortoise ORM 模型自动生成 Pydantic 序列化器</li>
-<li><strong>完整的 CRUD 操作</strong>: 内置创建、读取、更新、删除的完整方法</li>
-<li><strong>关系字段支持</strong>: 支持外键、多对多、一对一等各种关系字段</li>
-<li><strong>字段定制</strong>: 支持字段覆盖、新增字段和字段过滤</li>
-<li><strong>分页查询</strong>: 内置高效的分页查询机制</li>
-<li><strong>类型安全</strong>: 完整的类型注解和 Pydantic 验证</li>
+<li><code>async create_from_ctx(ctx: BaseModel, **kwargs) -&gt; Self</code>: Create a record.</li>
+<li><code>async update_from_ctx(ctx: BaseModel, **kwargs) -&gt; Self</code>: Update a record (looks up by <code>ctx.id</code>).</li>
+<li><code>async destroy_from_ctx(ctx: BaseModel, **kwargs) -&gt; None</code>: Delete a record (looks up by <code>ctx.id</code>).</li>
+<li><code>async retrieve_from_ctx(ctx: BaseModel, **kwargs) -&gt; Self</code>: Retrieve a single record.</li>
+<li><code>async list_from_ctx(cond: Dict, page: int, size: int, **kwargs) -&gt; Result[Self]</code>: List with pagination.</li>
+<li><code>async list_from_queryset(queryset: QuerySet, page: int, size: int, **kwargs) -&gt; Result[Self]</code>: List from a pre-built queryset.</li>
 </ul>
-<h3 id="_3">核心组件</h3>
+<p><strong>Class methods (low-level):</strong></p>
 <ul>
-<li><strong>Serializer</strong>: 序列化器基类，提供所有核心功能</li>
-<li><strong>MetaClass</strong>: 元类，负责自动生成 Pydantic 模型</li>
-<li><strong>create_model_from_tortoise</strong>: 核心转换函数，将 Tortoise 模型转换为 Pydantic 模型</li>
-<li><strong>关系字段处理器</strong>: 处理各种关系字段的专用函数</li>
+<li><code>from_instance(instance: Model) -&gt; Self</code>: Create a serializer from a model instance.</li>
+<li><code>find_relation(other_cls: Type[Serializer]) -&gt; Relation | None</code>: Discover relationship between two serializers.</li>
+<li><code>get_queryset(cond: Dict, **kwargs) -&gt; QuerySet</code>: Build a queryset from conditions.</li>
+<li><code>get_fetch_fields() -&gt; List[str]</code>: Return relation fields to prefetch.</li>
 </ul>
-<h3 id="_4">设计理念</h3>
-<ol>
-<li><strong>约定优于配置</strong>: 大部分功能开箱即用，无需复杂配置</li>
-<li><strong>类型安全</strong>: 全面的类型检查和验证</li>
-<li><strong>高性能</strong>: 优化的查询和序列化性能</li>
-<li><strong>灵活性</strong>: 支持字段定制和行为扩展</li>
-</ol>
-<h2 id="_5">快速开始</h2>
-<h3 id="_6">基本使用</h3>
-<pre><code class="language-python"># models.py
-from tortoise import Model, fields
-
-class Student(Model):
-    id = fields.BigIntField(primary_key=True)
-    name = fields.CharField(max_length=255, description=&quot;学生姓名&quot;)
-    age = fields.IntField(description=&quot;年龄&quot;)
-    email = fields.CharField(max_length=255, null=True, description=&quot;邮箱&quot;)
-    is_active = fields.BooleanField(default=True, description=&quot;是否激活&quot;)
-    created_at = fields.DatetimeField(auto_now_add=True)
-    updated_at = fields.DatetimeField(auto_now=True)
-
-    class Meta:
-        table = &quot;students&quot;
-
-# serializers.py
-from unfazed.serializer import Serializer
-from .models import Student
-
-class StudentSerializer(Serializer):
-    class Meta:
-        model = Student
-</code></pre>
-<h3 id="crud">CRUD 操作</h3>
-<pre><code class="language-python">from pydantic import BaseModel
-from typing import Dict, Any
-
-# 1. 创建学生
-class StudentCreateData(BaseModel):
-    name: str
-    age: int
-    email: str = None
-
-async def create_student():
-    create_data = StudentCreateData(name=&quot;张三&quot;, age=20, email=&quot;zhangsan@example.com&quot;)
-    student = await StudentSerializer.create_from_ctx(create_data)
-    print(f&quot;创建学生: {student.name}, ID: {student.id}&quot;)
-    return student
-
-# 2. 查询学生
-class StudentRetrieveData(BaseModel):
-    id: int
-
-async def get_student(student_id: int):
-    retrieve_data = StudentRetrieveData(id=student_id)
-    student = await StudentSerializer.retrieve_from_ctx(retrieve_data)
-    print(f&quot;查询学生: {student.name}, 年龄: {student.age}&quot;)
-    return student
-
-# 3. 更新学生
-class StudentUpdateData(BaseModel):
-    id: int
-    name: str = None
-    age: int = None
-    email: str = None
-
-async def update_student(student_id: int):
-    update_data = StudentUpdateData(id=student_id, age=21)
-    student = await StudentSerializer.update_from_ctx(update_data)
-    print(f&quot;更新学生: {student.name}, 新年龄: {student.age}&quot;)
-    return student
-
-# 4. 删除学生
-class StudentDeleteData(BaseModel):
-    id: int
-
-async def delete_student(student_id: int):
-    delete_data = StudentDeleteData(id=student_id)
-    await StudentSerializer.destroy_from_ctx(delete_data)
-    print(f&quot;删除学生 ID: {student_id}&quot;)
-
-# 5. 分页查询
-async def list_students():
-    # 查询条件
-    conditions: Dict[str, Any] = {&quot;is_active&quot;: True}
-
-    # 分页参数
-    page = 1
-    size = 10
-
-    # 查询选项
-    result = await StudentSerializer.list_from_ctx(
-        cond=conditions,
-        page=page,
-        size=size,
-        order_by=[&quot;-created_at&quot;],  # 按创建时间倒序
-        fetch_relations=True
-    )
-
-    print(f&quot;总数: {result.count}&quot;)
-    print(f&quot;当前页学生数: {len(result.data)}&quot;)
-    for student in result.data:
-        print(f&quot;- {student.name} (ID: {student.id})&quot;)
-
-    return result
-</code></pre>
-<h2 id="_7">字段定制</h2>
-<h3 id="_8">字段覆盖</h3>
-<p>可以覆盖模型中的字段类型或属性：</p>
-<pre><code class="language-python">from pydantic import Field
-from datetime import datetime
-
-class StudentSerializer(Serializer):
-    # 覆盖字段类型
-    age: str = Field(..., description=&quot;年龄（字符串格式）&quot;)
-
-    # 添加新字段
-    display_name: str = Field(default=&quot;&quot;, description=&quot;显示名称&quot;)
-
-    # 覆盖字段默认值
-    is_active: bool = Field(default=False, description=&quot;是否激活&quot;)
-
-    class Meta:
-        model = Student
-
-# 使用示例
-student_data = {
-    &quot;name&quot;: &quot;李四&quot;,
-    &quot;age&quot;: &quot;22&quot;,  # 现在是字符串类型
-    &quot;display_name&quot;: &quot;学生李四&quot;,
-    &quot;email&quot;: &quot;lisi@example.com&quot;
-}
-
-student = StudentSerializer(**student_data)
-print(f&quot;年龄类型: {type(student.age)}&quot;)  # &lt;class 'str'&gt;
-</code></pre>
-<h3 id="_9">字段过滤</h3>
-<p>使用 <code>include</code> 和 <code>exclude</code> 控制序列化字段：</p>
-<pre><code class="language-python"># 只包含特定字段
-class StudentBasicSerializer(Serializer):
-    class Meta:
-        model = Student
-        include = [&quot;id&quot;, &quot;name&quot;, &quot;age&quot;]
-
-# 排除特定字段
-class StudentPublicSerializer(Serializer):
-    class Meta:
-        model = Student
-        exclude = [&quot;created_at&quot;, &quot;updated_at&quot;]
-
-# 使用示例
-student = await StudentBasicSerializer.retrieve_from_ctx(
-    StudentRetrieveData(id=1)
-)
-# 只包含 id, name, age 字段
-print(student.model_dump())  # {&quot;id&quot;: 1, &quot;name&quot;: &quot;张三&quot;, &quot;age&quot;: 20}
-</code></pre>
-<h2 id="_10">关系字段处理</h2>
-<h3 id="_11">定义关系模型</h3>
-<pre><code class="language-python"># models.py
-class Course(Model):
-    id = fields.BigIntField(primary_key=True)
-    name = fields.CharField(max_length=255, description=&quot;课程名称&quot;)
-    code = fields.CharField(max_length=50, description=&quot;课程代码&quot;)
-    credits = fields.IntField(description=&quot;学分&quot;)
-
-class StudentCourse(Model):
-    id = fields.BigIntField(primary_key=True)
-    student = fields.ForeignKeyField(&quot;models.Student&quot;, related_name=&quot;enrollments&quot;)
-    course = fields.ForeignKeyField(&quot;models.Course&quot;, related_name=&quot;enrollments&quot;)
-    score = fields.FloatField(null=True, description=&quot;成绩&quot;)
-    enrolled_at = fields.DatetimeField(auto_now_add=True)
-
-class StudentProfile(Model):
-    id = fields.BigIntField(primary_key=True)
-    student = fields.OneToOneField(&quot;models.Student&quot;, related_name=&quot;profile&quot;)
-    phone = fields.CharField(max_length=20, null=True)
-    address = fields.TextField(null=True)
-    emergency_contact = fields.CharField(max_length=255, null=True)
-
-# 更新 Student 模型
-class Student(Model):
-    # ... 原有字段 ...
-
-    # 关系字段会被自动检测
-    # profile: StudentProfile (一对一)
-    # enrollments: List[StudentCourse] (一对多)
-</code></pre>
-<h3 id="_12">关系字段序列化器</h3>
-<pre><code class="language-python">class CourseSerializer(Serializer):
-    class Meta:
-        model = Course
-
-class StudentProfileSerializer(Serializer):
-    class Meta:
-        model = StudentProfile
-        exclude = [&quot;student&quot;]  # 避免循环引用
-
-class StudentCourseSerializer(Serializer):
-    class Meta:
-        model = StudentCourse
-
-# 启用关系字段的学生序列化器
-class StudentWithRelationsSerializer(Serializer):
-    class Meta:
-        model = Student
-        enable_relations = True
-
-# 手动定义关系字段（推荐方式）
-class StudentDetailSerializer(Serializer):
-    # 手动定义关系字段，避免循环引用
-    profile: StudentProfileSerializer = None
-    enrollments: List[StudentCourseSerializer] = []
-
-    class Meta:
-        model = Student
-        exclude = [&quot;created_at&quot;, &quot;updated_at&quot;]
-</code></pre>
-<h3 id="_13">关系查询</h3>
-<pre><code class="language-python">async def get_student_with_relations():
-    # 查询学生及其关联数据
-    result = await StudentDetailSerializer.list_from_ctx(
-        cond={&quot;is_active&quot;: True},
-        page=1,
-        size=10,
-        fetch_relations=True  # 自动预取关系字段
-    )
-
-    for student in result.data:
-        print(f&quot;学生: {student.name}&quot;)
-        if student.profile:
-            print(f&quot;  联系电话: {student.profile.phone}&quot;)
-
-        print(f&quot;  选课情况:&quot;)
-        for enrollment in student.enrollments:
-            print(f&quot;    - 课程: {enrollment.course.name}, 成绩: {enrollment.score}&quot;)
-
-# 查找关系
-async def find_student_course_relation():
-    relation = StudentSerializer.find_relation(CourseSerializer)
-    if relation:
-        print(f&quot;关系类型: {relation.relation}&quot;)
-        print(f&quot;源字段: {relation.source_field}&quot;)
-        print(f&quot;目标字段: {relation.target_field}&quot;)
-</code></pre>
-<h2 id="_14">高级查询</h2>
-<h3 id="_15">复杂查询条件</h3>
-<pre><code class="language-python">from datetime import datetime, timedelta
-
-async def advanced_queries():
-    # 1. 复杂过滤条件
-    conditions = {
-        &quot;age__gte&quot;: 18,  # 年龄大于等于18
-        &quot;age__lt&quot;: 25,   # 年龄小于25
-        &quot;name__icontains&quot;: &quot;张&quot;,  # 姓名包含&quot;张&quot;
-        &quot;is_active&quot;: True,
-        &quot;created_at__gte&quot;: datetime.now() - timedelta(days=30)  # 最近30天创建
-    }
-
-    result = await StudentSerializer.list_from_ctx(
-        cond=conditions,
-        page=1,
-        size=20,
-        order_by=[&quot;-age&quot;, &quot;name&quot;]  # 按年龄降序，姓名升序
-    )
-
-    # 2. 使用 QuerySet 进行更复杂的查询
-    from tortoise.queryset import QuerySet
-
-    queryset = Student.filter(
-        age__gte=18,
-        is_active=True
-    ).select_related(&quot;profile&quot;).prefetch_related(&quot;enrollments&quot;)
-
-    result = await StudentSerializer.list_from_queryset(
-        queryset=queryset,
-        page=1,
-        size=10
-    )
-
-    return result
-
-# 自定义查询方法
-class StudentSerializer(Serializer):
-    class Meta:
-        model = Student
-
-    @classmethod
-    async def get_active_students_by_age_range(
-        cls, 
-        min_age: int, 
-        max_age: int, 
-        page: int = 1, 
-        size: int = 10
-    ):
-        conditions = {
-            &quot;age__gte&quot;: min_age,
-            &quot;age__lte&quot;: max_age,
-            &quot;is_active&quot;: True
-        }
-
-        return await cls.list_from_ctx(
-            cond=conditions,
-            page=page,
-            size=size,
-            order_by=[&quot;age&quot;]
-        )
-</code></pre>
-<h3 id="_16">批量操作</h3>
-<pre><code class="language-python">async def batch_operations():
-    # 1. 批量创建
-    students_data = [
-        {&quot;name&quot;: &quot;学生1&quot;, &quot;age&quot;: 20, &quot;email&quot;: &quot;student1@example.com&quot;},
-        {&quot;name&quot;: &quot;学生2&quot;, &quot;age&quot;: 21, &quot;email&quot;: &quot;student2@example.com&quot;},
-        {&quot;name&quot;: &quot;学生3&quot;, &quot;age&quot;: 22, &quot;email&quot;: &quot;student3@example.com&quot;},
-    ]
-
-    created_students = []
-    for data in students_data:
-        create_data = StudentCreateData(**data)
-        student = await StudentSerializer.create_from_ctx(create_data)
-        created_students.append(student)
-
-    # 2. 批量更新
-    for student in created_students:
-        update_data = StudentUpdateData(
-            id=student.id,
-            age=student.age + 1
-        )
-        await StudentSerializer.update_from_ctx(update_data)
-
-    # 3. 批量删除
-    for student in created_students:
-        delete_data = StudentDeleteData(id=student.id)
-        await StudentSerializer.destroy_from_ctx(delete_data)
-</code></pre>
-<h2 id="meta">Meta 配置详解</h2>
-<h3 id="_17">配置选项</h3>
-<pre><code class="language-python">class StudentSerializer(Serializer):
-    class Meta:
-        model = Student                    # 必需: 关联的 Tortoise 模型
-        include = [&quot;id&quot;, &quot;name&quot;, &quot;age&quot;]   # 可选: 包含的字段列表
-        exclude = [&quot;created_at&quot;]          # 可选: 排除的字段列表 (与include互斥)
-        enable_relations = True           # 可选: 是否启用关系字段自动处理
-
-# 字段包含示例
-class StudentMinimalSerializer(Serializer):
-    class Meta:
-        model = Student
-        include = [&quot;id&quot;, &quot;name&quot;]  # 只序列化 id 和 name
-
-# 字段排除示例  
-class StudentWithoutTimestampsSerializer(Serializer):
-    class Meta:
-        model = Student
-        exclude = [&quot;created_at&quot;, &quot;updated_at&quot;]  # 排除时间戳字段
-
-# 关系字段启用示例
-class StudentFullSerializer(Serializer):
-    class Meta:
-        model = Student
-        enable_relations = True  # 自动处理关系字段
-</code></pre>
-<h3 id="_18">注意事项</h3>
-<p><strong>关系字段初始化</strong>：
-- <code>enable_relations = True</code> 时，序列化器会自动处理关系字段
-- 如果 <code>Tortoise._inited</code> 未初始化，关系字段会被跳过以避免错误
-- 建议在 <code>app.ready()</code> 方法中避免访问序列化器，或手动定义关系字段</p>
-<pre><code class="language-python"># 推荐的关系字段处理方式
-class StudentSafeSerializer(Serializer):
-    # 手动定义关系字段，避免初始化问题
-    profile: StudentProfileSerializer = None
-    courses: List[CourseSerializer] = []
-
-    class Meta:
-        model = Student
-        # 不启用自动关系字段处理
-        enable_relations = False
-</code></pre>
-<h2 id="_19">最佳实践</h2>
-<h3 id="1">1. 序列化器组织</h3>
-<pre><code class="language-python"># 按功能组织序列化器
-class StudentListSerializer(Serializer):
-    &quot;&quot;&quot;用于列表显示的轻量级序列化器&quot;&quot;&quot;
-    class Meta:
-        model = Student
-        include = [&quot;id&quot;, &quot;name&quot;, &quot;age&quot;, &quot;is_active&quot;]
-
-class StudentDetailSerializer(Serializer):
-    &quot;&quot;&quot;用于详情显示的完整序列化器&quot;&quot;&quot;
-    profile: StudentProfileSerializer = None
-
-    class Meta:
-        model = Student
-        exclude = [&quot;created_at&quot;, &quot;updated_at&quot;]
-
-class StudentCreateSerializer(Serializer):
-    &quot;&quot;&quot;用于创建的序列化器&quot;&quot;&quot;
-    class Meta:
-        model = Student
-        exclude = [&quot;id&quot;, &quot;created_at&quot;, &quot;updated_at&quot;]
-
-class StudentUpdateSerializer(Serializer):
-    &quot;&quot;&quot;用于更新的序列化器&quot;&quot;&quot;
-    class Meta:
-        model = Student
-        exclude = [&quot;id&quot;, &quot;created_at&quot;]  # 允许更新 updated_at
-</code></pre>
-<p>通过 Unfazed Serializer，您可以快速构建出功能强大、类型安全的数据序列化和 CRUD 操作系统。该系统完美结合了 Tortoise ORM 的数据库功能和 Pydantic 的验证能力，为构建高质量的 Web API 提供了坚实的基础。</p>
+<p><strong>Instance methods:</strong></p>
+<ul>
+<li><code>async create(**kwargs) -&gt; Model</code>: Insert the serializer's data into the database.</li>
+<li><code>async update(instance: Model, **kwargs) -&gt; Model</code>: Update an existing model instance.</li>
+<li><code>async retrieve(instance: Model, **kwargs) -&gt; Self</code> <em>(classmethod)</em>: Fetch relations and return serialized instance.</li>
+<li><code>async destroy(instance: Model, **kwargs) -&gt; None</code> <em>(classmethod)</em>: Delete a model instance.</li>
+<li><code>valid_data -&gt; Dict</code>: The subset of fields that can be written to the database.</li>
+<li><code>get_write_fields() -&gt; List[str]</code>: Return writable (non-pk, non-generated, non-auto) field names.</li>
+</ul>
+<h3 id="result">Result<a class="headerlink" href="#result" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Result</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">,</span> <span class="n">Generic</span><span class="p">[</span><span class="n">T</span><span class="p">]):</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>    <span class="n">count</span><span class="p">:</span> <span class="nb">int</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>    <span class="n">data</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">T</span><span class="p">]</span>
+</span></code></pre></div>
+<p>Pagination result returned by <code>list_from_ctx</code> and <code>list_from_queryset</code>.</p>
+<h3 id="relation">Relation<a class="headerlink" href="#relation" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Relation</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>    <span class="n">target</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>    <span class="n">source_field</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>    <span class="n">target_field</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>    <span class="n">relation</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;fk&quot;</span><span class="p">,</span> <span class="s2">&quot;m2m&quot;</span><span class="p">,</span> <span class="s2">&quot;o2o&quot;</span><span class="p">,</span> <span class="s2">&quot;bk_fk&quot;</span><span class="p">,</span> <span class="s2">&quot;bk_o2o&quot;</span><span class="p">]</span>
+</span></code></pre></div>
+<p>Describes a relationship between two serializers.</p>
 
 
 
@@ -1920,6 +1921,12 @@ class StudentUpdateSerializer(Serializer):
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
       </main>
       
         <footer class="md-footer">
@@ -1936,6 +1943,21 @@ class StudentUpdateSerializer(Serializer):
   
 </div>
       
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/unfazed-eco/unfazed" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
     </div>
   </div>
 </footer>
@@ -1945,8 +1967,10 @@ class StudentUpdateSerializer(Serializer):
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u62f7\u8c9d", "clipboard.copy": "\u62f7\u8c9d", "search.result.more.one": "\u6b64\u9801\u5c1a\u6709 1 \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.more.other": "\u6b64\u9801\u5c1a\u6709 # \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.none": "\u6c92\u6709\u627e\u5230\u7b26\u5408\u689d\u4ef6\u7684\u7d50\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u689d\u4ef6\u7684\u7d50\u679c", "search.result.other": "\u627e\u5230 # \u500b\u7b26\u5408\u689d\u4ef6\u7684\u7d50\u679c", "search.result.placeholder": "\u9375\u5165\u4ee5\u958b\u59cb\u6aa2\u7d22", "search.result.term.missing": "\u7f3a\u5931", "select.version": "\u9078\u64c7\u7248\u672c"}}</script>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.instant", "navigation.instant.progress", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>

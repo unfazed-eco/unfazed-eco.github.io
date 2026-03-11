@@ -1,18 +1,22 @@
 
 <!doctype html>
-<html lang="zh-Hant" class="no-js">
+<html lang="en" class="no-js">
   <head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="Production Ready ASGI web framework">
       
+      
+      
+        <link rel="canonical" href="https://unfazed-eco.github.io/unfazed/features/response/">
       
       
         <link rel="prev" href="../request/">
       
       
-        <link rel="next" href="../endpoint/">
+        <link rel="next" href="../logging/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -25,6 +29,9 @@
     
     
       <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -53,7 +60,14 @@
   </head>
   
   
-    <body dir="ltr">
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -62,8 +76,8 @@
     <div data-md-component="skip">
       
         
-        <a href="#unfazed-httpresponse" class="md-skip">
-          跳轉至
+        <a href="#unfazed-http-responses" class="md-skip">
+          Skip to content
         </a>
       
     </div>
@@ -74,10 +88,8 @@
     
       
 
-  
-
-<header class="md-header md-header--shadow" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="頁首">
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../.." title="Unfazed" class="md-header__button md-logo" aria-label="Unfazed" data-md-component="logo">
       
   <img src="../../images/uz-logo.png" alt="logo">
@@ -104,6 +116,32 @@
       </div>
     </div>
     
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
     
       <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
@@ -111,21 +149,21 @@
       <div class="md-header__option">
   <div class="md-select">
     
-    <button class="md-header__button md-icon" aria-label="選擇語言">
+    <button class="md-header__button md-icon" aria-label="Select language">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
     </button>
     <div class="md-select__inner">
       <ul class="md-select__list">
         
           <li class="md-select__item">
-            <a href="./" hreflang="zh-Hant" class="md-select__link">
-              中文
+            <a href="./" hreflang="en" class="md-select__link">
+              English
             </a>
           </li>
         
           <li class="md-select__item">
-            <a href="../../en/features/response/" hreflang="en" class="md-select__link">
-              English
+            <a href="../../zh/features/response/" hreflang="zh" class="md-select__link">
+              中文
             </a>
           </li>
         
@@ -135,9 +173,48 @@
 </div>
     
     
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
     
       <div class="md-header__source">
-        <a href="https://github.com/unfazed-eco/unfazed" title="前往倉庫" class="md-source" data-md-component="source">
+        <a href="https://github.com/unfazed-eco/unfazed" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
@@ -157,6 +234,105 @@
       
         
           
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../tutorial/part1/" class="md-tabs__link">
+          
+  
+  Tutorial
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../app/" class="md-tabs__link">
+          
+  
+  Features
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../contrib/admin/" class="md-tabs__link">
+          
+  
+  Contrib
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../release-note/" class="md-tabs__link">
+        
+  
+    
+  
+  ReleaseNote
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -170,8 +346,10 @@
                     
 
 
+  
 
-<nav class="md-nav md-nav--primary" aria-label="導航" data-md-level="0">
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../.." title="Unfazed" class="md-nav__button md-logo" aria-label="Unfazed" data-md-component="logo">
       
@@ -182,7 +360,7 @@
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/unfazed-eco/unfazed" title="前往倉庫" class="md-source" data-md-component="source">
+      <a href="https://github.com/unfazed-eco/unfazed" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
@@ -224,6 +402,11 @@
     
     
     
+      
+      
+        
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -261,7 +444,7 @@
         
   
   <span class="md-ellipsis">
-    Part 1 Install & Create Project
+    Part 1 Installation and Project Creation
   </span>
   
 
@@ -282,7 +465,7 @@
         
   
   <span class="md-ellipsis">
-    Part 2 Create Application
+    Part 2 Creating Applications and Hello World
   </span>
   
 
@@ -303,7 +486,7 @@
         
   
   <span class="md-ellipsis">
-    Part 3 Models and Serializer
+    Part 3 Data Models and Serializers
   </span>
   
 
@@ -324,7 +507,7 @@
         
   
   <span class="md-ellipsis">
-    Part 4 Endpoint and Schema
+    Part 4 API Interface Design and Schema Definition
   </span>
   
 
@@ -345,7 +528,7 @@
         
   
   <span class="md-ellipsis">
-    Part 5 Services
+    Part 5 Business Logic Implementation
   </span>
   
 
@@ -366,7 +549,7 @@
         
   
   <span class="md-ellipsis">
-    Part 6 Test
+    Part 6 Testing and Quality Assurance
   </span>
   
 
@@ -394,15 +577,23 @@
     
     
     
+      
+        
+        
+      
+      
+        
+      
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -419,27 +610,6 @@
             Features
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../settings/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Settings
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
             
               
                 
@@ -469,11 +639,53 @@
   
   
     <li class="md-nav__item">
+      <a href="../settings/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Settings
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../route/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     Route
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../endpoint/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Endpoint
   </span>
   
 
@@ -532,11 +744,53 @@
   
   
     <li class="md-nav__item">
-      <a href="../logging/" class="md-nav__link">
+      <a href="../command/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Logging
+    Command
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tortoise-orm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ORM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../serializer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Serializer
   </span>
   
 
@@ -606,7 +860,7 @@
       
         
 
-<nav class="md-nav md-nav--secondary" aria-label="目錄">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
   
@@ -615,42 +869,87 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      目錄
+      Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#quick-start" class="md-nav__link">
     <span class="md-ellipsis">
-      响应系统概述
+      Quick Start
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="响应系统概述">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#response-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response Types
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Response Types">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#httpresponse-plain-text" class="md-nav__link">
     <span class="md-ellipsis">
-      核心特性
+      HttpResponse — Plain Text
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#plaintextresponse" class="md-nav__link">
     <span class="md-ellipsis">
-      响应类型层次结构
+      PlainTextResponse
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#htmlresponse" class="md-nav__link">
     <span class="md-ellipsis">
-      基础签名
+      HtmlResponse
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jsonresponse" class="md-nav__link">
+    <span class="md-ellipsis">
+      JsonResponse
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redirectresponse" class="md-nav__link">
+    <span class="md-ellipsis">
+      RedirectResponse
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#streamingresponse" class="md-nav__link">
+    <span class="md-ellipsis">
+      StreamingResponse
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fileresponse" class="md-nav__link">
+    <span class="md-ellipsis">
+      FileResponse
     </span>
   </a>
   
@@ -662,19 +961,19 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#common-parameters" class="md-nav__link">
     <span class="md-ellipsis">
-      基本用法
+      Common Parameters
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="基本用法">
+    <nav class="md-nav" aria-label="Common Parameters">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#background-tasks" class="md-nav__link">
     <span class="md-ellipsis">
-      简单示例
+      Background Tasks
     </span>
   </a>
   
@@ -686,106 +985,73 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#api-reference" class="md-nav__link">
     <span class="md-ellipsis">
-      响应类型详解
+      API Reference
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="响应类型详解">
+    <nav class="md-nav" aria-label="API Reference">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#plaintextresponse-" class="md-nav__link">
+  <a href="#httpresponse" class="md-nav__link">
     <span class="md-ellipsis">
-      PlainTextResponse - 纯文本响应
+      HttpResponse
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#htmlresponse-html" class="md-nav__link">
+  <a href="#plaintextresponse_1" class="md-nav__link">
     <span class="md-ellipsis">
-      HtmlResponse - HTML响应
+      PlainTextResponse
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#jsonresponse-json" class="md-nav__link">
+  <a href="#htmlresponse_1" class="md-nav__link">
     <span class="md-ellipsis">
-      JsonResponse - JSON响应
+      HtmlResponse
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#redirectresponse-" class="md-nav__link">
+  <a href="#jsonresponse_1" class="md-nav__link">
     <span class="md-ellipsis">
-      RedirectResponse - 重定向响应
+      JsonResponse
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#streamingresponse-" class="md-nav__link">
+  <a href="#redirectresponse_1" class="md-nav__link">
     <span class="md-ellipsis">
-      StreamingResponse - 流式响应
+      RedirectResponse
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#fileresponse-" class="md-nav__link">
+  <a href="#streamingresponse_1" class="md-nav__link">
     <span class="md-ellipsis">
-      FileResponse - 文件响应
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
-    <span class="md-ellipsis">
-      高级用法
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="高级用法">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
-    <span class="md-ellipsis">
-      背景任务
+      StreamingResponse
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
+  <a href="#fileresponse_1" class="md-nav__link">
     <span class="md-ellipsis">
-      条件响应
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
-    <span class="md-ellipsis">
-      自定义响应类
+      FileResponse
     </span>
   </a>
   
@@ -812,74 +1078,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../endpoint/" class="md-nav__link">
+      <a href="../logging/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Endpoint
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../staticfiles.md" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Staticfiles
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../tortoise-orm/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    ORM
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../serializer/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Serializer
+    Logging
   </span>
   
 
@@ -917,11 +1120,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../error/" class="md-nav__link">
+      <a href="../exception/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Error
+    Exceptions
   </span>
   
 
@@ -959,11 +1162,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../command/" class="md-nav__link">
+      <a href="../testclient/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Command
+    Test Client
   </span>
   
 
@@ -980,11 +1183,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../testclient/" class="md-nav__link">
+      <a href="../concurrency/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Test Client
+    Concurrency
   </span>
   
 
@@ -1009,6 +1212,11 @@
   
     
     
+    
+      
+      
+        
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -1139,7 +1347,7 @@
                   <div class="md-sidebar__inner">
                     
 
-<nav class="md-nav md-nav--secondary" aria-label="目錄">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
   
@@ -1148,42 +1356,87 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      目錄
+      Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#quick-start" class="md-nav__link">
     <span class="md-ellipsis">
-      响应系统概述
+      Quick Start
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="响应系统概述">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#response-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response Types
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Response Types">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#httpresponse-plain-text" class="md-nav__link">
     <span class="md-ellipsis">
-      核心特性
+      HttpResponse — Plain Text
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#plaintextresponse" class="md-nav__link">
     <span class="md-ellipsis">
-      响应类型层次结构
+      PlainTextResponse
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#htmlresponse" class="md-nav__link">
     <span class="md-ellipsis">
-      基础签名
+      HtmlResponse
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jsonresponse" class="md-nav__link">
+    <span class="md-ellipsis">
+      JsonResponse
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redirectresponse" class="md-nav__link">
+    <span class="md-ellipsis">
+      RedirectResponse
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#streamingresponse" class="md-nav__link">
+    <span class="md-ellipsis">
+      StreamingResponse
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fileresponse" class="md-nav__link">
+    <span class="md-ellipsis">
+      FileResponse
     </span>
   </a>
   
@@ -1195,19 +1448,19 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#common-parameters" class="md-nav__link">
     <span class="md-ellipsis">
-      基本用法
+      Common Parameters
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="基本用法">
+    <nav class="md-nav" aria-label="Common Parameters">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#background-tasks" class="md-nav__link">
     <span class="md-ellipsis">
-      简单示例
+      Background Tasks
     </span>
   </a>
   
@@ -1219,106 +1472,73 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#api-reference" class="md-nav__link">
     <span class="md-ellipsis">
-      响应类型详解
+      API Reference
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="响应类型详解">
+    <nav class="md-nav" aria-label="API Reference">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#plaintextresponse-" class="md-nav__link">
+  <a href="#httpresponse" class="md-nav__link">
     <span class="md-ellipsis">
-      PlainTextResponse - 纯文本响应
+      HttpResponse
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#htmlresponse-html" class="md-nav__link">
+  <a href="#plaintextresponse_1" class="md-nav__link">
     <span class="md-ellipsis">
-      HtmlResponse - HTML响应
+      PlainTextResponse
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#jsonresponse-json" class="md-nav__link">
+  <a href="#htmlresponse_1" class="md-nav__link">
     <span class="md-ellipsis">
-      JsonResponse - JSON响应
+      HtmlResponse
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#redirectresponse-" class="md-nav__link">
+  <a href="#jsonresponse_1" class="md-nav__link">
     <span class="md-ellipsis">
-      RedirectResponse - 重定向响应
+      JsonResponse
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#streamingresponse-" class="md-nav__link">
+  <a href="#redirectresponse_1" class="md-nav__link">
     <span class="md-ellipsis">
-      StreamingResponse - 流式响应
+      RedirectResponse
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#fileresponse-" class="md-nav__link">
+  <a href="#streamingresponse_1" class="md-nav__link">
     <span class="md-ellipsis">
-      FileResponse - 文件响应
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
-    <span class="md-ellipsis">
-      高级用法
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="高级用法">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
-    <span class="md-ellipsis">
-      背景任务
+      StreamingResponse
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
+  <a href="#fileresponse_1" class="md-nav__link">
     <span class="md-ellipsis">
-      条件响应
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
-    <span class="md-ellipsis">
-      自定义响应类
+      FileResponse
     </span>
   </a>
   
@@ -1347,554 +1567,190 @@
   
 
 
-<h1 id="unfazed-httpresponse">Unfazed HttpResponse</h1>
-<p>Unfazed 提供了一套完整的 HTTP 响应类系统，基于 Starlette 的响应类并进行了功能增强。所有的视图函数都必须返回 <code>HttpResponse</code> 类型的对象。</p>
-<h2 id="_1">响应系统概述</h2>
-<h3 id="_2">核心特性</h3>
+<h1 id="unfazed-http-responses">Unfazed HTTP Responses<a class="headerlink" href="#unfazed-http-responses" title="Permanent link">&para;</a></h1>
+<p>Unfazed provides a family of response classes built on Starlette's <code>Response</code>. Each class targets a different content type — plain text, HTML, JSON, redirects, streaming, and file downloads with range-request support. All responses are ASGI callables and can be returned directly from endpoints.</p>
+<h2 id="quick-start">Quick Start<a class="headerlink" href="#quick-start" title="Permanent link">&para;</a></h2>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">unfazed.http</span><span class="w"> </span><span class="kn">import</span> <span class="n">HttpRequest</span><span class="p">,</span> <span class="n">JsonResponse</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_user</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">HttpRequest</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">JsonResponse</span><span class="p">:</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="k">return</span> <span class="n">JsonResponse</span><span class="p">({</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Alice&quot;</span><span class="p">},</span> <span class="n">status_code</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+</span></code></pre></div>
+<h2 id="response-types">Response Types<a class="headerlink" href="#response-types" title="Permanent link">&para;</a></h2>
+<h3 id="httpresponse-plain-text">HttpResponse — Plain Text<a class="headerlink" href="#httpresponse-plain-text" title="Permanent link">&para;</a></h3>
+<p>The base response class. Sends <code>text/plain</code> content by default.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">unfazed.http</span><span class="w"> </span><span class="kn">import</span> <span class="n">HttpResponse</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">hello</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">HttpRequest</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">HttpResponse</span><span class="p">:</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="s2">&quot;Hello, world!&quot;</span><span class="p">,</span> <span class="n">status_code</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+</span></code></pre></div>
+<h3 id="plaintextresponse">PlainTextResponse<a class="headerlink" href="#plaintextresponse" title="Permanent link">&para;</a></h3>
+<p>Alias for <code>HttpResponse</code> with <code>text/plain</code> media type. Functionally identical.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">unfazed.http</span><span class="w"> </span><span class="kn">import</span> <span class="n">PlainTextResponse</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">health</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">HttpRequest</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PlainTextResponse</span><span class="p">:</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="k">return</span> <span class="n">PlainTextResponse</span><span class="p">(</span><span class="s2">&quot;ok&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+<h3 id="htmlresponse">HtmlResponse<a class="headerlink" href="#htmlresponse" title="Permanent link">&para;</a></h3>
+<p>Sends <code>text/html</code> content.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">unfazed.http</span><span class="w"> </span><span class="kn">import</span> <span class="n">HtmlResponse</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">page</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">HttpRequest</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">HtmlResponse</span><span class="p">:</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="k">return</span> <span class="n">HtmlResponse</span><span class="p">(</span><span class="s2">&quot;&lt;h1&gt;Welcome&lt;/h1&gt;&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+<h3 id="jsonresponse">JsonResponse<a class="headerlink" href="#jsonresponse" title="Permanent link">&para;</a></h3>
+<p>Sends <code>application/json</code> content. Accepts dicts, lists, and Pydantic models. Uses <code>orjson</code> for serialization.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">unfazed.http</span><span class="w"> </span><span class="kn">import</span> <span class="n">JsonResponse</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="k">class</span><span class="w"> </span><span class="nc">User</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    <span class="n">age</span><span class="p">:</span> <span class="nb">int</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_user</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">HttpRequest</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">JsonResponse</span><span class="p">:</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>    <span class="c1"># From a dict</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>    <span class="k">return</span> <span class="n">JsonResponse</span><span class="p">({</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">})</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>    <span class="c1"># From a list</span>
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>    <span class="k">return</span> <span class="n">JsonResponse</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>    <span class="c1"># From a Pydantic model</span>
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>    <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>    <span class="k">return</span> <span class="n">JsonResponse</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+</span></code></pre></div>
+<p>Raises <code>ValueError</code> if the content is not a dict, list, or Pydantic model.</p>
+<h3 id="redirectresponse">RedirectResponse<a class="headerlink" href="#redirectresponse" title="Permanent link">&para;</a></h3>
+<p>Sends a redirect with a <code>Location</code> header. Requires a fully qualified URL (with scheme and host).</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">unfazed.http</span><span class="w"> </span><span class="kn">import</span> <span class="n">RedirectResponse</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">go_home</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">HttpRequest</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RedirectResponse</span><span class="p">:</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    <span class="k">return</span> <span class="n">RedirectResponse</span><span class="p">(</span><span class="s2">&quot;https://example.com&quot;</span><span class="p">)</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>    <span class="c1"># Permanent redirect</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>    <span class="k">return</span> <span class="n">RedirectResponse</span><span class="p">(</span><span class="s2">&quot;https://example.com/new&quot;</span><span class="p">,</span> <span class="n">status_code</span><span class="o">=</span><span class="mi">301</span><span class="p">)</span>
+</span></code></pre></div>
+<p>Raises <code>ValueError</code> if the URL is missing a scheme or host (e.g. <code>"/relative/path"</code>).</p>
+<h3 id="streamingresponse">StreamingResponse<a class="headerlink" href="#streamingresponse" title="Permanent link">&para;</a></h3>
+<p>Streams content from a sync or async iterable. Useful for large payloads or real-time data.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">unfazed.http</span><span class="w"> </span><span class="kn">import</span> <span class="n">StreamingResponse</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">stream_data</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">HttpRequest</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">StreamingResponse</span><span class="p">:</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">generate</span><span class="p">():</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>            <span class="k">yield</span> <span class="sa">f</span><span class="s2">&quot;line </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>    <span class="k">return</span> <span class="n">StreamingResponse</span><span class="p">(</span><span class="n">generate</span><span class="p">(),</span> <span class="n">media_type</span><span class="o">=</span><span class="s2">&quot;text/plain&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+<p>Sync generators work too — they are automatically wrapped in a thread pool.</p>
+<h3 id="fileresponse">FileResponse<a class="headerlink" href="#fileresponse" title="Permanent link">&para;</a></h3>
+<p>Streams a file with support for HTTP range requests (resumable downloads). Sets <code>Content-Disposition</code>, <code>ETag</code>, <code>Last-Modified</code>, and <code>Accept-Ranges</code> headers automatically.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">unfazed.http</span><span class="w"> </span><span class="kn">import</span> <span class="n">FileResponse</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">download</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">HttpRequest</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FileResponse</span><span class="p">:</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>    <span class="k">return</span> <span class="n">FileResponse</span><span class="p">(</span><span class="s2">&quot;/path/to/report.pdf&quot;</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;report.pdf&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+<p>Range request headers (<code>Range</code>, <code>If-Range</code>) are handled transparently:
+- Full file: <code>200 OK</code>
+- Partial content: <code>206 Partial Content</code>
+- Invalid range: <code>416 Range Not Satisfiable</code></p>
+<h2 id="common-parameters">Common Parameters<a class="headerlink" href="#common-parameters" title="Permanent link">&para;</a></h2>
+<p>All response classes accept these constructor arguments:</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>content</code></td>
+<td>varies</td>
+<td><code>None</code></td>
+<td>Response body.</td>
+</tr>
+<tr>
+<td><code>status_code</code></td>
+<td><code>int</code></td>
+<td><code>200</code></td>
+<td>HTTP status code.</td>
+</tr>
+<tr>
+<td><code>headers</code></td>
+<td><code>Mapping[str, str]</code></td>
+<td><code>None</code></td>
+<td>Additional HTTP headers.</td>
+</tr>
+<tr>
+<td><code>media_type</code></td>
+<td><code>str</code></td>
+<td>class default</td>
+<td>Content-Type header value.</td>
+</tr>
+<tr>
+<td><code>background</code></td>
+<td><code>BackgroundTask</code></td>
+<td><code>None</code></td>
+<td>Task to run after the response is sent.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="background-tasks">Background Tasks<a class="headerlink" href="#background-tasks" title="Permanent link">&para;</a></h3>
+<p>Run work after the response has been sent to the client:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">starlette.background</span><span class="w"> </span><span class="kn">import</span> <span class="n">BackgroundTask</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">unfazed.http</span><span class="w"> </span><span class="kn">import</span> <span class="n">JsonResponse</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">send_notification</span><span class="p">(</span><span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>    <span class="c1"># send email, push notification, etc.</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>    <span class="o">...</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">create_user</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">HttpRequest</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">JsonResponse</span><span class="p">:</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>    <span class="n">task</span> <span class="o">=</span> <span class="n">BackgroundTask</span><span class="p">(</span><span class="n">send_notification</span><span class="p">,</span> <span class="n">user_id</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>    <span class="k">return</span> <span class="n">JsonResponse</span><span class="p">({</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">42</span><span class="p">},</span> <span class="n">background</span><span class="o">=</span><span class="n">task</span><span class="p">)</span>
+</span></code></pre></div>
+<h2 id="api-reference">API Reference<a class="headerlink" href="#api-reference" title="Permanent link">&para;</a></h2>
+<h3 id="httpresponse">HttpResponse<a class="headerlink" href="#httpresponse" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">HttpResponse</span><span class="p">(</span><span class="n">starlette</span><span class="o">.</span><span class="n">responses</span><span class="o">.</span><span class="n">Response</span><span class="p">):</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>    <span class="n">media_type</span> <span class="o">=</span> <span class="s2">&quot;text/plain&quot;</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">content</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">status_code</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">media_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">background</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</span></code></pre></div>
+<h3 id="plaintextresponse_1">PlainTextResponse<a class="headerlink" href="#plaintextresponse_1" title="Permanent link">&para;</a></h3>
+<p><div class="language-python highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">PlainTextResponse</span><span class="p">(</span><span class="n">HttpResponse</span><span class="p">)</span>
+</span></code></pre></div>
+Same as <code>HttpResponse</code>. Media type: <code>text/plain</code>.</p>
+<h3 id="htmlresponse_1">HtmlResponse<a class="headerlink" href="#htmlresponse_1" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">HtmlResponse</span><span class="p">(</span><span class="n">HttpResponse</span><span class="p">):</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>    <span class="n">media_type</span> <span class="o">=</span> <span class="s2">&quot;text/html&quot;</span>
+</span></code></pre></div>
+<h3 id="jsonresponse_1">JsonResponse<a class="headerlink" href="#jsonresponse_1" title="Permanent link">&para;</a></h3>
+<p><div class="language-python highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">JsonResponse</span><span class="p">(</span><span class="n">HttpResponse</span><span class="p">):</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>    <span class="n">media_type</span> <span class="o">=</span> <span class="s2">&quot;application/json&quot;</span>
+</span></code></pre></div>
+Accepts <code>dict</code>, <code>list</code>, or <code>BaseModel</code>. Serializes with <code>orjson</code>.</p>
 <ul>
-<li><strong>多种响应类型</strong>: 支持文本、HTML、JSON、文件、流式响应等多种类型</li>
-<li><strong>高性能 JSON</strong>: 使用 orjson 提供高性能的 JSON 序列化</li>
-<li><strong>文件断点续传</strong>: 内置 HTTP Range 请求支持，实现断点下载</li>
-<li><strong>流式响应</strong>: 支持异步流式数据传输，适合大文件和实时数据</li>
-<li><strong>自动头部处理</strong>: 自动设置正确的 Content-Type 和其他必要头部</li>
-<li><strong>背景任务</strong>: 支持响应发送后执行的背景任务</li>
+<li><code>render(content) -&gt; bytes</code>: Serialize content to JSON bytes.</li>
 </ul>
-<h3 id="_3">响应类型层次结构</h3>
-<pre><code class="language-python">HttpResponse (基础响应类)
-├── PlainTextResponse (纯文本响应)
-├── HtmlResponse (HTML响应)
-├── JsonResponse (JSON响应)
-├── RedirectResponse (重定向响应)
-├── StreamingResponse (流式响应)
-└── FileResponse (文件响应，继承自StreamingResponse)
-</code></pre>
-<h3 id="_4">基础签名</h3>
-<pre><code class="language-python">class HttpResponse[T]:
-    def __init__(
-        self,
-        content: T | None = None,
-        status_code: int = 200,
-        headers: Mapping[str, str] | None = None,
-        media_type: str | None = None,
-        background: BackgroundTask | None = None,
-    ) -&gt; None: ...
-</code></pre>
-<h2 id="_5">基本用法</h2>
-<h3 id="_6">简单示例</h3>
-<pre><code class="language-python">from unfazed.http import HttpRequest, HttpResponse, JsonResponse
-from starlette.background import BackgroundTask
-
-async def simple_response(request: HttpRequest) -&gt; HttpResponse:
-    &quot;&quot;&quot;最简单的响应&quot;&quot;&quot;
-    return HttpResponse(&quot;Hello, World!&quot;)
-
-async def with_status_and_headers(request: HttpRequest) -&gt; HttpResponse:
-    &quot;&quot;&quot;带状态码和头部的响应&quot;&quot;&quot;
-    return HttpResponse(
-        content=&quot;自定义响应&quot;,
-        status_code=201,
-        headers={&quot;X-Custom-Header&quot;: &quot;MyValue&quot;},
-        media_type=&quot;text/plain; charset=utf-8&quot;
-    )
-
-def cleanup_task():
-    &quot;&quot;&quot;背景任务示例&quot;&quot;&quot;
-    print(&quot;响应发送后执行的清理任务&quot;)
-
-async def with_background_task(request: HttpRequest) -&gt; HttpResponse:
-    &quot;&quot;&quot;带背景任务的响应&quot;&quot;&quot;
-    task = BackgroundTask(cleanup_task)
-    return HttpResponse(
-        content=&quot;任务已提交&quot;,
-        background=task
-    )
-</code></pre>
-<h2 id="_7">响应类型详解</h2>
-<h3 id="plaintextresponse-">PlainTextResponse - 纯文本响应</h3>
-<p>用于返回纯文本内容，Content-Type 为 <code>text/plain</code>。</p>
-<pre><code class="language-python">from unfazed.http import PlainTextResponse
-
-async def text_response(request: HttpRequest) -&gt; PlainTextResponse:
-    &quot;&quot;&quot;返回纯文本&quot;&quot;&quot;
-    return PlainTextResponse(&quot;这是纯文本响应&quot;)
-
-async def text_with_encoding(request: HttpRequest) -&gt; PlainTextResponse:
-    &quot;&quot;&quot;指定编码的文本响应&quot;&quot;&quot;
-    return PlainTextResponse(
-        content=&quot;带编码的文本响应&quot;,
-        headers={&quot;Content-Type&quot;: &quot;text/plain; charset=utf-8&quot;}
-    )
-
-async def multiline_text(request: HttpRequest) -&gt; PlainTextResponse:
-    &quot;&quot;&quot;多行文本响应&quot;&quot;&quot;
-    text_content = &quot;&quot;&quot;
-    这是多行文本响应
-    第二行内容
-    第三行内容
-    &quot;&quot;&quot;
-    return PlainTextResponse(text_content.strip())
-</code></pre>
-<h3 id="htmlresponse-html">HtmlResponse - HTML响应</h3>
-<p>用于返回 HTML 内容，Content-Type 为 <code>text/html</code>。</p>
-<pre><code class="language-python">from unfazed.http import HtmlResponse
-
-async def html_page(request: HttpRequest) -&gt; HtmlResponse:
-    &quot;&quot;&quot;返回HTML页面&quot;&quot;&quot;
-    html_content = &quot;&quot;&quot;
-    &lt;!DOCTYPE html&gt;
-    &lt;html&gt;
-    &lt;head&gt;
-        &lt;title&gt;Unfazed HTML响应&lt;/title&gt;
-        &lt;meta charset=&quot;utf-8&quot;&gt;
-    &lt;/head&gt;
-    &lt;body&gt;
-        &lt;h1&gt;欢迎使用 Unfazed&lt;/h1&gt;
-        &lt;p&gt;这是一个HTML响应示例&lt;/p&gt;
-    &lt;/body&gt;
-    &lt;/html&gt;
-    &quot;&quot;&quot;
-    return HtmlResponse(html_content)
-
-async def dynamic_html(request: HttpRequest) -&gt; HtmlResponse:
-    &quot;&quot;&quot;动态HTML内容&quot;&quot;&quot;
-    user_name = request.query_params.get(&quot;name&quot;, &quot;访客&quot;)
-    html_content = f&quot;&quot;&quot;
-    &lt;html&gt;
-    &lt;body&gt;
-        &lt;h1&gt;Hello, {user_name}!&lt;/h1&gt;
-        &lt;p&gt;当前时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}&lt;/p&gt;
-    &lt;/body&gt;
-    &lt;/html&gt;
-    &quot;&quot;&quot;
-    return HtmlResponse(html_content)
-
-async def error_page(request: HttpRequest) -&gt; HtmlResponse:
-    &quot;&quot;&quot;错误页面&quot;&quot;&quot;
-    error_html = &quot;&quot;&quot;
-    &lt;html&gt;
-    &lt;body style=&quot;font-family: Arial;&quot;&gt;
-        &lt;h1 style=&quot;color: red;&quot;&gt;404 - 页面未找到&lt;/h1&gt;
-        &lt;p&gt;抱歉，您访问的页面不存在。&lt;/p&gt;
-        &lt;a href=&quot;/&quot;&gt;返回首页&lt;/a&gt;
-    &lt;/body&gt;
-    &lt;/html&gt;
-    &quot;&quot;&quot;
-    return HtmlResponse(error_html, status_code=404)
-</code></pre>
-<h3 id="jsonresponse-json">JsonResponse - JSON响应</h3>
-<p>用于返回 JSON 数据，支持字典、列表和 Pydantic 模型的自动序列化。</p>
-<pre><code class="language-python">from unfazed.http import JsonResponse
-from pydantic import BaseModel, Field
-from typing import List, Optional
-from datetime import datetime
-
-# 基本用法
-async def json_dict(request: HttpRequest) -&gt; JsonResponse:
-    &quot;&quot;&quot;返回字典&quot;&quot;&quot;
-    return JsonResponse({&quot;message&quot;: &quot;Hello, World!&quot;, &quot;status&quot;: &quot;success&quot;})
-
-async def json_list(request: HttpRequest) -&gt; JsonResponse:
-    &quot;&quot;&quot;返回列表&quot;&quot;&quot;
-    return JsonResponse([1, 2, 3, {&quot;name&quot;: &quot;item&quot;}])
-
-# Pydantic 模型
-class User(BaseModel):
-    id: int
-    username: str
-    email: str
-    created_at: datetime = Field(default_factory=datetime.now)
-    is_active: bool = True
-
-class UserListResponse(BaseModel):
-    users: List[User]
-    total: int
-    page: int
-    size: int
-
-async def json_model(request: HttpRequest) -&gt; JsonResponse:
-    &quot;&quot;&quot;返回 Pydantic 模型&quot;&quot;&quot;
-    user = User(
-        id=1,
-        username=&quot;john_doe&quot;,
-        email=&quot;john@example.com&quot;
-    )
-    return JsonResponse(user)
-
-async def json_complex_model(request: HttpRequest) -&gt; JsonResponse:
-    &quot;&quot;&quot;返回复杂模型&quot;&quot;&quot;
-    users = [
-        User(id=1, username=&quot;alice&quot;, email=&quot;alice@example.com&quot;),
-        User(id=2, username=&quot;bob&quot;, email=&quot;bob@example.com&quot;),
-    ]
-
-    response = UserListResponse(
-        users=users,
-        total=len(users),
-        page=1,
-        size=10
-    )
-    return JsonResponse(response)
-
-# 自定义状态码和头部
-async def json_with_custom_headers(request: HttpRequest) -&gt; JsonResponse:
-    &quot;&quot;&quot;带自定义头部的JSON响应&quot;&quot;&quot;
-    data = {&quot;message&quot;: &quot;资源已创建&quot;, &quot;id&quot;: 123}
-    return JsonResponse(
-        content=data,
-        status_code=201,
-        headers={
-            &quot;Location&quot;: &quot;/api/resources/123&quot;,
-            &quot;X-Resource-ID&quot;: &quot;123&quot;
-        }
-    )
-
-# 错误响应
-async def json_error(request: HttpRequest) -&gt; JsonResponse:
-    &quot;&quot;&quot;JSON错误响应&quot;&quot;&quot;
-    error_data = {
-        &quot;error&quot;: &quot;参数验证失败&quot;,
-        &quot;code&quot;: &quot;VALIDATION_ERROR&quot;,
-        &quot;details&quot;: {
-            &quot;field&quot;: &quot;email&quot;,
-            &quot;message&quot;: &quot;邮箱格式不正确&quot;
-        }
-    }
-    return JsonResponse(error_data, status_code=400)
-</code></pre>
-<h3 id="redirectresponse-">RedirectResponse - 重定向响应</h3>
-<p>用于 HTTP 重定向，自动处理 URL 编码和安全验证。</p>
-<pre><code class="language-python">from unfazed.http import RedirectResponse
-
-async def temporary_redirect(request: HttpRequest) -&gt; RedirectResponse:
-    &quot;&quot;&quot;临时重定向 (302)&quot;&quot;&quot;
-    return RedirectResponse(&quot;https://www.example.com&quot;)
-
-async def permanent_redirect(request: HttpRequest) -&gt; RedirectResponse:
-    &quot;&quot;&quot;永久重定向 (301)&quot;&quot;&quot;
-    return RedirectResponse(
-        &quot;https://www.newdomain.com&quot;,
-        status_code=301
-    )
-
-async def login_redirect(request: HttpRequest) -&gt; RedirectResponse:
-    &quot;&quot;&quot;登录重定向&quot;&quot;&quot;
-    # 检查用户是否已登录
-    if not hasattr(request, 'user') or not request.user:
-        # 重定向到登录页面，并保存原始URL
-        original_url = str(request.url)
-        login_url = f&quot;https://auth.example.com/login?next={original_url}&quot;
-        return RedirectResponse(login_url)
-
-    # 用户已登录，重定向到仪表板
-    return RedirectResponse(&quot;https://app.example.com/dashboard&quot;)
-
-async def conditional_redirect(request: HttpRequest) -&gt; RedirectResponse:
-    &quot;&quot;&quot;条件重定向&quot;&quot;&quot;
-    user_agent = request.headers.get(&quot;user-agent&quot;, &quot;&quot;).lower()
-
-    if &quot;mobile&quot; in user_agent:
-        return RedirectResponse(&quot;https://m.example.com&quot;)
-    else:
-        return RedirectResponse(&quot;https://www.example.com&quot;)
-</code></pre>
-<p><strong>注意</strong>: <code>RedirectResponse</code> 会验证 URL 的安全性，防止开放重定向漏洞。URL 必须包含完整的 scheme 和 netloc。</p>
-<h3 id="streamingresponse-">StreamingResponse - 流式响应</h3>
-<p>用于流式传输数据，适合大文件传输或实时数据流。</p>
-<pre><code class="language-python">import typing as t
-import asyncio
-from unfazed.http import StreamingResponse
-
-# 异步生成器
-async def async_data_stream() -&gt; t.AsyncGenerator[bytes, None]:
-    &quot;&quot;&quot;异步数据流&quot;&quot;&quot;
-    for i in range(10):
-        data = f&quot;数据块 {i}\n&quot;
-        yield data.encode()
-        await asyncio.sleep(0.1)  # 模拟处理延迟
-
-async def stream_async(request: HttpRequest) -&gt; StreamingResponse:
-    &quot;&quot;&quot;异步流式响应&quot;&quot;&quot;
-    return StreamingResponse(
-        content=async_data_stream(),
-        media_type=&quot;text/plain&quot;
-    )
-
-# 同步生成器
-def sync_data_stream() -&gt; t.Generator[bytes, None, None]:
-    &quot;&quot;&quot;同步数据流&quot;&quot;&quot;
-    for i in range(5):
-        yield f&quot;同步数据 {i}\n&quot;.encode()
-
-async def stream_sync(request: HttpRequest) -&gt; StreamingResponse:
-    &quot;&quot;&quot;同步流式响应&quot;&quot;&quot;
-    return StreamingResponse(
-        content=sync_data_stream(),
-        media_type=&quot;text/plain&quot;
-    )
-
-# 大文件流式传输
-async def large_file_stream(file_path: str) -&gt; t.AsyncGenerator[bytes, None]:
-    &quot;&quot;&quot;大文件流式读取&quot;&quot;&quot;
-    chunk_size = 8192
-    async with aiofiles.open(file_path, 'rb') as f:
-        while chunk := await f.read(chunk_size):
-            yield chunk
-
-async def stream_large_file(request: HttpRequest) -&gt; StreamingResponse:
-    &quot;&quot;&quot;流式传输大文件&quot;&quot;&quot;
-    file_path = &quot;/path/to/large/file.txt&quot;
-    return StreamingResponse(
-        content=large_file_stream(file_path),
-        media_type=&quot;application/octet-stream&quot;,
-        headers={
-            &quot;Content-Disposition&quot;: &quot;attachment; filename=large_file.txt&quot;
-        }
-    )
-
-# 实时数据流
-async def realtime_data() -&gt; t.AsyncGenerator[str, None]:
-    &quot;&quot;&quot;实时数据生成器&quot;&quot;&quot;
-    import time
-    while True:
-        timestamp = time.strftime('%Y-%m-%d %H:%M:%S')
-        data = f&quot;data: {{\&quot;timestamp\&quot;: \&quot;{timestamp}\&quot;, \&quot;value\&quot;: {time.time()}}}\n\n&quot;
-        yield data
-        await asyncio.sleep(1)
-
-async def server_sent_events(request: HttpRequest) -&gt; StreamingResponse:
-    &quot;&quot;&quot;Server-Sent Events (SSE) 流&quot;&quot;&quot;
-    return StreamingResponse(
-        content=realtime_data(),
-        media_type=&quot;text/event-stream&quot;,
-        headers={
-            &quot;Cache-Control&quot;: &quot;no-cache&quot;,
-            &quot;Connection&quot;: &quot;keep-alive&quot;,
-            &quot;Access-Control-Allow-Origin&quot;: &quot;*&quot;
-        }
-    )
-</code></pre>
-<h3 id="fileresponse-">FileResponse - 文件响应</h3>
-<p>用于文件下载，内置断点续传支持和 HTTP Range 请求处理。</p>
-<pre><code class="language-python">from unfazed.http import FileResponse
-import os
-from pathlib import Path
-
-async def download_file(request: HttpRequest) -&gt; FileResponse:
-    &quot;&quot;&quot;基本文件下载&quot;&quot;&quot;
-    file_path = &quot;/path/to/document.pdf&quot;
-    return FileResponse(file_path)
-
-async def download_with_custom_filename(request: HttpRequest) -&gt; FileResponse:
-    &quot;&quot;&quot;自定义下载文件名&quot;&quot;&quot;
-    file_path = &quot;/data/reports/2024_annual_report.pdf&quot;
-    return FileResponse(
-        path=file_path,
-        filename=&quot;年度报告2024.pdf&quot;
-    )
-
-async def download_with_custom_chunk_size(request: HttpRequest) -&gt; FileResponse:
-    &quot;&quot;&quot;自定义块大小&quot;&quot;&quot;
-    file_path = &quot;/large_files/video.mp4&quot;
-    return FileResponse(
-        path=file_path,
-        filename=&quot;movie.mp4&quot;,
-        chunk_size=1024 * 1024,  # 1MB 块
-        headers={&quot;X-Custom-Header&quot;: &quot;file-download&quot;}
-    )
-
-async def conditional_file_download(request: HttpRequest) -&gt; FileResponse:
-    &quot;&quot;&quot;条件文件下载&quot;&quot;&quot;
-    file_id = request.path_params.get(&quot;file_id&quot;)
-
-    # 根据文件ID确定文件路径
-    file_mapping = {
-        &quot;report1&quot;: &quot;/files/reports/report1.xlsx&quot;,
-        &quot;image1&quot;: &quot;/files/images/photo1.jpg&quot;,
-        &quot;doc1&quot;: &quot;/files/documents/manual.pdf&quot;
-    }
-
-    file_path = file_mapping.get(file_id)
-    if not file_path or not os.path.exists(file_path):
-        # 如果文件不存在，可以返回404错误
-        # 这里简化处理，实际应该返回适当的错误响应
-        raise FileNotFoundError(f&quot;File {file_id} not found&quot;)
-
-    # 根据文件类型设置不同的文件名
-    filename_mapping = {
-        &quot;report1&quot;: &quot;月度报告.xlsx&quot;,
-        &quot;image1&quot;: &quot;产品图片.jpg&quot;, 
-        &quot;doc1&quot;: &quot;用户手册.pdf&quot;
-    }
-
-    return FileResponse(
-        path=file_path,
-        filename=filename_mapping.get(file_id, &quot;download&quot;)
-    )
-
-# 处理大文件下载的高级示例
-async def secure_file_download(request: HttpRequest) -&gt; FileResponse:
-    &quot;&quot;&quot;安全文件下载（带权限检查）&quot;&quot;&quot;
-    file_id = request.path_params.get(&quot;file_id&quot;)
-
-    # 权限检查（示例）
-    try:
-        user = request.user
-        if not user or not user.has_permission(f&quot;download_file_{file_id}&quot;):
-            return JsonResponse({&quot;error&quot;: &quot;无权限下载此文件&quot;}, status_code=403)
-    except ValueError:
-        return JsonResponse({&quot;error&quot;: &quot;需要登录&quot;}, status_code=401)
-
-    # 文件路径解析
-    secure_base_path = Path(&quot;/secure/files&quot;)
-    file_path = secure_base_path / f&quot;{file_id}.pdf&quot;
-
-    # 防止路径遍历攻击
-    if not str(file_path.resolve()).startswith(str(secure_base_path.resolve())):
-        return JsonResponse({&quot;error&quot;: &quot;非法文件路径&quot;}, status_code=400)
-
-    if not file_path.exists():
-        return JsonResponse({&quot;error&quot;: &quot;文件未找到&quot;}, status_code=404)
-
-    return FileResponse(
-        path=file_path,
-        filename=f&quot;document_{file_id}.pdf&quot;,
-        headers={
-            &quot;X-Download-Source&quot;: &quot;secure-storage&quot;,
-            &quot;X-File-ID&quot;: file_id
-        }
-    )
-</code></pre>
-<p><strong>FileResponse 特性</strong>:
-- <strong>自动断点续传</strong>: 支持 HTTP Range 请求，允许客户端断点下载
-- <strong>文件元数据</strong>: 自动设置 ETag、Last-Modified、Content-Length 等头部
-- <strong>安全性</strong>: 基于文件路径的访问控制和验证
-- <strong>性能优化</strong>: 流式传输，不会将整个文件加载到内存</p>
-<h2 id="_8">高级用法</h2>
-<h3 id="_9">背景任务</h3>
-<p>在响应发送后执行清理或异步任务：</p>
-<pre><code class="language-python">from starlette.background import BackgroundTask
-import logging
-
-async def log_access(user_id: int, resource: str):
-    &quot;&quot;&quot;记录访问日志的背景任务&quot;&quot;&quot;
-    logging.info(f&quot;User {user_id} accessed {resource}&quot;)
-    # 这里可以写入数据库或发送到消息队列
-
-async def send_notification(email: str, message: str):
-    &quot;&quot;&quot;发送通知的背景任务&quot;&quot;&quot;
-    # 模拟发送邮件
-    print(f&quot;Sending email to {email}: {message}&quot;)
-
-async def api_with_background_tasks(request: HttpRequest) -&gt; JsonResponse:
-    &quot;&quot;&quot;带多个背景任务的API&quot;&quot;&quot;
-    # 创建多个背景任务
-    tasks = BackgroundTask(log_access, user_id=123, resource=&quot;/api/data&quot;)
-    tasks.add_task(send_notification, &quot;user@example.com&quot;, &quot;数据已更新&quot;)
-
-    return JsonResponse(
-        {&quot;message&quot;: &quot;操作完成&quot;, &quot;status&quot;: &quot;success&quot;},
-        background=tasks
-    )
-</code></pre>
-<h3 id="_10">条件响应</h3>
-<p>根据请求条件返回不同类型的响应：</p>
-<pre><code class="language-python">async def conditional_response(request: HttpRequest) -&gt; HttpResponse:
-    &quot;&quot;&quot;根据Accept头返回不同格式&quot;&quot;&quot;
-    accept_header = request.headers.get(&quot;accept&quot;, &quot;&quot;)
-
-    data = {&quot;message&quot;: &quot;Hello, World!&quot;, &quot;timestamp&quot;: &quot;2024-01-01T00:00:00Z&quot;}
-
-    if &quot;application/json&quot; in accept_header:
-        return JsonResponse(data)
-    elif &quot;text/html&quot; in accept_header:
-        html_content = f&quot;&quot;&quot;
-        &lt;html&gt;
-        &lt;body&gt;
-            &lt;h1&gt;{data['message']}&lt;/h1&gt;
-            &lt;p&gt;时间: {data['timestamp']}&lt;/p&gt;
-        &lt;/body&gt;
-        &lt;/html&gt;
-        &quot;&quot;&quot;
-        return HtmlResponse(html_content)
-    elif &quot;text/plain&quot; in accept_header:
-        text_content = f&quot;{data['message']}\n时间: {data['timestamp']}&quot;
-        return PlainTextResponse(text_content)
-    else:
-        # 默认返回JSON
-        return JsonResponse(data)
-</code></pre>
-<h3 id="_11">自定义响应类</h3>
-<p>创建自定义响应类以满足特殊需求：</p>
-<pre><code class="language-python">import xml.etree.ElementTree as ET
-from unfazed.http import HttpResponse
-
-class XmlResponse(HttpResponse):
-    &quot;&quot;&quot;XML响应类&quot;&quot;&quot;
-    media_type = &quot;application/xml&quot;
-
-    def __init__(self, data: dict, **kwargs):
-        # 将字典转换为XML
-        root = ET.Element(&quot;response&quot;)
-        self._dict_to_xml(data, root)
-        xml_content = ET.tostring(root, encoding='unicode')
-        super().__init__(content=xml_content, **kwargs)
-
-    def _dict_to_xml(self, data: dict, parent: ET.Element):
-        &quot;&quot;&quot;递归将字典转换为XML元素&quot;&quot;&quot;
-        for key, value in data.items():
-            child = ET.SubElement(parent, key)
-            if isinstance(value, dict):
-                self._dict_to_xml(value, child)
-            elif isinstance(value, list):
-                for item in value:
-                    item_elem = ET.SubElement(child, &quot;item&quot;)
-                    if isinstance(item, dict):
-                        self._dict_to_xml(item, item_elem)
-                    else:
-                        item_elem.text = str(item)
-            else:
-                child.text = str(value)
-
-async def xml_response(request: HttpRequest) -&gt; XmlResponse:
-    &quot;&quot;&quot;返回XML响应&quot;&quot;&quot;
-    data = {
-        &quot;users&quot;: [
-            {&quot;id&quot;: 1, &quot;name&quot;: &quot;Alice&quot;},
-            {&quot;id&quot;: 2, &quot;name&quot;: &quot;Bob&quot;}
-        ],
-        &quot;total&quot;: 2
-    }
-    return XmlResponse(data)
-
-class CsvResponse(HttpResponse):
-    &quot;&quot;&quot;CSV响应类&quot;&quot;&quot;
-    media_type = &quot;text/csv&quot;
-
-    def __init__(self, data: list, filename: str = &quot;data.csv&quot;, **kwargs):
-        import io
-        import csv
-
-        output = io.StringIO()
-        writer = csv.DictWriter(output, fieldnames=data[0].keys() if data else [])
-        writer.writeheader()
-        writer.writerows(data)
-
-        csv_content = output.getvalue()
-        headers = kwargs.pop(&quot;headers&quot;, {})
-        headers[&quot;Content-Disposition&quot;] = f'attachment; filename=&quot;{filename}&quot;'
-
-        super().__init__(content=csv_content, headers=headers, **kwargs)
-
-async def csv_export(request: HttpRequest) -&gt; CsvResponse:
-    &quot;&quot;&quot;导出CSV文件&quot;&quot;&quot;
-    data = [
-        {&quot;id&quot;: 1, &quot;name&quot;: &quot;Alice&quot;, &quot;age&quot;: 30},
-        {&quot;id&quot;: 2, &quot;name&quot;: &quot;Bob&quot;, &quot;age&quot;: 25},
-        {&quot;id&quot;: 3, &quot;name&quot;: &quot;Charlie&quot;, &quot;age&quot;: 35}
-    ]
-    return CsvResponse(data, filename=&quot;users.csv&quot;)
-</code></pre>
-<p>通过 Unfazed 的响应系统，您可以构建出功能丰富、性能优异的 HTTP API。系统提供了从简单文本响应到复杂文件流传输的完整解决方案，同时保持了良好的扩展性和可定制性。</p>
+<h3 id="redirectresponse_1">RedirectResponse<a class="headerlink" href="#redirectresponse_1" title="Permanent link">&para;</a></h3>
+<p><div class="language-python highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">RedirectResponse</span><span class="p">(</span><span class="n">HttpResponse</span><span class="p">):</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">status_code</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">302</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">background</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</span></code></pre></div>
+Requires a fully qualified URL. Raises <code>ValueError</code> on relative URLs.</p>
+<h3 id="streamingresponse_1">StreamingResponse<a class="headerlink" href="#streamingresponse_1" title="Permanent link">&para;</a></h3>
+<p><div class="language-python highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">StreamingResponse</span><span class="p">(</span><span class="n">HttpResponse</span><span class="p">):</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">content</span><span class="p">:</span> <span class="n">Iterable</span> <span class="o">|</span> <span class="n">AsyncIterable</span><span class="p">,</span> <span class="n">status_code</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">media_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">background</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</span></code></pre></div>
+Streams content chunks. Handles both sync and async iterables.</p>
+<h3 id="fileresponse_1">FileResponse<a class="headerlink" href="#fileresponse_1" title="Permanent link">&para;</a></h3>
+<p><div class="language-python highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">FileResponse</span><span class="p">(</span><span class="n">StreamingResponse</span><span class="p">):</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Path</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">chunk_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">65536</span><span class="p">,</span> <span class="n">headers</span><span class="p">:</span> <span class="n">Dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">background</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">media_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;application/octet-stream&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+File download with HTTP range-request support. Raises <code>FileNotFoundError</code> if the file does not exist.</p>
 
 
 
@@ -1915,6 +1771,12 @@ async def csv_export(request: HttpRequest) -&gt; CsvResponse:
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
       </main>
       
         <footer class="md-footer">
@@ -1931,6 +1793,21 @@ async def csv_export(request: HttpRequest) -&gt; CsvResponse:
   
 </div>
       
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/unfazed-eco/unfazed" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
     </div>
   </div>
 </footer>
@@ -1940,8 +1817,10 @@ async def csv_export(request: HttpRequest) -&gt; CsvResponse:
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u62f7\u8c9d", "clipboard.copy": "\u62f7\u8c9d", "search.result.more.one": "\u6b64\u9801\u5c1a\u6709 1 \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.more.other": "\u6b64\u9801\u5c1a\u6709 # \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.none": "\u6c92\u6709\u627e\u5230\u7b26\u5408\u689d\u4ef6\u7684\u7d50\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u689d\u4ef6\u7684\u7d50\u679c", "search.result.other": "\u627e\u5230 # \u500b\u7b26\u5408\u689d\u4ef6\u7684\u7d50\u679c", "search.result.placeholder": "\u9375\u5165\u4ee5\u958b\u59cb\u6aa2\u7d22", "search.result.term.missing": "\u7f3a\u5931", "select.version": "\u9078\u64c7\u7248\u672c"}}</script>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.instant", "navigation.instant.progress", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>

@@ -1,18 +1,22 @@
 
 <!doctype html>
-<html lang="zh-Hant" class="no-js">
+<html lang="en" class="no-js">
   <head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="Production Ready ASGI web framework">
       
+      
+      
+        <link rel="canonical" href="https://unfazed-eco.github.io/unfazed/tutorial/part6/">
       
       
         <link rel="prev" href="../part5/">
       
       
-        <link rel="next" href="../../features/settings/">
+        <link rel="next" href="../../features/app/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -20,11 +24,14 @@
     
     
       
-        <title>Part 6 Test - Unfazed</title>
+        <title>Part 6 Testing and Quality Assurance - Unfazed</title>
       
     
     
       <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -53,7 +60,14 @@
   </head>
   
   
-    <body dir="ltr">
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -62,8 +76,8 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
-          跳轉至
+        <a href="#part-6-testing-and-quality-assurance" class="md-skip">
+          Skip to content
         </a>
       
     </div>
@@ -74,10 +88,8 @@
     
       
 
-  
-
-<header class="md-header md-header--shadow" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="頁首">
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../.." title="Unfazed" class="md-header__button md-logo" aria-label="Unfazed" data-md-component="logo">
       
   <img src="../../images/uz-logo.png" alt="logo">
@@ -97,12 +109,38 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Part 6 Test
+              Part 6 Testing and Quality Assurance
             
           </span>
         </div>
       </div>
     </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
     
     
       <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
@@ -111,21 +149,21 @@
       <div class="md-header__option">
   <div class="md-select">
     
-    <button class="md-header__button md-icon" aria-label="選擇語言">
+    <button class="md-header__button md-icon" aria-label="Select language">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
     </button>
     <div class="md-select__inner">
       <ul class="md-select__list">
         
           <li class="md-select__item">
-            <a href="./" hreflang="zh-Hant" class="md-select__link">
-              中文
+            <a href="./" hreflang="en" class="md-select__link">
+              English
             </a>
           </li>
         
           <li class="md-select__item">
-            <a href="../../en/tutorial/part6/" hreflang="en" class="md-select__link">
-              English
+            <a href="../../zh/tutorial/part6/" hreflang="zh" class="md-select__link">
+              中文
             </a>
           </li>
         
@@ -135,9 +173,48 @@
 </div>
     
     
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
     
       <div class="md-header__source">
-        <a href="https://github.com/unfazed-eco/unfazed" title="前往倉庫" class="md-source" data-md-component="source">
+        <a href="https://github.com/unfazed-eco/unfazed" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
@@ -157,6 +234,105 @@
       
         
           
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../part1/" class="md-tabs__link">
+          
+  
+  Tutorial
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../features/app/" class="md-tabs__link">
+          
+  
+  Features
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../features/contrib/admin/" class="md-tabs__link">
+          
+  
+  Contrib
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../release-note/" class="md-tabs__link">
+        
+  
+    
+  
+  ReleaseNote
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -170,8 +346,10 @@
                     
 
 
+  
 
-<nav class="md-nav md-nav--primary" aria-label="導航" data-md-level="0">
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../.." title="Unfazed" class="md-nav__button md-logo" aria-label="Unfazed" data-md-component="logo">
       
@@ -182,7 +360,7 @@
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/unfazed-eco/unfazed" title="前往倉庫" class="md-source" data-md-component="source">
+      <a href="https://github.com/unfazed-eco/unfazed" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
@@ -226,15 +404,23 @@
     
     
     
+      
+        
+        
+      
+      
+        
+      
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -263,7 +449,7 @@
         
   
   <span class="md-ellipsis">
-    Part 1 Install & Create Project
+    Part 1 Installation and Project Creation
   </span>
   
 
@@ -284,7 +470,7 @@
         
   
   <span class="md-ellipsis">
-    Part 2 Create Application
+    Part 2 Creating Applications and Hello World
   </span>
   
 
@@ -305,7 +491,7 @@
         
   
   <span class="md-ellipsis">
-    Part 3 Models and Serializer
+    Part 3 Data Models and Serializers
   </span>
   
 
@@ -326,7 +512,7 @@
         
   
   <span class="md-ellipsis">
-    Part 4 Endpoint and Schema
+    Part 4 API Interface Design and Schema Definition
   </span>
   
 
@@ -347,7 +533,7 @@
         
   
   <span class="md-ellipsis">
-    Part 5 Services
+    Part 5 Business Logic Implementation
   </span>
   
 
@@ -377,7 +563,7 @@
           
   
   <span class="md-ellipsis">
-    Part 6 Test
+    Part 6 Testing and Quality Assurance
   </span>
   
 
@@ -388,7 +574,7 @@
         
   
   <span class="md-ellipsis">
-    Part 6 Test
+    Part 6 Testing and Quality Assurance
   </span>
   
 
@@ -396,7 +582,7 @@
       
         
 
-<nav class="md-nav md-nav--secondary" aria-label="目錄">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
   
@@ -405,42 +591,33 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      目錄
+      Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#test-environment-setup" class="md-nav__link">
     <span class="md-ellipsis">
-      测试策略概述
+      Test Environment Setup
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="测试策略概述">
+    <nav class="md-nav" aria-label="Test Environment Setup">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#unfazed" class="md-nav__link">
+  <a href="#installing-test-dependencies" class="md-nav__link">
     <span class="md-ellipsis">
-      Unfazed 测试理念
+      Installing Test Dependencies
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#pytest-configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      测试金字塔
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      推荐测试范围
+      Pytest Configuration
     </span>
   </a>
   
@@ -452,28 +629,37 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#writing-test-cases" class="md-nav__link">
     <span class="md-ellipsis">
-      测试环境配置
+      Writing Test Cases
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="测试环境配置">
+    <nav class="md-nav" aria-label="Writing Test Cases">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#test-data-setup" class="md-nav__link">
     <span class="md-ellipsis">
-      安装测试依赖
+      Test Data Setup
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#services-layer-tests" class="md-nav__link">
     <span class="md-ellipsis">
-      创建测试配置
+      Services Layer Tests
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#endpoints-layer-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Endpoints Layer Tests
     </span>
   </a>
   
@@ -485,28 +671,28 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
+  <a href="#running-tests" class="md-nav__link">
     <span class="md-ellipsis">
-      编写测试用例
+      Running Tests
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="编写测试用例">
+    <nav class="md-nav" aria-label="Running Tests">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+  <a href="#basic-commands" class="md-nav__link">
     <span class="md-ellipsis">
-      创建测试基础设施
+      Basic Commands
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#makefile" class="md-nav__link">
+  <a href="#using-makefile" class="md-nav__link">
     <span class="md-ellipsis">
-      使用 Makefile
+      Using Makefile
     </span>
   </a>
   
@@ -518,28 +704,46 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
+  <a href="#test-coverage" class="md-nav__link">
     <span class="md-ellipsis">
-      测试覆盖率
+      Test Coverage
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="测试覆盖率">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing Best Practices
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Testing Best Practices">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
+  <a href="#use-descriptive-test-names" class="md-nav__link">
     <span class="md-ellipsis">
-      查看覆盖率报告
+      Use Descriptive Test Names
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_12" class="md-nav__link">
+  <a href="#use-parameterized-tests" class="md-nav__link">
     <span class="md-ellipsis">
-      提高测试覆盖率
+      Use Parameterized Tests
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-fixtures-for-common-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use Fixtures for Common Setup
     </span>
   </a>
   
@@ -551,46 +755,19 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_13" class="md-nav__link">
+  <a href="#summary" class="md-nav__link">
     <span class="md-ellipsis">
-      测试最佳实践
+      Summary
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="测试最佳实践">
+    <nav class="md-nav" aria-label="Summary">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
+  <a href="#further-reading" class="md-nav__link">
     <span class="md-ellipsis">
-      1. 测试命名规范
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-fixture" class="md-nav__link">
-    <span class="md-ellipsis">
-      2. 使用测试 fixture
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3" class="md-nav__link">
-    <span class="md-ellipsis">
-      3. 参数化测试
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4" class="md-nav__link">
-    <span class="md-ellipsis">
-      4. 模拟外部依赖
+      Further Reading
     </span>
   </a>
   
@@ -626,6 +803,11 @@
     
     
     
+      
+      
+        
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -659,27 +841,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../features/settings/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Settings
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../features/app/" class="md-nav__link">
         
   
@@ -701,11 +862,53 @@
   
   
     <li class="md-nav__item">
+      <a href="../../features/settings/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Settings
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../features/route/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     Route
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/endpoint/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Endpoint
   </span>
   
 
@@ -764,95 +967,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../features/logging/" class="md-nav__link">
+      <a href="../../features/command/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Logging
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../features/request/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Request
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../features/response/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Response
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../features/endpoint/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Endpoint
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../features/staticfiles.md" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Staticfiles
+    Command
   </span>
   
 
@@ -911,6 +1030,69 @@
   
   
     <li class="md-nav__item">
+      <a href="../../features/request/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Request
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/logging/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Logging
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../features/cache/" class="md-nav__link">
         
   
@@ -932,11 +1114,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../features/error/" class="md-nav__link">
+      <a href="../../features/exception/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Error
+    Exceptions
   </span>
   
 
@@ -974,11 +1156,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../features/command/" class="md-nav__link">
+      <a href="../../features/testclient/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Command
+    Test Client
   </span>
   
 
@@ -995,11 +1177,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../features/testclient/" class="md-nav__link">
+      <a href="../../features/concurrency/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Test Client
+    Concurrency
   </span>
   
 
@@ -1024,6 +1206,11 @@
   
     
     
+    
+      
+      
+        
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -1154,7 +1341,7 @@
                   <div class="md-sidebar__inner">
                     
 
-<nav class="md-nav md-nav--secondary" aria-label="目錄">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
   
@@ -1163,42 +1350,33 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      目錄
+      Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#test-environment-setup" class="md-nav__link">
     <span class="md-ellipsis">
-      测试策略概述
+      Test Environment Setup
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="测试策略概述">
+    <nav class="md-nav" aria-label="Test Environment Setup">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#unfazed" class="md-nav__link">
+  <a href="#installing-test-dependencies" class="md-nav__link">
     <span class="md-ellipsis">
-      Unfazed 测试理念
+      Installing Test Dependencies
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#pytest-configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      测试金字塔
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      推荐测试范围
+      Pytest Configuration
     </span>
   </a>
   
@@ -1210,28 +1388,37 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#writing-test-cases" class="md-nav__link">
     <span class="md-ellipsis">
-      测试环境配置
+      Writing Test Cases
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="测试环境配置">
+    <nav class="md-nav" aria-label="Writing Test Cases">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#test-data-setup" class="md-nav__link">
     <span class="md-ellipsis">
-      安装测试依赖
+      Test Data Setup
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#services-layer-tests" class="md-nav__link">
     <span class="md-ellipsis">
-      创建测试配置
+      Services Layer Tests
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#endpoints-layer-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Endpoints Layer Tests
     </span>
   </a>
   
@@ -1243,28 +1430,28 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
+  <a href="#running-tests" class="md-nav__link">
     <span class="md-ellipsis">
-      编写测试用例
+      Running Tests
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="编写测试用例">
+    <nav class="md-nav" aria-label="Running Tests">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+  <a href="#basic-commands" class="md-nav__link">
     <span class="md-ellipsis">
-      创建测试基础设施
+      Basic Commands
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#makefile" class="md-nav__link">
+  <a href="#using-makefile" class="md-nav__link">
     <span class="md-ellipsis">
-      使用 Makefile
+      Using Makefile
     </span>
   </a>
   
@@ -1276,28 +1463,46 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
+  <a href="#test-coverage" class="md-nav__link">
     <span class="md-ellipsis">
-      测试覆盖率
+      Test Coverage
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="测试覆盖率">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing Best Practices
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Testing Best Practices">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
+  <a href="#use-descriptive-test-names" class="md-nav__link">
     <span class="md-ellipsis">
-      查看覆盖率报告
+      Use Descriptive Test Names
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_12" class="md-nav__link">
+  <a href="#use-parameterized-tests" class="md-nav__link">
     <span class="md-ellipsis">
-      提高测试覆盖率
+      Use Parameterized Tests
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-fixtures-for-common-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use Fixtures for Common Setup
     </span>
   </a>
   
@@ -1309,46 +1514,19 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_13" class="md-nav__link">
+  <a href="#summary" class="md-nav__link">
     <span class="md-ellipsis">
-      测试最佳实践
+      Summary
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="测试最佳实践">
+    <nav class="md-nav" aria-label="Summary">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
+  <a href="#further-reading" class="md-nav__link">
     <span class="md-ellipsis">
-      1. 测试命名规范
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-fixture" class="md-nav__link">
-    <span class="md-ellipsis">
-      2. 使用测试 fixture
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3" class="md-nav__link">
-    <span class="md-ellipsis">
-      3. 参数化测试
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4" class="md-nav__link">
-    <span class="md-ellipsis">
-      4. 模拟外部依赖
+      Further Reading
     </span>
   </a>
   
@@ -1377,554 +1555,456 @@
   
 
 
-<h1 id="_1">第六部分：测试与质量保证</h1>
-<p>在前面的章节中，我们构建了一个完整的学生选课系统。现在我们将学习如何为应用编写全面的测试用例，确保代码质量和可靠性。Unfazed 内置了强大的测试支持，让测试变得简单而高效。</p>
-<p>测试是现代软件开发的重要环节，它能帮助我们及早发现问题、提高代码质量、增强开发信心。</p>
-<h2 id="_2">测试策略概述</h2>
-<h3 id="unfazed">Unfazed 测试理念</h3>
-<p>Unfazed 非常注重代码的鲁棒性，将"方便测试"作为框架设计的核心原则之一。框架提供了：</p>
-<ul>
-<li>🧪 <strong>内置测试工具</strong>: <code>Requestfactory</code> 用于 API 测试</li>
-<li>🎯 <strong>分层测试</strong>: 支持单元测试、集成测试、端到端测试</li>
-<li>📊 <strong>覆盖率支持</strong>: 与 pytest-cov 无缝集成</li>
-<li>🔄 <strong>异步测试</strong>: 原生支持异步测试用例</li>
-<li>🛠️ <strong>测试Fixture</strong>: 丰富的 Fixture 支持</li>
-</ul>
-<h3 id="_3">测试金字塔</h3>
-<p>我们采用标准的测试金字塔策略：</p>
-<pre><code class="language-mermaid">graph TB
-    A[端到端测试&lt;br/&gt;E2E Tests&lt;br/&gt;少量]
-    B[集成测试&lt;br/&gt;Integration Tests&lt;br/&gt;适量]
-    C[单元测试&lt;br/&gt;Unit Tests&lt;br/&gt;大量]
-
-    A --&gt; B
-    B --&gt; C
-
-    style A fill:#ffeb3b
-    style B fill:#4caf50
-    style C fill:#2196f3
-</code></pre>
-<p><strong>测试层次说明</strong>：
-1. <strong>单元测试</strong>: 测试单个函数/方法的功能
-2. <strong>集成测试</strong>: 测试模块间的协作
-3. <strong>端到端测试</strong>: 测试完整的用户场景</p>
-<h3 id="_4">推荐测试范围</h3>
-<p>根据 Unfazed 的架构设计，强烈推荐测试以下内容：</p>
+<h1 id="part-6-testing-and-quality-assurance">Part 6: Testing and Quality Assurance<a class="headerlink" href="#part-6-testing-and-quality-assurance" title="Permanent link">&para;</a></h1>
+<p>In the previous parts, we built a complete student course enrollment system. Now we will write comprehensive test cases to ensure code quality and reliability. Unfazed provides <code>Requestfactory</code>, an async test client that makes API testing simple and efficient. See <a href="../../features/testclient/">Test Client</a> for the full reference.</p>
+<h2 id="test-environment-setup">Test Environment Setup<a class="headerlink" href="#test-environment-setup" title="Permanent link">&para;</a></h2>
+<h3 id="installing-test-dependencies">Installing Test Dependencies<a class="headerlink" href="#installing-test-dependencies" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Using uv</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>uv<span class="w"> </span>add<span class="w"> </span>pytest<span class="w"> </span>pytest-asyncio<span class="w"> </span>pytest-cov
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># Using pip</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>pip<span class="w"> </span>install<span class="w"> </span>pytest<span class="w"> </span>pytest-asyncio<span class="w"> </span>pytest-cov
+</span></code></pre></div>
+<h3 id="pytest-configuration">Pytest Configuration<a class="headerlink" href="#pytest-configuration" title="Permanent link">&para;</a></h3>
+<p>The generated project includes a <code>conftest.py</code> that sets up the <code>unfazed</code> fixture. This fixture creates and initializes the application instance, which is required for endpoint tests:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># conftest.py</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="kn">import</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">t</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="kn">from</span><span class="w"> </span><span class="nn">unfazed.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">Unfazed</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">(</span><span class="n">autouse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">unfazed</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">t</span><span class="o">.</span><span class="n">AsyncGenerator</span><span class="p">[</span><span class="n">Unfazed</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>    <span class="n">root_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>    <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">root_path</span><span class="p">)</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>    <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">&quot;UNFAZED_SETTINGS_MODULE&quot;</span><span class="p">,</span> <span class="s2">&quot;entry.settings&quot;</span><span class="p">)</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>    <span class="n">app</span> <span class="o">=</span> <span class="n">Unfazed</span><span class="p">()</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">setup</span><span class="p">()</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>    <span class="k">yield</span> <span class="n">app</span>
+</span></code></pre></div>
+<p>This fixture mirrors the pattern described in <a href="../../features/testclient/#setting-up-a-pytest-fixture">Test Client — Setting Up a Pytest Fixture</a>.</p>
+<h2 id="writing-test-cases">Writing Test Cases<a class="headerlink" href="#writing-test-cases" title="Permanent link">&para;</a></h2>
+<h3 id="test-data-setup">Test Data Setup<a class="headerlink" href="#test-data-setup" title="Permanent link">&para;</a></h3>
+<p>Edit <code>enroll/test_all.py</code>:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># enroll/test_all.py</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">t</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="kn">from</span><span class="w"> </span><span class="nn">unfazed.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">Unfazed</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="kn">from</span><span class="w"> </span><span class="nn">unfazed.test</span><span class="w"> </span><span class="kn">import</span> <span class="n">Requestfactory</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="kn">from</span><span class="w"> </span><span class="nn">enroll</span><span class="w"> </span><span class="kn">import</span> <span class="n">models</span> <span class="k">as</span> <span class="n">m</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="kn">from</span><span class="w"> </span><span class="nn">enroll</span><span class="w"> </span><span class="kn">import</span> <span class="n">serializers</span> <span class="k">as</span> <span class="n">s</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="kn">from</span><span class="w"> </span><span class="nn">enroll.exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="n">NotFound</span><span class="p">,</span> <span class="n">ValidationError</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="kn">from</span><span class="w"> </span><span class="nn">enroll.services</span><span class="w"> </span><span class="kn">import</span> <span class="n">EnrollService</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">(</span><span class="n">autouse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">setup_enroll</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">t</span><span class="o">.</span><span class="n">AsyncGenerator</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Create clean test data before each test.&quot;&quot;&quot;</span>
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>    <span class="k">await</span> <span class="n">m</span><span class="o">.</span><span class="n">Student</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>    <span class="k">await</span> <span class="n">m</span><span class="o">.</span><span class="n">Course</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>    <span class="n">students_data</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;alice@example.com&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s2">&quot;student_id&quot;</span><span class="p">:</span> <span class="s2">&quot;2024001&quot;</span><span class="p">},</span>
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Bob&quot;</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;bob@example.com&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">19</span><span class="p">,</span> <span class="s2">&quot;student_id&quot;</span><span class="p">:</span> <span class="s2">&quot;2024002&quot;</span><span class="p">},</span>
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Charlie&quot;</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;charlie@example.com&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">21</span><span class="p">,</span> <span class="s2">&quot;student_id&quot;</span><span class="p">:</span> <span class="s2">&quot;2024003&quot;</span><span class="p">},</span>
+</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;David&quot;</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;david@example.com&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s2">&quot;student_id&quot;</span><span class="p">:</span> <span class="s2">&quot;2024004&quot;</span><span class="p">},</span>
+</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Eve&quot;</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;eve@example.com&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">22</span><span class="p">,</span> <span class="s2">&quot;student_id&quot;</span><span class="p">:</span> <span class="s2">&quot;2024005&quot;</span><span class="p">},</span>
+</span><span id="__span-2-27"><a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Frank&quot;</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;frank@example.com&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">19</span><span class="p">,</span> <span class="s2">&quot;student_id&quot;</span><span class="p">:</span> <span class="s2">&quot;2024006&quot;</span><span class="p">},</span>
+</span><span id="__span-2-28"><a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a>        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Grace&quot;</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;grace@example.com&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s2">&quot;student_id&quot;</span><span class="p">:</span> <span class="s2">&quot;2024007&quot;</span><span class="p">},</span>
+</span><span id="__span-2-29"><a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a>        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Helen&quot;</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;helen@example.com&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">21</span><span class="p">,</span> <span class="s2">&quot;student_id&quot;</span><span class="p">:</span> <span class="s2">&quot;2024008&quot;</span><span class="p">},</span>
+</span><span id="__span-2-30"><a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a>        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Ivy&quot;</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;ivy@example.com&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s2">&quot;student_id&quot;</span><span class="p">:</span> <span class="s2">&quot;2024009&quot;</span><span class="p">},</span>
+</span><span id="__span-2-31"><a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a>        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Jack&quot;</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;jack@example.com&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">23</span><span class="p">,</span> <span class="s2">&quot;student_id&quot;</span><span class="p">:</span> <span class="s2">&quot;2024010&quot;</span><span class="p">},</span>
+</span><span id="__span-2-32"><a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a>        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Kevin&quot;</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;kevin@example.com&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">19</span><span class="p">,</span> <span class="s2">&quot;student_id&quot;</span><span class="p">:</span> <span class="s2">&quot;2024011&quot;</span><span class="p">},</span>
+</span><span id="__span-2-33"><a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a>    <span class="p">]</span>
+</span><span id="__span-2-34"><a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a>    <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">students_data</span><span class="p">:</span>
+</span><span id="__span-2-35"><a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a>        <span class="k">await</span> <span class="n">m</span><span class="o">.</span><span class="n">Student</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="o">**</span><span class="n">data</span><span class="p">)</span>
+</span><span id="__span-2-36"><a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a>
+</span><span id="__span-2-37"><a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a>    <span class="n">courses_data</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="__span-2-38"><a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a>        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Math&quot;</span><span class="p">,</span> <span class="s2">&quot;code&quot;</span><span class="p">:</span> <span class="s2">&quot;MATH101&quot;</span><span class="p">,</span> <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Basic Mathematics&quot;</span><span class="p">,</span> <span class="s2">&quot;credits&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;max_students&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">},</span>
+</span><span id="__span-2-39"><a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a>        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Physics&quot;</span><span class="p">,</span> <span class="s2">&quot;code&quot;</span><span class="p">:</span> <span class="s2">&quot;PHYS101&quot;</span><span class="p">,</span> <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Introduction to Physics&quot;</span><span class="p">,</span> <span class="s2">&quot;credits&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;max_students&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span>
+</span><span id="__span-2-40"><a id="__codelineno-2-40" name="__codelineno-2-40" href="#__codelineno-2-40"></a>        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Chemistry&quot;</span><span class="p">,</span> <span class="s2">&quot;code&quot;</span><span class="p">:</span> <span class="s2">&quot;CHEM101&quot;</span><span class="p">,</span> <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;General Chemistry&quot;</span><span class="p">,</span> <span class="s2">&quot;credits&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;max_students&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">},</span>
+</span><span id="__span-2-41"><a id="__codelineno-2-41" name="__codelineno-2-41" href="#__codelineno-2-41"></a>    <span class="p">]</span>
+</span><span id="__span-2-42"><a id="__codelineno-2-42" name="__codelineno-2-42" href="#__codelineno-2-42"></a>    <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">courses_data</span><span class="p">:</span>
+</span><span id="__span-2-43"><a id="__codelineno-2-43" name="__codelineno-2-43" href="#__codelineno-2-43"></a>        <span class="k">await</span> <span class="n">m</span><span class="o">.</span><span class="n">Course</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="o">**</span><span class="n">data</span><span class="p">)</span>
+</span><span id="__span-2-44"><a id="__codelineno-2-44" name="__codelineno-2-44" href="#__codelineno-2-44"></a>
+</span><span id="__span-2-45"><a id="__codelineno-2-45" name="__codelineno-2-45" href="#__codelineno-2-45"></a>    <span class="k">yield</span>
+</span><span id="__span-2-46"><a id="__codelineno-2-46" name="__codelineno-2-46" href="#__codelineno-2-46"></a>
+</span><span id="__span-2-47"><a id="__codelineno-2-47" name="__codelineno-2-47" href="#__codelineno-2-47"></a>    <span class="k">await</span> <span class="n">m</span><span class="o">.</span><span class="n">Student</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+</span><span id="__span-2-48"><a id="__codelineno-2-48" name="__codelineno-2-48" href="#__codelineno-2-48"></a>    <span class="k">await</span> <span class="n">m</span><span class="o">.</span><span class="n">Course</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+</span></code></pre></div>
+<h3 id="services-layer-tests">Services Layer Tests<a class="headerlink" href="#services-layer-tests" title="Permanent link">&para;</a></h3>
+<p>Test the business logic directly, without going through HTTP:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">TestEnrollServices</span><span class="p">:</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Test EnrollService business logic&quot;&quot;&quot;</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">test_list_student</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>        <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">EnrollService</span><span class="o">.</span><span class="n">list_student</span><span class="p">(</span><span class="n">page</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>        <span class="k">assert</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;code&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">])</span> <span class="o">==</span> <span class="mi">10</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>        <span class="c1"># Second page</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>        <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">EnrollService</span><span class="o">.</span><span class="n">list_student</span><span class="p">(</span><span class="n">page</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>        <span class="c1"># Search by name</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>        <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">EnrollService</span><span class="o">.</span><span class="n">list_student</span><span class="p">(</span><span class="n">page</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">search</span><span class="o">=</span><span class="s2">&quot;Alice&quot;</span><span class="p">)</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>        <span class="k">assert</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Alice&quot;</span>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">test_list_course</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>        <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">EnrollService</span><span class="o">.</span><span class="n">list_course</span><span class="p">(</span><span class="n">page</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>        <span class="k">assert</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;code&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span>
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">])</span> <span class="o">==</span> <span class="mi">3</span>
+</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>
+</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">test_get_student</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>        <span class="n">student</span> <span class="o">=</span> <span class="k">await</span> <span class="n">m</span><span class="o">.</span><span class="n">Student</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Alice&quot;</span><span class="p">)</span>
+</span><span id="__span-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>
+</span><span id="__span-3-26"><a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>        <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">EnrollService</span><span class="o">.</span><span class="n">get_student</span><span class="p">(</span><span class="n">student</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+</span><span id="__span-3-27"><a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>        <span class="k">assert</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;code&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span>
+</span><span id="__span-3-28"><a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>        <span class="k">assert</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Alice&quot;</span>
+</span><span id="__span-3-29"><a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>
+</span><span id="__span-3-30"><a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a>        <span class="c1"># Non-existent student</span>
+</span><span id="__span-3-31"><a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a>        <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="n">NotFound</span><span class="p">):</span>
+</span><span id="__span-3-32"><a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a>            <span class="k">await</span> <span class="n">EnrollService</span><span class="o">.</span><span class="n">get_student</span><span class="p">(</span><span class="mi">99999</span><span class="p">)</span>
+</span><span id="__span-3-33"><a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a>
+</span><span id="__span-3-34"><a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a>    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">test_create_student</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-3-35"><a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a>        <span class="n">ctx</span> <span class="o">=</span> <span class="n">EnrollService</span><span class="o">.</span><span class="n">CreateStudentCtx</span><span class="p">(</span>
+</span><span id="__span-3-36"><a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a>            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;New Student&quot;</span><span class="p">,</span>
+</span><span id="__span-3-37"><a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a>            <span class="n">email</span><span class="o">=</span><span class="s2">&quot;new@example.com&quot;</span><span class="p">,</span>
+</span><span id="__span-3-38"><a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a>            <span class="n">age</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+</span><span id="__span-3-39"><a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a>            <span class="n">student_id</span><span class="o">=</span><span class="s2">&quot;2024099&quot;</span><span class="p">,</span>
+</span><span id="__span-3-40"><a id="__codelineno-3-40" name="__codelineno-3-40" href="#__codelineno-3-40"></a>        <span class="p">)</span>
+</span><span id="__span-3-41"><a id="__codelineno-3-41" name="__codelineno-3-41" href="#__codelineno-3-41"></a>        <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">EnrollService</span><span class="o">.</span><span class="n">create_student</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span>
+</span><span id="__span-3-42"><a id="__codelineno-3-42" name="__codelineno-3-42" href="#__codelineno-3-42"></a>        <span class="k">assert</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;code&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span>
+</span><span id="__span-3-43"><a id="__codelineno-3-43" name="__codelineno-3-43" href="#__codelineno-3-43"></a>        <span class="k">assert</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;New Student&quot;</span>
+</span><span id="__span-3-44"><a id="__codelineno-3-44" name="__codelineno-3-44" href="#__codelineno-3-44"></a>
+</span><span id="__span-3-45"><a id="__codelineno-3-45" name="__codelineno-3-45" href="#__codelineno-3-45"></a>        <span class="c1"># Duplicate student ID</span>
+</span><span id="__span-3-46"><a id="__codelineno-3-46" name="__codelineno-3-46" href="#__codelineno-3-46"></a>        <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="n">ValidationError</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s2">&quot;already exists&quot;</span><span class="p">):</span>
+</span><span id="__span-3-47"><a id="__codelineno-3-47" name="__codelineno-3-47" href="#__codelineno-3-47"></a>            <span class="k">await</span> <span class="n">EnrollService</span><span class="o">.</span><span class="n">create_student</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span>
+</span><span id="__span-3-48"><a id="__codelineno-3-48" name="__codelineno-3-48" href="#__codelineno-3-48"></a>
+</span><span id="__span-3-49"><a id="__codelineno-3-49" name="__codelineno-3-49" href="#__codelineno-3-49"></a>        <span class="c1"># Duplicate email</span>
+</span><span id="__span-3-50"><a id="__codelineno-3-50" name="__codelineno-3-50" href="#__codelineno-3-50"></a>        <span class="n">ctx2</span> <span class="o">=</span> <span class="n">EnrollService</span><span class="o">.</span><span class="n">CreateStudentCtx</span><span class="p">(</span>
+</span><span id="__span-3-51"><a id="__codelineno-3-51" name="__codelineno-3-51" href="#__codelineno-3-51"></a>            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Another&quot;</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="s2">&quot;alice@example.com&quot;</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="mi">21</span><span class="p">,</span> <span class="n">student_id</span><span class="o">=</span><span class="s2">&quot;2024100&quot;</span>
+</span><span id="__span-3-52"><a id="__codelineno-3-52" name="__codelineno-3-52" href="#__codelineno-3-52"></a>        <span class="p">)</span>
+</span><span id="__span-3-53"><a id="__codelineno-3-53" name="__codelineno-3-53" href="#__codelineno-3-53"></a>        <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="n">ValidationError</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s2">&quot;already in use&quot;</span><span class="p">):</span>
+</span><span id="__span-3-54"><a id="__codelineno-3-54" name="__codelineno-3-54" href="#__codelineno-3-54"></a>            <span class="k">await</span> <span class="n">EnrollService</span><span class="o">.</span><span class="n">create_student</span><span class="p">(</span><span class="n">ctx2</span><span class="p">)</span>
+</span><span id="__span-3-55"><a id="__codelineno-3-55" name="__codelineno-3-55" href="#__codelineno-3-55"></a>
+</span><span id="__span-3-56"><a id="__codelineno-3-56" name="__codelineno-3-56" href="#__codelineno-3-56"></a>    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">test_bind</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-3-57"><a id="__codelineno-3-57" name="__codelineno-3-57" href="#__codelineno-3-57"></a>        <span class="n">student</span> <span class="o">=</span> <span class="k">await</span> <span class="n">m</span><span class="o">.</span><span class="n">Student</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Alice&quot;</span><span class="p">)</span>
+</span><span id="__span-3-58"><a id="__codelineno-3-58" name="__codelineno-3-58" href="#__codelineno-3-58"></a>        <span class="n">course</span> <span class="o">=</span> <span class="k">await</span> <span class="n">m</span><span class="o">.</span><span class="n">Course</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Math&quot;</span><span class="p">)</span>
+</span><span id="__span-3-59"><a id="__codelineno-3-59" name="__codelineno-3-59" href="#__codelineno-3-59"></a>
+</span><span id="__span-3-60"><a id="__codelineno-3-60" name="__codelineno-3-60" href="#__codelineno-3-60"></a>        <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">EnrollService</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">student</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">course</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+</span><span id="__span-3-61"><a id="__codelineno-3-61" name="__codelineno-3-61" href="#__codelineno-3-61"></a>        <span class="k">assert</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;code&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span>
+</span><span id="__span-3-62"><a id="__codelineno-3-62" name="__codelineno-3-62" href="#__codelineno-3-62"></a>        <span class="k">assert</span> <span class="s2">&quot;enrolled&quot;</span> <span class="ow">in</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">]</span>
+</span><span id="__span-3-63"><a id="__codelineno-3-63" name="__codelineno-3-63" href="#__codelineno-3-63"></a>
+</span><span id="__span-3-64"><a id="__codelineno-3-64" name="__codelineno-3-64" href="#__codelineno-3-64"></a>        <span class="c1"># Verify the relationship</span>
+</span><span id="__span-3-65"><a id="__codelineno-3-65" name="__codelineno-3-65" href="#__codelineno-3-65"></a>        <span class="n">enrolled</span> <span class="o">=</span> <span class="k">await</span> <span class="n">student</span><span class="o">.</span><span class="n">courses</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+</span><span id="__span-3-66"><a id="__codelineno-3-66" name="__codelineno-3-66" href="#__codelineno-3-66"></a>        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">enrolled</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+</span><span id="__span-3-67"><a id="__codelineno-3-67" name="__codelineno-3-67" href="#__codelineno-3-67"></a>
+</span><span id="__span-3-68"><a id="__codelineno-3-68" name="__codelineno-3-68" href="#__codelineno-3-68"></a>        <span class="c1"># Duplicate enrollment</span>
+</span><span id="__span-3-69"><a id="__codelineno-3-69" name="__codelineno-3-69" href="#__codelineno-3-69"></a>        <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="n">ValidationError</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s2">&quot;already enrolled&quot;</span><span class="p">):</span>
+</span><span id="__span-3-70"><a id="__codelineno-3-70" name="__codelineno-3-70" href="#__codelineno-3-70"></a>            <span class="k">await</span> <span class="n">EnrollService</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">student</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">course</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+</span><span id="__span-3-71"><a id="__codelineno-3-71" name="__codelineno-3-71" href="#__codelineno-3-71"></a>
+</span><span id="__span-3-72"><a id="__codelineno-3-72" name="__codelineno-3-72" href="#__codelineno-3-72"></a>        <span class="c1"># Fill the course (Math max_students=5)</span>
+</span><span id="__span-3-73"><a id="__codelineno-3-73" name="__codelineno-3-73" href="#__codelineno-3-73"></a>        <span class="n">students</span> <span class="o">=</span> <span class="k">await</span> <span class="n">m</span><span class="o">.</span><span class="n">Student</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+</span><span id="__span-3-74"><a id="__codelineno-3-74" name="__codelineno-3-74" href="#__codelineno-3-74"></a>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span>
+</span><span id="__span-3-75"><a id="__codelineno-3-75" name="__codelineno-3-75" href="#__codelineno-3-75"></a>            <span class="k">await</span> <span class="n">EnrollService</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">students</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">course</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+</span><span id="__span-3-76"><a id="__codelineno-3-76" name="__codelineno-3-76" href="#__codelineno-3-76"></a>
+</span><span id="__span-3-77"><a id="__codelineno-3-77" name="__codelineno-3-77" href="#__codelineno-3-77"></a>        <span class="c1"># Course is now full</span>
+</span><span id="__span-3-78"><a id="__codelineno-3-78" name="__codelineno-3-78" href="#__codelineno-3-78"></a>        <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="n">ValidationError</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s2">&quot;full&quot;</span><span class="p">):</span>
+</span><span id="__span-3-79"><a id="__codelineno-3-79" name="__codelineno-3-79" href="#__codelineno-3-79"></a>            <span class="k">await</span> <span class="n">EnrollService</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">students</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">course</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+</span><span id="__span-3-80"><a id="__codelineno-3-80" name="__codelineno-3-80" href="#__codelineno-3-80"></a>
+</span><span id="__span-3-81"><a id="__codelineno-3-81" name="__codelineno-3-81" href="#__codelineno-3-81"></a>        <span class="c1"># Non-existent student/course</span>
+</span><span id="__span-3-82"><a id="__codelineno-3-82" name="__codelineno-3-82" href="#__codelineno-3-82"></a>        <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="n">NotFound</span><span class="p">):</span>
+</span><span id="__span-3-83"><a id="__codelineno-3-83" name="__codelineno-3-83" href="#__codelineno-3-83"></a>            <span class="k">await</span> <span class="n">EnrollService</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="mi">99999</span><span class="p">,</span> <span class="n">course</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+</span><span id="__span-3-84"><a id="__codelineno-3-84" name="__codelineno-3-84" href="#__codelineno-3-84"></a>        <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="n">NotFound</span><span class="p">):</span>
+</span><span id="__span-3-85"><a id="__codelineno-3-85" name="__codelineno-3-85" href="#__codelineno-3-85"></a>            <span class="k">await</span> <span class="n">EnrollService</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">student</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="mi">99999</span><span class="p">)</span>
+</span><span id="__span-3-86"><a id="__codelineno-3-86" name="__codelineno-3-86" href="#__codelineno-3-86"></a>
+</span><span id="__span-3-87"><a id="__codelineno-3-87" name="__codelineno-3-87" href="#__codelineno-3-87"></a>    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">test_unbind</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-3-88"><a id="__codelineno-3-88" name="__codelineno-3-88" href="#__codelineno-3-88"></a>        <span class="n">student</span> <span class="o">=</span> <span class="k">await</span> <span class="n">m</span><span class="o">.</span><span class="n">Student</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Bob&quot;</span><span class="p">)</span>
+</span><span id="__span-3-89"><a id="__codelineno-3-89" name="__codelineno-3-89" href="#__codelineno-3-89"></a>        <span class="n">course</span> <span class="o">=</span> <span class="k">await</span> <span class="n">m</span><span class="o">.</span><span class="n">Course</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Physics&quot;</span><span class="p">)</span>
+</span><span id="__span-3-90"><a id="__codelineno-3-90" name="__codelineno-3-90" href="#__codelineno-3-90"></a>
+</span><span id="__span-3-91"><a id="__codelineno-3-91" name="__codelineno-3-91" href="#__codelineno-3-91"></a>        <span class="c1"># Enroll first</span>
+</span><span id="__span-3-92"><a id="__codelineno-3-92" name="__codelineno-3-92" href="#__codelineno-3-92"></a>        <span class="k">await</span> <span class="n">EnrollService</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">student</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">course</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+</span><span id="__span-3-93"><a id="__codelineno-3-93" name="__codelineno-3-93" href="#__codelineno-3-93"></a>
+</span><span id="__span-3-94"><a id="__codelineno-3-94" name="__codelineno-3-94" href="#__codelineno-3-94"></a>        <span class="c1"># Withdraw</span>
+</span><span id="__span-3-95"><a id="__codelineno-3-95" name="__codelineno-3-95" href="#__codelineno-3-95"></a>        <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">EnrollService</span><span class="o">.</span><span class="n">unbind</span><span class="p">(</span><span class="n">student</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">course</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+</span><span id="__span-3-96"><a id="__codelineno-3-96" name="__codelineno-3-96" href="#__codelineno-3-96"></a>        <span class="k">assert</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;code&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span>
+</span><span id="__span-3-97"><a id="__codelineno-3-97" name="__codelineno-3-97" href="#__codelineno-3-97"></a>        <span class="k">assert</span> <span class="s2">&quot;withdrew&quot;</span> <span class="ow">in</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">]</span>
+</span><span id="__span-3-98"><a id="__codelineno-3-98" name="__codelineno-3-98" href="#__codelineno-3-98"></a>
+</span><span id="__span-3-99"><a id="__codelineno-3-99" name="__codelineno-3-99" href="#__codelineno-3-99"></a>        <span class="n">enrolled</span> <span class="o">=</span> <span class="k">await</span> <span class="n">student</span><span class="o">.</span><span class="n">courses</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+</span><span id="__span-3-100"><a id="__codelineno-3-100" name="__codelineno-3-100" href="#__codelineno-3-100"></a>        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">enrolled</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+</span><span id="__span-3-101"><a id="__codelineno-3-101" name="__codelineno-3-101" href="#__codelineno-3-101"></a>
+</span><span id="__span-3-102"><a id="__codelineno-3-102" name="__codelineno-3-102" href="#__codelineno-3-102"></a>        <span class="c1"># Withdraw again — not enrolled</span>
+</span><span id="__span-3-103"><a id="__codelineno-3-103" name="__codelineno-3-103" href="#__codelineno-3-103"></a>        <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="n">ValidationError</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s2">&quot;not enrolled&quot;</span><span class="p">):</span>
+</span><span id="__span-3-104"><a id="__codelineno-3-104" name="__codelineno-3-104" href="#__codelineno-3-104"></a>            <span class="k">await</span> <span class="n">EnrollService</span><span class="o">.</span><span class="n">unbind</span><span class="p">(</span><span class="n">student</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">course</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+</span></code></pre></div>
+<h3 id="endpoints-layer-tests">Endpoints Layer Tests<a class="headerlink" href="#endpoints-layer-tests" title="Permanent link">&para;</a></h3>
+<p>Test the full HTTP request-response cycle using <code>Requestfactory</code>:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">TestEnrollEndpoints</span><span class="p">:</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Test API endpoints via HTTP&quot;&quot;&quot;</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">test_hello</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">unfazed</span><span class="p">:</span> <span class="n">Unfazed</span><span class="p">):</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>        <span class="k">async</span> <span class="k">with</span> <span class="n">Requestfactory</span><span class="p">(</span><span class="n">unfazed</span><span class="p">)</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>            <span class="n">resp</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/api/enroll/hello&quot;</span><span class="p">)</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>            <span class="k">assert</span> <span class="n">resp</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>            <span class="k">assert</span> <span class="n">resp</span><span class="o">.</span><span class="n">text</span> <span class="o">==</span> <span class="s2">&quot;Hello, World!&quot;</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">test_student_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">unfazed</span><span class="p">:</span> <span class="n">Unfazed</span><span class="p">):</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>        <span class="k">async</span> <span class="k">with</span> <span class="n">Requestfactory</span><span class="p">(</span><span class="n">unfazed</span><span class="p">)</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>            <span class="n">resp</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/api/enroll/student-list&quot;</span><span class="p">)</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>            <span class="k">assert</span> <span class="n">resp</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>            <span class="n">data</span> <span class="o">=</span> <span class="n">resp</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>            <span class="k">assert</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;code&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span>
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>            <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">])</span> <span class="o">==</span> <span class="mi">10</span>
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>
+</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>            <span class="c1"># With pagination</span>
+</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>            <span class="n">resp</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+</span><span id="__span-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>                <span class="s2">&quot;/api/enroll/student-list&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;page&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">}</span>
+</span><span id="__span-4-22"><a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a>            <span class="p">)</span>
+</span><span id="__span-4-23"><a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a>            <span class="n">data</span> <span class="o">=</span> <span class="n">resp</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</span><span id="__span-4-24"><a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a>            <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">])</span> <span class="o">==</span> <span class="mi">5</span>
+</span><span id="__span-4-25"><a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a>
+</span><span id="__span-4-26"><a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a>            <span class="c1"># With search</span>
+</span><span id="__span-4-27"><a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a>            <span class="n">resp</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+</span><span id="__span-4-28"><a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a>                <span class="s2">&quot;/api/enroll/student-list&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;search&quot;</span><span class="p">:</span> <span class="s2">&quot;Alice&quot;</span><span class="p">}</span>
+</span><span id="__span-4-29"><a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a>            <span class="p">)</span>
+</span><span id="__span-4-30"><a id="__codelineno-4-30" name="__codelineno-4-30" href="#__codelineno-4-30"></a>            <span class="n">data</span> <span class="o">=</span> <span class="n">resp</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</span><span id="__span-4-31"><a id="__codelineno-4-31" name="__codelineno-4-31" href="#__codelineno-4-31"></a>            <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span>
+</span><span id="__span-4-32"><a id="__codelineno-4-32" name="__codelineno-4-32" href="#__codelineno-4-32"></a>
+</span><span id="__span-4-33"><a id="__codelineno-4-33" name="__codelineno-4-33" href="#__codelineno-4-33"></a>    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">test_course_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">unfazed</span><span class="p">:</span> <span class="n">Unfazed</span><span class="p">):</span>
+</span><span id="__span-4-34"><a id="__codelineno-4-34" name="__codelineno-4-34" href="#__codelineno-4-34"></a>        <span class="k">async</span> <span class="k">with</span> <span class="n">Requestfactory</span><span class="p">(</span><span class="n">unfazed</span><span class="p">)</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
+</span><span id="__span-4-35"><a id="__codelineno-4-35" name="__codelineno-4-35" href="#__codelineno-4-35"></a>            <span class="n">resp</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/api/enroll/course-list&quot;</span><span class="p">)</span>
+</span><span id="__span-4-36"><a id="__codelineno-4-36" name="__codelineno-4-36" href="#__codelineno-4-36"></a>            <span class="k">assert</span> <span class="n">resp</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
+</span><span id="__span-4-37"><a id="__codelineno-4-37" name="__codelineno-4-37" href="#__codelineno-4-37"></a>
+</span><span id="__span-4-38"><a id="__codelineno-4-38" name="__codelineno-4-38" href="#__codelineno-4-38"></a>            <span class="n">data</span> <span class="o">=</span> <span class="n">resp</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</span><span id="__span-4-39"><a id="__codelineno-4-39" name="__codelineno-4-39" href="#__codelineno-4-39"></a>            <span class="k">assert</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;code&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span>
+</span><span id="__span-4-40"><a id="__codelineno-4-40" name="__codelineno-4-40" href="#__codelineno-4-40"></a>            <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">])</span> <span class="o">==</span> <span class="mi">3</span>
+</span><span id="__span-4-41"><a id="__codelineno-4-41" name="__codelineno-4-41" href="#__codelineno-4-41"></a>
+</span><span id="__span-4-42"><a id="__codelineno-4-42" name="__codelineno-4-42" href="#__codelineno-4-42"></a>    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">test_bind</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">unfazed</span><span class="p">:</span> <span class="n">Unfazed</span><span class="p">):</span>
+</span><span id="__span-4-43"><a id="__codelineno-4-43" name="__codelineno-4-43" href="#__codelineno-4-43"></a>        <span class="n">student</span> <span class="o">=</span> <span class="k">await</span> <span class="n">m</span><span class="o">.</span><span class="n">Student</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Charlie&quot;</span><span class="p">)</span>
+</span><span id="__span-4-44"><a id="__codelineno-4-44" name="__codelineno-4-44" href="#__codelineno-4-44"></a>        <span class="n">course</span> <span class="o">=</span> <span class="k">await</span> <span class="n">m</span><span class="o">.</span><span class="n">Course</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Chemistry&quot;</span><span class="p">)</span>
+</span><span id="__span-4-45"><a id="__codelineno-4-45" name="__codelineno-4-45" href="#__codelineno-4-45"></a>
+</span><span id="__span-4-46"><a id="__codelineno-4-46" name="__codelineno-4-46" href="#__codelineno-4-46"></a>        <span class="k">async</span> <span class="k">with</span> <span class="n">Requestfactory</span><span class="p">(</span><span class="n">unfazed</span><span class="p">)</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
+</span><span id="__span-4-47"><a id="__codelineno-4-47" name="__codelineno-4-47" href="#__codelineno-4-47"></a>            <span class="n">resp</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+</span><span id="__span-4-48"><a id="__codelineno-4-48" name="__codelineno-4-48" href="#__codelineno-4-48"></a>                <span class="s2">&quot;/api/enroll/bind&quot;</span><span class="p">,</span>
+</span><span id="__span-4-49"><a id="__codelineno-4-49" name="__codelineno-4-49" href="#__codelineno-4-49"></a>                <span class="n">json</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;student_id&quot;</span><span class="p">:</span> <span class="n">student</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="s2">&quot;course_id&quot;</span><span class="p">:</span> <span class="n">course</span><span class="o">.</span><span class="n">id</span><span class="p">},</span>
+</span><span id="__span-4-50"><a id="__codelineno-4-50" name="__codelineno-4-50" href="#__codelineno-4-50"></a>            <span class="p">)</span>
+</span><span id="__span-4-51"><a id="__codelineno-4-51" name="__codelineno-4-51" href="#__codelineno-4-51"></a>            <span class="k">assert</span> <span class="n">resp</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
+</span><span id="__span-4-52"><a id="__codelineno-4-52" name="__codelineno-4-52" href="#__codelineno-4-52"></a>
+</span><span id="__span-4-53"><a id="__codelineno-4-53" name="__codelineno-4-53" href="#__codelineno-4-53"></a>            <span class="n">data</span> <span class="o">=</span> <span class="n">resp</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</span><span id="__span-4-54"><a id="__codelineno-4-54" name="__codelineno-4-54" href="#__codelineno-4-54"></a>            <span class="k">assert</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;code&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span>
+</span><span id="__span-4-55"><a id="__codelineno-4-55" name="__codelineno-4-55" href="#__codelineno-4-55"></a>
+</span><span id="__span-4-56"><a id="__codelineno-4-56" name="__codelineno-4-56" href="#__codelineno-4-56"></a>            <span class="c1"># Duplicate binding</span>
+</span><span id="__span-4-57"><a id="__codelineno-4-57" name="__codelineno-4-57" href="#__codelineno-4-57"></a>            <span class="n">resp</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+</span><span id="__span-4-58"><a id="__codelineno-4-58" name="__codelineno-4-58" href="#__codelineno-4-58"></a>                <span class="s2">&quot;/api/enroll/bind&quot;</span><span class="p">,</span>
+</span><span id="__span-4-59"><a id="__codelineno-4-59" name="__codelineno-4-59" href="#__codelineno-4-59"></a>                <span class="n">json</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;student_id&quot;</span><span class="p">:</span> <span class="n">student</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="s2">&quot;course_id&quot;</span><span class="p">:</span> <span class="n">course</span><span class="o">.</span><span class="n">id</span><span class="p">},</span>
+</span><span id="__span-4-60"><a id="__codelineno-4-60" name="__codelineno-4-60" href="#__codelineno-4-60"></a>            <span class="p">)</span>
+</span><span id="__span-4-61"><a id="__codelineno-4-61" name="__codelineno-4-61" href="#__codelineno-4-61"></a>            <span class="k">assert</span> <span class="n">resp</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
+</span><span id="__span-4-62"><a id="__codelineno-4-62" name="__codelineno-4-62" href="#__codelineno-4-62"></a>            <span class="c1"># The exception is caught and returned as an error response</span>
+</span><span id="__span-4-63"><a id="__codelineno-4-63" name="__codelineno-4-63" href="#__codelineno-4-63"></a>
+</span><span id="__span-4-64"><a id="__codelineno-4-64" name="__codelineno-4-64" href="#__codelineno-4-64"></a>    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">test_unbind</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">unfazed</span><span class="p">:</span> <span class="n">Unfazed</span><span class="p">):</span>
+</span><span id="__span-4-65"><a id="__codelineno-4-65" name="__codelineno-4-65" href="#__codelineno-4-65"></a>        <span class="n">student</span> <span class="o">=</span> <span class="k">await</span> <span class="n">m</span><span class="o">.</span><span class="n">Student</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;David&quot;</span><span class="p">)</span>
+</span><span id="__span-4-66"><a id="__codelineno-4-66" name="__codelineno-4-66" href="#__codelineno-4-66"></a>        <span class="n">course</span> <span class="o">=</span> <span class="k">await</span> <span class="n">m</span><span class="o">.</span><span class="n">Course</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Math&quot;</span><span class="p">)</span>
+</span><span id="__span-4-67"><a id="__codelineno-4-67" name="__codelineno-4-67" href="#__codelineno-4-67"></a>
+</span><span id="__span-4-68"><a id="__codelineno-4-68" name="__codelineno-4-68" href="#__codelineno-4-68"></a>        <span class="k">async</span> <span class="k">with</span> <span class="n">Requestfactory</span><span class="p">(</span><span class="n">unfazed</span><span class="p">)</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
+</span><span id="__span-4-69"><a id="__codelineno-4-69" name="__codelineno-4-69" href="#__codelineno-4-69"></a>            <span class="c1"># Enroll first</span>
+</span><span id="__span-4-70"><a id="__codelineno-4-70" name="__codelineno-4-70" href="#__codelineno-4-70"></a>            <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+</span><span id="__span-4-71"><a id="__codelineno-4-71" name="__codelineno-4-71" href="#__codelineno-4-71"></a>                <span class="s2">&quot;/api/enroll/bind&quot;</span><span class="p">,</span>
+</span><span id="__span-4-72"><a id="__codelineno-4-72" name="__codelineno-4-72" href="#__codelineno-4-72"></a>                <span class="n">json</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;student_id&quot;</span><span class="p">:</span> <span class="n">student</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="s2">&quot;course_id&quot;</span><span class="p">:</span> <span class="n">course</span><span class="o">.</span><span class="n">id</span><span class="p">},</span>
+</span><span id="__span-4-73"><a id="__codelineno-4-73" name="__codelineno-4-73" href="#__codelineno-4-73"></a>            <span class="p">)</span>
+</span><span id="__span-4-74"><a id="__codelineno-4-74" name="__codelineno-4-74" href="#__codelineno-4-74"></a>
+</span><span id="__span-4-75"><a id="__codelineno-4-75" name="__codelineno-4-75" href="#__codelineno-4-75"></a>            <span class="c1"># Then withdraw</span>
+</span><span id="__span-4-76"><a id="__codelineno-4-76" name="__codelineno-4-76" href="#__codelineno-4-76"></a>            <span class="n">resp</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+</span><span id="__span-4-77"><a id="__codelineno-4-77" name="__codelineno-4-77" href="#__codelineno-4-77"></a>                <span class="s2">&quot;/api/enroll/unbind&quot;</span><span class="p">,</span>
+</span><span id="__span-4-78"><a id="__codelineno-4-78" name="__codelineno-4-78" href="#__codelineno-4-78"></a>                <span class="n">json</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;student_id&quot;</span><span class="p">:</span> <span class="n">student</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="s2">&quot;course_id&quot;</span><span class="p">:</span> <span class="n">course</span><span class="o">.</span><span class="n">id</span><span class="p">},</span>
+</span><span id="__span-4-79"><a id="__codelineno-4-79" name="__codelineno-4-79" href="#__codelineno-4-79"></a>            <span class="p">)</span>
+</span><span id="__span-4-80"><a id="__codelineno-4-80" name="__codelineno-4-80" href="#__codelineno-4-80"></a>            <span class="k">assert</span> <span class="n">resp</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
+</span><span id="__span-4-81"><a id="__codelineno-4-81" name="__codelineno-4-81" href="#__codelineno-4-81"></a>            <span class="n">data</span> <span class="o">=</span> <span class="n">resp</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</span><span id="__span-4-82"><a id="__codelineno-4-82" name="__codelineno-4-82" href="#__codelineno-4-82"></a>            <span class="k">assert</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;code&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span>
+</span></code></pre></div>
+<h2 id="running-tests">Running Tests<a class="headerlink" href="#running-tests" title="Permanent link">&para;</a></h2>
+<h3 id="basic-commands">Basic Commands<a class="headerlink" href="#basic-commands" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Run all tests</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>pytest
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># Run specific test file</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>pytest<span class="w"> </span>enroll/test_all.py
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="c1"># Run a specific test class</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>pytest<span class="w"> </span>enroll/test_all.py::TestEnrollServices
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="c1"># Run a specific test method</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>pytest<span class="w"> </span>enroll/test_all.py::TestEnrollServices::test_bind
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="c1"># Verbose output</span>
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>pytest<span class="w"> </span>-v
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="c1"># With coverage report</span>
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>pytest<span class="w"> </span>--cov<span class="o">=</span>enroll<span class="w"> </span>--cov-report<span class="o">=</span>term-missing
+</span></code></pre></div>
+<h3 id="using-makefile">Using Makefile<a class="headerlink" href="#using-makefile" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>make<span class="w"> </span><span class="nb">test</span><span class="w">          </span><span class="c1"># Run all tests</span>
+</span></code></pre></div>
+<h2 id="test-coverage">Test Coverage<a class="headerlink" href="#test-coverage" title="Permanent link">&para;</a></h2>
+<p>After running tests with <code>--cov</code>, you will see output similar to:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>---------- coverage ----------
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>Name                    Stmts   Miss  Cover   Missing
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>-----------------------------------------------------
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>enroll/__init__.py          0      0   100%
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>enroll/endpoints.py        32      0   100%
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>enroll/exceptions.py        8      0   100%
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>enroll/models.py           24      0   100%
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>enroll/serializers.py      16      0   100%
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>enroll/services.py         72      2    97%   45, 78
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>enroll/routes.py            8      0   100%
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>-----------------------------------------------------
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>TOTAL                     160      2    99%
+</span></code></pre></div>
+<p>To generate an HTML report:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>pytest<span class="w"> </span>--cov<span class="o">=</span>enroll<span class="w"> </span>--cov-report<span class="o">=</span>html
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>open<span class="w"> </span>htmlcov/index.html
+</span></code></pre></div>
+<h2 id="testing-best-practices">Testing Best Practices<a class="headerlink" href="#testing-best-practices" title="Permanent link">&para;</a></h2>
+<h3 id="use-descriptive-test-names">Use Descriptive Test Names<a class="headerlink" href="#use-descriptive-test-names" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">test_bind_raises_when_course_is_full</span><span class="p">():</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>    <span class="o">...</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">test_unbind_raises_when_not_enrolled</span><span class="p">():</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>    <span class="o">...</span>
+</span></code></pre></div>
+<h3 id="use-parameterized-tests">Use Parameterized Tests<a class="headerlink" href="#use-parameterized-tests" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;page,size,expected_count&quot;</span><span class="p">,</span> <span class="p">[</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>    <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>    <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>    <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>    <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">11</span><span class="p">),</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="p">])</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">test_student_pagination</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">expected_count</span><span class="p">):</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>    <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">EnrollService</span><span class="o">.</span><span class="n">list_student</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">])</span> <span class="o">==</span> <span class="n">expected_count</span>
+</span></code></pre></div>
+<h3 id="use-fixtures-for-common-setup">Use Fixtures for Common Setup<a class="headerlink" href="#use-fixtures-for-common-setup" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">enrolled_student</span><span class="p">():</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>    <span class="n">student</span> <span class="o">=</span> <span class="k">await</span> <span class="n">m</span><span class="o">.</span><span class="n">Student</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Enrolled&quot;</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="s2">&quot;enrolled@test.com&quot;</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">student_id</span><span class="o">=</span><span class="s2">&quot;EN001&quot;</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>    <span class="p">)</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>    <span class="n">course</span> <span class="o">=</span> <span class="k">await</span> <span class="n">m</span><span class="o">.</span><span class="n">Course</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Test Course&quot;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s2">&quot;TC001&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Test&quot;</span><span class="p">,</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>        <span class="n">credits</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">max_students</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>    <span class="p">)</span>
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>    <span class="k">await</span> <span class="n">student</span><span class="o">.</span><span class="n">courses</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">course</span><span class="p">)</span>
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>    <span class="k">return</span> <span class="n">student</span><span class="p">,</span> <span class="n">course</span>
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>
+</span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>
+</span><span id="__span-11-14"><a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">test_unbind_with_fixture</span><span class="p">(</span><span class="n">enrolled_student</span><span class="p">):</span>
+</span><span id="__span-11-15"><a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a>    <span class="n">student</span><span class="p">,</span> <span class="n">course</span> <span class="o">=</span> <span class="n">enrolled_student</span>
+</span><span id="__span-11-16"><a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a>    <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">EnrollService</span><span class="o">.</span><span class="n">unbind</span><span class="p">(</span><span class="n">student</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">course</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+</span><span id="__span-11-17"><a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a>    <span class="k">assert</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;code&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span>
+</span></code></pre></div>
+<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
+<p>In this tutorial series, we built a complete student course enrollment system with Unfazed, covering:</p>
 <ol>
-<li><strong>Services 层测试</strong> - 业务逻辑核心</li>
-<li><strong>Endpoints 层测试</strong> - API 接口功能</li>
-<li><strong>Models 层测试</strong> - 数据模型验证</li>
-<li><strong>Serializers 层测试</strong> - 数据转换功能</li>
+<li><strong><a href="../part1/">Part 1</a></strong>: Project creation and environment setup</li>
+<li><strong><a href="../part2/">Part 2</a></strong>: App creation and Hello World</li>
+<li><strong><a href="../part3/">Part 3</a></strong>: Data models (Tortoise ORM) and serializers</li>
+<li><strong><a href="../part4/">Part 4</a></strong>: API endpoints with typed parameter annotations and OpenAPI</li>
+<li><strong><a href="../part5/">Part 5</a></strong>: Business logic in the Services layer</li>
+<li><strong><a href="./">Part 6</a></strong>: Testing with <code>Requestfactory</code> and pytest</li>
 </ol>
-<h2 id="_5">测试环境配置</h2>
-<h3 id="_6">安装测试依赖</h3>
-<p>首先确保安装了必要的测试包：</p>
-<pre><code class="language-bash"># 如果使用 uv
-uv add pytest pytest-asyncio pytest-cov
-
-# 如果使用 pip
-pip install pytest pytest-asyncio pytest-cov
-</code></pre>
-<h3 id="_7">创建测试配置</h3>
-<p>创建 <code>pytest.ini</code> 配置文件：</p>
-<pre><code class="language-ini"># src/backend/pytest.ini
-
-[tool:pytest]
-testpaths = .
-python_files = test_*.py *_test.py
-python_classes = Test*
-python_functions = test_*
-asyncio_mode = auto
-addopts = 
-    --cov=.
-    --cov-report=html
-    --cov-report=term-missing
-    --cov-exclude=*/migrations/*
-    --cov-exclude=*/tests/*
-    --cov-exclude=*/test_*
-filterwarnings =
-    ignore::DeprecationWarning
-    ignore::PendingDeprecationWarning
-</code></pre>
-<h2 id="_8">编写测试用例</h2>
-<h3 id="_9">创建测试基础设施</h3>
-<p>编辑 <code>enroll/test_all.py</code> 文件：</p>
-<pre><code class="language-python"># src/backend/enroll/test_all.py
-
-import typing as t
-import pytest
-from unfazed.core import Unfazed
-from unfazed.test import Requestfactory
-from unfazed.exception import NotFound, ValidationError
-
-from enroll import models as m
-from enroll import services as svc
-from enroll import serializers as s
-
-@pytest.fixture(autouse=True)
-async def setup_enroll() -&gt; t.AsyncGenerator[None, None]:
-    &quot;&quot;&quot;
-    测试环境设置夹具
-
-    每个测试前自动执行，创建干净的测试环境
-    &quot;&quot;&quot;
-    # 清理数据
-    await m.Student.all().delete()
-    await m.Course.all().delete()
-
-    # 创建测试学生
-    students_data = [
-        {&quot;name&quot;: &quot;Alice&quot;, &quot;email&quot;: &quot;alice@example.com&quot;, &quot;age&quot;: 20, &quot;student_id&quot;: &quot;2024001&quot;},
-        {&quot;name&quot;: &quot;Bob&quot;, &quot;email&quot;: &quot;bob@example.com&quot;, &quot;age&quot;: 19, &quot;student_id&quot;: &quot;2024002&quot;},
-        {&quot;name&quot;: &quot;Charlie&quot;, &quot;email&quot;: &quot;charlie@example.com&quot;, &quot;age&quot;: 21, &quot;student_id&quot;: &quot;2024003&quot;},
-        {&quot;name&quot;: &quot;David&quot;, &quot;email&quot;: &quot;david@example.com&quot;, &quot;age&quot;: 20, &quot;student_id&quot;: &quot;2024004&quot;},
-        {&quot;name&quot;: &quot;Eve&quot;, &quot;email&quot;: &quot;eve@example.com&quot;, &quot;age&quot;: 22, &quot;student_id&quot;: &quot;2024005&quot;},
-        {&quot;name&quot;: &quot;Frank&quot;, &quot;email&quot;: &quot;frank@example.com&quot;, &quot;age&quot;: 19, &quot;student_id&quot;: &quot;2024006&quot;},
-        {&quot;name&quot;: &quot;Grace&quot;, &quot;email&quot;: &quot;grace@example.com&quot;, &quot;age&quot;: 20, &quot;student_id&quot;: &quot;2024007&quot;},
-        {&quot;name&quot;: &quot;Helen&quot;, &quot;email&quot;: &quot;helen@example.com&quot;, &quot;age&quot;: 21, &quot;student_id&quot;: &quot;2024008&quot;},
-        {&quot;name&quot;: &quot;Ivy&quot;, &quot;email&quot;: &quot;ivy@example.com&quot;, &quot;age&quot;: 20, &quot;student_id&quot;: &quot;2024009&quot;},
-        {&quot;name&quot;: &quot;Jack&quot;, &quot;email&quot;: &quot;jack@example.com&quot;, &quot;age&quot;: 23, &quot;student_id&quot;: &quot;2024010&quot;},
-        {&quot;name&quot;: &quot;Kevin&quot;, &quot;email&quot;: &quot;kevin@example.com&quot;, &quot;age&quot;: 19, &quot;student_id&quot;: &quot;2024011&quot;},
-    ]
-
-    for student_data in students_data:
-        await s.StudentSerializer.create_from_ctx(student_data)
-
-    # 创建测试课程
-    courses_data = [
-        {
-            &quot;name&quot;: &quot;Math&quot;, 
-            &quot;code&quot;: &quot;MATH101&quot;,
-            &quot;description&quot;: &quot;Basic Mathematics&quot;,
-            &quot;credits&quot;: 3,
-            &quot;max_students&quot;: 5
-        },
-        {
-            &quot;name&quot;: &quot;Physics&quot;, 
-            &quot;code&quot;: &quot;PHYS101&quot;,
-            &quot;description&quot;: &quot;Introduction to Physics&quot;,
-            &quot;credits&quot;: 4,
-            &quot;max_students&quot;: 3
-        },
-        {
-            &quot;name&quot;: &quot;Chemistry&quot;, 
-            &quot;code&quot;: &quot;CHEM101&quot;,
-            &quot;description&quot;: &quot;General Chemistry&quot;,
-            &quot;credits&quot;: 3,
-            &quot;max_students&quot;: 4
-        },
-    ]
-
-    for course_data in courses_data:
-        await s.CourseSerializer.create_from_ctx(course_data)
-
-    yield
-
-    # 测试后清理
-    await m.Student.all().delete()
-    await m.Course.all().delete()
-
-# ============ Services 层测试 ============
-
-class TestEnrollServices:
-    &quot;&quot;&quot;EnrollService 业务逻辑测试&quot;&quot;&quot;
-
-    async def test_list_student(self):
-        &quot;&quot;&quot;测试学生列表功能&quot;&quot;&quot;
-        # 测试正常分页
-        result = await svc.EnrollService.list_student(page=1, size=10)
-        assert result[&quot;success&quot;] is True
-        assert len(result[&quot;data&quot;]) == 10
-        assert result[&quot;meta&quot;][&quot;total&quot;] == 11
-        assert result[&quot;meta&quot;][&quot;total_pages&quot;] == 2
-
-        # 测试第二页
-        result = await svc.EnrollService.list_student(page=2, size=10)
-        assert len(result[&quot;data&quot;]) == 1
-
-        # 测试搜索功能
-        result = await svc.EnrollService.list_student(page=1, size=10, search=&quot;Alice&quot;)
-        assert len(result[&quot;data&quot;]) == 1
-        assert result[&quot;data&quot;][0][&quot;name&quot;] == &quot;Alice&quot;
-
-        # 测试搜索邮箱
-        result = await svc.EnrollService.list_student(page=1, size=10, search=&quot;bob@&quot;)
-        assert len(result[&quot;data&quot;]) == 1
-        assert result[&quot;data&quot;][0][&quot;email&quot;] == &quot;bob@example.com&quot;
-
-    async def test_list_course(self):
-        &quot;&quot;&quot;测试课程列表功能&quot;&quot;&quot;
-        # 测试活跃课程列表
-        result = await svc.EnrollService.list_course(page=1, size=10, is_active=True)
-        assert result[&quot;success&quot;] is True
-        assert len(result[&quot;data&quot;]) == 3
-
-        # 测试分页
-        result = await svc.EnrollService.list_course(page=2, size=10)
-        assert len(result[&quot;data&quot;]) == 0
-
-    async def test_get_student(self):
-        &quot;&quot;&quot;测试获取学生详情&quot;&quot;&quot;
-        student = await m.Student.get(name=&quot;Alice&quot;)
-
-        # 测试正常获取
-        result = await svc.EnrollService.get_student(student.id)
-        assert result[&quot;success&quot;] is True
-        assert result[&quot;data&quot;][&quot;name&quot;] == &quot;Alice&quot;
-
-        # 测试不存在的学生
-        with pytest.raises(NotFound):
-            await svc.EnrollService.get_student(99999)
-
-    async def test_create_student(self):
-        &quot;&quot;&quot;测试创建学生&quot;&quot;&quot;
-        student_data = {
-            &quot;name&quot;: &quot;New Student&quot;,
-            &quot;email&quot;: &quot;new@example.com&quot;, 
-            &quot;age&quot;: 20,
-            &quot;student_id&quot;: &quot;2024099&quot;
-        }
-
-        # 测试正常创建
-        result = await svc.EnrollService.create_student(student_data)
-        assert result[&quot;success&quot;] is True
-        assert result[&quot;data&quot;][&quot;name&quot;] == &quot;New Student&quot;
-
-        # 测试重复学号
-        with pytest.raises(ValidationError, match=&quot;学号.*已存在&quot;):
-            await svc.EnrollService.create_student(student_data)
-
-        # 测试重复邮箱
-        student_data2 = {
-            &quot;name&quot;: &quot;Another Student&quot;,
-            &quot;email&quot;: &quot;alice@example.com&quot;,  # 使用已存在的邮箱
-            &quot;age&quot;: 21,
-            &quot;student_id&quot;: &quot;2024100&quot;
-        }
-        with pytest.raises(ValidationError, match=&quot;邮箱.*已被使用&quot;):
-            await svc.EnrollService.create_student(student_data2)
-
-    async def test_bind_course(self):
-        &quot;&quot;&quot;测试选课绑定功能&quot;&quot;&quot;
-        student = await m.Student.get(name=&quot;Alice&quot;)
-        course = await m.Course.get(name=&quot;Math&quot;)
-
-        # 测试正常选课
-        result = await svc.EnrollService.bind(student.id, course.id)
-        assert result[&quot;success&quot;] is True
-        assert &quot;成功选择课程&quot; in result[&quot;message&quot;]
-
-        # 验证选课关系
-        enrolled_courses = await student.courses.all()
-        assert len(enrolled_courses) == 1
-        assert enrolled_courses[0].id == course.id
-
-        # 测试重复选课
-        with pytest.raises(ValidationError, match=&quot;已经选过课程&quot;):
-            await svc.EnrollService.bind(student.id, course.id)
-
-        # 测试课程满员（Math 课程最多5人）
-        students = await m.Student.all()
-        math_course = await m.Course.get(name=&quot;Math&quot;)
-
-        # 让其他4个学生选课，使课程满员
-        for i in range(1, 5):
-            await svc.EnrollService.bind(students[i].id, math_course.id)
-
-        # 第6个学生选课应该失败
-        with pytest.raises(ValidationError, match=&quot;已满&quot;):
-            await svc.EnrollService.bind(students[5].id, math_course.id)
-
-        # 测试不存在的学生
-        with pytest.raises(NotFound, match=&quot;学生.*不存在&quot;):
-            await svc.EnrollService.bind(99999, course.id)
-
-        # 测试不存在的课程
-        with pytest.raises(NotFound, match=&quot;课程.*不存在&quot;):
-            await svc.EnrollService.bind(student.id, 99999)
-
-    async def test_unbind_course(self):
-        &quot;&quot;&quot;测试退课功能&quot;&quot;&quot;
-        student = await m.Student.get(name=&quot;Bob&quot;)
-        course = await m.Course.get(name=&quot;Physics&quot;)
-
-        # 先选课
-        await svc.EnrollService.bind(student.id, course.id)
-
-        # 测试正常退课
-        result = await svc.EnrollService.unbind(student.id, course.id)
-        assert result[&quot;success&quot;] is True
-        assert &quot;成功退选课程&quot; in result[&quot;message&quot;]
-
-        # 验证退课结果
-        enrolled_courses = await student.courses.all()
-        assert len(enrolled_courses) == 0
-
-        # 测试退选未选择的课程
-        with pytest.raises(ValidationError, match=&quot;未选择课程&quot;):
-            await svc.EnrollService.unbind(student.id, course.id)
-
-# ============ Endpoints 层测试 ============
-
-class TestEnrollEndpoints:
-    &quot;&quot;&quot;API 端点集成测试&quot;&quot;&quot;
-
-    async def test_hello_endpoint(self, unfazed: Unfazed):
-        &quot;&quot;&quot;测试 Hello World 端点&quot;&quot;&quot;
-        async with Requestfactory(unfazed) as rf:
-            resp = await rf.get(&quot;/enroll/hello&quot;)
-            assert resp.status_code == 200
-            assert resp.text == &quot;Hello, World!&quot;
-
-    async def test_student_list_endpoint(self, unfazed: Unfazed):
-        &quot;&quot;&quot;测试学生列表端点&quot;&quot;&quot;
-        async with Requestfactory(unfazed) as rf:
-            # 测试默认参数
-            resp = await rf.get(&quot;/enroll/students&quot;)
-            assert resp.status_code == 200
-
-            data = resp.json()
-            assert data[&quot;success&quot;] is True
-            assert len(data[&quot;data&quot;]) == 10  # 默认size=10
-            assert data[&quot;meta&quot;][&quot;total&quot;] == 11
-
-            # 测试分页参数
-            resp = await rf.get(&quot;/enroll/students&quot;, params={&quot;page&quot;: 2, &quot;size&quot;: 5})
-            assert resp.status_code == 200
-
-            data = resp.json()
-            assert len(data[&quot;data&quot;]) == 5
-
-            # 测试搜索参数
-            resp = await rf.get(&quot;/enroll/students&quot;, params={&quot;search&quot;: &quot;Alice&quot;})
-            assert resp.status_code == 200
-
-            data = resp.json()
-            assert len(data[&quot;data&quot;]) == 1
-
-    async def test_course_list_endpoint(self, unfazed: Unfazed):
-        &quot;&quot;&quot;测试课程列表端点&quot;&quot;&quot;
-        async with Requestfactory(unfazed) as rf:
-            resp = await rf.get(&quot;/enroll/courses&quot;)
-            assert resp.status_code == 200
-
-            data = resp.json()
-            assert data[&quot;success&quot;] is True
-            assert len(data[&quot;data&quot;]) == 3
-
-    async def test_student_detail_endpoint(self, unfazed: Unfazed):
-        &quot;&quot;&quot;测试学生详情端点&quot;&quot;&quot;
-        student = await m.Student.get(name=&quot;Alice&quot;)
-
-        async with Requestfactory(unfazed) as rf:
-            # 测试正常获取
-            resp = await rf.get(f&quot;/enroll/students/{student.id}&quot;)
-            assert resp.status_code == 200
-
-            data = resp.json()
-            assert data[&quot;success&quot;] is True
-            assert data[&quot;data&quot;][&quot;name&quot;] == &quot;Alice&quot;
-
-            # 测试不存在的学生
-            resp = await rf.get(&quot;/enroll/students/99999&quot;)
-            assert resp.status_code == 404
-
-    async def test_bind_endpoint(self, unfazed: Unfazed):
-        &quot;&quot;&quot;测试选课绑定端点&quot;&quot;&quot;
-        student = await m.Student.get(name=&quot;Charlie&quot;)
-        course = await m.Course.get(name=&quot;Chemistry&quot;)
-
-        async with Requestfactory(unfazed) as rf:
-            # 测试正常选课
-            resp = await rf.post(
-                &quot;/enroll/bind&quot;, 
-                json={&quot;student_id&quot;: student.id, &quot;course_id&quot;: course.id}
-            )
-            assert resp.status_code == 200
-
-            data = resp.json()
-            assert data[&quot;success&quot;] is True
-
-            # 测试重复选课
-            resp = await rf.post(
-                &quot;/enroll/bind&quot;, 
-                json={&quot;student_id&quot;: student.id, &quot;course_id&quot;: course.id}
-            )
-            assert resp.status_code == 422  # ValidationError
-
-            # 测试无效数据
-            resp = await rf.post(
-                &quot;/enroll/bind&quot;, 
-                json={&quot;student_id&quot;: &quot;invalid&quot;, &quot;course_id&quot;: course.id}
-            )
-            assert resp.status_code == 422  # 数据类型错误
-
-    async def test_unbind_endpoint(self, unfazed: Unfazed):
-        &quot;&quot;&quot;测试退课端点&quot;&quot;&quot;
-        student = await m.Student.get(name=&quot;David&quot;)
-        course = await m.Course.get(name=&quot;Math&quot;)
-
-        async with Requestfactory(unfazed) as rf:
-            # 先选课
-            await rf.post(
-                &quot;/enroll/bind&quot;, 
-                json={&quot;student_id&quot;: student.id, &quot;course_id&quot;: course.id}
-            )
-
-            # 测试退课
-            resp = await rf.post(
-                &quot;/enroll/unbind&quot;, 
-                json={&quot;student_id&quot;: student.id, &quot;course_id&quot;: course.id}
-            )
-            assert resp.status_code == 200
-
-            data = resp.json()
-            assert data[&quot;success&quot;] is True
-
-
-
-## 运行测试
-
-### 基本测试命令
-
-```bash
-# 运行所有测试
-pytest 
-
-# 运行特定文件的测试
-pytest enroll/test_all.py
-
-# 运行特定测试类
-pytest enroll/test_all.py::TestEnrollServices
-
-# 运行特定测试方法
-pytest enroll/test_all.py::TestEnrollServices::test_list_student
-
-# 显示详细输出
-pytest -v
-
-# 显示测试覆盖率
-pytest --cov=enroll
-
-# 生成HTML覆盖率报告
-pytest --cov=enroll --cov-report=html
-</code></pre>
-<h3 id="makefile">使用 Makefile</h3>
-<p>如果项目中有 Makefile，可以使用：</p>
-<pre><code class="language-bash"># 运行测试
-make test
-
-# 运行测试并生成覆盖率报告
-make test-cov
-
-# 运行测试并生成HTML报告
-make test-html
-</code></pre>
-<h2 id="_10">测试覆盖率</h2>
-<h3 id="_11">查看覆盖率报告</h3>
-<p>运行测试后，你会看到类似的输出：</p>
-<pre><code>=================== test session starts ===================
-collected 15 items
-
-enroll/test_all.py::TestEnrollServices::test_list_student PASSED
-enroll/test_all.py::TestEnrollServices::test_bind_course PASSED
-enroll/test_all.py::TestEnrollEndpoints::test_hello_endpoint PASSED
-...
-
----------- coverage: platform darwin, python 3.11.0 -----------
-Name                    Stmts   Miss  Cover   Missing
------------------------------------------------------
-enroll/__init__.py          0      0   100%
-enroll/endpoints.py        45      2    96%   23, 67
-enroll/models.py           28      0   100%
-enroll/serializers.py      15      0   100%
-enroll/services.py         89      3    97%   45, 78, 156
-enroll/routes.py           12      0   100%
------------------------------------------------------
-TOTAL                     189      5    97%
-
-=================== 15 passed in 2.34s ===================
-</code></pre>
-<h3 id="_12">提高测试覆盖率</h3>
-<p>如果覆盖率不够高，可以：</p>
-<ol>
-<li>
-<p><strong>查看 HTML 报告</strong>：
-   <code>bash
-   pytest --cov=enroll --cov-report=html
-   open htmlcov/index.html</code></p>
-</li>
-<li>
-<p><strong>分析未覆盖的代码</strong>：</p>
-</li>
-<li>查看 Missing 列中的行号</li>
-<li>
-<p>为未测试的代码路径编写测试</p>
-</li>
-<li>
-<p><strong>添加边界测试</strong>：</p>
-</li>
-<li>测试异常情况</li>
-<li>测试边界值</li>
-<li>测试错误处理</li>
-</ol>
-<h2 id="_13">测试最佳实践</h2>
-<h3 id="1">1. 测试命名规范</h3>
-<pre><code class="language-python"># 好的测试命名
-async def test_bind_course_success():
-    &quot;&quot;&quot;测试正常选课流程&quot;&quot;&quot;
-    pass
-
-async def test_bind_course_when_course_full():
-    &quot;&quot;&quot;测试课程满员时的选课行为&quot;&quot;&quot;
-    pass
-
-async def test_bind_course_with_invalid_student():
-    &quot;&quot;&quot;测试使用无效学生ID选课&quot;&quot;&quot;
-    pass
-</code></pre>
-<h3 id="2-fixture">2. 使用测试 fixture</h3>
-<pre><code class="language-python">@pytest.fixture
-async def enrolled_student():
-    &quot;&quot;&quot;创建已选课的学生&quot;&quot;&quot;
-    student = await m.Student.create(name=&quot;Enrolled&quot;, email=&quot;enrolled@test.com&quot;, age=20, student_id=&quot;EN001&quot;)
-    course = await m.Course.create(name=&quot;Test Course&quot;, code=&quot;TC001&quot;, description=&quot;Test&quot;, credits=3, max_students=10)
-    await student.courses.add(course)
-    return student, course
-
-async def test_unbind_with_fixture(enrolled_student):
-    &quot;&quot;&quot;使用 fixture 测试退课&quot;&quot;&quot;
-    student, course = enrolled_student
-    result = await svc.EnrollService.unbind(student.id, course.id)
-    assert result[&quot;success&quot;] is True
-</code></pre>
-<h3 id="3">3. 参数化测试</h3>
-<pre><code class="language-python">@pytest.mark.parametrize(&quot;page,size,expected_count&quot;, [
-    (1, 5, 5),
-    (2, 5, 5), 
-    (3, 5, 1),
-    (1, 20, 11),
-])
-async def test_student_pagination(page, size, expected_count):
-    &quot;&quot;&quot;参数化测试学生分页&quot;&quot;&quot;
-    result = await svc.EnrollService.list_student(page, size)
-    assert len(result[&quot;data&quot;]) == expected_count
-</code></pre>
-<h3 id="4">4. 模拟外部依赖</h3>
-<pre><code class="language-python">from unittest.mock import patch
-
-@patch('external_service.send_email')
-async def test_enrollment_notification(mock_send_email):
-    &quot;&quot;&quot;测试选课通知功能（模拟邮件发送）&quot;&quot;&quot;
-    mock_send_email.return_value = True
-
-    # 执行选课
-    result = await svc.EnrollService.bind(1, 1)
-
-    # 验证邮件发送被调用
-    mock_send_email.assert_called_once()
-    assert result[&quot;success&quot;] is True
-</code></pre>
+<h3 id="further-reading">Further Reading<a class="headerlink" href="#further-reading" title="Permanent link">&para;</a></h3>
+<p>For deeper coverage of each feature, see the feature documentation:</p>
+<table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Documentation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>App System</td>
+<td><a href="../../features/app/">App</a></td>
+</tr>
+<tr>
+<td>Routing</td>
+<td><a href="../../features/route/">Routing</a></td>
+</tr>
+<tr>
+<td>Endpoints</td>
+<td><a href="../../features/endpoint/">Endpoint</a></td>
+</tr>
+<tr>
+<td>Request / Response</td>
+<td><a href="../../features/request/">Request</a>, <a href="../../features/response/">Response</a></td>
+</tr>
+<tr>
+<td>Serializer</td>
+<td><a href="../../features/serializer/">Serializer</a></td>
+</tr>
+<tr>
+<td>Tortoise ORM</td>
+<td><a href="../../features/tortoise-orm/">Tortoise ORM</a></td>
+</tr>
+<tr>
+<td>OpenAPI</td>
+<td><a href="../../features/openapi/">OpenAPI</a></td>
+</tr>
+<tr>
+<td>Exceptions</td>
+<td><a href="../../features/exception/">Exceptions</a></td>
+</tr>
+<tr>
+<td>Test Client</td>
+<td><a href="../../features/testclient/">Test Client</a></td>
+</tr>
+<tr>
+<td>Settings</td>
+<td><a href="../../features/settings/">Settings</a></td>
+</tr>
+<tr>
+<td>Middleware</td>
+<td><a href="../../features/middleware/">Middleware</a></td>
+</tr>
+<tr>
+<td>Commands</td>
+<td><a href="../../features/command/">Command</a></td>
+</tr>
+<tr>
+<td>Cache</td>
+<td><a href="../../features/cache/">Cache</a></td>
+</tr>
+<tr>
+<td>Lifespan</td>
+<td><a href="../../features/lifespan/">Lifespan</a></td>
+</tr>
+<tr>
+<td>Logging</td>
+<td><a href="../../features/logging/">Logging</a></td>
+</tr>
+<tr>
+<td>Session</td>
+<td><a href="../../features/contrib/session/">Session</a></td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td><a href="../../features/contrib/auth/">Auth</a></td>
+</tr>
+<tr>
+<td>Admin Panel</td>
+<td><a href="../../features/contrib/admin/">Admin</a></td>
+</tr>
+</tbody>
+</table>
 
 
 
@@ -1945,6 +2025,12 @@ async def test_enrollment_notification(mock_send_email):
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
       </main>
       
         <footer class="md-footer">
@@ -1961,6 +2047,21 @@ async def test_enrollment_notification(mock_send_email):
   
 </div>
       
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/unfazed-eco/unfazed" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
     </div>
   </div>
 </footer>
@@ -1970,8 +2071,10 @@ async def test_enrollment_notification(mock_send_email):
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u62f7\u8c9d", "clipboard.copy": "\u62f7\u8c9d", "search.result.more.one": "\u6b64\u9801\u5c1a\u6709 1 \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.more.other": "\u6b64\u9801\u5c1a\u6709 # \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.none": "\u6c92\u6709\u627e\u5230\u7b26\u5408\u689d\u4ef6\u7684\u7d50\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u689d\u4ef6\u7684\u7d50\u679c", "search.result.other": "\u627e\u5230 # \u500b\u7b26\u5408\u689d\u4ef6\u7684\u7d50\u679c", "search.result.placeholder": "\u9375\u5165\u4ee5\u958b\u59cb\u6aa2\u7d22", "search.result.term.missing": "\u7f3a\u5931", "select.version": "\u9078\u64c7\u7248\u672c"}}</script>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.instant", "navigation.instant.progress", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>

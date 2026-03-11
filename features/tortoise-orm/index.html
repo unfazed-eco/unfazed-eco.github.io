@@ -1,15 +1,19 @@
 
 <!doctype html>
-<html lang="zh-Hant" class="no-js">
+<html lang="en" class="no-js">
   <head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="Production Ready ASGI web framework">
       
       
       
-        <link rel="prev" href="../endpoint/">
+        <link rel="canonical" href="https://unfazed-eco.github.io/unfazed/features/tortoise-orm/">
+      
+      
+        <link rel="prev" href="../command/">
       
       
         <link rel="next" href="../serializer/">
@@ -25,6 +29,9 @@
     
     
       <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -53,7 +60,14 @@
   </head>
   
   
-    <body dir="ltr">
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -62,8 +76,8 @@
     <div data-md-component="skip">
       
         
-        <a href="#tortoise-orm" class="md-skip">
-          跳轉至
+        <a href="#tortoise-orm-integration" class="md-skip">
+          Skip to content
         </a>
       
     </div>
@@ -74,10 +88,8 @@
     
       
 
-  
-
-<header class="md-header md-header--shadow" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="頁首">
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../.." title="Unfazed" class="md-header__button md-logo" aria-label="Unfazed" data-md-component="logo">
       
   <img src="../../images/uz-logo.png" alt="logo">
@@ -104,6 +116,32 @@
       </div>
     </div>
     
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
     
       <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
@@ -111,21 +149,21 @@
       <div class="md-header__option">
   <div class="md-select">
     
-    <button class="md-header__button md-icon" aria-label="選擇語言">
+    <button class="md-header__button md-icon" aria-label="Select language">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
     </button>
     <div class="md-select__inner">
       <ul class="md-select__list">
         
           <li class="md-select__item">
-            <a href="./" hreflang="zh-Hant" class="md-select__link">
-              中文
+            <a href="./" hreflang="en" class="md-select__link">
+              English
             </a>
           </li>
         
           <li class="md-select__item">
-            <a href="../../en/features/tortoise-orm/" hreflang="en" class="md-select__link">
-              English
+            <a href="../../zh/features/tortoise-orm/" hreflang="zh" class="md-select__link">
+              中文
             </a>
           </li>
         
@@ -135,9 +173,48 @@
 </div>
     
     
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
     
       <div class="md-header__source">
-        <a href="https://github.com/unfazed-eco/unfazed" title="前往倉庫" class="md-source" data-md-component="source">
+        <a href="https://github.com/unfazed-eco/unfazed" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
@@ -157,6 +234,105 @@
       
         
           
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../tutorial/part1/" class="md-tabs__link">
+          
+  
+  Tutorial
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../app/" class="md-tabs__link">
+          
+  
+  Features
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../contrib/admin/" class="md-tabs__link">
+          
+  
+  Contrib
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../release-note/" class="md-tabs__link">
+        
+  
+    
+  
+  ReleaseNote
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -170,8 +346,10 @@
                     
 
 
+  
 
-<nav class="md-nav md-nav--primary" aria-label="導航" data-md-level="0">
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../.." title="Unfazed" class="md-nav__button md-logo" aria-label="Unfazed" data-md-component="logo">
       
@@ -182,7 +360,7 @@
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/unfazed-eco/unfazed" title="前往倉庫" class="md-source" data-md-component="source">
+      <a href="https://github.com/unfazed-eco/unfazed" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
@@ -224,6 +402,11 @@
     
     
     
+      
+      
+        
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -261,7 +444,7 @@
         
   
   <span class="md-ellipsis">
-    Part 1 Install & Create Project
+    Part 1 Installation and Project Creation
   </span>
   
 
@@ -282,7 +465,7 @@
         
   
   <span class="md-ellipsis">
-    Part 2 Create Application
+    Part 2 Creating Applications and Hello World
   </span>
   
 
@@ -303,7 +486,7 @@
         
   
   <span class="md-ellipsis">
-    Part 3 Models and Serializer
+    Part 3 Data Models and Serializers
   </span>
   
 
@@ -324,7 +507,7 @@
         
   
   <span class="md-ellipsis">
-    Part 4 Endpoint and Schema
+    Part 4 API Interface Design and Schema Definition
   </span>
   
 
@@ -345,7 +528,7 @@
         
   
   <span class="md-ellipsis">
-    Part 5 Services
+    Part 5 Business Logic Implementation
   </span>
   
 
@@ -366,7 +549,7 @@
         
   
   <span class="md-ellipsis">
-    Part 6 Test
+    Part 6 Testing and Quality Assurance
   </span>
   
 
@@ -394,15 +577,23 @@
     
     
     
+      
+        
+        
+      
+      
+        
+      
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -419,27 +610,6 @@
             Features
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../settings/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Settings
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
             
               
                 
@@ -469,11 +639,53 @@
   
   
     <li class="md-nav__item">
+      <a href="../settings/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Settings
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../route/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     Route
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../endpoint/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Endpoint
   </span>
   
 
@@ -532,11 +744,321 @@
   
   
     <li class="md-nav__item">
-      <a href="../logging/" class="md-nav__link">
+      <a href="../command/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Logging
+    Command
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    ORM
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    ORM
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick Start
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quick Start">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-configure-the-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Configure the database
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-define-models-in-an-installed-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Define models in an installed app
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-run-migrations" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Run migrations
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#database-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Database Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Database Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#connection-engines" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connection Engines
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mysql-credentials" class="md-nav__link">
+    <span class="md-ellipsis">
+      MySQL Credentials
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sqlite-credentials" class="md-nav__link">
+    <span class="md-ellipsis">
+      SQLite Credentials
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#automatic-model-discovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      Automatic Model Discovery
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#migration-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Migration Commands
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Migration Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#typical-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Typical workflow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inspecting-an-existing-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inspecting an existing database
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multiple-databases" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multiple Databases
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Multiple Databases">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-configure-connections-and-app-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Configure connections and app groups
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-set-app-in-each-models-meta" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Set app in each model's Meta
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      API Reference
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API Reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#database" class="md-nav__link">
+    <span class="md-ellipsis">
+      Database
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#appmodels" class="md-nav__link">
+    <span class="md-ellipsis">
+      AppModels
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#driver" class="md-nav__link">
+    <span class="md-ellipsis">
+      Driver
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modelcenter" class="md-nav__link">
+    <span class="md-ellipsis">
+      ModelCenter
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#databasedriver-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      DataBaseDriver (Protocol)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../serializer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Serializer
   </span>
   
 
@@ -595,492 +1117,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../endpoint/" class="md-nav__link">
+      <a href="../logging/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Endpoint
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../staticfiles.md" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Staticfiles
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    ORM
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  <span class="md-ellipsis">
-    ORM
-  </span>
-  
-
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目錄">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目錄
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      系统概述
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="系统概述">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      核心特性
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      支持的数据库
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#unfazed" class="md-nav__link">
-    <span class="md-ellipsis">
-      在 Unfazed 中的集成
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      快速开始
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="快速开始">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      基本配置
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      模型定义
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#crud" class="md-nav__link">
-    <span class="md-ellipsis">
-      基本 CRUD 操作
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="基本 CRUD 操作">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    <span class="md-ellipsis">
-      创建记录
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
-    <span class="md-ellipsis">
-      查询记录
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
-    <span class="md-ellipsis">
-      更新记录
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
-    <span class="md-ellipsis">
-      删除记录
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
-    <span class="md-ellipsis">
-      关系字段操作
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="关系字段操作">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#foreignkey" class="md-nav__link">
-    <span class="md-ellipsis">
-      外键关系 (ForeignKey)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#onetoone" class="md-nav__link">
-    <span class="md-ellipsis">
-      一对一关系 (OneToOne)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#manytomany" class="md-nav__link">
-    <span class="md-ellipsis">
-      多对多关系 (ManyToMany)
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_12" class="md-nav__link">
-    <span class="md-ellipsis">
-      高级查询功能
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="高级查询功能">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_13" class="md-nav__link">
-    <span class="md-ellipsis">
-      聚合查询
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_14" class="md-nav__link">
-    <span class="md-ellipsis">
-      事务管理
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#aerich" class="md-nav__link">
-    <span class="md-ellipsis">
-      数据库迁移 (Aerich)
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="数据库迁移 (Aerich)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_15" class="md-nav__link">
-    <span class="md-ellipsis">
-      初始化迁移
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_16" class="md-nav__link">
-    <span class="md-ellipsis">
-      生成迁移文件
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_17" class="md-nav__link">
-    <span class="md-ellipsis">
-      应用迁移
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_18" class="md-nav__link">
-    <span class="md-ellipsis">
-      回滚迁移
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_19" class="md-nav__link">
-    <span class="md-ellipsis">
-      迁移历史管理
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_20" class="md-nav__link">
-    <span class="md-ellipsis">
-      性能优化
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="性能优化">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_21" class="md-nav__link">
-    <span class="md-ellipsis">
-      查询优化
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_22" class="md-nav__link">
-    <span class="md-ellipsis">
-      连接池配置
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_23" class="md-nav__link">
-    <span class="md-ellipsis">
-      测试支持
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="测试支持">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_24" class="md-nav__link">
-    <span class="md-ellipsis">
-      测试数据库配置
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_25" class="md-nav__link">
-    <span class="md-ellipsis">
-      测试示例
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_26" class="md-nav__link">
-    <span class="md-ellipsis">
-      最佳实践
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="最佳实践">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_27" class="md-nav__link">
-    <span class="md-ellipsis">
-      模型设计
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_28" class="md-nav__link">
-    <span class="md-ellipsis">
-      错误处理
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_29" class="md-nav__link">
-    <span class="md-ellipsis">
-      总结
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_30" class="md-nav__link">
-    <span class="md-ellipsis">
-      参考资源
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../serializer/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Serializer
+    Logging
   </span>
   
 
@@ -1118,11 +1159,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../error/" class="md-nav__link">
+      <a href="../exception/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Error
+    Exceptions
   </span>
   
 
@@ -1160,11 +1201,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../command/" class="md-nav__link">
+      <a href="../testclient/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Command
+    Test Client
   </span>
   
 
@@ -1181,11 +1222,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../testclient/" class="md-nav__link">
+      <a href="../concurrency/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Test Client
+    Concurrency
   </span>
   
 
@@ -1210,6 +1251,11 @@
   
     
     
+    
+      
+      
+        
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -1340,7 +1386,7 @@
                   <div class="md-sidebar__inner">
                     
 
-<nav class="md-nav md-nav--secondary" aria-label="目錄">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
   
@@ -1349,42 +1395,42 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      目錄
+      Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#quick-start" class="md-nav__link">
     <span class="md-ellipsis">
-      系统概述
+      Quick Start
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="系统概述">
+    <nav class="md-nav" aria-label="Quick Start">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#1-configure-the-database" class="md-nav__link">
     <span class="md-ellipsis">
-      核心特性
+      1. Configure the database
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#2-define-models-in-an-installed-app" class="md-nav__link">
     <span class="md-ellipsis">
-      支持的数据库
+      2. Define models in an installed app
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#unfazed" class="md-nav__link">
+  <a href="#3-run-migrations" class="md-nav__link">
     <span class="md-ellipsis">
-      在 Unfazed 中的集成
+      3. Run migrations
     </span>
   </a>
   
@@ -1396,28 +1442,37 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#database-configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      快速开始
+      Database Configuration
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="快速开始">
+    <nav class="md-nav" aria-label="Database Configuration">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#connection-engines" class="md-nav__link">
     <span class="md-ellipsis">
-      基本配置
+      Connection Engines
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#mysql-credentials" class="md-nav__link">
     <span class="md-ellipsis">
-      模型定义
+      MySQL Credentials
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sqlite-credentials" class="md-nav__link">
+    <span class="md-ellipsis">
+      SQLite Credentials
     </span>
   </a>
   
@@ -1429,46 +1484,37 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#crud" class="md-nav__link">
+  <a href="#automatic-model-discovery" class="md-nav__link">
     <span class="md-ellipsis">
-      基本 CRUD 操作
+      Automatic Model Discovery
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="基本 CRUD 操作">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#migration-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Migration Commands
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Migration Commands">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#typical-workflow" class="md-nav__link">
     <span class="md-ellipsis">
-      创建记录
+      Typical workflow
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
+  <a href="#inspecting-an-existing-database" class="md-nav__link">
     <span class="md-ellipsis">
-      查询记录
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
-    <span class="md-ellipsis">
-      更新记录
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
-    <span class="md-ellipsis">
-      删除记录
+      Inspecting an existing database
     </span>
   </a>
   
@@ -1480,37 +1526,28 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
+  <a href="#multiple-databases" class="md-nav__link">
     <span class="md-ellipsis">
-      关系字段操作
+      Multiple Databases
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="关系字段操作">
+    <nav class="md-nav" aria-label="Multiple Databases">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#foreignkey" class="md-nav__link">
+  <a href="#1-configure-connections-and-app-groups" class="md-nav__link">
     <span class="md-ellipsis">
-      外键关系 (ForeignKey)
+      1. Configure connections and app groups
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#onetoone" class="md-nav__link">
+  <a href="#2-set-app-in-each-models-meta" class="md-nav__link">
     <span class="md-ellipsis">
-      一对一关系 (OneToOne)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#manytomany" class="md-nav__link">
-    <span class="md-ellipsis">
-      多对多关系 (ManyToMany)
+      2. Set app in each model's Meta
     </span>
   </a>
   
@@ -1522,28 +1559,64 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_12" class="md-nav__link">
+  <a href="#api-reference" class="md-nav__link">
     <span class="md-ellipsis">
-      高级查询功能
+      API Reference
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="高级查询功能">
+    <nav class="md-nav" aria-label="API Reference">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_13" class="md-nav__link">
+  <a href="#database" class="md-nav__link">
     <span class="md-ellipsis">
-      聚合查询
+      Database
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_14" class="md-nav__link">
+  <a href="#connection" class="md-nav__link">
     <span class="md-ellipsis">
-      事务管理
+      Connection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#appmodels" class="md-nav__link">
+    <span class="md-ellipsis">
+      AppModels
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#driver" class="md-nav__link">
+    <span class="md-ellipsis">
+      Driver
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modelcenter" class="md-nav__link">
+    <span class="md-ellipsis">
+      ModelCenter
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#databasedriver-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      DataBaseDriver (Protocol)
     </span>
   </a>
   
@@ -1551,183 +1624,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#aerich" class="md-nav__link">
-    <span class="md-ellipsis">
-      数据库迁移 (Aerich)
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="数据库迁移 (Aerich)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_15" class="md-nav__link">
-    <span class="md-ellipsis">
-      初始化迁移
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_16" class="md-nav__link">
-    <span class="md-ellipsis">
-      生成迁移文件
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_17" class="md-nav__link">
-    <span class="md-ellipsis">
-      应用迁移
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_18" class="md-nav__link">
-    <span class="md-ellipsis">
-      回滚迁移
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_19" class="md-nav__link">
-    <span class="md-ellipsis">
-      迁移历史管理
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_20" class="md-nav__link">
-    <span class="md-ellipsis">
-      性能优化
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="性能优化">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_21" class="md-nav__link">
-    <span class="md-ellipsis">
-      查询优化
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_22" class="md-nav__link">
-    <span class="md-ellipsis">
-      连接池配置
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_23" class="md-nav__link">
-    <span class="md-ellipsis">
-      测试支持
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="测试支持">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_24" class="md-nav__link">
-    <span class="md-ellipsis">
-      测试数据库配置
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_25" class="md-nav__link">
-    <span class="md-ellipsis">
-      测试示例
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_26" class="md-nav__link">
-    <span class="md-ellipsis">
-      最佳实践
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="最佳实践">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_27" class="md-nav__link">
-    <span class="md-ellipsis">
-      模型设计
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_28" class="md-nav__link">
-    <span class="md-ellipsis">
-      错误处理
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_29" class="md-nav__link">
-    <span class="md-ellipsis">
-      总结
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_30" class="md-nav__link">
-    <span class="md-ellipsis">
-      参考资源
-    </span>
-  </a>
   
 </li>
       
@@ -1749,773 +1645,512 @@
   
 
 
-<h1 id="tortoise-orm">Tortoise ORM 数据库操作</h1>
-<p>Tortoise ORM 是 Unfazed 框架的默认异步 ORM（对象关系映射）系统，专为 <code>asyncio</code> 设计，提供了类似 Django ORM 的简洁 API。它支持多种数据库后端，提供高性能的异步数据库操作能力，是构建现代异步 Web 应用的理想选择。</p>
-<h2 id="_1">系统概述</h2>
-<h3 id="_2">核心特性</h3>
-<p>Tortoise ORM 基于 <a href="https://tortoise.github.io/">官方文档</a> 提供以下核心特性：</p>
-<ul>
-<li><strong>异步原生</strong>: 完全基于 <code>asyncio</code> 构建，提供原生异步数据库操作</li>
-<li><strong>Django 风格 API</strong>: 熟悉的查询语法和模型定义方式</li>
-<li><strong>多数据库支持</strong>: 支持 PostgreSQL、MySQL、SQLite、SQL Server、Oracle</li>
-<li><strong>高性能</strong>: 在基准测试中与其他 Python ORM 相比表现优异</li>
-<li><strong>类型安全</strong>: 完整的类型注解支持，提供良好的 IDE 体验</li>
-<li><strong>关系处理</strong>: 支持外键、多对多、一对一等各种关系</li>
-<li><strong>查询优化</strong>: 支持预加载、聚合、复杂查询等高级功能</li>
-<li><strong>事务支持</strong>: 完整的事务管理和回滚机制</li>
-<li><strong>迁移工具</strong>: 与 Aerich 集成的数据库迁移系统</li>
-</ul>
-<h3 id="_3">支持的数据库</h3>
-<p>目前 Unfazed 内置支持的驱动有：</p>
+<h1 id="tortoise-orm-integration">Tortoise ORM Integration<a class="headerlink" href="#tortoise-orm-integration" title="Permanent link">&para;</a></h1>
+<p>Unfazed uses <a href="https://tortoise.github.io/">Tortoise ORM</a> as its database layer and <a href="https://github.com/tortoise/aerich">Aerich</a> for schema migrations. Database setup is fully automatic — provide a <code>DATABASE</code> configuration in settings and Unfazed initialises the ORM, discovers models from installed apps, and registers migration commands. If no <code>DATABASE</code> is configured, the ORM layer is skipped entirely.</p>
+<h2 id="quick-start">Quick Start<a class="headerlink" href="#quick-start" title="Permanent link">&para;</a></h2>
+<h3 id="1-configure-the-database">1. Configure the database<a class="headerlink" href="#1-configure-the-database" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># entry/settings/__init__.py</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">UNFAZED_SETTINGS</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="o">...</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="s2">&quot;INSTALLED_APPS&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        <span class="s2">&quot;apps.blog&quot;</span><span class="p">,</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="p">],</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="s2">&quot;DATABASE&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>        <span class="s2">&quot;CONNECTIONS&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>            <span class="s2">&quot;default&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>                <span class="s2">&quot;ENGINE&quot;</span><span class="p">:</span> <span class="s2">&quot;tortoise.backends.mysql&quot;</span><span class="p">,</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>                <span class="s2">&quot;CREDENTIALS&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>                    <span class="s2">&quot;HOST&quot;</span><span class="p">:</span> <span class="s2">&quot;localhost&quot;</span><span class="p">,</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>                    <span class="s2">&quot;PORT&quot;</span><span class="p">:</span> <span class="mi">3306</span><span class="p">,</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>                    <span class="s2">&quot;USER&quot;</span><span class="p">:</span> <span class="s2">&quot;root&quot;</span><span class="p">,</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>                    <span class="s2">&quot;PASSWORD&quot;</span><span class="p">:</span> <span class="s2">&quot;secret&quot;</span><span class="p">,</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>                    <span class="s2">&quot;DATABASE&quot;</span><span class="p">:</span> <span class="s2">&quot;mydb&quot;</span><span class="p">,</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>                <span class="p">},</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>            <span class="p">}</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>        <span class="p">}</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    <span class="p">},</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="p">}</span>
+</span></code></pre></div>
+<h3 id="2-define-models-in-an-installed-app">2. Define models in an installed app<a class="headerlink" href="#2-define-models-in-an-installed-app" title="Permanent link">&para;</a></h3>
+<p>Create a <code>models.py</code> in your app package. Unfazed discovers it automatically:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># apps/blog/models.py</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">tortoise</span><span class="w"> </span><span class="kn">import</span> <span class="n">Model</span><span class="p">,</span> <span class="n">fields</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="k">class</span><span class="w"> </span><span class="nc">Post</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="n">title</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="n">body</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">TextField</span><span class="p">()</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="n">published</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="n">created_at</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">DatetimeField</span><span class="p">(</span><span class="n">auto_now_add</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    <span class="k">class</span><span class="w"> </span><span class="nc">Meta</span><span class="p">:</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>        <span class="n">table</span> <span class="o">=</span> <span class="s2">&quot;blog_post&quot;</span>
+</span></code></pre></div>
+<h3 id="3-run-migrations">3. Run migrations<a class="headerlink" href="#3-run-migrations" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Initialise the migration directory (first time only)</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>unfazed-cli<span class="w"> </span>init-db
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># Generate a migration after model changes</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>unfazed-cli<span class="w"> </span>migrate<span class="w"> </span>--name<span class="w"> </span>add_post
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c1"># Apply pending migrations</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>unfazed-cli<span class="w"> </span>upgrade
+</span></code></pre></div>
+<h2 id="database-configuration">Database Configuration<a class="headerlink" href="#database-configuration" title="Permanent link">&para;</a></h2>
+<p>The <code>DATABASE</code> setting is a dict validated by the <code>Database</code> Pydantic model:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">UNFAZED_SETTINGS</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="o">...</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="s2">&quot;DATABASE&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>        <span class="s2">&quot;CONNECTIONS&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>            <span class="s2">&quot;default&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>                <span class="s2">&quot;ENGINE&quot;</span><span class="p">:</span> <span class="s2">&quot;tortoise.backends.mysql&quot;</span><span class="p">,</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>                <span class="s2">&quot;CREDENTIALS&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>                    <span class="s2">&quot;HOST&quot;</span><span class="p">:</span> <span class="s2">&quot;localhost&quot;</span><span class="p">,</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>                    <span class="s2">&quot;PORT&quot;</span><span class="p">:</span> <span class="mi">3306</span><span class="p">,</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>                    <span class="s2">&quot;USER&quot;</span><span class="p">:</span> <span class="s2">&quot;root&quot;</span><span class="p">,</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>                    <span class="s2">&quot;PASSWORD&quot;</span><span class="p">:</span> <span class="s2">&quot;secret&quot;</span><span class="p">,</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>                    <span class="s2">&quot;DATABASE&quot;</span><span class="p">:</span> <span class="s2">&quot;mydb&quot;</span><span class="p">,</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>                <span class="p">},</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>            <span class="p">}</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>        <span class="p">},</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>        <span class="s2">&quot;DRIVER&quot;</span><span class="p">:</span> <span class="s2">&quot;unfazed.db.tortoise.Driver&quot;</span><span class="p">,</span>  <span class="c1"># optional, this is the default</span>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>        <span class="s2">&quot;USE_TZ&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>                          <span class="c1"># optional</span>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>        <span class="s2">&quot;TIMEZONE&quot;</span><span class="p">:</span> <span class="s2">&quot;Asia/Singapore&quot;</span><span class="p">,</span>            <span class="c1"># optional</span>
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>    <span class="p">},</span>
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="p">}</span>
+</span></code></pre></div>
+<p><strong>Top-level fields:</strong></p>
 <table>
 <thead>
 <tr>
-<th>数据库</th>
-<th>最低版本</th>
-<th>驱动</th>
-<th>连接字符串示例</th>
+<th>Field</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>MySQL/MariaDB</strong></td>
-<td>5.7+</td>
-<td><code>asyncmy</code></td>
-<td><code>mysql://user:pass@host:3306/db</code></td>
+<td><code>CONNECTIONS</code></td>
+<td><code>Dict[str, Connection]</code></td>
+<td>required</td>
+<td>Named database connections.</td>
 </tr>
 <tr>
-<td><strong>SQLite</strong></td>
-<td>3.25+</td>
-<td><code>aiosqlite</code></td>
-<td><code>sqlite://db.sqlite3</code> 或 <code>sqlite://:memory:</code></td>
+<td><code>DRIVER</code></td>
+<td><code>str</code></td>
+<td><code>"unfazed.db.tortoise.Driver"</code></td>
+<td>Dotted path to the driver class.</td>
+</tr>
+<tr>
+<td><code>APPS</code></td>
+<td><code>Dict[str, AppModels]</code></td>
+<td><code>None</code></td>
+<td>Explicit model grouping. Auto-built from installed apps if omitted.</td>
+</tr>
+<tr>
+<td><code>ROUTERS</code></td>
+<td><code>List[str]</code></td>
+<td><code>None</code></td>
+<td>Database router classes for multi-database setups.</td>
+</tr>
+<tr>
+<td><code>USE_TZ</code></td>
+<td><code>bool</code></td>
+<td><code>None</code></td>
+<td>Enable timezone-aware datetimes.</td>
+</tr>
+<tr>
+<td><code>TIMEZONE</code></td>
+<td><code>str</code></td>
+<td><code>None</code></td>
+<td>Default timezone string (e.g. <code>"UTC"</code>, <code>"Asia/Singapore"</code>).</td>
 </tr>
 </tbody>
 </table>
-<h3 id="unfazed">在 Unfazed 中的集成</h3>
-<p>Unfazed 通过 <code>ModelCenter</code> 和 <code>Driver</code> 系统无缝集成 Tortoise ORM：</p>
+<h3 id="connection-engines">Connection Engines<a class="headerlink" href="#connection-engines" title="Permanent link">&para;</a></h3>
+<p>Each connection requires an <code>ENGINE</code> and <code>CREDENTIALS</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Engine</th>
+<th>Database</th>
+<th>Async driver</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tortoise.backends.mysql</code></td>
+<td>MySQL / MariaDB</td>
+<td>asyncmy</td>
+</tr>
+<tr>
+<td><code>tortoise.backends.sqlite</code></td>
+<td>SQLite</td>
+<td>aiosqlite</td>
+</tr>
+</tbody>
+</table>
+<h3 id="mysql-credentials">MySQL Credentials<a class="headerlink" href="#mysql-credentials" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="s2">&quot;CREDENTIALS&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="s2">&quot;HOST&quot;</span><span class="p">:</span> <span class="s2">&quot;localhost&quot;</span><span class="p">,</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="s2">&quot;PORT&quot;</span><span class="p">:</span> <span class="mi">3306</span><span class="p">,</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="s2">&quot;USER&quot;</span><span class="p">:</span> <span class="s2">&quot;root&quot;</span><span class="p">,</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    <span class="s2">&quot;PASSWORD&quot;</span><span class="p">:</span> <span class="s2">&quot;secret&quot;</span><span class="p">,</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    <span class="s2">&quot;DATABASE&quot;</span><span class="p">:</span> <span class="s2">&quot;mydb&quot;</span><span class="p">,</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    <span class="c1"># optional</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>    <span class="s2">&quot;MIN_SIZE&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>    <span class="s2">&quot;MAX_SIZE&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>    <span class="s2">&quot;SSL&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>    <span class="s2">&quot;CONNECT_TIMEOUT&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>    <span class="s2">&quot;ECHO&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>    <span class="s2">&quot;CHARSET&quot;</span><span class="p">:</span> <span class="s2">&quot;utf8mb4&quot;</span><span class="p">,</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="p">}</span>
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>HOST</code></td>
+<td><code>str</code></td>
+<td>yes</td>
+<td>Database host.</td>
+</tr>
+<tr>
+<td><code>PORT</code></td>
+<td><code>int</code></td>
+<td>yes</td>
+<td>Database port.</td>
+</tr>
+<tr>
+<td><code>USER</code></td>
+<td><code>str</code></td>
+<td>yes</td>
+<td>Username.</td>
+</tr>
+<tr>
+<td><code>PASSWORD</code></td>
+<td><code>str</code></td>
+<td>yes</td>
+<td>Password.</td>
+</tr>
+<tr>
+<td><code>DATABASE</code></td>
+<td><code>str</code></td>
+<td>yes</td>
+<td>Database name.</td>
+</tr>
+<tr>
+<td><code>MIN_SIZE</code></td>
+<td><code>int</code></td>
+<td>no</td>
+<td>Minimum connection pool size.</td>
+</tr>
+<tr>
+<td><code>MAX_SIZE</code></td>
+<td><code>int</code></td>
+<td>no</td>
+<td>Maximum connection pool size.</td>
+</tr>
+<tr>
+<td><code>SSL</code></td>
+<td><code>bool</code></td>
+<td>no</td>
+<td>Enable SSL.</td>
+</tr>
+<tr>
+<td><code>CONNECT_TIMEOUT</code></td>
+<td><code>int</code></td>
+<td>no</td>
+<td>Connection timeout in seconds.</td>
+</tr>
+<tr>
+<td><code>ECHO</code></td>
+<td><code>bool</code></td>
+<td>no</td>
+<td>Echo SQL statements.</td>
+</tr>
+<tr>
+<td><code>CHARSET</code></td>
+<td><code>str</code></td>
+<td>no</td>
+<td>Character set (e.g. <code>"utf8mb4"</code>).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sqlite-credentials">SQLite Credentials<a class="headerlink" href="#sqlite-credentials" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="s2">&quot;CREDENTIALS&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    <span class="s2">&quot;FILE_PATH&quot;</span><span class="p">:</span> <span class="s2">&quot;./db.sqlite3&quot;</span><span class="p">,</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    <span class="c1"># optional</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    <span class="s2">&quot;JOURNAL_MODE&quot;</span><span class="p">:</span> <span class="s2">&quot;wal&quot;</span><span class="p">,</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>    <span class="s2">&quot;JOURNAL_SIZE_LIMIT&quot;</span><span class="p">:</span> <span class="mi">16384</span><span class="p">,</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>    <span class="s2">&quot;FOREIGN_KEYS&quot;</span><span class="p">:</span> <span class="s2">&quot;ON&quot;</span><span class="p">,</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="p">}</span>
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>FILE_PATH</code></td>
+<td><code>str</code></td>
+<td>yes</td>
+<td>Path to the SQLite file. Use <code>":memory:"</code> for in-memory databases.</td>
+</tr>
+<tr>
+<td><code>JOURNAL_MODE</code></td>
+<td><code>str</code></td>
+<td>no</td>
+<td>SQLite journal mode.</td>
+</tr>
+<tr>
+<td><code>JOURNAL_SIZE_LIMIT</code></td>
+<td><code>int</code></td>
+<td>no</td>
+<td>Journal size limit in bytes.</td>
+</tr>
+<tr>
+<td><code>FOREIGN_KEYS</code></td>
+<td><code>str</code></td>
+<td>no</td>
+<td>Enable foreign key enforcement (<code>"ON"</code> / <code>"OFF"</code>).</td>
+</tr>
+</tbody>
+</table>
+<h2 id="automatic-model-discovery">Automatic Model Discovery<a class="headerlink" href="#automatic-model-discovery" title="Permanent link">&para;</a></h2>
+<p>When <code>DATABASE.APPS</code> is <strong>not</strong> provided (the default), Unfazed automatically scans all installed apps at startup. Any app whose package contains a <code>models.py</code> module is registered:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">UNFAZED_SETTINGS</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="o">...</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    <span class="s2">&quot;INSTALLED_APPS&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>        <span class="s2">&quot;apps.account&quot;</span><span class="p">,</span>  <span class="c1"># has models.py → models collected</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>        <span class="s2">&quot;apps.blog&quot;</span><span class="p">,</span>     <span class="c1"># has models.py → models collected</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>        <span class="s2">&quot;apps.utils&quot;</span><span class="p">,</span>    <span class="c1"># no models.py  → skipped</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>    <span class="p">],</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>The auto-generated configuration is equivalent to:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">DATABASE</span><span class="p">[</span><span class="s2">&quot;APPS&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    <span class="s2">&quot;models&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>        <span class="s2">&quot;MODELS&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>            <span class="s2">&quot;aerich.models&quot;</span><span class="p">,</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>            <span class="s2">&quot;apps.account.models&quot;</span><span class="p">,</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>            <span class="s2">&quot;apps.blog.models&quot;</span><span class="p">,</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>        <span class="p">]</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>    <span class="p">}</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="p">}</span>
+</span></code></pre></div>
+<p><code>aerich.models</code> is always included to support Aerich's internal migration tracking table.</p>
+<p>If you need fine-grained control — for example, routing different apps to different databases — provide <code>APPS</code> explicitly. See <a href="#multiple-databases">Multiple Databases</a> below.</p>
+<h2 id="migration-commands">Migration Commands<a class="headerlink" href="#migration-commands" title="Permanent link">&para;</a></h2>
+<p>When a <code>DATABASE</code> is configured, Unfazed automatically registers Aerich-based migration commands. All commands accept <code>--location / -l</code> (default <code>./migrations</code>) to specify the migration directory.</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+<th>Extra flags</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>init-db</code></td>
+<td>Create the migration directory and generate the initial schema.</td>
+<td><code>--safe / -s</code> (default <code>True</code>)</td>
+</tr>
+<tr>
+<td><code>migrate</code></td>
+<td>Generate a new migration file from model changes.</td>
+<td><code>--name / -n</code> (default <code>"update"</code>), <code>--app / -a</code> (default <code>"models"</code>)</td>
+</tr>
+<tr>
+<td><code>upgrade</code></td>
+<td>Apply pending migrations.</td>
+<td><code>--transaction / -t</code> (default <code>True</code>)</td>
+</tr>
+<tr>
+<td><code>downgrade</code></td>
+<td>Revert to a specific migration version.</td>
+<td><code>--version / -v</code> (default <code>-1</code>), <code>--delete / -d</code> (default <code>True</code>)</td>
+</tr>
+<tr>
+<td><code>history</code></td>
+<td>List all applied migrations.</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>heads</code></td>
+<td>Show available migration heads.</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>inspectdb</code></td>
+<td>Reverse-engineer model definitions from existing database tables.</td>
+<td><code>--tables / -t</code> (specific tables to inspect)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="typical-workflow">Typical workflow<a class="headerlink" href="#typical-workflow" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># 1. Initialise the migration directory (once per project)</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>unfazed-cli<span class="w"> </span>init-db
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="c1"># 2. After changing models, generate a migration</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>unfazed-cli<span class="w"> </span>migrate<span class="w"> </span>--name<span class="w"> </span>add_published_field
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="c1"># 3. Apply the migration</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>unfazed-cli<span class="w"> </span>upgrade
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="c1"># 4. Check migration history</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>unfazed-cli<span class="w"> </span><span class="nb">history</span>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="c1"># 5. Rollback the last migration if needed</span>
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>unfazed-cli<span class="w"> </span>downgrade<span class="w"> </span>--version<span class="w"> </span>-1
+</span></code></pre></div>
+<h3 id="inspecting-an-existing-database">Inspecting an existing database<a class="headerlink" href="#inspecting-an-existing-database" title="Permanent link">&para;</a></h3>
+<p>To generate model code from tables that already exist:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># Inspect all tables</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>unfazed-cli<span class="w"> </span>inspectdb
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c1"># Inspect specific tables</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>unfazed-cli<span class="w"> </span>inspectdb<span class="w"> </span>--tables<span class="w"> </span>user<span class="w"> </span>--tables<span class="w"> </span>order
+</span></code></pre></div>
+<h2 id="multiple-databases">Multiple Databases<a class="headerlink" href="#multiple-databases" title="Permanent link">&para;</a></h2>
+<p>To route different models to different database connections, provide <code>APPS</code> explicitly with <code>DEFAULT_CONNECTION</code> pointing to the appropriate connection alias.</p>
+<h3 id="1-configure-connections-and-app-groups">1. Configure connections and app groups<a class="headerlink" href="#1-configure-connections-and-app-groups" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># entry/settings/__init__.py</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="n">UNFAZED_SETTINGS</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>    <span class="o">...</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>    <span class="s2">&quot;INSTALLED_APPS&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>        <span class="s2">&quot;apps.account&quot;</span><span class="p">,</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>        <span class="s2">&quot;apps.analytics&quot;</span><span class="p">,</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>    <span class="p">],</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>    <span class="s2">&quot;DATABASE&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>        <span class="s2">&quot;CONNECTIONS&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>            <span class="s2">&quot;default&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>                <span class="s2">&quot;ENGINE&quot;</span><span class="p">:</span> <span class="s2">&quot;tortoise.backends.mysql&quot;</span><span class="p">,</span>
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>                <span class="s2">&quot;CREDENTIALS&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a>                    <span class="s2">&quot;HOST&quot;</span><span class="p">:</span> <span class="s2">&quot;primary-db&quot;</span><span class="p">,</span>
+</span><span id="__span-10-15"><a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a>                    <span class="s2">&quot;PORT&quot;</span><span class="p">:</span> <span class="mi">3306</span><span class="p">,</span>
+</span><span id="__span-10-16"><a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a>                    <span class="s2">&quot;USER&quot;</span><span class="p">:</span> <span class="s2">&quot;app&quot;</span><span class="p">,</span>
+</span><span id="__span-10-17"><a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a>                    <span class="s2">&quot;PASSWORD&quot;</span><span class="p">:</span> <span class="s2">&quot;secret&quot;</span><span class="p">,</span>
+</span><span id="__span-10-18"><a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a>                    <span class="s2">&quot;DATABASE&quot;</span><span class="p">:</span> <span class="s2">&quot;main&quot;</span><span class="p">,</span>
+</span><span id="__span-10-19"><a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a>                <span class="p">},</span>
+</span><span id="__span-10-20"><a id="__codelineno-10-20" name="__codelineno-10-20" href="#__codelineno-10-20"></a>            <span class="p">},</span>
+</span><span id="__span-10-21"><a id="__codelineno-10-21" name="__codelineno-10-21" href="#__codelineno-10-21"></a>            <span class="s2">&quot;analytics&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span id="__span-10-22"><a id="__codelineno-10-22" name="__codelineno-10-22" href="#__codelineno-10-22"></a>                <span class="s2">&quot;ENGINE&quot;</span><span class="p">:</span> <span class="s2">&quot;tortoise.backends.mysql&quot;</span><span class="p">,</span>
+</span><span id="__span-10-23"><a id="__codelineno-10-23" name="__codelineno-10-23" href="#__codelineno-10-23"></a>                <span class="s2">&quot;CREDENTIALS&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span id="__span-10-24"><a id="__codelineno-10-24" name="__codelineno-10-24" href="#__codelineno-10-24"></a>                    <span class="s2">&quot;HOST&quot;</span><span class="p">:</span> <span class="s2">&quot;analytics-db&quot;</span><span class="p">,</span>
+</span><span id="__span-10-25"><a id="__codelineno-10-25" name="__codelineno-10-25" href="#__codelineno-10-25"></a>                    <span class="s2">&quot;PORT&quot;</span><span class="p">:</span> <span class="mi">3306</span><span class="p">,</span>
+</span><span id="__span-10-26"><a id="__codelineno-10-26" name="__codelineno-10-26" href="#__codelineno-10-26"></a>                    <span class="s2">&quot;USER&quot;</span><span class="p">:</span> <span class="s2">&quot;app&quot;</span><span class="p">,</span>
+</span><span id="__span-10-27"><a id="__codelineno-10-27" name="__codelineno-10-27" href="#__codelineno-10-27"></a>                    <span class="s2">&quot;PASSWORD&quot;</span><span class="p">:</span> <span class="s2">&quot;secret&quot;</span><span class="p">,</span>
+</span><span id="__span-10-28"><a id="__codelineno-10-28" name="__codelineno-10-28" href="#__codelineno-10-28"></a>                    <span class="s2">&quot;DATABASE&quot;</span><span class="p">:</span> <span class="s2">&quot;analytics&quot;</span><span class="p">,</span>
+</span><span id="__span-10-29"><a id="__codelineno-10-29" name="__codelineno-10-29" href="#__codelineno-10-29"></a>                <span class="p">},</span>
+</span><span id="__span-10-30"><a id="__codelineno-10-30" name="__codelineno-10-30" href="#__codelineno-10-30"></a>            <span class="p">},</span>
+</span><span id="__span-10-31"><a id="__codelineno-10-31" name="__codelineno-10-31" href="#__codelineno-10-31"></a>        <span class="p">},</span>
+</span><span id="__span-10-32"><a id="__codelineno-10-32" name="__codelineno-10-32" href="#__codelineno-10-32"></a>        <span class="s2">&quot;APPS&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span id="__span-10-33"><a id="__codelineno-10-33" name="__codelineno-10-33" href="#__codelineno-10-33"></a>            <span class="s2">&quot;models&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span id="__span-10-34"><a id="__codelineno-10-34" name="__codelineno-10-34" href="#__codelineno-10-34"></a>                <span class="s2">&quot;MODELS&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;aerich.models&quot;</span><span class="p">,</span> <span class="s2">&quot;apps.account.models&quot;</span><span class="p">],</span>
+</span><span id="__span-10-35"><a id="__codelineno-10-35" name="__codelineno-10-35" href="#__codelineno-10-35"></a>                <span class="s2">&quot;DEFAULT_CONNECTION&quot;</span><span class="p">:</span> <span class="s2">&quot;default&quot;</span><span class="p">,</span>
+</span><span id="__span-10-36"><a id="__codelineno-10-36" name="__codelineno-10-36" href="#__codelineno-10-36"></a>            <span class="p">},</span>
+</span><span id="__span-10-37"><a id="__codelineno-10-37" name="__codelineno-10-37" href="#__codelineno-10-37"></a>            <span class="s2">&quot;analytics_models&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span id="__span-10-38"><a id="__codelineno-10-38" name="__codelineno-10-38" href="#__codelineno-10-38"></a>                <span class="s2">&quot;MODELS&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;apps.analytics.models&quot;</span><span class="p">],</span>
+</span><span id="__span-10-39"><a id="__codelineno-10-39" name="__codelineno-10-39" href="#__codelineno-10-39"></a>                <span class="s2">&quot;DEFAULT_CONNECTION&quot;</span><span class="p">:</span> <span class="s2">&quot;analytics&quot;</span><span class="p">,</span>
+</span><span id="__span-10-40"><a id="__codelineno-10-40" name="__codelineno-10-40" href="#__codelineno-10-40"></a>            <span class="p">},</span>
+</span><span id="__span-10-41"><a id="__codelineno-10-41" name="__codelineno-10-41" href="#__codelineno-10-41"></a>        <span class="p">},</span>
+</span><span id="__span-10-42"><a id="__codelineno-10-42" name="__codelineno-10-42" href="#__codelineno-10-42"></a>    <span class="p">},</span>
+</span><span id="__span-10-43"><a id="__codelineno-10-43" name="__codelineno-10-43" href="#__codelineno-10-43"></a><span class="p">}</span>
+</span></code></pre></div>
+<h3 id="2-set-app-in-each-models-meta">2. Set <code>app</code> in each model's <code>Meta</code><a class="headerlink" href="#2-set-app-in-each-models-meta" title="Permanent link">&para;</a></h3>
+<p>Each model must declare which app group it belongs to via <code>app = "&lt;group_key&gt;"</code> in <code>class Meta</code>. The value must match the key you defined in <code>APPS</code>:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># apps/account/models.py</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">tortoise</span><span class="w"> </span><span class="kn">import</span> <span class="n">Model</span><span class="p">,</span> <span class="n">fields</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="k">class</span><span class="w"> </span><span class="nc">User</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>    <span class="n">name</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>    <span class="n">email</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>    <span class="k">class</span><span class="w"> </span><span class="nc">Meta</span><span class="p">:</span>
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>        <span class="n">table</span> <span class="o">=</span> <span class="s2">&quot;user&quot;</span>
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>        <span class="n">app</span> <span class="o">=</span> <span class="s2">&quot;models&quot;</span>  <span class="c1"># matches the &quot;models&quot; key in APPS → uses &quot;default&quot; connection</span>
+</span></code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># apps/analytics/models.py</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">tortoise</span><span class="w"> </span><span class="kn">import</span> <span class="n">Model</span><span class="p">,</span> <span class="n">fields</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="k">class</span><span class="w"> </span><span class="nc">EventLog</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>    <span class="n">event</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>    <span class="n">created_at</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">DatetimeField</span><span class="p">(</span><span class="n">auto_now_add</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>    <span class="k">class</span><span class="w"> </span><span class="nc">Meta</span><span class="p">:</span>
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>        <span class="n">table</span> <span class="o">=</span> <span class="s2">&quot;event_log&quot;</span>
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>        <span class="n">app</span> <span class="o">=</span> <span class="s2">&quot;analytics_models&quot;</span>  <span class="c1"># matches the &quot;analytics_models&quot; key in APPS → uses &quot;analytics&quot; connection</span>
+</span></code></pre></div>
+<p>With this setup, <code>User</code> queries go to the <code>default</code> connection (primary-db) and <code>EventLog</code> queries go to the <code>analytics</code> connection (analytics-db).</p>
+<p>When <code>APPS</code> is provided, automatic model discovery is skipped. You must list all model modules (including <code>aerich.models</code>) yourself.</p>
+<h2 id="api-reference">API Reference<a class="headerlink" href="#api-reference" title="Permanent link">&para;</a></h2>
+<h3 id="database">Database<a class="headerlink" href="#database" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Database</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>    <span class="n">connections</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Connection</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s2">&quot;CONNECTIONS&quot;</span><span class="p">)</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>    <span class="n">driver</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s2">&quot;unfazed.db.tortoise.Driver&quot;</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s2">&quot;DRIVER&quot;</span><span class="p">)</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>    <span class="n">apps</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">AppModels</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s2">&quot;APPS&quot;</span><span class="p">)</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>    <span class="n">routers</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s2">&quot;ROUTERS&quot;</span><span class="p">)</span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>    <span class="n">use_tz</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s2">&quot;USE_TZ&quot;</span><span class="p">)</span>
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>    <span class="n">timezone</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s2">&quot;TIMEZONE&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+<p>Top-level database configuration model.</p>
+<h3 id="connection">Connection<a class="headerlink" href="#connection" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Connection</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>    <span class="n">engine</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s2">&quot;ENGINE&quot;</span><span class="p">)</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>    <span class="n">credentials</span><span class="p">:</span> <span class="n">SqliteCredential</span> <span class="o">|</span> <span class="n">MysqlCredential</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s2">&quot;CREDENTIALS&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+<p>A single named database connection.</p>
+<h3 id="appmodels">AppModels<a class="headerlink" href="#appmodels" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">AppModels</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>    <span class="n">models</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s2">&quot;MODELS&quot;</span><span class="p">)</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>    <span class="n">default_connection</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s2">&quot;default&quot;</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s2">&quot;DEFAULT_CONNECTION&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+<p>Groups model modules and maps them to a connection alias.</p>
+<h3 id="driver">Driver<a class="headerlink" href="#driver" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Driver</span><span class="p">(</span><span class="n">DataBaseDriver</span><span class="p">):</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">unfazed</span><span class="p">:</span> <span class="n">Unfazed</span><span class="p">,</span> <span class="n">conf</span><span class="p">:</span> <span class="n">Database</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</span></code></pre></div>
+<p>Default Tortoise ORM driver (<code>unfazed.db.tortoise.Driver</code>).</p>
 <ul>
-<li><strong>自动配置</strong>: 根据 <code>UNFAZED_SETTINGS</code> 自动初始化数据库连接</li>
-<li><strong>应用集成</strong>: 自动发现和注册各应用的模型</li>
-<li><strong>命令集成</strong>: 内置 Aerich 数据库迁移命令</li>
-<li><strong>生命周期管理</strong>: 自动处理数据库连接的建立和关闭</li>
+<li><code>async setup() -&gt; None</code>: Build apps config (if not provided), call <code>Tortoise.init()</code>, and load Aerich commands.</li>
+<li><code>async migrate() -&gt; None</code>: Call <code>Tortoise.generate_schemas()</code> to create tables from models.</li>
+<li><code>build_apps() -&gt; Dict[str, AppModels]</code>: Auto-discover models from installed apps and return the Tortoise apps dict.</li>
+<li><code>list_aerich_command() -&gt; List[Command]</code>: Return <code>Command</code> objects for all Aerich CLI commands.</li>
 </ul>
-<h2 id="_4">快速开始</h2>
-<h3 id="_5">基本配置</h3>
-<pre><code class="language-python"># settings.py
-UNFAZED_SETTINGS = {
-    &quot;DEBUG&quot;: True,
-    &quot;INSTALLED_APPS&quot;: [
-        &quot;myapp.users&quot;,
-        &quot;myapp.orders&quot;,
-        &quot;myapp.products&quot;,
-    ],
-    &quot;DATABASE&quot;: {
-        &quot;CONNECTIONS&quot;: {
-            &quot;default&quot;: {
-                &quot;ENGINE&quot;: &quot;tortoise.backends.mysql&quot;,
-                &quot;CREDENTIALS&quot;: {
-                    &quot;host&quot;: &quot;localhost&quot;,
-                    &quot;port&quot;: 5432,
-                    &quot;user&quot;: &quot;myapp&quot;,
-                    &quot;password&quot;: &quot;secret&quot;,
-                    &quot;database&quot;: &quot;myapp_db&quot;,
-                    &quot;minsize&quot;: 1,
-                    &quot;maxsize&quot;: 10,
-                }
-            }
-        },
-    }
-}
-</code></pre>
-<h3 id="_6">模型定义</h3>
-<pre><code class="language-python"># myapp/users/models.py
-from tortoise.models import Model
-from tortoise import fields
-from typing import Optional
-from datetime import datetime
-
-class User(Model):
-    &quot;&quot;&quot;用户模型&quot;&quot;&quot;
-    id = fields.BigIntField(primary_key=True, description=&quot;用户ID&quot;)
-    username = fields.CharField(max_length=50, unique=True, description=&quot;用户名&quot;)
-    email = fields.CharField(max_length=255, unique=True, description=&quot;邮箱&quot;)
-    password_hash = fields.CharField(max_length=255, description=&quot;密码哈希&quot;)
-    first_name = fields.CharField(max_length=30, description=&quot;名&quot;)
-    last_name = fields.CharField(max_length=30, description=&quot;姓&quot;)
-    is_active = fields.BooleanField(default=True, description=&quot;是否激活&quot;)
-    is_staff = fields.BooleanField(default=False, description=&quot;是否员工&quot;)
-    date_joined = fields.DatetimeField(auto_now_add=True, description=&quot;注册时间&quot;)
-    last_login = fields.DatetimeField(null=True, description=&quot;最后登录时间&quot;)
-
-    # 关系字段
-    profile: Optional[&quot;UserProfile&quot;]
-    orders: fields.ReverseRelation[&quot;Order&quot;]
-
-    class Meta:
-        table = &quot;users&quot;
-        indexes = [
-            [&quot;username&quot;],
-            [&quot;email&quot;],
-            [&quot;date_joined&quot;],
-        ]
-
-    def __str__(self):
-        return f&quot;User(username={self.username})&quot;
-
-    async def set_password(self, password: str):
-        &quot;&quot;&quot;设置密码&quot;&quot;&quot;
-        # 实际项目中应使用 bcrypt 等加密
-        import hashlib
-        self.password_hash = hashlib.sha256(password.encode()).hexdigest()
-
-    async def check_password(self, password: str) -&gt; bool:
-        &quot;&quot;&quot;验证密码&quot;&quot;&quot;
-        import hashlib
-        return self.password_hash == hashlib.sha256(password.encode()).hexdigest()
-
-class UserProfile(Model):
-    &quot;&quot;&quot;用户档案模型&quot;&quot;&quot;
-    id = fields.BigIntField(primary_key=True)
-    user = fields.OneToOneField(&quot;models.User&quot;, related_name=&quot;profile&quot;, description=&quot;关联用户&quot;)
-    bio = fields.TextField(blank=True, description=&quot;个人简介&quot;)
-    avatar = fields.CharField(max_length=255, null=True, description=&quot;头像URL&quot;)
-    phone = fields.CharField(max_length=20, null=True, description=&quot;电话号码&quot;)
-    address = fields.TextField(blank=True, description=&quot;地址&quot;)
-    birth_date = fields.DateField(null=True, description=&quot;生日&quot;)
-    created_at = fields.DatetimeField(auto_now_add=True)
-    updated_at = fields.DatetimeField(auto_now=True)
-
-    class Meta:
-        table = &quot;user_profiles&quot;
-</code></pre>
-<h2 id="crud">基本 CRUD 操作</h2>
-<h3 id="_7">创建记录</h3>
-<pre><code class="language-python"># 创建单个用户
-async def create_user():
-    user = await User.create(
-        username=&quot;alice&quot;,
-        email=&quot;alice@example.com&quot;,
-        first_name=&quot;Alice&quot;,
-        last_name=&quot;Smith&quot;
-    )
-    await user.set_password(&quot;secret123&quot;)
-    await user.save()
-    return user
-
-# 批量创建
-async def create_multiple_users():
-    users_data = [
-        {&quot;username&quot;: &quot;bob&quot;, &quot;email&quot;: &quot;bob@example.com&quot;, &quot;first_name&quot;: &quot;Bob&quot;},
-        {&quot;username&quot;: &quot;charlie&quot;, &quot;email&quot;: &quot;charlie@example.com&quot;, &quot;first_name&quot;: &quot;Charlie&quot;},
-    ]
-    users = await User.bulk_create([User(**data) for data in users_data])
-    return users
-
-# 获取或创建
-async def get_or_create_user():
-    user, created = await User.get_or_create(
-        username=&quot;david&quot;,
-        defaults={
-            &quot;email&quot;: &quot;david@example.com&quot;,
-            &quot;first_name&quot;: &quot;David&quot;
-        }
-    )
-    return user, created
-</code></pre>
-<h3 id="_8">查询记录</h3>
-<pre><code class="language-python"># 基本查询
-async def basic_queries():
-    # 获取单个记录
-    user = await User.get(username=&quot;alice&quot;)
-
-    # 获取或返回 None
-    user = await User.get_or_none(username=&quot;nonexistent&quot;)
-
-    # 获取第一个记录
-    first_user = await User.first()
-
-    # 过滤查询
-    active_users = await User.filter(is_active=True)
-
-    # 复杂条件
-    recent_users = await User.filter(
-        date_joined__gte=datetime(2024, 1, 1),
-        is_active=True
-    ).exclude(is_staff=True)
-
-    # 排序
-    users_by_name = await User.all().order_by(&quot;first_name&quot;, &quot;-date_joined&quot;)
-
-    # 限制结果
-    latest_10_users = await User.all().order_by(&quot;-date_joined&quot;).limit(10)
-
-    # 分页
-    page_2_users = await User.all().offset(20).limit(10)
-
-# 高级查询条件
-async def advanced_filters():
-    # 字符串匹配
-    users = await User.filter(username__icontains=&quot;alice&quot;)  # 忽略大小写包含
-    users = await User.filter(email__endswith=&quot;@gmail.com&quot;)  # 以...结尾
-    users = await User.filter(first_name__startswith=&quot;A&quot;)  # 以...开头
-
-    # 数值比较
-    users = await User.filter(id__gte=100)  # 大于等于
-    users = await User.filter(id__lt=1000)  # 小于
-    users = await User.filter(id__in=[1, 2, 3, 4, 5])  # 在列表中
-
-    # 日期查询
-    from datetime import date, timedelta
-    today = date.today()
-    users = await User.filter(date_joined__date=today)  # 今天注册
-    users = await User.filter(date_joined__year=2024)  # 2024年注册
-    users = await User.filter(date_joined__month=12)  # 12月注册
-
-    # NULL 查询
-    users = await User.filter(last_login__isnull=True)  # 从未登录
-    users = await User.filter(last_login__not_isnull=True)  # 已登录过
-
-# 使用 Q 对象进行复杂查询
-from tortoise.queryset import Q
-
-async def complex_queries():
-    # OR 查询
-    users = await User.filter(
-        Q(username=&quot;alice&quot;) | Q(email=&quot;alice@example.com&quot;)
-    )
-
-    # AND 查询
-    users = await User.filter(
-        Q(is_active=True) &amp; Q(is_staff=False)
-    )
-
-    # NOT 查询
-    users = await User.filter(~Q(username=&quot;admin&quot;))
-
-    # 复杂组合
-    users = await User.filter(
-        (Q(first_name=&quot;Alice&quot;) | Q(first_name=&quot;Bob&quot;)) &amp;
-        Q(is_active=True) &amp;
-        ~Q(is_staff=True)
-    )
-</code></pre>
-<h3 id="_9">更新记录</h3>
-<pre><code class="language-python">async def update_records():
-    # 更新单个记录
-    user = await User.get(username=&quot;alice&quot;)
-    user.last_login = datetime.now()
-    await user.save()
-
-    # 批量更新
-    await User.filter(is_active=True).update(last_login=datetime.now())
-
-    # 条件更新
-    updated_count = await User.filter(
-        date_joined__lt=datetime(2023, 1, 1)
-    ).update(is_active=False)
-
-    # 使用 F 表达式
-    from tortoise.expressions import F
-    await User.all().update(id=F(&quot;id&quot;) + 1000)
-</code></pre>
-<h3 id="_10">删除记录</h3>
-<pre><code class="language-python">async def delete_records():
-    # 删除单个记录
-    user = await User.get(username=&quot;alice&quot;)
-    await user.delete()
-
-    # 批量删除
-    deleted_count = await User.filter(is_active=False).delete()
-
-    # 软删除（如果模型支持）
-    await User.filter(username=&quot;bob&quot;).update(is_active=False)
-</code></pre>
-<h2 id="_11">关系字段操作</h2>
-<h3 id="foreignkey">外键关系 (ForeignKey)</h3>
-<pre><code class="language-python">from enum import Enum
-
-class OrderStatus(str, Enum):
-    PENDING = &quot;pending&quot;
-    CONFIRMED = &quot;confirmed&quot;
-    SHIPPED = &quot;shipped&quot;
-    DELIVERED = &quot;delivered&quot;
-    CANCELLED = &quot;cancelled&quot;
-
-class Order(Model):
-    &quot;&quot;&quot;订单模型&quot;&quot;&quot;
-    id = fields.BigIntField(primary_key=True)
-    order_number = fields.CharField(max_length=50, unique=True, description=&quot;订单号&quot;)
-    user = fields.ForeignKeyField(&quot;models.User&quot;, related_name=&quot;orders&quot;, description=&quot;下单用户&quot;)
-    total_amount = fields.DecimalField(max_digits=10, decimal_places=2, description=&quot;总金额&quot;)
-    status = fields.CharEnumField(OrderStatus, default=OrderStatus.PENDING, description=&quot;订单状态&quot;)
-    created_at = fields.DatetimeField(auto_now_add=True, description=&quot;创建时间&quot;)
-    updated_at = fields.DatetimeField(auto_now=True, description=&quot;更新时间&quot;)
-
-    class Meta:
-        table = &quot;orders&quot;
-
-async def foreign_key_operations():
-    # 创建带关系的记录
-    user = await User.create(username=&quot;alice&quot;, email=&quot;alice@example.com&quot;)
-
-    order = await Order.create(
-        order_number=&quot;ORD-001&quot;,
-        user=user,  # 直接传递模型实例
-        total_amount=99.99,
-        status=OrderStatus.PENDING
-    )
-
-    # 或者使用 ID
-    order = await Order.create(
-        order_number=&quot;ORD-002&quot;,
-        user_id=user.id,
-        total_amount=149.99,
-        status=OrderStatus.PENDING
-    )
-
-    # 查询时预加载关系
-    orders = await Order.filter(status=OrderStatus.PENDING).select_related(&quot;user&quot;)
-    for order in orders:
-        print(f&quot;订单 {order.order_number} 属于用户 {order.user.username}&quot;)
-
-    # 反向查询
-    user_orders = await user.orders.all()
-    recent_orders = await user.orders.filter(
-        created_at__gte=datetime.now() - timedelta(days=30)
-    )
-</code></pre>
-<h3 id="onetoone">一对一关系 (OneToOne)</h3>
-<pre><code class="language-python">async def one_to_one_operations():
-    # 创建用户和档案
-    user = await User.create(username=&quot;bob&quot;, email=&quot;bob@example.com&quot;)
-
-    profile = await UserProfile.create(
-        user=user,
-        bio=&quot;Software Developer&quot;,
-        phone=&quot;+1-555-0123&quot;,
-        birth_date=date(1990, 5, 15)
-    )
-
-    # 查询时预加载
-    user_with_profile = await User.get(username=&quot;bob&quot;).select_related(&quot;profile&quot;)
-    print(f&quot;用户简介: {user_with_profile.profile.bio}&quot;)
-
-    # 反向访问
-    profile = await UserProfile.get(user__username=&quot;bob&quot;)
-    print(f&quot;档案属于用户: {profile.user.username}&quot;)
-</code></pre>
-<h3 id="manytomany">多对多关系 (ManyToMany)</h3>
-<pre><code class="language-python">class Tag(Model):
-    id = fields.BigIntField(primary_key=True)
-    name = fields.CharField(max_length=50, unique=True)
-
-    class Meta:
-        table = &quot;tags&quot;
-
-class Article(Model):
-    id = fields.BigIntField(primary_key=True)
-    title = fields.CharField(max_length=200)
-    content = fields.TextField()
-    author = fields.ForeignKeyField(&quot;models.User&quot;, related_name=&quot;articles&quot;)
-    tags = fields.ManyToManyField(&quot;models.Tag&quot;, related_name=&quot;articles&quot;)
-    created_at = fields.DatetimeField(auto_now_add=True)
-
-    class Meta:
-        table = &quot;articles&quot;
-
-async def many_to_many_operations():
-    # 创建标签
-    tag1 = await Tag.create(name=&quot;Python&quot;)
-    tag2 = await Tag.create(name=&quot;异步编程&quot;)
-    tag3 = await Tag.create(name=&quot;Web开发&quot;)
-
-    # 创建文章
-    user = await User.get(username=&quot;alice&quot;)
-    article = await Article.create(
-        title=&quot;Tortoise ORM 指南&quot;,
-        content=&quot;这是一篇关于 Tortoise ORM 的文章...&quot;,
-        author=user
-    )
-
-    # 添加标签
-    await article.tags.add(tag1, tag2, tag3)
-
-    # 移除标签
-    await article.tags.remove(tag3)
-
-    # 清空所有标签
-    await article.tags.clear()
-
-    # 设置标签（替换所有）
-    await article.tags.set([tag1, tag2])
-
-    # 查询时预加载多对多关系
-    articles = await Article.all().prefetch_related(&quot;tags&quot;, &quot;author&quot;)
-    for article in articles:
-        tag_names = [tag.name for tag in article.tags]
-        print(f&quot;文章《{article.title}》标签: {', '.join(tag_names)}&quot;)
-
-    # 反向查询
-    python_articles = await tag1.articles.all()
-
-    # 复杂查询
-    articles_with_python = await Article.filter(tags__name=&quot;Python&quot;)
-</code></pre>
-<h2 id="_12">高级查询功能</h2>
-<h3 id="_13">聚合查询</h3>
-<pre><code class="language-python">from tortoise.functions import Count, Sum, Avg, Max, Min
-
-async def aggregation_queries():
-    # 计数
-    user_count = await User.all().count()
-    active_user_count = await User.filter(is_active=True).count()
-
-    # 聚合函数
-    stats = await Order.all().aggregate(
-        total_orders=Count(&quot;id&quot;),
-        total_revenue=Sum(&quot;total_amount&quot;),
-        avg_order_value=Avg(&quot;total_amount&quot;),
-        max_order_value=Max(&quot;total_amount&quot;),
-        min_order_value=Min(&quot;total_amount&quot;)
-    )
-
-    # 分组聚合
-    user_order_stats = await Order.all().group_by(&quot;user_id&quot;).annotate(
-        order_count=Count(&quot;id&quot;),
-        total_spent=Sum(&quot;total_amount&quot;)
-    ).values(&quot;user_id&quot;, &quot;order_count&quot;, &quot;total_spent&quot;)
-</code></pre>
-<h3 id="_14">事务管理</h3>
-<pre><code class="language-python">from tortoise.transactions import in_transaction
-
-async def transaction_examples():
-    # 使用装饰器
-    @in_transaction()
-    async def transfer_money(from_user_id: int, to_user_id: int, amount: float):
-        # 这些操作将在同一个事务中执行
-        from_user = await User.get(id=from_user_id)
-        to_user = await User.get(id=to_user_id)
-
-        if from_user.balance &lt; amount:
-            raise ValueError(&quot;余额不足&quot;)
-
-        from_user.balance -= amount
-        to_user.balance += amount
-
-        await from_user.save()
-        await to_user.save()
-
-    # 使用上下文管理器
-    async with in_transaction():
-        user = await User.create(username=&quot;test_user&quot;, email=&quot;test@example.com&quot;)
-        profile = await UserProfile.create(user=user, bio=&quot;Test bio&quot;)
-
-        # 如果任何操作失败，整个事务将回滚
-        if some_condition:
-            raise Exception(&quot;回滚事务&quot;)
-</code></pre>
-<h2 id="aerich">数据库迁移 (Aerich)</h2>
-<p>Unfazed 集成了 <a href="https://github.com/tortoise/aerich">Aerich</a> 作为数据库迁移工具，提供完整的数据库版本控制功能。</p>
-<h3 id="_15">初始化迁移</h3>
-<pre><code class="language-bash"># 初始化 Aerich（首次使用）
-unfazed-cli init-db
-
-# 这会创建：
-# - migrations/ 目录
-# - migrations/models/ 目录
-# - 初始迁移文件
-</code></pre>
-<h3 id="_16">生成迁移文件</h3>
-<pre><code class="language-bash"># 检测模型变化并生成迁移文件
-unfazed-cli migrate
-
-# 指定迁移名称
-unfazed-cli migrate --name add_user_profile
-
-# 生成空的迁移文件（用于手动编写迁移）
-unfazed-cli migrate --name custom_migration --empty
-</code></pre>
-<h3 id="_17">应用迁移</h3>
-<pre><code class="language-bash"># 应用所有待执行的迁移
-unfazed-cli upgrade
-
-# 在事务中应用迁移
-unfazed-cli upgrade --transaction
-</code></pre>
-<h3 id="_18">回滚迁移</h3>
-<pre><code class="language-bash"># 回滚到上一个版本
-unfazed-cli downgrade
-
-# 回滚到指定版本
-unfazed-cli downgrade --version 2
-
-# 回滚并删除迁移文件
-unfazed-cli downgrade --version 1 --delete
-</code></pre>
-<h3 id="_19">迁移历史管理</h3>
-<pre><code class="language-bash"># 查看迁移历史
-unfazed-cli history
-
-# 查看待应用的迁移
-unfazed-cli heads
-
-# 数据库表结构逆向工程
-unfazed-cli inspectdb
-
-# 检查特定表
-unfazed-cli inspectdb --table users
-</code></pre>
-<h2 id="_20">性能优化</h2>
-<h3 id="_21">查询优化</h3>
-<pre><code class="language-python">async def query_optimization():
-    # 1. 使用 select_related 预加载外键关系
-    orders = await Order.all().select_related(&quot;user&quot;)
-    for order in orders:
-        print(f&quot;订单 {order.order_number} 用户: {order.user.username}&quot;)  # 不会产生 N+1 查询
-
-    # 2. 使用 prefetch_related 预加载反向关系和多对多关系
-    users = await User.all().prefetch_related(&quot;orders&quot;, &quot;articles__tags&quot;)
-    for user in users:
-        print(f&quot;用户 {user.username} 有 {len(user.orders)} 个订单&quot;)
-
-    # 3. 只选择需要的字段
-    user_names = await User.all().values_list(&quot;username&quot;, flat=True)
-    user_info = await User.all().values(&quot;id&quot;, &quot;username&quot;, &quot;email&quot;)
-
-    # 4. 使用索引字段进行查询
-    active_users = await User.filter(is_active=True)  # is_active 应该有索引
-
-    # 5. 批量操作
-    users_data = [
-        {&quot;username&quot;: f&quot;user_{i}&quot;, &quot;email&quot;: f&quot;user_{i}@example.com&quot;}
-        for i in range(100)
-    ]
-    await User.bulk_create([User(**data) for data in users_data])
-
-    # 6. 使用 exists() 检查存在性
-    has_orders = await Order.filter(user_id=1).exists()
-</code></pre>
-<h3 id="_22">连接池配置</h3>
-<pre><code class="language-python"># settings.py - 数据库连接池优化
-UNFAZED_SETTINGS = {
-    &quot;DATABASE&quot;: {
-        &quot;CONNECTIONS&quot;: {
-            &quot;default&quot;: {
-                &quot;ENGINE&quot;: &quot;tortoise.backends.asyncpg&quot;,
-                &quot;CREDENTIALS&quot;: {
-                    &quot;host&quot;: &quot;localhost&quot;,
-                    &quot;port&quot;: 5432,
-                    &quot;user&quot;: &quot;myapp&quot;,
-                    &quot;password&quot;: &quot;secret&quot;,
-                    &quot;database&quot;: &quot;myapp_db&quot;,
-                    # 连接池配置
-                    &quot;minsize&quot;: 5,        # 最小连接数
-                    &quot;maxsize&quot;: 20,       # 最大连接数
-                    &quot;max_queries&quot;: 50000, # 每个连接最大查询数
-                    &quot;max_inactive_connection_lifetime&quot;: 300,  # 连接最大空闲时间
-                    &quot;timeout&quot;: 60,       # 连接超时
-                    &quot;command_timeout&quot;: 60, # 命令超时
-                }
-            }
-        }
-    }
-}
-</code></pre>
-<h2 id="_23">测试支持</h2>
-<h3 id="_24">测试数据库配置</h3>
-<pre><code class="language-python"># conftest.py
-import pytest
-from tortoise import Tortoise
-from unfazed.core import Unfazed
-from unfazed.conf import UnfazedSettings
-
-@pytest.fixture(autouse=True)
-async def setup_test_db():
-    &quot;&quot;&quot;设置测试数据库&quot;&quot;&quot;
-    settings = UnfazedSettings(
-        DEBUG=True,
-        INSTALLED_APPS=[&quot;myapp.users&quot;, &quot;myapp.orders&quot;],
-        DATABASE={
-            &quot;CONNECTIONS&quot;: {
-                &quot;default&quot;: {
-                    &quot;ENGINE&quot;: &quot;tortoise.backends.sqlite&quot;,
-                    &quot;CREDENTIALS&quot;: {&quot;file_path&quot;: &quot;:memory:&quot;}
-                }
-            },
-            &quot;APPS&quot;: {
-                &quot;models&quot;: {
-                    &quot;models&quot;: [&quot;myapp.users.models&quot;, &quot;myapp.orders.models&quot;],
-                    &quot;default_connection&quot;: &quot;default&quot;,
-                }
-            }
-        }
-    )
-
-    app = Unfazed(settings=settings)
-    await app.setup()
-    await app.migrate()  # 创建表结构
-
-    yield
-
-    await Tortoise.close_connections()
-
-@pytest.fixture
-async def sample_user():
-    &quot;&quot;&quot;创建测试用户&quot;&quot;&quot;
-    user = await User.create(
-        username=&quot;testuser&quot;,
-        email=&quot;test@example.com&quot;,
-        first_name=&quot;Test&quot;,
-        last_name=&quot;User&quot;
-    )
-    return user
-</code></pre>
-<h3 id="_25">测试示例</h3>
-<pre><code class="language-python"># test_models.py
-import pytest
-from datetime import datetime, timedelta
-
-async def test_user_creation(sample_user):
-    &quot;&quot;&quot;测试用户创建&quot;&quot;&quot;
-    assert sample_user.username == &quot;testuser&quot;
-    assert sample_user.email == &quot;test@example.com&quot;
-    assert sample_user.is_active is True
-
-async def test_user_password():
-    &quot;&quot;&quot;测试密码功能&quot;&quot;&quot;
-    user = await User.create(
-        username=&quot;passwordtest&quot;,
-        email=&quot;password@example.com&quot;
-    )
-
-    await user.set_password(&quot;secret123&quot;)
-    assert await user.check_password(&quot;secret123&quot;)
-    assert not await user.check_password(&quot;wrongpassword&quot;)
-
-async def test_order_creation(sample_user):
-    &quot;&quot;&quot;测试订单创建&quot;&quot;&quot;
-    order = await Order.create(
-        order_number=&quot;TEST-001&quot;,
-        user=sample_user,
-        total_amount=99.99,
-        status=OrderStatus.PENDING
-    )
-
-    assert order.user_id == sample_user.id
-    assert order.total_amount == 99.99
-    assert order.status == OrderStatus.PENDING
-
-async def test_user_orders_relationship(sample_user):
-    &quot;&quot;&quot;测试用户订单关系&quot;&quot;&quot;
-    # 创建订单
-    order1 = await Order.create(
-        order_number=&quot;REL-001&quot;,
-        user=sample_user,
-        total_amount=100.00
-    )
-    order2 = await Order.create(
-        order_number=&quot;REL-002&quot;,
-        user=sample_user,
-        total_amount=200.00
-    )
-
-    # 测试反向关系
-    user_orders = await sample_user.orders.all()
-    assert len(user_orders) == 2
-
-    # 测试过滤
-    high_value_orders = await sample_user.orders.filter(total_amount__gte=150)
-    assert len(high_value_orders) == 1
-    assert high_value_orders[0].order_number == &quot;REL-002&quot;
-</code></pre>
-<h2 id="_26">最佳实践</h2>
-<h3 id="_27">模型设计</h3>
-<pre><code class="language-python"># 良好的模型设计示例
-class BaseModel(Model):
-    &quot;&quot;&quot;基础模型&quot;&quot;&quot;
-    id = fields.BigIntField(primary_key=True)
-
-    class Meta:
-        abstract = True  # 抽象模型
-
-class TimestampedModel(BaseModel):
-    &quot;&quot;&quot;带时间戳的模型&quot;&quot;&quot;
-    created_at = fields.DatetimeField(auto_now_add=True)
-    updated_at = fields.DatetimeField(auto_now=True)
-
-    class Meta:
-        abstract = True
-
-# 使用继承
-class Product(TimestampedModel):
-    name = fields.CharField(max_length=255, description=&quot;产品名称&quot;)
-    price = fields.DecimalField(max_digits=10, decimal_places=2, description=&quot;价格&quot;)
-    is_active = fields.BooleanField(default=True, description=&quot;是否激活&quot;)
-
-    class Meta:
-        table = &quot;products&quot;
-        indexes = [
-            [&quot;name&quot;],
-            [&quot;is_active&quot;, &quot;created_at&quot;],
-        ]
-</code></pre>
-<h3 id="_28">错误处理</h3>
-<pre><code class="language-python">from tortoise.exceptions import DoesNotExist, IntegrityError, ValidationError
-
-async def safe_user_operations():
-    &quot;&quot;&quot;安全的用户操作示例&quot;&quot;&quot;
-
-    try:
-        # 尝试创建用户
-        user = await User.create(
-            username=&quot;newuser&quot;,
-            email=&quot;new@example.com&quot;
-        )
-        return user
-
-    except IntegrityError as e:
-        # 处理唯一约束违反
-        if &quot;username&quot; in str(e):
-            raise ValueError(&quot;用户名已存在&quot;)
-        elif &quot;email&quot; in str(e):
-            raise ValueError(&quot;邮箱已被使用&quot;)
-        else:
-            raise ValueError(&quot;数据完整性错误&quot;)
-
-    except ValidationError as e:
-        # 处理验证错误
-        raise ValueError(f&quot;数据验证失败: {e}&quot;)
-
-async def get_user_safely(user_id: int):
-    &quot;&quot;&quot;安全获取用户&quot;&quot;&quot;
-    try:
-        return await User.get(id=user_id)
-    except DoesNotExist:
-        return None
-</code></pre>
-<h2 id="_29">总结</h2>
-<p>Tortoise ORM 为 Unfazed 应用提供了强大而灵活的数据库操作能力：</p>
-<p><strong>核心优势</strong>：
-- 🚀 <strong>异步原生</strong>: 基于 asyncio 的高性能异步操作
-- 🎯 <strong>Django 风格</strong>: 熟悉的 API，降低学习成本
-- 🔧 <strong>多数据库支持</strong>: 支持主流数据库系统
-- 📊 <strong>功能完整</strong>: 从基础 CRUD 到复杂聚合查询
-- 🛡️ <strong>生产就绪</strong>: 完整的事务、迁移、测试支持</p>
-<p><strong>关键特性</strong>：
-- 完整的关系字段支持（外键、一对一、多对多）
-- 高级查询功能（聚合、子查询、原生 SQL）
-- 事务管理和嵌套事务
-- 数据库迁移工具 Aerich 集成
-- 查询优化和性能调优
-- 全面的测试支持</p>
-<p>通过本文档的指导，您可以充分利用 Tortoise ORM 的强大功能，构建高性能、可维护的数据库驱动应用。</p>
-<h2 id="_30">参考资源</h2>
+<h3 id="modelcenter">ModelCenter<a class="headerlink" href="#modelcenter" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">ModelCenter</span><span class="p">:</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">unfazed</span><span class="p">:</span> <span class="n">Unfazed</span><span class="p">,</span> <span class="n">conf</span><span class="p">:</span> <span class="n">Database</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</span></code></pre></div>
+<p>Internal registry that manages the database driver lifecycle.</p>
 <ul>
-<li><strong>官方文档</strong>: <a href="https://tortoise.github.io/">https://tortoise.github.io/</a></li>
-<li><strong>GitHub 仓库</strong>: <a href="https://github.com/tortoise/tortoise-orm">https://github.com/tortoise/tortoise-orm</a></li>
-<li><strong>Aerich 迁移工具</strong>: <a href="https://github.com/tortoise/aerich">https://github.com/tortoise/aerich</a></li>
-<li><strong>Unfazed 命令系统</strong>: <a href="../command/#aerich">command.md#aerich</a></li>
+<li><code>async setup() -&gt; None</code>: Import the driver class, instantiate it, and call <code>driver.setup()</code>. No-op if <code>DATABASE</code> is not configured.</li>
+<li><code>async migrate() -&gt; None</code>: Call <code>driver.migrate()</code>. Raises <code>ValueError</code> if the driver has not been set up.</li>
 </ul>
+<h3 id="databasedriver-protocol">DataBaseDriver (Protocol)<a class="headerlink" href="#databasedriver-protocol" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">DataBaseDriver</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">migrate</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>
+</span></code></pre></div>
+<p>Protocol that custom database drivers must satisfy.</p>
 
 
 
@@ -2536,6 +2171,12 @@ async def get_user_safely(user_id: int):
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
       </main>
       
         <footer class="md-footer">
@@ -2552,6 +2193,21 @@ async def get_user_safely(user_id: int):
   
 </div>
       
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/unfazed-eco/unfazed" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
     </div>
   </div>
 </footer>
@@ -2561,8 +2217,10 @@ async def get_user_safely(user_id: int):
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u62f7\u8c9d", "clipboard.copy": "\u62f7\u8c9d", "search.result.more.one": "\u6b64\u9801\u5c1a\u6709 1 \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.more.other": "\u6b64\u9801\u5c1a\u6709 # \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.none": "\u6c92\u6709\u627e\u5230\u7b26\u5408\u689d\u4ef6\u7684\u7d50\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u689d\u4ef6\u7684\u7d50\u679c", "search.result.other": "\u627e\u5230 # \u500b\u7b26\u5408\u689d\u4ef6\u7684\u7d50\u679c", "search.result.placeholder": "\u9375\u5165\u4ee5\u958b\u59cb\u6aa2\u7d22", "search.result.term.missing": "\u7f3a\u5931", "select.version": "\u9078\u64c7\u7248\u672c"}}</script>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.instant", "navigation.instant.progress", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>

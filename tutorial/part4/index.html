@@ -1,12 +1,16 @@
 
 <!doctype html>
-<html lang="zh-Hant" class="no-js">
+<html lang="en" class="no-js">
   <head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="Production Ready ASGI web framework">
       
+      
+      
+        <link rel="canonical" href="https://unfazed-eco.github.io/unfazed/tutorial/part4/">
       
       
         <link rel="prev" href="../part3/">
@@ -20,11 +24,14 @@
     
     
       
-        <title>Part 4 Endpoint and Schema - Unfazed</title>
+        <title>Part 4 API Interface Design and Schema Definition - Unfazed</title>
       
     
     
       <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -53,7 +60,14 @@
   </head>
   
   
-    <body dir="ltr">
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -62,8 +76,8 @@
     <div data-md-component="skip">
       
         
-        <a href="#api-schema" class="md-skip">
-          跳轉至
+        <a href="#part-4-api-interface-design-and-schema-definition" class="md-skip">
+          Skip to content
         </a>
       
     </div>
@@ -74,10 +88,8 @@
     
       
 
-  
-
-<header class="md-header md-header--shadow" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="頁首">
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../.." title="Unfazed" class="md-header__button md-logo" aria-label="Unfazed" data-md-component="logo">
       
   <img src="../../images/uz-logo.png" alt="logo">
@@ -97,12 +109,38 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Part 4 Endpoint and Schema
+              Part 4 API Interface Design and Schema Definition
             
           </span>
         </div>
       </div>
     </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
     
     
       <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
@@ -111,21 +149,21 @@
       <div class="md-header__option">
   <div class="md-select">
     
-    <button class="md-header__button md-icon" aria-label="選擇語言">
+    <button class="md-header__button md-icon" aria-label="Select language">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
     </button>
     <div class="md-select__inner">
       <ul class="md-select__list">
         
           <li class="md-select__item">
-            <a href="./" hreflang="zh-Hant" class="md-select__link">
-              中文
+            <a href="./" hreflang="en" class="md-select__link">
+              English
             </a>
           </li>
         
           <li class="md-select__item">
-            <a href="../../en/tutorial/part4/" hreflang="en" class="md-select__link">
-              English
+            <a href="../../zh/tutorial/part4/" hreflang="zh" class="md-select__link">
+              中文
             </a>
           </li>
         
@@ -135,9 +173,48 @@
 </div>
     
     
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
     
       <div class="md-header__source">
-        <a href="https://github.com/unfazed-eco/unfazed" title="前往倉庫" class="md-source" data-md-component="source">
+        <a href="https://github.com/unfazed-eco/unfazed" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
@@ -157,6 +234,105 @@
       
         
           
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../part1/" class="md-tabs__link">
+          
+  
+  Tutorial
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../features/app/" class="md-tabs__link">
+          
+  
+  Features
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../features/contrib/admin/" class="md-tabs__link">
+          
+  
+  Contrib
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../release-note/" class="md-tabs__link">
+        
+  
+    
+  
+  ReleaseNote
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -170,8 +346,10 @@
                     
 
 
+  
 
-<nav class="md-nav md-nav--primary" aria-label="導航" data-md-level="0">
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../.." title="Unfazed" class="md-nav__button md-logo" aria-label="Unfazed" data-md-component="logo">
       
@@ -182,7 +360,7 @@
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/unfazed-eco/unfazed" title="前往倉庫" class="md-source" data-md-component="source">
+      <a href="https://github.com/unfazed-eco/unfazed" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
@@ -226,15 +404,23 @@
     
     
     
+      
+        
+        
+      
+      
+        
+      
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -263,7 +449,7 @@
         
   
   <span class="md-ellipsis">
-    Part 1 Install & Create Project
+    Part 1 Installation and Project Creation
   </span>
   
 
@@ -284,7 +470,7 @@
         
   
   <span class="md-ellipsis">
-    Part 2 Create Application
+    Part 2 Creating Applications and Hello World
   </span>
   
 
@@ -305,7 +491,7 @@
         
   
   <span class="md-ellipsis">
-    Part 3 Models and Serializer
+    Part 3 Data Models and Serializers
   </span>
   
 
@@ -335,7 +521,7 @@
           
   
   <span class="md-ellipsis">
-    Part 4 Endpoint and Schema
+    Part 4 API Interface Design and Schema Definition
   </span>
   
 
@@ -346,7 +532,7 @@
         
   
   <span class="md-ellipsis">
-    Part 4 Endpoint and Schema
+    Part 4 API Interface Design and Schema Definition
   </span>
   
 
@@ -354,7 +540,7 @@
       
         
 
-<nav class="md-nav md-nav--secondary" aria-label="目錄">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
   
@@ -363,33 +549,33 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      目錄
+      Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#api" class="md-nav__link">
+  <a href="#api-interface-planning" class="md-nav__link">
     <span class="md-ellipsis">
-      API 接口设计
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="API 接口设计">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      接口规划
+      API Interface Planning
     </span>
   </a>
   
 </li>
+      
+        <li class="md-nav__item">
+  <a href="#schema-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Schema Definition
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Schema Definition">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#api_1" class="md-nav__link">
+  <a href="#creating-schema-models" class="md-nav__link">
     <span class="md-ellipsis">
-      API 设计原则
+      Creating Schema Models
     </span>
   </a>
   
@@ -401,19 +587,37 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#schema" class="md-nav__link">
+  <a href="#endpoint-implementation" class="md-nav__link">
     <span class="md-ellipsis">
-      Schema 定义
+      Endpoint Implementation
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Schema 定义">
+    <nav class="md-nav" aria-label="Endpoint Implementation">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#schema_1" class="md-nav__link">
+  <a href="#understanding-parameter-annotations" class="md-nav__link">
     <span class="md-ellipsis">
-      创建基础 Schema
+      Understanding Parameter Annotations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#writing-the-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      Writing the Endpoints
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#route-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Route Configuration
     </span>
   </a>
   
@@ -425,37 +629,28 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#endpoint" class="md-nav__link">
+  <a href="#automatic-api-documentation" class="md-nav__link">
     <span class="md-ellipsis">
-      Endpoint 实现
+      Automatic API Documentation
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Endpoint 实现">
+    <nav class="md-nav" aria-label="Automatic API Documentation">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#unfazed" class="md-nav__link">
+  <a href="#openapi-configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      理解 Unfazed 参数注解
+      OpenAPI Configuration
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#browse-the-documentation" class="md-nav__link">
     <span class="md-ellipsis">
-      实现视图函数
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      参数验证特性
+      Browse the Documentation
     </span>
   </a>
   
@@ -467,19 +662,28 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#testing-the-endpoints" class="md-nav__link">
     <span class="md-ellipsis">
-      路由配置
+      Testing the Endpoints
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="路由配置">
+    <nav class="md-nav" aria-label="Testing the Endpoints">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#using-curl" class="md-nav__link">
     <span class="md-ellipsis">
-      更新路由定义
+      Using curl
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using Python
     </span>
   </a>
   
@@ -491,93 +695,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#api_2" class="md-nav__link">
+  <a href="#next-steps" class="md-nav__link">
     <span class="md-ellipsis">
-      自动 API 文档
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="自动 API 文档">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#openapi" class="md-nav__link">
-    <span class="md-ellipsis">
-      OpenAPI 文档生成
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      文档特性
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    <span class="md-ellipsis">
-      增强文档质量
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#api_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      测试 API 接口
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="测试 API 接口">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#curl" class="md-nav__link">
-    <span class="md-ellipsis">
-      使用 curl 测试
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#python-requests" class="md-nav__link">
-    <span class="md-ellipsis">
-      使用 Python requests 测试
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
-    <span class="md-ellipsis">
-      自定义错误响应
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
-    <span class="md-ellipsis">
-      下一步
+      Next Steps
     </span>
   </a>
   
@@ -603,7 +723,7 @@
         
   
   <span class="md-ellipsis">
-    Part 5 Services
+    Part 5 Business Logic Implementation
   </span>
   
 
@@ -624,7 +744,7 @@
         
   
   <span class="md-ellipsis">
-    Part 6 Test
+    Part 6 Testing and Quality Assurance
   </span>
   
 
@@ -649,6 +769,11 @@
   
     
     
+    
+      
+      
+        
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -683,27 +808,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../features/settings/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Settings
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../features/app/" class="md-nav__link">
         
   
@@ -725,11 +829,53 @@
   
   
     <li class="md-nav__item">
+      <a href="../../features/settings/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Settings
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../features/route/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     Route
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/endpoint/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Endpoint
   </span>
   
 
@@ -788,95 +934,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../features/logging/" class="md-nav__link">
+      <a href="../../features/command/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Logging
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../features/request/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Request
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../features/response/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Response
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../features/endpoint/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Endpoint
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../features/staticfiles.md" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Staticfiles
+    Command
   </span>
   
 
@@ -935,6 +997,69 @@
   
   
     <li class="md-nav__item">
+      <a href="../../features/request/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Request
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/logging/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Logging
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../features/cache/" class="md-nav__link">
         
   
@@ -956,11 +1081,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../features/error/" class="md-nav__link">
+      <a href="../../features/exception/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Error
+    Exceptions
   </span>
   
 
@@ -998,11 +1123,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../features/command/" class="md-nav__link">
+      <a href="../../features/testclient/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Command
+    Test Client
   </span>
   
 
@@ -1019,11 +1144,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../features/testclient/" class="md-nav__link">
+      <a href="../../features/concurrency/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Test Client
+    Concurrency
   </span>
   
 
@@ -1048,6 +1173,11 @@
   
     
     
+    
+      
+      
+        
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -1178,7 +1308,7 @@
                   <div class="md-sidebar__inner">
                     
 
-<nav class="md-nav md-nav--secondary" aria-label="目錄">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
   
@@ -1187,33 +1317,33 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      目錄
+      Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#api" class="md-nav__link">
+  <a href="#api-interface-planning" class="md-nav__link">
     <span class="md-ellipsis">
-      API 接口设计
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="API 接口设计">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      接口规划
+      API Interface Planning
     </span>
   </a>
   
 </li>
+      
+        <li class="md-nav__item">
+  <a href="#schema-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Schema Definition
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Schema Definition">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#api_1" class="md-nav__link">
+  <a href="#creating-schema-models" class="md-nav__link">
     <span class="md-ellipsis">
-      API 设计原则
+      Creating Schema Models
     </span>
   </a>
   
@@ -1225,19 +1355,37 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#schema" class="md-nav__link">
+  <a href="#endpoint-implementation" class="md-nav__link">
     <span class="md-ellipsis">
-      Schema 定义
+      Endpoint Implementation
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Schema 定义">
+    <nav class="md-nav" aria-label="Endpoint Implementation">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#schema_1" class="md-nav__link">
+  <a href="#understanding-parameter-annotations" class="md-nav__link">
     <span class="md-ellipsis">
-      创建基础 Schema
+      Understanding Parameter Annotations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#writing-the-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      Writing the Endpoints
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#route-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Route Configuration
     </span>
   </a>
   
@@ -1249,37 +1397,28 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#endpoint" class="md-nav__link">
+  <a href="#automatic-api-documentation" class="md-nav__link">
     <span class="md-ellipsis">
-      Endpoint 实现
+      Automatic API Documentation
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Endpoint 实现">
+    <nav class="md-nav" aria-label="Automatic API Documentation">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#unfazed" class="md-nav__link">
+  <a href="#openapi-configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      理解 Unfazed 参数注解
+      OpenAPI Configuration
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#browse-the-documentation" class="md-nav__link">
     <span class="md-ellipsis">
-      实现视图函数
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      参数验证特性
+      Browse the Documentation
     </span>
   </a>
   
@@ -1291,19 +1430,28 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#testing-the-endpoints" class="md-nav__link">
     <span class="md-ellipsis">
-      路由配置
+      Testing the Endpoints
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="路由配置">
+    <nav class="md-nav" aria-label="Testing the Endpoints">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#using-curl" class="md-nav__link">
     <span class="md-ellipsis">
-      更新路由定义
+      Using curl
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using Python
     </span>
   </a>
   
@@ -1315,93 +1463,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#api_2" class="md-nav__link">
+  <a href="#next-steps" class="md-nav__link">
     <span class="md-ellipsis">
-      自动 API 文档
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="自动 API 文档">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#openapi" class="md-nav__link">
-    <span class="md-ellipsis">
-      OpenAPI 文档生成
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      文档特性
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    <span class="md-ellipsis">
-      增强文档质量
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#api_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      测试 API 接口
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="测试 API 接口">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#curl" class="md-nav__link">
-    <span class="md-ellipsis">
-      使用 curl 测试
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#python-requests" class="md-nav__link">
-    <span class="md-ellipsis">
-      使用 Python requests 测试
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
-    <span class="md-ellipsis">
-      自定义错误响应
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
-    <span class="md-ellipsis">
-      下一步
+      Next Steps
     </span>
   </a>
   
@@ -1425,377 +1489,246 @@
   
 
 
-<h1 id="api-schema">第四部分：API 接口设计与 Schema 定义</h1>
-<p>在上一节中，我们成功设计了数据模型和序列化器。现在我们将创建完整的 API 接口，学习如何使用 Unfazed 的参数注解系统、定义请求/响应模型，并生成自动化的 API 文档。</p>
-<p>我们将为学生选课系统创建三个核心接口，展示 Unfazed 现代化的 API 开发方式。</p>
-<h2 id="api">API 接口设计</h2>
-<h3 id="_1">接口规划</h3>
-<p>根据学生选课的业务逻辑，我们需要设计以下接口：</p>
+<h1 id="part-4-api-interface-design-and-schema-definition">Part 4: API Interface Design and Schema Definition<a class="headerlink" href="#part-4-api-interface-design-and-schema-definition" title="Permanent link">&para;</a></h1>
+<p>In the previous part, we designed data models and serializers. Now we will create complete API endpoints, learn Unfazed's parameter annotation system, define request/response schemas, and see how OpenAPI documentation is generated automatically.</p>
+<h2 id="api-interface-planning">API Interface Planning<a class="headerlink" href="#api-interface-planning" title="Permanent link">&para;</a></h2>
+<p>Based on our enrollment system's requirements, we need the following endpoints:</p>
 <table>
 <thead>
 <tr>
-<th>接口路径</th>
-<th>HTTP方法</th>
-<th>功能描述</th>
-<th>参数类型</th>
+<th>Endpoint Path</th>
+<th>Method</th>
+<th>Description</th>
+<th>Parameter Source</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>/enroll/student-list</code></td>
+<td><code>/api/enroll/student-list</code></td>
 <td>GET</td>
-<td>获取学生列表</td>
-<td>Query 参数（分页）</td>
+<td>Get student list</td>
+<td>Query (pagination)</td>
 </tr>
 <tr>
-<td><code>/enroll/course-list</code></td>
+<td><code>/api/enroll/course-list</code></td>
 <td>GET</td>
-<td>获取课程列表</td>
-<td>Query 参数（分页）</td>
+<td>Get course list</td>
+<td>Query (pagination)</td>
 </tr>
 <tr>
-<td><code>/enroll/bind</code></td>
+<td><code>/api/enroll/bind</code></td>
 <td>POST</td>
-<td>学生选课绑定</td>
-<td>JSON 请求体</td>
+<td>Student enrolls course</td>
+<td>JSON body</td>
 </tr>
 </tbody>
 </table>
-<h3 id="api_1">API 设计原则</h3>
-<p>不同的 team 有不同的设计规范，以 unfazed 作者所在的 team 为例，我们不使用 restful 风格，遵循以下实践</p>
+<blockquote>
+<p><strong>Note on API conventions</strong>: Different teams have different design standards. In this tutorial, we follow a convention where only GET/POST methods are used, URLs follow the pattern <code>/api/{app}/{resource-action}</code>, and all responses use HTTP status 200 with a <code>code</code> field in the body (0 = success).</p>
+</blockquote>
+<h2 id="schema-definition">Schema Definition<a class="headerlink" href="#schema-definition" title="Permanent link">&para;</a></h2>
+<p>Schemas define the data contracts for your API — the shapes of requests and responses. They are Pydantic models that also drive OpenAPI documentation generation. See <a href="../../features/openapi/">OpenAPI</a>.</p>
+<h3 id="creating-schema-models">Creating Schema Models<a class="headerlink" href="#creating-schema-models" title="Permanent link">&para;</a></h3>
+<p>Edit <code>enroll/schema.py</code>:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># enroll/schema.py</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">t</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="kn">from</span><span class="w"> </span><span class="nn">.serializers</span><span class="w"> </span><span class="kn">import</span> <span class="n">StudentSerializer</span><span class="p">,</span> <span class="n">CourseSerializer</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="k">class</span><span class="w"> </span><span class="nc">BaseResponse</span><span class="p">[</span><span class="n">T</span><span class="p">](</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Unified response wrapper&quot;&quot;&quot;</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="n">code</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Response code, 0 = success&quot;</span><span class="p">)</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="n">message</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Response message&quot;</span><span class="p">)</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="n">data</span><span class="p">:</span> <span class="n">T</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Response data&quot;</span><span class="p">)</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="k">class</span><span class="w"> </span><span class="nc">StudentListResponse</span><span class="p">(</span><span class="n">BaseResponse</span><span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="n">StudentSerializer</span><span class="p">]]):</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    <span class="k">pass</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="k">class</span><span class="w"> </span><span class="nc">CourseListResponse</span><span class="p">(</span><span class="n">BaseResponse</span><span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="n">CourseSerializer</span><span class="p">]]):</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    <span class="k">pass</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="k">class</span><span class="w"> </span><span class="nc">BindRequest</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>    <span class="n">student_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Student ID&quot;</span><span class="p">,</span> <span class="n">gt</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>    <span class="n">course_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Course ID&quot;</span><span class="p">,</span> <span class="n">gt</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="k">class</span><span class="w"> </span><span class="nc">BindResponse</span><span class="p">(</span><span class="n">BaseResponse</span><span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">Dict</span><span class="p">]):</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>    <span class="k">pass</span>
+</span></code></pre></div>
+<p>Note that <code>StudentSerializer</code> and <code>CourseSerializer</code> can be used directly as response models since they extend Pydantic's <code>BaseModel</code>.</p>
+<h2 id="endpoint-implementation">Endpoint Implementation<a class="headerlink" href="#endpoint-implementation" title="Permanent link">&para;</a></h2>
+<h3 id="understanding-parameter-annotations">Understanding Parameter Annotations<a class="headerlink" href="#understanding-parameter-annotations" title="Permanent link">&para;</a></h3>
+<p>Unfazed uses <code>typing.Annotated</code> with param markers to declare where each parameter comes from. See <a href="../../features/endpoint/">Endpoint</a> for the full reference.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">t</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">unfazed.route</span><span class="w"> </span><span class="kn">import</span> <span class="n">params</span> <span class="k">as</span> <span class="n">p</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># Query parameters (from URL query string: ?page=1&amp;size=10)</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">page</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Annotated</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">Query</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">)]</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># Path parameters (from URL path: /users/{user_id})</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="n">user_id</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Annotated</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">Path</span><span class="p">()]</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="c1"># JSON body (from request body)</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="n">data</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Annotated</span><span class="p">[</span><span class="n">CreateUser</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">Json</span><span class="p">()]</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="c1"># Response spec (for OpenAPI documentation)</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="o">-&gt;</span> <span class="n">t</span><span class="o">.</span><span class="n">Annotated</span><span class="p">[</span><span class="n">JsonResponse</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">ResponseSpec</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">UserResponse</span><span class="p">)]</span>
+</span></code></pre></div>
+<p>Available param markers: <code>Path</code>, <code>Query</code>, <code>Header</code>, <code>Cookie</code>, <code>Json</code>, <code>Form</code>, <code>File</code>. All extend Pydantic's <code>FieldInfo</code> and accept the same keyword arguments (<code>default</code>, <code>description</code>, <code>ge</code>, <code>le</code>, etc.).</p>
+<h3 id="writing-the-endpoints">Writing the Endpoints<a class="headerlink" href="#writing-the-endpoints" title="Permanent link">&para;</a></h3>
+<p>Edit <code>enroll/endpoints.py</code>:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># enroll/endpoints.py</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">t</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">unfazed.http</span><span class="w"> </span><span class="kn">import</span> <span class="n">HttpRequest</span><span class="p">,</span> <span class="n">JsonResponse</span><span class="p">,</span> <span class="n">PlainTextResponse</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="kn">from</span><span class="w"> </span><span class="nn">unfazed.route</span><span class="w"> </span><span class="kn">import</span> <span class="n">params</span> <span class="k">as</span> <span class="n">p</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">schema</span> <span class="k">as</span> <span class="n">s</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">hello</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">HttpRequest</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PlainTextResponse</span><span class="p">:</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Hello World endpoint&quot;&quot;&quot;</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>    <span class="k">return</span> <span class="n">PlainTextResponse</span><span class="p">(</span><span class="s2">&quot;Hello, World!&quot;</span><span class="p">)</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">list_student</span><span class="p">(</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>    <span class="n">request</span><span class="p">:</span> <span class="n">HttpRequest</span><span class="p">,</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>    <span class="n">page</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Annotated</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">Query</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Page number&quot;</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mi">1</span><span class="p">)],</span>
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>    <span class="n">size</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Annotated</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">Query</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Items per page&quot;</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mi">100</span><span class="p">)],</span>
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">t</span><span class="o">.</span><span class="n">Annotated</span><span class="p">[</span><span class="n">JsonResponse</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">ResponseSpec</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">s</span><span class="o">.</span><span class="n">StudentListResponse</span><span class="p">)]:</span>
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Get paginated student list&quot;&quot;&quot;</span>
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>    <span class="k">return</span> <span class="n">JsonResponse</span><span class="p">({</span>
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>        <span class="s2">&quot;code&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>        <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;success&quot;</span><span class="p">,</span>
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>        <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">[],</span>
+</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>    <span class="p">})</span>
+</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>
+</span><span id="__span-2-27"><a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>
+</span><span id="__span-2-28"><a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">list_course</span><span class="p">(</span>
+</span><span id="__span-2-29"><a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a>    <span class="n">request</span><span class="p">:</span> <span class="n">HttpRequest</span><span class="p">,</span>
+</span><span id="__span-2-30"><a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a>    <span class="n">page</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Annotated</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">Query</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Page number&quot;</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mi">1</span><span class="p">)],</span>
+</span><span id="__span-2-31"><a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a>    <span class="n">size</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Annotated</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">Query</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Items per page&quot;</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mi">100</span><span class="p">)],</span>
+</span><span id="__span-2-32"><a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">t</span><span class="o">.</span><span class="n">Annotated</span><span class="p">[</span><span class="n">JsonResponse</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">ResponseSpec</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">s</span><span class="o">.</span><span class="n">CourseListResponse</span><span class="p">)]:</span>
+</span><span id="__span-2-33"><a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Get paginated course list&quot;&quot;&quot;</span>
+</span><span id="__span-2-34"><a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a>    <span class="k">return</span> <span class="n">JsonResponse</span><span class="p">({</span>
+</span><span id="__span-2-35"><a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a>        <span class="s2">&quot;code&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+</span><span id="__span-2-36"><a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a>        <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;success&quot;</span><span class="p">,</span>
+</span><span id="__span-2-37"><a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a>        <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">[],</span>
+</span><span id="__span-2-38"><a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a>    <span class="p">})</span>
+</span><span id="__span-2-39"><a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a>
+</span><span id="__span-2-40"><a id="__codelineno-2-40" name="__codelineno-2-40" href="#__codelineno-2-40"></a>
+</span><span id="__span-2-41"><a id="__codelineno-2-41" name="__codelineno-2-41" href="#__codelineno-2-41"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">bind</span><span class="p">(</span>
+</span><span id="__span-2-42"><a id="__codelineno-2-42" name="__codelineno-2-42" href="#__codelineno-2-42"></a>    <span class="n">request</span><span class="p">:</span> <span class="n">HttpRequest</span><span class="p">,</span>
+</span><span id="__span-2-43"><a id="__codelineno-2-43" name="__codelineno-2-43" href="#__codelineno-2-43"></a>    <span class="n">ctx</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Annotated</span><span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">BindRequest</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">Json</span><span class="p">()],</span>
+</span><span id="__span-2-44"><a id="__codelineno-2-44" name="__codelineno-2-44" href="#__codelineno-2-44"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">t</span><span class="o">.</span><span class="n">Annotated</span><span class="p">[</span><span class="n">JsonResponse</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">ResponseSpec</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">s</span><span class="o">.</span><span class="n">BindResponse</span><span class="p">)]:</span>
+</span><span id="__span-2-45"><a id="__codelineno-2-45" name="__codelineno-2-45" href="#__codelineno-2-45"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Bind a student to a course&quot;&quot;&quot;</span>
+</span><span id="__span-2-46"><a id="__codelineno-2-46" name="__codelineno-2-46" href="#__codelineno-2-46"></a>    <span class="k">return</span> <span class="n">JsonResponse</span><span class="p">({</span>
+</span><span id="__span-2-47"><a id="__codelineno-2-47" name="__codelineno-2-47" href="#__codelineno-2-47"></a>        <span class="s2">&quot;code&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+</span><span id="__span-2-48"><a id="__codelineno-2-48" name="__codelineno-2-48" href="#__codelineno-2-48"></a>        <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Student </span><span class="si">{</span><span class="n">ctx</span><span class="o">.</span><span class="n">student_id</span><span class="si">}</span><span class="s2"> enrolled in course </span><span class="si">{</span><span class="n">ctx</span><span class="o">.</span><span class="n">course_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+</span><span id="__span-2-49"><a id="__codelineno-2-49" name="__codelineno-2-49" href="#__codelineno-2-49"></a>        <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span id="__span-2-50"><a id="__codelineno-2-50" name="__codelineno-2-50" href="#__codelineno-2-50"></a>            <span class="s2">&quot;student_id&quot;</span><span class="p">:</span> <span class="n">ctx</span><span class="o">.</span><span class="n">student_id</span><span class="p">,</span>
+</span><span id="__span-2-51"><a id="__codelineno-2-51" name="__codelineno-2-51" href="#__codelineno-2-51"></a>            <span class="s2">&quot;course_id&quot;</span><span class="p">:</span> <span class="n">ctx</span><span class="o">.</span><span class="n">course_id</span><span class="p">,</span>
+</span><span id="__span-2-52"><a id="__codelineno-2-52" name="__codelineno-2-52" href="#__codelineno-2-52"></a>        <span class="p">},</span>
+</span><span id="__span-2-53"><a id="__codelineno-2-53" name="__codelineno-2-53" href="#__codelineno-2-53"></a>    <span class="p">})</span>
+</span></code></pre></div>
+<p>Key points:</p>
 <ul>
-<li>✅ <strong>HTTP Method</strong>：仅使用 GET/POST 两种方法</li>
-<li>✅ <strong>URL</strong>：/api/v1{version}/enroll{app-label}/student-list{resource-action}</li>
-<li>✅ <strong>状态码</strong>：HTTP 状态码都为 200，在响应体中返回 code 字段，code 为 0 表示成功，其他值表示失败</li>
-<li>✅ <strong>响应体</strong>：响应体结构统一，包含 message、data、code 字段</li>
+<li>Every non-<code>HttpRequest</code> parameter must declare its source via <code>Annotated[Type, p.Source()]</code>.</li>
+<li><code>p.Query(default=1, ge=1)</code> provides a default value and validation constraint.</li>
+<li><code>p.Json()</code> extracts the parameter from the JSON request body.</li>
+<li><code>p.ResponseSpec(model=...)</code> tells OpenAPI what the response looks like — it does not affect runtime behavior.</li>
+<li><strong>No bare default values</strong> — use <code>p.Query(default=...)</code> instead of <code>page: int = 1</code>. See <a href="../../features/endpoint/#gotchas">Endpoint — Gotchas</a>.</li>
 </ul>
-<h2 id="schema">Schema 定义</h2>
-<p>Schema 是 API 的数据契约，定义了请求和响应的数据结构。</p>
-<h3 id="schema_1">创建基础 Schema</h3>
-<p>编辑 <code>enroll/schema.py</code> 文件：</p>
-<pre><code class="language-python"># src/backend/enroll/schema.py
-
-import typing as t
-from pydantic import BaseModel, Field
-from .serializers import StudentSerializer, CourseSerializer
-
-class BaseResponse[T](BaseModel):
-    &quot;&quot;&quot;统一响应基类&quot;&quot;&quot;
-    code: int = Field(0, description=&quot;响应码&quot;)
-    message: str = Field(&quot;&quot;, description=&quot;响应消息&quot;)
-    data: T = Field(description=&quot;响应数据&quot;)
-
-class PaginationMeta(BaseModel):
-    &quot;&quot;&quot;分页元数据&quot;&quot;&quot;
-    page: int = Field(description=&quot;当前页码&quot;)
-    size: int = Field(description=&quot;每页数量&quot;)
-    total: int = Field(description=&quot;总记录数&quot;)
-    total_pages: int = Field(description=&quot;总页数&quot;)
-
-class StudentListResponse(BaseResponse[t.List[StudentSerializer]]):
-    &quot;&quot;&quot;学生列表响应&quot;&quot;&quot;
-    pass
-
-
-class CourseListResponse(BaseResponse[t.List[CourseSerializer]]):
-    &quot;&quot;&quot;课程列表响应&quot;&quot;&quot;
-    pass
-
-
-class BindRequest(BaseModel):
-    &quot;&quot;&quot;选课绑定请求&quot;&quot;&quot;
-    student_id: int = Field(description=&quot;学生ID&quot;, gt=0)
-    course_id: int = Field(description=&quot;课程ID&quot;, gt=0)
-
-class BindResponse(BaseResponse[t.Dict]):
-    &quot;&quot;&quot;选课绑定响应&quot;&quot;&quot;
-    pass
-
-class StudentDetailResponse(BaseResponse[StudentSerializer]):
-    &quot;&quot;&quot;学生详情响应&quot;&quot;&quot;
-    pass
-
-class CourseDetailResponse(BaseResponse[CourseSerializer]):
-    &quot;&quot;&quot;课程详情响应&quot;&quot;&quot;
-    pass
-</code></pre>
-<h2 id="endpoint">Endpoint 实现</h2>
-<h3 id="unfazed">理解 Unfazed 参数注解</h3>
-<p>Unfazed 使用 Python 的 <code>Annotated</code> 类型注解来声明 API 参数：</p>
-<pre><code class="language-python">import typing as t
-from unfazed.route import params as p
-
-# Query 参数（URL 查询字符串）
-page: t.Annotated[int, p.Query(default=1)] 
-
-# Path 参数（URL 路径变量）
-user_id: t.Annotated[int, p.Path()]
-
-# JSON 请求体
-data: t.Annotated[UserCreateRequest, p.Json()]
-
-# 表单数据
-form: t.Annotated[UserForm, p.Form()]
-
-# 文件上传
-file: t.Annotated[UploadFile, p.File()]
-
-# 响应规范
--&gt; t.Annotated[JsonResponse, p.ResponseSpec(model=UserResponse)]
-</code></pre>
-<h3 id="_2">实现视图函数</h3>
-<p>编辑 <code>enroll/endpoints.py</code> 文件：</p>
-<pre><code class="language-python"># src/backend/enroll/endpoints.py
-
-import typing as t
-import time
-from unfazed.http import HttpRequest, JsonResponse, PlainTextResponse
-from unfazed.route import params as p
-from . import schema as s
-
-# 保留之前的 hello 函数
-async def hello(request: HttpRequest) -&gt; PlainTextResponse:
-    &quot;&quot;&quot;Hello World 接口&quot;&quot;&quot;
-    return PlainTextResponse(&quot;Hello, World!&quot;)
-
-async def list_student(
-    request: HttpRequest,
-    page: t.Annotated[int, p.Query(default=1, description=&quot;页码&quot;, ge=1)],
-    size: t.Annotated[int, p.Query(default=10, description=&quot;每页数量&quot;, ge=1, le=100)],
-) -&gt; t.Annotated[JsonResponse, p.ResponseSpec(model=s.StudentListResponse)]:
-    &quot;&quot;&quot;
-    获取学生列表
-
-    - **page**: 页码，从 1 开始
-    - **size**: 每页数量，范围 1-100
-    &quot;&quot;&quot;
-    # 这里暂时返回空数据，下一节会实现具体逻辑
-    return JsonResponse({
-        &quot;message&quot;: &quot;获取学生列表成功&quot;,
-        &quot;data&quot;: [],
-        &quot;code&quot;: 0,
-    })
-
-async def list_course(
-    request: HttpRequest,
-    page: t.Annotated[int, p.Query(default=1, description=&quot;页码&quot;, ge=1)],
-    size: t.Annotated[int, p.Query(default=10, description=&quot;每页数量&quot;, ge=1, le=100)],
-) -&gt; t.Annotated[JsonResponse, p.ResponseSpec(model=s.CourseListResponse)]:
-    &quot;&quot;&quot;
-    获取课程列表
-
-    - **page**: 页码，从 1 开始  
-    - **size**: 每页数量，范围 1-100
-    &quot;&quot;&quot;
-    return JsonResponse({
-        &quot;message&quot;: &quot;获取课程列表成功&quot;,
-        &quot;data&quot;: [],
-        &quot;code&quot;: 0,
-    })
-
-async def bind(
-    request: HttpRequest,
-    ctx: t.Annotated[s.BindRequest, p.Json()],
-) -&gt; t.Annotated[JsonResponse, p.ResponseSpec(model=s.BindResponse)]:
-    &quot;&quot;&quot;
-    学生选课绑定
-
-    - **student_id**: 学生ID
-    - **course_id**: 课程ID
-    &quot;&quot;&quot;
-    return JsonResponse({
-        &quot;message&quot;: f&quot;学生 {ctx.student_id} 成功选择课程 {ctx.course_id}&quot;,
-        &quot;data&quot;: {
-            &quot;student_id&quot;: ctx.student_id,
-            &quot;course_id&quot;: ctx.course_id
-        },
-        &quot;code&quot;: 0,
-    })
-
-async def get_student(
-    request: HttpRequest,
-    student_id: t.Annotated[int, p.Path(description=&quot;学生ID&quot;)],
-) -&gt; t.Annotated[JsonResponse, p.ResponseSpec(model=s.StudentDetailResponse)]:
-    &quot;&quot;&quot;
-    获取学生详情
-
-    - **student_id**: 学生ID
-    &quot;&quot;&quot;
-    # 暂时返回模拟数据
-    return JsonResponse({
-        &quot;code&quot;: 0,
-        &quot;message&quot;: &quot;获取学生详情成功&quot;,
-        &quot;data&quot;: {
-            &quot;id&quot;: student_id,
-            &quot;name&quot;: &quot;示例学生&quot;,
-            &quot;email&quot;: &quot;student@example.com&quot;,
-            &quot;age&quot;: 20,
-            &quot;student_id&quot;: &quot;2024001&quot;
-        }
-    })
-</code></pre>
-<h3 id="_3">参数验证特性</h3>
-<p>Unfazed 提供了强大的参数验证能力：</p>
-<p><strong>1. 类型验证</strong>：</p>
-<pre><code class="language-python">page: t.Annotated[int, p.Query()]  # 自动转换为整数
-</code></pre>
-<p><strong>2. 范围约束</strong>：</p>
-<pre><code class="language-python">size: t.Annotated[int, p.Query(ge=1, le=100)]  # 值范围 1-100
-</code></pre>
-<p><strong>3. 默认值</strong>：</p>
-<pre><code class="language-python">page: t.Annotated[int, p.Query(default=1)]  # 默认值为 1
-</code></pre>
-<p><strong>4. 必需参数</strong>：</p>
-<pre><code class="language-python">user_id: t.Annotated[int, p.Path()]  # 路径参数必需
-</code></pre>
-<h2 id="_4">路由配置</h2>
-<h3 id="_5">更新路由定义</h3>
-<p>编辑 <code>enroll/routes.py</code> 文件：</p>
-<pre><code class="language-python"># src/backend/enroll/routes.py
-
-import typing as t
-from unfazed.route import Route, path
-from .endpoints import hello, list_student, list_course, bind, get_student
-
-patterns: t.List[Route] = [
-    # Hello World 接口
-    path(&quot;/hello&quot;, endpoint=hello, methods=[&quot;GET&quot;], name=&quot;hello&quot;),
-
-    # 学生相关接口
-    path(&quot;/student-list&quot;, endpoint=list_student, methods=[&quot;GET&quot;], name=&quot;list_students&quot;),
-
-    # 课程相关接口  
-    path(&quot;/course-list&quot;, endpoint=list_course, methods=[&quot;GET&quot;], name=&quot;list_courses&quot;),
-
-    # 选课绑定接口
-    path(&quot;/bind&quot;, endpoint=bind, methods=[&quot;POST&quot;], name=&quot;bind_course&quot;),
-]
-</code></pre>
-<h2 id="api_2">自动 API 文档</h2>
-<h3 id="openapi">OpenAPI 文档生成</h3>
-<p>Unfazed 基于你的代码自动生成 OpenAPI 3.0 文档，无需额外配置！</p>
-<p>启动项目后，访问以下地址：</p>
-<p><strong>Swagger UI（交互式文档）</strong>：</p>
-<pre><code>http://127.0.0.1:9527/openapi/docs
-</code></pre>
-<p><strong>ReDoc（美观的文档）</strong>：</p>
-<pre><code>http://127.0.0.1:9527/openapi/redoc
-</code></pre>
-<h3 id="_6">文档特性</h3>
-<p>Unfazed 生成的 API 文档包含：</p>
-<ol>
-<li><strong>完整的接口信息</strong>：</li>
-<li>HTTP 方法和路径</li>
-<li>请求/响应参数</li>
-<li>
-<p>数据类型和验证规则</p>
-</li>
-<li>
-<p><strong>交互式测试</strong>：</p>
-</li>
-<li>在 Swagger UI 中直接测试 API</li>
-<li>
-<p>查看实际的请求/响应数据</p>
-</li>
-<li>
-<p><strong>代码示例</strong>：</p>
-</li>
-<li>自动生成多种语言的调用示例</li>
-<li>
-<p>curl、Python、JavaScript 等</p>
-</li>
-<li>
-<p><strong>数据模型</strong>：</p>
-</li>
-<li>完整的 Schema 定义</li>
-<li>字段描述和约束信息</li>
-</ol>
-<h3 id="_7">增强文档质量</h3>
-<p><strong>添加接口标签</strong>：</p>
-<pre><code class="language-python"># 为接口分组
-path(&quot;/students&quot;, endpoint=list_student, tags=[&quot;学生管理&quot;])
-path(&quot;/courses&quot;, endpoint=list_course, tags=[&quot;课程管理&quot;])
-</code></pre>
-<p><strong>完善接口描述</strong>：</p>
-<pre><code class="language-python">async def list_student(request: HttpRequest, ...):
-    &quot;&quot;&quot;
-    获取学生列表
-
-    获取系统中所有学生的分页列表，支持按页码和每页数量进行查询。
-
-    **使用说明**：
-    - 页码从 1 开始计算
-    - 每页最多返回 100 条记录
-    - 返回结果包含完整的分页元数据
-
-    **返回数据包含**：
-    - 学生基本信息（姓名、邮箱、年龄等）
-    - 分页信息（当前页、总数、总页数等）
-    &quot;&quot;&quot;
-    pass
-</code></pre>
-<h2 id="api_3">测试 API 接口</h2>
-<h3 id="curl">使用 curl 测试</h3>
-<pre><code class="language-bash"># 测试学生列表接口
-curl &quot;http://127.0.0.1:9527/enroll/students?page=1&amp;size=5&quot;
-
-# 测试学生详情接口
-curl &quot;http://127.0.0.1:9527/enroll/students/1&quot;
-
-# 测试课程列表接口
-curl &quot;http://127.0.0.1:9527/enroll/courses&quot;
-
-# 测试选课绑定接口
-curl -X POST &quot;http://127.0.0.1:9527/enroll/bind&quot; \
-     -H &quot;Content-Type: application/json&quot; \
-     -d '{&quot;student_id&quot;: 1, &quot;course_id&quot;: 1}'
-</code></pre>
-<h3 id="python-requests">使用 Python requests 测试</h3>
-<pre><code class="language-python">import requests
-import json
-
-base_url = &quot;http://127.0.0.1:9527/enroll&quot;
-
-# 测试学生列表
-response = requests.get(f&quot;{base_url}/students&quot;, params={&quot;page&quot;: 1, &quot;size&quot;: 10})
-print(&quot;学生列表:&quot;, response.json())
-
-# 测试选课绑定
-bind_data = {&quot;student_id&quot;: 1, &quot;course_id&quot;: 1}
-response = requests.post(
-    f&quot;{base_url}/bind&quot;, 
-    json=bind_data,
-    headers={&quot;Content-Type&quot;: &quot;application/json&quot;}
-)
-print(&quot;绑定结果:&quot;, response.json())
-</code></pre>
-<h3 id="_8">自定义错误响应</h3>
-<pre><code class="language-python">from unfazed.exception import ValidationError
-
-async def bind(request: HttpRequest, ctx: s.BindRequest) -&gt; JsonResponse:
-    &quot;&quot;&quot;选课绑定（带验证）&quot;&quot;&quot;
-
-    # 自定义业务验证
-    if ctx.student_id == ctx.course_id:
-        raise ValidationError(&quot;学生ID和课程ID不能相同&quot;)
-
-    # 正常处理逻辑
-    return JsonResponse({
-        &quot;success&quot;: True,
-        &quot;message&quot;: &quot;绑定成功&quot;,
-        &quot;data&quot;: {&quot;student_id&quot;: ctx.student_id, &quot;course_id&quot;: ctx.course_id}
-    })
-</code></pre>
-<h2 id="_9">下一步</h2>
-<p>太棒了！你已经成功设计了完整的 API 接口和数据模型。在下一个教程中，我们将：</p>
+<h3 id="route-configuration">Route Configuration<a class="headerlink" href="#route-configuration" title="Permanent link">&para;</a></h3>
+<p>Edit <code>enroll/routes.py</code>:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># enroll/routes.py</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">unfazed.route</span><span class="w"> </span><span class="kn">import</span> <span class="n">path</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">.endpoints</span><span class="w"> </span><span class="kn">import</span> <span class="n">hello</span><span class="p">,</span> <span class="n">list_student</span><span class="p">,</span> <span class="n">list_course</span><span class="p">,</span> <span class="n">bind</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="n">patterns</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    <span class="n">path</span><span class="p">(</span><span class="s2">&quot;/hello&quot;</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="n">hello</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;hello&quot;</span><span class="p">),</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>    <span class="n">path</span><span class="p">(</span><span class="s2">&quot;/student-list&quot;</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="n">list_student</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;list_students&quot;</span><span class="p">),</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>    <span class="n">path</span><span class="p">(</span><span class="s2">&quot;/course-list&quot;</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="n">list_course</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;list_courses&quot;</span><span class="p">),</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>    <span class="n">path</span><span class="p">(</span><span class="s2">&quot;/bind&quot;</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="n">bind</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;POST&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;bind_course&quot;</span><span class="p">),</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="p">]</span>
+</span></code></pre></div>
+<h2 id="automatic-api-documentation">Automatic API Documentation<a class="headerlink" href="#automatic-api-documentation" title="Permanent link">&para;</a></h2>
+<h3 id="openapi-configuration">OpenAPI Configuration<a class="headerlink" href="#openapi-configuration" title="Permanent link">&para;</a></h3>
+<p>To enable the documentation UI, add the <code>OPENAPI</code> setting:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># entry/settings/__init__.py (add to UNFAZED_SETTINGS)</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">UNFAZED_SETTINGS</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="c1"># ... existing settings ...</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    <span class="s2">&quot;OPENAPI&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>        <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>            <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Tutorial Project API&quot;</span><span class="p">,</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>            <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>            <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Student Course Enrollment System API&quot;</span><span class="p">,</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>        <span class="p">},</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>        <span class="s2">&quot;servers&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>            <span class="p">{</span><span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;http://127.0.0.1:9527&quot;</span><span class="p">,</span> <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Local dev&quot;</span><span class="p">},</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>        <span class="p">],</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>        <span class="s2">&quot;allow_public&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>    <span class="p">},</span>
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="p">}</span>
+</span></code></pre></div>
+<h3 id="browse-the-documentation">Browse the Documentation<a class="headerlink" href="#browse-the-documentation" title="Permanent link">&para;</a></h3>
+<p>After starting the server, visit:</p>
 <ul>
-<li>实现业务逻辑服务（Services）</li>
-<li>连接数据库进行实际的 CRUD 操作</li>
-<li>学习序列化器的高级用法</li>
-<li>处理复杂的业务场景</li>
+<li><strong>Swagger UI</strong> (interactive): <code>http://127.0.0.1:9527/openapi/docs</code></li>
+<li><strong>ReDoc</strong> (readable): <code>http://127.0.0.1:9527/openapi/redoc</code></li>
+<li><strong>Raw JSON schema</strong>: <code>http://127.0.0.1:9527/openapi/openapi.json</code></li>
 </ul>
-<p>让我们继续前往 <strong>第五部分：业务逻辑实现</strong>！</p>
-<hr />
+<p>Unfazed generates the OpenAPI 3.1 schema from your endpoint type hints automatically — parameter types, defaults, validation rules, and response models are all included. See <a href="../../features/openapi/">OpenAPI</a>.</p>
+<h2 id="testing-the-endpoints">Testing the Endpoints<a class="headerlink" href="#testing-the-endpoints" title="Permanent link">&para;</a></h2>
+<h3 id="using-curl">Using curl<a class="headerlink" href="#using-curl" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Student list (with default pagination)</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>curl<span class="w"> </span><span class="s2">&quot;http://127.0.0.1:9527/api/enroll/student-list&quot;</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># Student list (with custom pagination)</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>curl<span class="w"> </span><span class="s2">&quot;http://127.0.0.1:9527/api/enroll/student-list?page=1&amp;size=5&quot;</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="c1"># Course list</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>curl<span class="w"> </span><span class="s2">&quot;http://127.0.0.1:9527/api/enroll/course-list&quot;</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="c1"># Course binding</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="s2">&quot;http://127.0.0.1:9527/api/enroll/bind&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">     </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="w">     </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;student_id&quot;: 1, &quot;course_id&quot;: 1}&#39;</span>
+</span></code></pre></div>
+<h3 id="using-python">Using Python<a class="headerlink" href="#using-python" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">base_url</span> <span class="o">=</span> <span class="s2">&quot;http://127.0.0.1:9527/api/enroll&quot;</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="c1"># Test student list</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">base_url</span><span class="si">}</span><span class="s2">/student-list&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;page&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Student list:&quot;</span><span class="p">,</span> <span class="n">resp</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="c1"># Test binding</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">base_url</span><span class="si">}</span><span class="s2">/bind&quot;</span><span class="p">,</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>    <span class="n">json</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;student_id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;course_id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="p">)</span>
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Bind result:&quot;</span><span class="p">,</span> <span class="n">resp</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
+</span></code></pre></div>
+<h2 id="next-steps">Next Steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
+<p>You have designed complete API endpoints with typed parameter annotations and automatic OpenAPI documentation. In the next part, we will:</p>
+<ul>
+<li>Implement the business logic in the Services layer</li>
+<li>Connect endpoints to the database via serializers</li>
+<li>Handle validation errors and edge cases</li>
+</ul>
+<p>Continue to <strong><a href="../part5/">Part 5: Business Logic Implementation</a></strong>.</p>
 
 
 
@@ -1816,6 +1749,12 @@ async def bind(request: HttpRequest, ctx: s.BindRequest) -&gt; JsonResponse:
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
       </main>
       
         <footer class="md-footer">
@@ -1832,6 +1771,21 @@ async def bind(request: HttpRequest, ctx: s.BindRequest) -&gt; JsonResponse:
   
 </div>
       
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/unfazed-eco/unfazed" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
     </div>
   </div>
 </footer>
@@ -1841,8 +1795,10 @@ async def bind(request: HttpRequest, ctx: s.BindRequest) -&gt; JsonResponse:
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u62f7\u8c9d", "clipboard.copy": "\u62f7\u8c9d", "search.result.more.one": "\u6b64\u9801\u5c1a\u6709 1 \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.more.other": "\u6b64\u9801\u5c1a\u6709 # \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.none": "\u6c92\u6709\u627e\u5230\u7b26\u5408\u689d\u4ef6\u7684\u7d50\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u689d\u4ef6\u7684\u7d50\u679c", "search.result.other": "\u627e\u5230 # \u500b\u7b26\u5408\u689d\u4ef6\u7684\u7d50\u679c", "search.result.placeholder": "\u9375\u5165\u4ee5\u958b\u59cb\u6aa2\u7d22", "search.result.term.missing": "\u7f3a\u5931", "select.version": "\u9078\u64c7\u7248\u672c"}}</script>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.instant", "navigation.instant.progress", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
