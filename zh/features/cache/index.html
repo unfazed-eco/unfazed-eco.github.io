@@ -2027,10 +2027,20 @@
 </span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_config</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 </span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>    <span class="o">...</span>
 </span></code></pre></div>
-<p><strong>强制刷新缓存</strong> — 传入 <code>force_update=True</code> 绕过缓存并存储新结果：</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">get_user_profile</span><span class="p">(</span><span class="n">user_id</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">force_update</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<p><strong>强制刷新缓存</strong> — 传入 <code>force_update=True</code> 绕过缓存并存储新结果。<br />
+推荐在被装饰函数中显式声明 <code>force_update: bool = False</code>，接口语义更清晰：</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nd">@cached</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_user_profile</span><span class="p">(</span><span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">force_update</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>    <span class="o">...</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">get_user_profile</span><span class="p">(</span><span class="n">user_id</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">force_update</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </span></code></pre></div>
-<p><strong>注意：</strong> 装饰器仅使用关键字参数生成缓存键。位置参数会被忽略（传入时会发出警告）。</p>
+<p>如果被装饰函数既没有定义 <code>force_update</code> 参数，也不接受 <code>**kwargs</code>，<code>@cached</code> 会在装饰/导入阶段发出警告。<br />
+此时在调用时传 <code>force_update=...</code>，仍可能因为 Python 函数调用语义抛出 <code>TypeError</code>。</p>
+<p><strong>注意：</strong>
+- 装饰器仅使用关键字参数生成缓存键。位置参数会被忽略（传入时会发出警告）。
+- <code>@cached</code> 会在装饰阶段校验函数签名，并对不明确或不受支持的 <code>force_update</code> 用法发出警告（例如缺少 <code>force_update</code>/<code>**kwargs</code>，或注解不是 <code>bool</code>）。
+- <code>@cached</code> 不会在运行时强制校验 <code>force_update</code> 必须为 <code>bool</code>；实际行为遵循 Python 真值语义。</p>
 <h2 id="_6">自定义序列化器与压缩器<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
 <p>你可以通过实现 <code>SerializerBase</code> 或 <code>CompressorBase</code> 协议编写类，替换默认的 Pickle/Zlib 实现。</p>
 <p><strong>自定义序列化器：</strong></p>

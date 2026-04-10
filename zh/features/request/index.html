@@ -1444,8 +1444,8 @@
 </tr>
 <tr>
 <td><code>user</code></td>
-<td><code>AbstractUser</code></td>
-<td>已认证用户。需要 <code>AuthenticationMiddleware</code>。若未安装则抛出 <code>ValueError</code>。</td>
+<td><code>AbstractUser \| BaseModel \| None</code></td>
+<td>当前请求用户。通常由 middleware 写入 <code>scope["user"]</code>。未安装相关 middleware 时访问会抛出 <code>ValueError</code>。</td>
 </tr>
 <tr>
 <td><code>unfazed</code></td>
@@ -1468,7 +1468,7 @@
 <li><code>scheme -&gt; str</code>: URL 协议（<code>"http"</code> 或 <code>"https"</code>）。</li>
 <li><code>path -&gt; str</code>: URL 路径（如 <code>"/api/users"</code>）。</li>
 <li><code>session -&gt; SessionBase</code>: session 对象。若未安装 <code>SessionMiddleware</code> 则抛出 <code>ValueError</code>。</li>
-<li><code>user -&gt; AbstractUser</code>: 已认证用户。若未安装 <code>AuthenticationMiddleware</code> 则抛出 <code>ValueError</code>。</li>
+<li><code>user -&gt; Optional[AbstractUser | BaseModel]</code>: 当前请求用户。通常由 <code>AuthenticationMiddleware</code> 或自定义 middleware 注入；匿名请求时可为 <code>None</code>。若没有 middleware 写入 <code>scope["user"]</code>，则抛出 <code>ValueError</code>。</li>
 <li><code>unfazed -&gt; Unfazed</code>: 从 ASGI scope 中获取的 Unfazed 应用实例。</li>
 </ul>
 

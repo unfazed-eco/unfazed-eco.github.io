@@ -1672,8 +1672,9 @@
 </tbody>
 </table>
 <h2 id="authenticationmiddleware">AuthenticationMiddleware<a class="headerlink" href="#authenticationmiddleware" title="Permanent link">&para;</a></h2>
-<p><code>AuthenticationMiddleware</code> reads the session and populates <code>scope["user"]</code> so that <code>request.user</code> returns the current user (or <code>None</code> for anonymous requests).</p>
+<p><code>AuthenticationMiddleware</code> reads the session and populates <code>scope["user"]</code> so that <code>request.user</code> returns the current user (typically an <code>AbstractUser</code> in auth flows, or <code>None</code> for anonymous requests).</p>
 <p>It must be placed <strong>after</strong> <code>SessionMiddleware</code> in the middleware list, since it depends on <code>request.session</code>.</p>
+<p>If an earlier middleware has already populated <code>scope["user"]</code>, <code>AuthenticationMiddleware</code> will not override it. Because of that, <code>request.user</code> can also be a custom <code>BaseModel</code> instance at the framework level.</p>
 <h2 id="the-user-model">The User Model<a class="headerlink" href="#the-user-model" title="Permanent link">&para;</a></h2>
 <p><code>AbstractUser</code> provides:</p>
 <table>

@@ -2027,10 +2027,20 @@
 </span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_config</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 </span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>    <span class="o">...</span>
 </span></code></pre></div>
-<p><strong>Forcing a cache refresh</strong> — pass <code>force_update=True</code> to bypass the cache and store a fresh result:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">get_user_profile</span><span class="p">(</span><span class="n">user_id</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">force_update</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<p><strong>Forcing a cache refresh</strong> — pass <code>force_update=True</code> to bypass the cache and store a fresh result.<br />
+Recommended: declare <code>force_update: bool = False</code> in the decorated function for explicit API and better readability:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nd">@cached</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_user_profile</span><span class="p">(</span><span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">force_update</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>    <span class="o">...</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">get_user_profile</span><span class="p">(</span><span class="n">user_id</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">force_update</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </span></code></pre></div>
-<p><strong>Important:</strong> the decorator only uses keyword arguments for the cache key. Positional arguments are ignored (a warning is emitted if you pass them).</p>
+<p>If the decorated function defines neither <code>force_update</code> nor <code>**kwargs</code>, <code>@cached</code> emits a warning at decoration/import time.<br />
+Calling that function with <code>force_update=...</code> may still raise a <code>TypeError</code> from Python function-call semantics.</p>
+<p><strong>Important:</strong>
+- The decorator only uses keyword arguments for the cache key. Positional arguments are ignored (a warning is emitted if you pass them).
+- <code>@cached</code> validates the function signature at decoration time and emits warnings for unsupported/ambiguous <code>force_update</code> usage (for example missing <code>force_update</code>/<code>**kwargs</code>, or non-<code>bool</code> annotation).
+- <code>@cached</code> does not enforce a runtime boolean type check for <code>force_update</code>; runtime behavior follows Python truthiness.</p>
 <h2 id="custom-serializers-compressors">Custom Serializers &amp; Compressors<a class="headerlink" href="#custom-serializers-compressors" title="Permanent link">&para;</a></h2>
 <p>You can replace the default Pickle/Zlib implementations by writing classes that follow the <code>SerializerBase</code> or <code>CompressorBase</code> protocols.</p>
 <p><strong>Custom serializer:</strong></p>

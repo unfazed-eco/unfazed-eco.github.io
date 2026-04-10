@@ -1672,8 +1672,9 @@
 </tbody>
 </table>
 <h2 id="authenticationmiddleware">AuthenticationMiddleware<a class="headerlink" href="#authenticationmiddleware" title="Permanent link">&para;</a></h2>
-<p><code>AuthenticationMiddleware</code> 读取 session 并填充 <code>scope["user"]</code>，使 <code>request.user</code> 返回当前用户（匿名请求时为 <code>None</code>）。</p>
+<p><code>AuthenticationMiddleware</code> 读取 session 并填充 <code>scope["user"]</code>，使 <code>request.user</code> 返回当前用户（auth 场景下通常是 <code>AbstractUser</code>，匿名请求时为 <code>None</code>）。</p>
 <p>它必须放在 middleware 列表中 <code>SessionMiddleware</code> <strong>之后</strong>，因为它依赖 <code>request.session</code>。</p>
+<p>如果前置 middleware 已经写入了 <code>scope["user"]</code>，<code>AuthenticationMiddleware</code> 不会覆盖该值；因此在框架层面，<code>request.user</code> 也可以是自定义的 <code>BaseModel</code> 对象。</p>
 <h2 id="user">User 模型<a class="headerlink" href="#user" title="Permanent link">&para;</a></h2>
 <p><code>AbstractUser</code> 提供：</p>
 <table>

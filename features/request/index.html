@@ -1444,8 +1444,8 @@
 </tr>
 <tr>
 <td><code>user</code></td>
-<td><code>AbstractUser</code></td>
-<td>The authenticated user. Requires <code>AuthenticationMiddleware</code>. Raises <code>ValueError</code> if not installed.</td>
+<td><code>AbstractUser \| BaseModel \| None</code></td>
+<td>The current request user. Usually populated by middleware via <code>scope["user"]</code>. Raises <code>ValueError</code> when no relevant middleware has populated it.</td>
 </tr>
 <tr>
 <td><code>unfazed</code></td>
@@ -1468,7 +1468,7 @@
 <li><code>scheme -&gt; str</code>: URL scheme (<code>"http"</code> or <code>"https"</code>).</li>
 <li><code>path -&gt; str</code>: URL path (e.g. <code>"/api/users"</code>).</li>
 <li><code>session -&gt; SessionBase</code>: Session object. Raises <code>ValueError</code> if <code>SessionMiddleware</code> is not installed.</li>
-<li><code>user -&gt; AbstractUser</code>: Authenticated user. Raises <code>ValueError</code> if <code>AuthenticationMiddleware</code> is not installed.</li>
+<li><code>user -&gt; Optional[AbstractUser | BaseModel]</code>: Current request user. Usually injected by <code>AuthenticationMiddleware</code> or custom middleware; may be <code>None</code> for anonymous requests. Raises <code>ValueError</code> when <code>scope["user"]</code> has not been populated.</li>
 <li><code>unfazed -&gt; Unfazed</code>: The Unfazed application instance from the ASGI scope.</li>
 </ul>
 

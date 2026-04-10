@@ -1156,6 +1156,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#lifecycle-hooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lifecycle Hooks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#customadmin" class="md-nav__link">
     <span class="md-ellipsis">
       CustomAdmin
@@ -1398,6 +1407,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#lifecycle-hooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lifecycle Hooks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#customadmin" class="md-nav__link">
     <span class="md-ellipsis">
       CustomAdmin
@@ -1631,6 +1649,11 @@
 </tr>
 <tr>
 <td>POST</td>
+<td><code>/batch-model-save</code></td>
+<td>Create or update multiple records in one request.</td>
+</tr>
+<tr>
+<td>POST</td>
 <td><code>/model-delete</code></td>
 <td>Delete a record.</td>
 </tr>
@@ -1825,6 +1848,11 @@
 <td><code>True</code></td>
 <td>Enable the search panel.</td>
 </tr>
+<tr>
+<td><code>can_batch_save</code></td>
+<td><code>True</code></td>
+<td>Allow batch create/update from the admin UI.</td>
+</tr>
 </tbody>
 </table>
 <p><strong>Navigation:</strong></p>
@@ -1872,47 +1900,124 @@
 </span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>    <span class="p">]</span>
 </span></code></pre></div>
 <p>Unfazed auto-detects the relation type and join fields when possible (<code>AutoFill</code>). For M2M relations, you must provide a <code>through</code> configuration with the <code>AdminThrough</code> schema.</p>
+<h3 id="lifecycle-hooks">Lifecycle Hooks<a class="headerlink" href="#lifecycle-hooks" title="Permanent link">&para;</a></h3>
+<p><code>ModelAdmin</code> provides lifecycle hooks around save, batch save, and delete operations:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">tortoise</span><span class="w"> </span><span class="kn">import</span> <span class="n">Model</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">unfazed.contrib.admin.registry</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModelAdmin</span><span class="p">,</span> <span class="n">register</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">unfazed.serializer</span><span class="w"> </span><span class="kn">import</span> <span class="n">Serializer</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="nd">@register</span><span class="p">(</span><span class="n">PostSerializer</span><span class="p">)</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="k">class</span><span class="w"> </span><span class="nc">PostAdmin</span><span class="p">(</span><span class="n">ModelAdmin</span><span class="p">):</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">before_save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">serializer</span><span class="p">:</span> <span class="n">Serializer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Serializer</span><span class="p">:</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>        <span class="n">serializer</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="n">serializer</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>        <span class="k">return</span> <span class="n">serializer</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">after_save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">:</span> <span class="n">Model</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Model</span><span class="p">:</span>
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>        <span class="k">return</span> <span class="n">instance</span>
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">batch_before_save</span><span class="p">(</span>
+</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a>        <span class="bp">self</span><span class="p">,</span> <span class="n">serializers</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Serializer</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span>
+</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Serializer</span><span class="p">]:</span>
+</span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a>        <span class="k">return</span> <span class="n">serializers</span>
+</span><span id="__span-7-20"><a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a>
+</span><span id="__span-7-21"><a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a>    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">batch_after_save</span><span class="p">(</span>
+</span><span id="__span-7-22"><a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a>        <span class="bp">self</span><span class="p">,</span> <span class="n">instances</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Model</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span>
+</span><span id="__span-7-23"><a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Model</span><span class="p">]:</span>
+</span><span id="__span-7-24"><a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a>        <span class="k">return</span> <span class="n">instances</span>
+</span><span id="__span-7-25"><a id="__codelineno-7-25" name="__codelineno-7-25" href="#__codelineno-7-25"></a>
+</span><span id="__span-7-26"><a id="__codelineno-7-26" name="__codelineno-7-26" href="#__codelineno-7-26"></a>    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">before_delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">:</span> <span class="n">Model</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Model</span><span class="p">:</span>
+</span><span id="__span-7-27"><a id="__codelineno-7-27" name="__codelineno-7-27" href="#__codelineno-7-27"></a>        <span class="k">return</span> <span class="n">instance</span>
+</span><span id="__span-7-28"><a id="__codelineno-7-28" name="__codelineno-7-28" href="#__codelineno-7-28"></a>
+</span><span id="__span-7-29"><a id="__codelineno-7-29" name="__codelineno-7-29" href="#__codelineno-7-29"></a>    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">after_delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">:</span> <span class="n">Model</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Model</span><span class="p">:</span>
+</span><span id="__span-7-30"><a id="__codelineno-7-30" name="__codelineno-7-30" href="#__codelineno-7-30"></a>        <span class="k">return</span> <span class="n">instance</span>
+</span></code></pre></div>
+<p>Hook contract:</p>
+<table>
+<thead>
+<tr>
+<th>Hook</th>
+<th>When it runs</th>
+<th>Return value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>before_save</code></td>
+<td>Before create/update is executed</td>
+<td>Must return the <code>Serializer</code> that should be persisted.</td>
+</tr>
+<tr>
+<td><code>after_save</code></td>
+<td>After create/update succeeds</td>
+<td>Returns the saved model instance.</td>
+</tr>
+<tr>
+<td><code>batch_before_save</code></td>
+<td>Before batch create/update is executed</td>
+<td>Must return the serializers that should be persisted.</td>
+</tr>
+<tr>
+<td><code>batch_after_save</code></td>
+<td>After batch create/update succeeds</td>
+<td>Returns the saved model instances.</td>
+</tr>
+<tr>
+<td><code>before_delete</code></td>
+<td>Before delete is executed</td>
+<td>Must return the model instance that should be deleted.</td>
+</tr>
+<tr>
+<td><code>after_delete</code></td>
+<td>After delete succeeds</td>
+<td>Returns the deleted model instance.</td>
+</tr>
+</tbody>
+</table>
+<p>All admin lifecycle hooks must be declared with <code>async def</code>. Unlike <code>@action</code>, sync hooks are not supported.</p>
+<p><code>can_batch_save</code> only controls whether batch save is exposed to the frontend admin. If enabled, the backend batch save endpoint is <code>POST /batch-model-save</code>.</p>
 <h3 id="customadmin">CustomAdmin<a class="headerlink" href="#customadmin" title="Permanent link">&para;</a></h3>
 <p>For admin pages that are not tied to a model — dashboards, reports, or utility pages:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">unfazed.contrib.admin.registry</span><span class="w"> </span><span class="kn">import</span> <span class="n">CustomAdmin</span><span class="p">,</span> <span class="n">register</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="n">ActionOutput</span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">unfazed.contrib.admin.registry.fields</span><span class="w"> </span><span class="kn">import</span> <span class="n">Field</span>
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
-</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="nd">@register</span><span class="p">()</span>
-</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="k">class</span><span class="w"> </span><span class="nc">DashboardAdmin</span><span class="p">(</span><span class="n">CustomAdmin</span><span class="p">):</span>
-</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>    <span class="n">component</span> <span class="o">=</span> <span class="s2">&quot;ModelCustom&quot;</span>
-</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>    <span class="n">fields_set</span> <span class="o">=</span> <span class="p">[</span>
-</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>        <span class="n">Field</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;date_range&quot;</span><span class="p">,</span> <span class="n">field_type</span><span class="o">=</span><span class="s2">&quot;DatetimeField&quot;</span><span class="p">),</span>
-</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>    <span class="p">]</span>
-</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>
-</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>    <span class="nd">@action</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;export_report&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Export Report&quot;</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="n">ActionOutput</span><span class="o">.</span><span class="n">Download</span><span class="p">)</span>
-</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">export_report</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctx</span><span class="p">):</span>
-</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>        <span class="o">...</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">unfazed.contrib.admin.registry</span><span class="w"> </span><span class="kn">import</span> <span class="n">CustomAdmin</span><span class="p">,</span> <span class="n">register</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="n">ActionOutput</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">unfazed.contrib.admin.registry.fields</span><span class="w"> </span><span class="kn">import</span> <span class="n">Field</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="nd">@register</span><span class="p">()</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="k">class</span><span class="w"> </span><span class="nc">DashboardAdmin</span><span class="p">(</span><span class="n">CustomAdmin</span><span class="p">):</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>    <span class="n">component</span> <span class="o">=</span> <span class="s2">&quot;ModelCustom&quot;</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>    <span class="n">fields_set</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>        <span class="n">Field</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;date_range&quot;</span><span class="p">,</span> <span class="n">field_type</span><span class="o">=</span><span class="s2">&quot;DatetimeField&quot;</span><span class="p">),</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>    <span class="p">]</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>    <span class="nd">@action</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;export_report&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Export Report&quot;</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="n">ActionOutput</span><span class="o">.</span><span class="n">Download</span><span class="p">)</span>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">export_report</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctx</span><span class="p">):</span>
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>        <span class="o">...</span>
 </span></code></pre></div>
 <h2 id="the-register-decorator">The @register Decorator<a class="headerlink" href="#the-register-decorator" title="Permanent link">&para;</a></h2>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nd">@register</span><span class="p">(</span><span class="n">serializer_cls</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">MyAdmin</span><span class="p">(</span><span class="n">ModelAdmin</span><span class="p">):</span> <span class="o">...</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nd">@register</span><span class="p">(</span><span class="n">serializer_cls</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">MyAdmin</span><span class="p">(</span><span class="n">ModelAdmin</span><span class="p">):</span> <span class="o">...</span>
 </span></code></pre></div>
 <p>Registers an admin instance in the global <code>admin_collector</code>. Pass a <code>Serializer</code> subclass to automatically set the admin's serializer. If the admin class has <code>override = True</code>, it replaces any existing registration with the same name.</p>
 <h2 id="the-action-decorator">The @action Decorator<a class="headerlink" href="#the-action-decorator" title="Permanent link">&para;</a></h2>
 <p>Define custom actions on admin classes:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">unfazed.contrib.admin.registry</span><span class="w"> </span><span class="kn">import</span> <span class="n">action</span><span class="p">,</span> <span class="n">ActionOutput</span><span class="p">,</span> <span class="n">ActionInput</span><span class="p">,</span> <span class="n">ActionKwargs</span>
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
-</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
-</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="nd">@register</span><span class="p">(</span><span class="n">PostSerializer</span><span class="p">)</span>
-</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="k">class</span><span class="w"> </span><span class="nc">PostAdmin</span><span class="p">(</span><span class="n">ModelAdmin</span><span class="p">):</span>
-</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>
-</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>    <span class="nd">@action</span><span class="p">(</span>
-</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;publish&quot;</span><span class="p">,</span>
-</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>        <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Publish Selected&quot;</span><span class="p">,</span>
-</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>        <span class="n">output</span><span class="o">=</span><span class="n">ActionOutput</span><span class="o">.</span><span class="n">Toast</span><span class="p">,</span>
-</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>        <span class="n">confirm</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>        <span class="n">batch</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>    <span class="p">)</span>
-</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">publish</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctx</span><span class="p">:</span> <span class="n">ActionKwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>        <span class="c1"># ctx.ids contains selected record IDs</span>
-</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a>        <span class="k">await</span> <span class="n">Post</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">id__in</span><span class="o">=</span><span class="n">ctx</span><span class="o">.</span><span class="n">ids</span><span class="p">)</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">published</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span><span id="__span-9-17"><a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a>        <span class="k">return</span> <span class="s2">&quot;Published successfully&quot;</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">unfazed.contrib.admin.registry</span><span class="w"> </span><span class="kn">import</span> <span class="n">action</span><span class="p">,</span> <span class="n">ActionOutput</span><span class="p">,</span> <span class="n">ActionInput</span><span class="p">,</span> <span class="n">ActionKwargs</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="nd">@register</span><span class="p">(</span><span class="n">PostSerializer</span><span class="p">)</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="k">class</span><span class="w"> </span><span class="nc">PostAdmin</span><span class="p">(</span><span class="n">ModelAdmin</span><span class="p">):</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>    <span class="nd">@action</span><span class="p">(</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;publish&quot;</span><span class="p">,</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>        <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Publish Selected&quot;</span><span class="p">,</span>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>        <span class="n">output</span><span class="o">=</span><span class="n">ActionOutput</span><span class="o">.</span><span class="n">Toast</span><span class="p">,</span>
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>        <span class="n">confirm</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>        <span class="n">batch</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>    <span class="p">)</span>
+</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a>    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">publish</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctx</span><span class="p">:</span> <span class="n">ActionKwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span><span id="__span-10-15"><a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a>        <span class="c1"># ctx.ids contains selected record IDs</span>
+</span><span id="__span-10-16"><a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a>        <span class="k">await</span> <span class="n">Post</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">id__in</span><span class="o">=</span><span class="n">ctx</span><span class="o">.</span><span class="n">ids</span><span class="p">)</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">published</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="__span-10-17"><a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a>        <span class="k">return</span> <span class="s2">&quot;Published successfully&quot;</span>
 </span></code></pre></div>
 <p><strong>@action parameters:</strong></p>
 <table>
@@ -1971,24 +2076,24 @@
 </table>
 <h2 id="permissions">Permissions<a class="headerlink" href="#permissions" title="Permanent link">&para;</a></h2>
 <p>By default, <code>BaseAdmin</code> grants access only to superusers. To use RBAC-based permissions, have your admin classes inherit from <code>AuthMixin</code> (from <code>unfazed.contrib.auth.mixin</code>):</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">unfazed.contrib.auth.mixin</span><span class="w"> </span><span class="kn">import</span> <span class="n">AuthMixin</span>
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">unfazed.contrib.admin.registry</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModelAdmin</span><span class="p">,</span> <span class="n">register</span>
-</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
-</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>
-</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="nd">@register</span><span class="p">(</span><span class="n">PostSerializer</span><span class="p">)</span>
-</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="k">class</span><span class="w"> </span><span class="nc">PostAdmin</span><span class="p">(</span><span class="n">AuthMixin</span><span class="p">,</span> <span class="n">ModelAdmin</span><span class="p">):</span>
-</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>    <span class="o">...</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">unfazed.contrib.auth.mixin</span><span class="w"> </span><span class="kn">import</span> <span class="n">AuthMixin</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">unfazed.contrib.admin.registry</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModelAdmin</span><span class="p">,</span> <span class="n">register</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="nd">@register</span><span class="p">(</span><span class="n">PostSerializer</span><span class="p">)</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="k">class</span><span class="w"> </span><span class="nc">PostAdmin</span><span class="p">(</span><span class="n">AuthMixin</span><span class="p">,</span> <span class="n">ModelAdmin</span><span class="p">):</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>    <span class="o">...</span>
 </span></code></pre></div>
 <p>This checks <code>has_view_permission</code>, <code>has_change_permission</code>, etc. against the user's roles and permissions.</p>
 <h2 id="adminwakeup-lifespan">AdminWakeup Lifespan<a class="headerlink" href="#adminwakeup-lifespan" title="Permanent link">&para;</a></h2>
 <p><code>AdminWakeup</code> is a lifespan class that runs on startup. It iterates over all installed apps and calls <code>app.wakeup("admin")</code>, which imports each app's <code>admin.py</code> module, triggering the <code>@register</code> decorators and populating the <code>admin_collector</code>.</p>
 <p>Add it to your <code>LIFESPAN</code> setting:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">UNFAZED_SETTINGS</span> <span class="o">=</span> <span class="p">{</span>
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>    <span class="o">...</span>
-</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>    <span class="s2">&quot;LIFESPAN&quot;</span><span class="p">:</span> <span class="p">[</span>
-</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>        <span class="s2">&quot;unfazed.contrib.admin.registry.lifespan.AdminWakeup&quot;</span><span class="p">,</span>
-</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>    <span class="p">],</span>
-</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="p">}</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">UNFAZED_SETTINGS</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>    <span class="o">...</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>    <span class="s2">&quot;LIFESPAN&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>        <span class="s2">&quot;unfazed.contrib.admin.registry.lifespan.AdminWakeup&quot;</span><span class="p">,</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>    <span class="p">],</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="p">}</span>
 </span></code></pre></div>
 
 
